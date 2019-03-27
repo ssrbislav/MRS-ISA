@@ -13,6 +13,8 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
@@ -36,6 +38,7 @@ public abstract class User {
 
 	public String phone_number;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm-dd-yyyy")
 	public Date date_of_birth;
 
 	public User(String email, String username, String password, String address, String phone_number,
