@@ -38,7 +38,19 @@ public class PassengerService implements IPassengerService {
 	@Override
 	public Passenger update(Passenger passenger) {
 		
-		return passengerRepository.save(passenger);
+		Passenger p = passengerRepository.getOne(passenger.getId());
+		
+		p.setId(passenger.getId());
+		p.setUsername(passenger.getUsername());
+		p.setEmail(passenger.getEmail());
+		p.setFirst_name(passenger.getFirst_name());
+		p.setLast_name(passenger.getLast_name());
+		p.setAddress(passenger.getAddress());
+		p.setDate_of_birth(passenger.getDate_of_birth());
+		p.setPhone_number(passenger.getPhone_number());
+		p.setActive(passenger.isActive());
+		
+		return passengerRepository.save(p);
 	}
 
 	@Override

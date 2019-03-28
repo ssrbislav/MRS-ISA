@@ -34,6 +34,10 @@ public abstract class User {
 	@Column(unique = true, nullable = false)
 	public String password;
 
+	public String first_name;
+
+	public String last_name;
+
 	public String address;
 
 	public String phone_number;
@@ -41,18 +45,21 @@ public abstract class User {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm-dd-yyyy")
 	public Date date_of_birth;
 
-	public User(String email, String username, String password, String address, String phone_number,
+	public User(String email, String username, String password, String first_name, String last_name, String address, String phone_number,
 			Date date_of_birth) {
 		super();
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.first_name = first_name;
+		this.last_name = last_name;
 		this.address = address;
 		this.phone_number = phone_number;
 		this.date_of_birth = date_of_birth;
 	}
-	
-	public User() {}
+
+	public User() {
+	}
 
 	public Long getId() {
 		return id;
@@ -108,6 +115,22 @@ public abstract class User {
 
 	public void setDate_of_birth(Date date_of_birth) {
 		this.date_of_birth = date_of_birth;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
 }
