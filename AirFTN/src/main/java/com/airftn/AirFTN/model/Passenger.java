@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Entity
 public class Passenger extends User implements Serializable {
 
@@ -25,7 +27,7 @@ public class Passenger extends User implements Serializable {
 	public Passenger(boolean active, String email, String username, String password, String first_name, String last_name, String address,
 			String phone_number, Date date_of_birth) {
 		super(email, username, password, address, first_name, last_name, phone_number, date_of_birth);
-		this.active = active;
+		this.active = true;
 	}
 	
 	public Passenger() {}
