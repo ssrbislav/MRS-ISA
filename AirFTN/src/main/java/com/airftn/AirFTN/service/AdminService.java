@@ -16,11 +16,6 @@ public class AdminService implements IAdminService {
 	public List<Admin> findAll() {
 		return adminRepository.findAll(); 
 	}
-	
-	public Admin getOne(Long id) {
-		
-		return adminRepository.getOne(id);
-	}
 
 	@Override
 	public Admin create(Admin administrator) {
