@@ -8,7 +8,7 @@ public interface IPassengerService {
 	
 	List<Passenger> findAll();
 	
-	Passenger getOne(Long ig);
+	Passenger getOne(Long id);
 	
 	Passenger create(Passenger passenger);
 
