@@ -43,6 +43,9 @@ public class PassengerController {
 
 		Passenger p = passengerService.create(passenger);
 
+		if (p == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
@@ -51,6 +54,9 @@ public class PassengerController {
 
 		Passenger p = passengerService.update(passenger);
 
+		if (p == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
@@ -58,6 +64,9 @@ public class PassengerController {
 	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
 
 		boolean delete = passengerService.delete(id);
+
+		if (!delete)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return new ResponseEntity<>(delete, HttpStatus.OK);
 	}

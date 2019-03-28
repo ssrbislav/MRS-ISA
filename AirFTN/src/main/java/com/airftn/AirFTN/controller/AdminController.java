@@ -43,6 +43,9 @@ public class AdminController {
 	public ResponseEntity<Admin> update(@RequestBody Admin admin) {
 
 		Admin administrator = adminService.update(admin);
+		
+		if(administrator == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return new ResponseEntity<>(administrator, HttpStatus.OK);
 	}
