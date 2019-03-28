@@ -29,11 +29,13 @@ public class PassengerController {
 		return new ResponseEntity<>(passengers, HttpStatus.OK);
 	}
 
-	// Check if insted @RequestBody there should be @PathVariable -- maybe parameteres need to match
-	@RequestMapping(value = "getPassenger", method = RequestMethod.GET)
-	public ResponseEntity<Passenger> getOne(@RequestBody Passenger passenger) {
+	@RequestMapping(value = "getPassenger/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Passenger> getOne(@PathVariable Long id) {
 
-		Passenger p = passengerService.getOne(passenger.getId());
+		Passenger p = passengerService.getOne(id);
+
+		if (p == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
