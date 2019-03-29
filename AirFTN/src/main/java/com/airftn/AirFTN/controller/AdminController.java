@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,9 +52,7 @@ public class AdminController {
 
 		return new ResponseEntity<>(administrator, HttpStatus.OK);
 	}
-
-	//For now, only one administrator is allowed to exist in the system, so no delete method is needed
-	/*
+	
 	@RequestMapping(value = "deleteAdmin/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
 
@@ -61,6 +60,6 @@ public class AdminController {
 		
 		return new ResponseEntity<>(delete, HttpStatus.OK);
 	}
-	*/
+	
 
 }

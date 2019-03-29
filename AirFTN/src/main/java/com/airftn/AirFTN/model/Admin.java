@@ -1,40 +1,43 @@
 package com.airftn.AirFTN.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Admin extends User implements Serializable {
+import com.airftn.AirFTN.enumeration.AdminType;
 
-	private static final long serialVersionUID = 1L;
+@Entity
+public class Admin extends User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
-	public Long id;
+	private Long id;
 
 	@Column(unique = true, nullable = false)
-	public String username;
+	private String username;
 
 	@Column(unique = true, nullable = false)
-	public String password;
+	private String password;
 
-	public Admin(Long id, String username, String password) {
+	@Column(nullable = false)
+	private AdminType type;
+
+	public Admin(Long id, String username2, String password2, AdminType type) {
 		super();
 		this.id = id;
-		this.username = username;
-		this.password = password;
+		username = username2;
+		password = password2;
+		this.type = type;
 	}
 
-	public Admin(String username, String password) {
+	public Admin(String username, String password, AdminType type) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.type = type;
 	}
 
 	public Admin() {
@@ -62,6 +65,14 @@ public class Admin extends User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public AdminType getType() {
+		return type;
+	}
+
+	public void setType(AdminType type) {
+		this.type = type;
 	}
 
 }
