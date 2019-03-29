@@ -1,14 +1,21 @@
 package com.airftn.AirFTN.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 
 import org.hibernate.annotations.NaturalId;
@@ -21,29 +28,33 @@ public abstract class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 
 	@Email
 	@NaturalId
 	@Column(unique = true, nullable = false)
-	public String email;
+	private String email;
 
 	@Column(unique = true, nullable = false)
-	public String username;
+	private String username;
 
 	@Column(unique = true, nullable = false)
-	public String password;
+	private String password;
 
-	public String first_name;
+	private String first_name;
 
-	public String last_name;
+	private String last_name;
 
-	public String address;
+	private String address;
 
-	public String phone_number;
+	private String phone_number;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm-dd-yyyy")
-	public Date date_of_birth;
+	private Date date_of_birth;
+	
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
 	public User(String email, String username, String password, String first_name, String last_name, String address, String phone_number,
 			Date date_of_birth) {
@@ -131,6 +142,14 @@ public abstract class User {
 
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
+	}
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }

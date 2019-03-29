@@ -17,10 +17,10 @@ public class Passenger extends User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
-	public Long id;
+	private Long id;
 
 	@Column(nullable = false)
-	public boolean active;
+	private boolean active;
 
 	public Passenger(boolean active, String email, String username, String password, String first_name, String last_name, String address,
 			String phone_number, Date date_of_birth) {

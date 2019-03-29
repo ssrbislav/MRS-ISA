@@ -1,6 +1,7 @@
 package com.airftn.AirFTN.dto;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
 
@@ -31,6 +32,8 @@ public class PassengerDTO {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date date_of_birth;
+	
+	private Set<String> role;
 
 	public PassengerDTO(String email, String username, String password,
 			String first_name, String last_name, String address,
@@ -44,6 +47,9 @@ public class PassengerDTO {
 		this.address = address;
 		this.phone_number = phone_number;
 		this.date_of_birth = date_of_birth;
+	}
+	
+	public PassengerDTO() {
 	}
 
 	public String getEmail() {
@@ -108,6 +114,14 @@ public class PassengerDTO {
 
 	public void setDate_of_birth(Date date_of_birth) {
 		this.date_of_birth = date_of_birth;
+	}
+	
+	public Set<String> getRole() {
+		return role;
+	}
+
+	public void setRole(Set<String> role) {
+		this.role = role;
 	}
 
 }
