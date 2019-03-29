@@ -2,6 +2,7 @@ package com.airftn.AirFTN.service;
 
 import java.util.List;
 
+import com.airftn.AirFTN.dto.PassengerDTO;
 import com.airftn.AirFTN.model.Passenger;
 
 public interface IPassengerService {
@@ -10,7 +11,7 @@ public interface IPassengerService {
 	
 	Passenger getOne(Long id);
 	
-	Passenger create(Passenger passenger);
+	Passenger create(PassengerDTO passenger);
 
 	Passenger update(Passenger passenger);
 	

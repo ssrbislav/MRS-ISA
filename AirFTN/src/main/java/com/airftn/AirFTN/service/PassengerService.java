@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airftn.AirFTN.dto.PassengerDTO;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.repository.PassengerRepository;
 
@@ -27,14 +28,18 @@ public class PassengerService implements IPassengerService {
 	}
 
 	@Override
-	public Passenger create(Passenger passenger) {
+	public Passenger create(PassengerDTO passenger) {
 		
 		for(Passenger p: findAll()) 
 			if(p.getUsername().equals(passenger.getUsername()) || 
 					p.getEmail().equals(passenger.getEmail()))
 				return null;
 		
-		return passengerRepository.save(passenger);
+		Passenger p  = new Passenger(true, passenger.getEmail(), passenger.getUsername(),
+				passenger.getPassword(), passenger.getFirst_name(), passenger.getLast_name(),
+				passenger.getAddress(), passenger.getPhone_number(), passenger.getDate_of_birth());
+		
+		return passengerRepository.save(p);
 	}
 
 	@Override
