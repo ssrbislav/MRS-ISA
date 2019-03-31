@@ -10,7 +10,7 @@ import com.airftn.AirFTN.repository.UserRepository;
 
 @Service
 public class UserService implements IUserService {
-
+	
 	@Autowired
 	UserRepository userRepository;
 
