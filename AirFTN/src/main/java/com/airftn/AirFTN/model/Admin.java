@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 
 @Entity
-public class Admin extends User {
+@Inheritance
+public abstract class Admin extends User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

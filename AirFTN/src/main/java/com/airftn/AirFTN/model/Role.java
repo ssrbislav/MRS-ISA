@@ -20,10 +20,14 @@ public class Role {
 
 	@Enumerated(EnumType.STRING)
 	@NaturalId
-	private RoleType role_name;
+	private RoleType name;
 
-	public Role(RoleType role_name) {
-		this.role_name = role_name;
+	public Role(RoleType name) {
+		this.name = name;
+	}
+
+	public Role() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -34,12 +38,12 @@ public class Role {
 		this.id = id;
 	}
 
-	public RoleType getRole_name() {
-		return role_name;
+	public RoleType getName() {
+		return name;
 	}
 
-	public void setRole_name(RoleType role_name) {
-		this.role_name = role_name;
+	public void setName(RoleType name) {
+		this.name = name;
 	}
 
 }
