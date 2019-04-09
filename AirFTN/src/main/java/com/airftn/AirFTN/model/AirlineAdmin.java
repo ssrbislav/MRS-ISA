@@ -10,14 +10,13 @@ public class AirlineAdmin extends Admin {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AirlineAdmin(Long id, String username2, String password2) {
-		super(id, username2, password2);
+	public AirlineAdmin(Long id, String email2, String username2, String password2) {
+		super(id, email2, username2, password2);
 		// TODO Auto-generated constructor stub
 	}
 
-	public AirlineAdmin(String username, String password) {
-		super(username, password);
-		// TODO Auto-generated constructor stub
+	public AirlineAdmin(String email, String username, String password) {
+		super(email, username, password);
 	}
 	
 }

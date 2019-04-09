@@ -17,25 +17,29 @@ public abstract class Admin extends User {
 	private Long id;
 
 	@Column(unique = true, nullable = false)
+	private String email;
+
+	@Column(unique = true, nullable = false)
 	private String username;
 
 	@Column(unique = true, nullable = false)
 	private String password;
 
-	public Admin(Long id, String username2, String password2) {
-		super();
+	public Admin(Long id, String email2, String username2, String password2) {
 		this.id = id;
+		email = email2;
+		username = username2;
+		password = password2;
+	}
+	
+	public Admin(String email2, String username2, String password2) {
+		email = email2;
 		username = username2;
 		password = password2;
 	}
 
-	public Admin(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
-	}
-
 	public Admin() {
+		super();
 	}
 
 	public Long getId() {
@@ -44,6 +48,14 @@ public abstract class Admin extends User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUsername() {

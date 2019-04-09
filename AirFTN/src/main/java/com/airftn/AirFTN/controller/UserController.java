@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.dto.PassengerDTO;
 import com.airftn.AirFTN.enumeration.RoleType;
+import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.User;
@@ -80,5 +81,32 @@ public class UserController {
 		return new ResponseEntity<>("User registered successfully!", HttpStatus.OK);
 		
 	}
+	
+	@PostMapping("/registerAdmin")
+	public ResponseEntity<?> registerAdmin(@RequestBody PassengerDTO registerRequest) {
+		
+		if(userRepository.existsByUsername(registerRequest.getUsername())) {
+			return new ResponseEntity<>("Admin with that username already exist", HttpStatus.BAD_REQUEST);
+		}
+		
+		User user = new AirlineAdmin(
+				registerRequest.getEmail(),
+				registerRequest.getUsername(),
+				encoder.encode(registerRequest.getPassword())
+				);
+		
+		Role role = new Role();
+		role.setName(RoleType.ROLE_AIRLINE_ADMIN);
+		
+		Set<Role> roles = new HashSet<>();
+		roles.add(role);
+		
+		user.setRoles(roles);
+		
+		userRepository.save(user);
+		
+		return new ResponseEntity<>("Admin  registered successfully!", HttpStatus.OK);
+	}
+	
 	
 }

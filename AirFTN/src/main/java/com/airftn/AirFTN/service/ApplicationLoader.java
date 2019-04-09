@@ -1,6 +1,5 @@
 package com.airftn.AirFTN.service;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,14 +40,9 @@ public class ApplicationLoader implements ApplicationRunner {
 
 			Admin admin = new SysAdmin();
 
+			admin.setEmail("sys_admin@email.com");
 			admin.setUsername("admin");
 			admin.setPassword(encoder.encode("admin"));
-			admin.setEmail("");
-			admin.setFirst_name("");
-			admin.setLast_name("");
-			admin.setAddress("");
-			admin.setDate_of_birth(new Date());
-			admin.setPhone_number("");
 			admin.setRoles(roles);
 
 			adminRepository.save(admin);

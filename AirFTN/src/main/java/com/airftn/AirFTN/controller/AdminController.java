@@ -35,8 +35,8 @@ public class AdminController {
 	public ResponseEntity<Admin> create(@RequestBody Admin admin) {
 
 		Admin administrator = adminService.create(admin);
-		
-		if(administrator == null)
+
+		if (administrator == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return new ResponseEntity<>(administrator, HttpStatus.OK);
@@ -46,20 +46,19 @@ public class AdminController {
 	public ResponseEntity<Admin> update(@RequestBody Admin admin) {
 
 		Admin administrator = adminService.update(admin);
-		
-		if(administrator == null)
+
+		if (administrator == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		return new ResponseEntity<>(administrator, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "deleteAdmin/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
 
 		boolean delete = adminService.delete(id);
-		
+
 		return new ResponseEntity<>(delete, HttpStatus.OK);
 	}
-	
 
 }
