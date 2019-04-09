@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.airftn.AirFTN.dto.PassengerDTO;
+import com.airftn.AirFTN.dto.RegisterDTO;
 import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Role;
@@ -46,7 +46,7 @@ public class UserController {
 	JwtProvider jwtProvider;
 
 	@PostMapping("/register")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody PassengerDTO registerRequest) {
+	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerRequest) {
 
 		if (userRepository.existsByUsername(registerRequest.getUsername())) {
 			return new ResponseEntity<>("Username is already taken", HttpStatus.BAD_REQUEST);
@@ -56,9 +56,14 @@ public class UserController {
 			return new ResponseEntity<>("Email is already in use", HttpStatus.BAD_REQUEST);
 		}
 
-		User user = new Passenger(true, registerRequest.getEmail(), registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
-				registerRequest.getLast_name(), registerRequest.getAddress(), registerRequest.getPhone_number(),
+		User user = new Passenger(true, 
+				registerRequest.getEmail(), 
+				registerRequest.getUsername(),
+				encoder.encode(registerRequest.getPassword()), 
+				registerRequest.getFirst_name(),
+				registerRequest.getLast_name(), 
+				registerRequest.getAddress(), 
+				registerRequest.getPhone_number(),
 				registerRequest.getDate_of_birth());
 
 		Role role = new Role();

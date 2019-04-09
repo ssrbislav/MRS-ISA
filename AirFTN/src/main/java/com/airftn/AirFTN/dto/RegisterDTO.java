@@ -15,8 +15,6 @@ public class RegisterDTO {
 	@NotBlank
 	private String username;
 
-	private Set<String> role;
-
 	@NotBlank
 	private String password;
 
@@ -32,8 +30,10 @@ public class RegisterDTO {
 	@NotBlank
 	private String phone_number;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
-	private Date date_birth;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm-dd-yyyy")
+	private Date date_of_birth;
+	
+	private Set<String> role;
 
 	public String getEmail() {
 		return email;
@@ -99,12 +99,12 @@ public class RegisterDTO {
 		this.phone_number = phone_number;
 	}
 
-	public Date getDate_birth() {
-		return date_birth;
+	public Date getDate_of_birth() {
+		return date_of_birth;
 	}
 
-	public void setDate_birth(Date date_birth) {
-		this.date_birth = date_birth;
+	public void setDate_of_birth(Date date_of_birth) {
+		this.date_of_birth = date_of_birth;
 	}
 
 	
