@@ -31,7 +31,9 @@ public class JwtProvider {
 
 		UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
 
-		return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
+		return Jwts.builder()
+				.setSubject((userPrincipal.getUsername()))
+				.setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpiration * 1000))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
 	}
@@ -44,7 +46,7 @@ public class JwtProvider {
 			logger.error("Invalid JWT token -> Message: {}", e);
 		} catch (ExpiredJwtException e) {
 			System.out.println(e);
-			//logger.error("Expired JWT token -> Message: {}", e);
+			logger.error("Expired JWT token -> Message: {}", e);
 		} catch (UnsupportedJwtException e) {
 			logger.error("Unsupported JWT token -> Message: {}", e);
 		} catch (IllegalArgumentException e) {

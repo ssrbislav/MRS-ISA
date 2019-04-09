@@ -10,6 +10,16 @@ public class LoginDTO {
 	@NotBlank
 	private String password;
 
+	public LoginDTO() {
+
+	}
+
+	public LoginDTO(@NotBlank String username, @NotBlank String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 	public String getUsername() {
 		return username;
 	}

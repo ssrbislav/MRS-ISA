@@ -51,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
+        config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
@@ -65,12 +65,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*
+		
 		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/**").permitAll().anyRequest()
 		.authenticated().and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
-		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/**").permitAll().anyRequest()
-				.authenticated();
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		/*http.cors().and().csrf().disable().authorizeRequests().antMatchers("/**").permitAll().anyRequest()
+				.authenticated();*/
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
