@@ -1,5 +1,7 @@
 package com.airftn.AirFTN.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,13 +27,15 @@ public abstract class Admin extends User {
 	@Column(unique = true, nullable = false)
 	private String password;
 
+	private Set<Role> roles;
+
 	public Admin(Long id, String email2, String username2, String password2) {
 		this.id = id;
 		email = email2;
 		username = username2;
 		password = password2;
 	}
-	
+
 	public Admin(String email2, String username2, String password2) {
 		email = email2;
 		username = username2;
@@ -72,6 +76,14 @@ public abstract class Admin extends User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }
