@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.airftn.AirFTN.dto.JwtResponse;
 import com.airftn.AirFTN.dto.LoginDTO;
 import com.airftn.AirFTN.dto.RegisterDTO;
 import com.airftn.AirFTN.enumeration.RoleType;
@@ -98,7 +99,7 @@ public class UserController {
 		
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 	
-		return new ResponseEntity<>(HttpStatus.OK);
+		return ResponseEntity.ok( new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 		
 		
 	}
