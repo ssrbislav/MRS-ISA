@@ -5,6 +5,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
 import { PassengerComponent } from './passenger/passenger.component';
 import { RoleGuardService } from './auth/role-guard.service';
+import { SysAdminComponent } from './sys-admin/sys-admin.component';
+import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 
 const routes: Routes = [
 
@@ -30,6 +32,22 @@ const routes: Routes = [
         canActivate: [RoleGuardService],
         data: {
             expectedRole: 'ROLE_PASESENGER'
+        }
+    },
+    {
+        path: 'sysAdmin',
+        component: SysAdminComponent,
+        canActivate: [RoleGuardService],
+        data: {
+            expectedRole: 'ROLE_SYS_ADMIN'
+        }
+    },
+    {
+        path: 'airlineAdmin',
+        component: AirlineAdminComponent,
+        canActivate: [RoleGuardService],
+        data: {
+            expectedRole: 'ROLE_AIRLINE_ADMIN'
         }
     }
 ];

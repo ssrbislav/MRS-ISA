@@ -3,6 +3,7 @@ import { LoginInfo } from '../auth/login-info';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { JwtResponse } from '../auth/jwt-response';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: LoginInfo;
 
-  constructor(private data: any,
+  constructor(private data: JwtResponse,
               private tokenStorage: TokenStorageService,
               private router: Router,
               private authService: AuthService) { }
@@ -38,9 +39,9 @@ export class LoginComponent implements OnInit {
 
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUsername(data.username);
-        this.tokenStorage.saveAuthorities(data.authorities);
+        this.tokenStorage.saveToken(this.data.accessToken);
+        this.tokenStorage.saveUsername(this.data.username);
+        this.tokenStorage.saveAuthorities(this.data.authorities);
         this.isLoggedIn = true;
         this.isLoginFailed = false;
         this.roles = this.tokenStorage.getAuthorities();
