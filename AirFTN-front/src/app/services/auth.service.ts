@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { LoginInfo } from '../auth/login-info';
 import { Observable } from 'rxjs';
 import { SignupInfo } from '../auth/signup-info';
+import { JwtResponse } from '../auth/jwt-response';
 
 
 const httpOptions = {
@@ -19,8 +20,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  attemptAuth(credentials: LoginInfo): Observable<string> {
-    return this.http.post<'Success!'>(this.loginUrl, credentials, httpOptions);
+  attemptAuth(credentials: LoginInfo): Observable<JwtResponse> {
+    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
 
   signUp(info: SignupInfo): Observable<string> {
