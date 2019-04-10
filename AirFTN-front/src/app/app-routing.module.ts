@@ -11,6 +11,10 @@ const routes: Routes = [
         component: MainPageComponent
     },
     {
+        path: 'mainPage',
+        component: MainPageComponent
+    },
+    {
         path: 'signup',
         component: RegistrationComponent
     },
