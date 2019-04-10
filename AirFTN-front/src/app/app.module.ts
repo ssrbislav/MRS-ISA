@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor, httpInterceptorProviders } from './auth/auth-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PassengerComponent } from './passenger/passenger.component';
+import { SysAdminComponent } from './sys-admin/sys-admin.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PassengerComponent } from './passenger/passenger.component';
     RegistrationComponent,
     MainPageComponent,
     LoginComponent,
-    PassengerComponent
+    PassengerComponent,
+    SysAdminComponent
   ],
   imports: [
     BrowserModule,
