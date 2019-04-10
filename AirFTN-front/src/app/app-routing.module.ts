@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
+import { PassengerComponent } from './passenger/passenger.component';
+import { RoleGuardService } from './auth/role-guard.service';
 
 const routes: Routes = [
 
@@ -21,6 +23,14 @@ const routes: Routes = [
     {
         path: 'signin',
         component: LoginComponent
+    },
+    {
+        path: 'passenger',
+        component: PassengerComponent,
+        canActivate: [RoleGuardService],
+        data: {
+            expectedRole: 'ROLE_PASESENGER'
+        }
     }
 ];
 

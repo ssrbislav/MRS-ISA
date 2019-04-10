@@ -7,19 +7,39 @@ import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import { RoleGuardService } from './auth/role-guard.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor, httpInterceptorProviders } from './auth/auth-interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PassengerComponent } from './passenger/passenger.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     MainPageComponent,
-    LoginComponent
+    LoginComponent,
+    PassengerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    RoleGuardService,
+    httpInterceptorProviders,
+    HttpClientModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
