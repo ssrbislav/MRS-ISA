@@ -1,5 +1,7 @@
 package com.airftn.AirFTN.security;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -30,11 +32,15 @@ public class JwtProvider {
 	public String generateJwtToken(Authentication authentication) {
 
 		UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
+		
+		LocalDateTime ldt =  LocalDateTime.now();
+		
+		Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
 
 		return Jwts.builder()
 				.setSubject((userPrincipal.getUsername()))
 				.setIssuedAt(new Date())
-				.setExpiration(new Date((new Date()).getTime() + jwtExpiration * 1000))
+				.setExpiration(new Date(out.getTime() + jwtExpiration * 1000))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
 	}
 
@@ -45,7 +51,6 @@ public class JwtProvider {
 		} catch (MalformedJwtException e) {
 			logger.error("Invalid JWT token -> Message: {}", e);
 		} catch (ExpiredJwtException e) {
-			System.out.println(e);
 			logger.error("Expired JWT token -> Message: {}", e);
 		} catch (UnsupportedJwtException e) {
 			logger.error("Unsupported JWT token -> Message: {}", e);
