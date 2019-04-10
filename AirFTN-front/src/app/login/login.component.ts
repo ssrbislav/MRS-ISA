@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    
-  }
+  onSubmit() {  }
 
 }
