@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.roles = this.tokenStorage.getAuthorities();
         this.roles.every(role => {
-          if (role === 'ROLE_SYS_ADMIN') {
+          if (role === 'ROLE_SYSADMIN') {
             this.router.navigate(['sysAdmin']);
             return true;
           } else if (role === 'ROLE_AIRLINE_ADMIN') {
