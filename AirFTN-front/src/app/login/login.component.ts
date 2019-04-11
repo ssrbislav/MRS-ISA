@@ -68,4 +68,8 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
+  cancelForm() {
+    this.router.navigate(['mainPage']);
+  }
+
 }
