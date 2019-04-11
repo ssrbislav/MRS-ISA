@@ -24,7 +24,7 @@ export class TokenStorageService {
   }
 
   public getToken() {
-    window.sessionStorage.getItem(TOKEN_KEY);
+    return window.sessionStorage.getItem(TOKEN_KEY);
   }
 
   public saveUsername(username: string) {
@@ -33,7 +33,7 @@ export class TokenStorageService {
   }
 
   public getUsername() {
-    window.sessionStorage.getItem(USERNAME_KEY);
+    return window.sessionStorage.getItem(USERNAME_KEY);
   }
 
   public saveAuthorities(authorities: string[]) {

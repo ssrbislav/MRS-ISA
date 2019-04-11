@@ -39,7 +39,7 @@ const routes: Routes = [
         component: SysAdminComponent,
         canActivate: [RoleGuardService],
         data: {
-            expectedRole: 'ROLE_SYS_ADMIN'
+            expectedRole: 'ROLE_SYSADMIN'
         }
     },
     {
