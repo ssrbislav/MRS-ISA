@@ -1,11 +1,13 @@
+<div id="whole">
 <div class="container">
-  <div class="picture"><img src="../../assets/images/bg-02.jpg"></div>
+  <div class="picture"><img src="../../assets/images/bg-05.jpg"></div>
   <div class="login-form">
-    <h3>PLEASE LOG IN</h3>
+    <h3>LOG IN</h3>
+    <br>
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
         <br>
-        <input type="text" name="username" [(ngModel)]="form.username" #username="ngModel"
+        <input type="text" id="user" name="username" [(ngModel)]="form.username" #username="ngModel"
           required  placeholder="USERNAME"/>
         <div *ngIf="f.submitted && username.invalid">
           <div *ngIf="username.errors.required" style="color: red">Username is required</div>
@@ -13,7 +15,7 @@
       </div>
       <div class="form-group">
         <br>
-        <input type="password" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+        <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
         required placeholder="PASSWORD"/>
         <div *ngIf="f.submitted && password.invalid">
           <div *ngIf="password.errors.required" style="color: red">Password is required</div>
@@ -23,12 +25,16 @@
       <div class="form-group">
         
         <button class="submitbtn">LOG IN</button>
-        <br>
+        
         <div *ngIf="f.submitted && isLoginFailed" style="color: red">
           Login failed: {{errorMessage}}
         </div>
-        <button class="cancelbtn" (click)="cancelForm()" type="button" >Cancel</button>
+        <button class="cancelbtn" (click)="cancelForm()" type="button" >CANCEL</button>
+      </div>
+      <div class="signup">
+        <p>Don't have an account -> <span id="span" (click)="signup_navigate()">Sign Up</span></p>
       </div>
     </form>
   </div>
+</div>
 </div>

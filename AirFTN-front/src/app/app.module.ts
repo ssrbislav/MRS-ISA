@@ -24,7 +24,7 @@ import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
     LoginComponent,
     PassengerComponent,
     SysAdminComponent,
-    AirlineAdminComponent
+    AirlineAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,6 @@ import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
   providers: [
     RoleGuardService,
     httpInterceptorProviders,
-    HttpClientModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

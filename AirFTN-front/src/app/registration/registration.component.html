@@ -1,3 +1,88 @@
-<p>
-  registration works!
-</p>
+<div id="whole">
+  <div class="container">
+    <div class="picture"><img src="../../assets/images/bg-07.jpg"></div>
+    <div class="login-form">
+      <br>
+      <h3>REGISTER</h3>      
+      <br>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          
+          <input type="text" id="user" name="username" [(ngModel)]="form.username" #username="ngModel"
+            required  placeholder="USERNAME"/>
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required" style="color: red">Username is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          
+          <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+          required placeholder="PASSWORD"/>
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required" style="color: red">Password is required</div>
+            <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" id="pass2" name="password2" minlength="5" [(ngModel)]="form.password2" #password2="ngModel" 
+          required placeholder="REPEATE PASSWORD"/>
+          <div *ngIf="f.submitted && password2.invalid">
+            <div *ngIf="password2.errors.required" style="color: red">Password is required</div>
+            <div style="color: red">Passwords do not match</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="email" name="email" [(ngModel)]="form.emial" #email="ngModel" 
+          required placeholder="EMAIL"/>
+          <div *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required" style="color: red">Email is required</div>
+            <div  style="color: red">Eamil format not correct</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+          required placeholder="FIRST NAME"/>
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required" style="color: red">Password is required</div>
+            <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+          required placeholder="LAST NAME"/>
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required" style="color: red">Password is required</div>
+            <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+          required placeholder="ADDRESS"/>
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required" style="color: red">Password is required</div>
+            <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input placeholder="DATE OF BIRTH" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" [(ngModel)]="form.date" #date="ngModel" 
+          required/>
+          <div *ngIf="f.submitted && date.invalid">
+            <div *ngIf="date.errors.required" style="color: red">Date is required</div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <button class="button" class="submitbtn">LOG IN</button>
+          <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+            Login failed: {{errorMessage}}
+          </div>
+          <button class="cancelbtn" (click)="cancelForm()" type="button" >CANCEL</button>
+        </div>
+        <div class="signup">
+          <p>Already have an account -> <span><a href="#" (click)="navigate()">Sign in</a></span></p>
+        </div>
+        <br>
+      </form>
+    </div>
+  </div>
+</div>

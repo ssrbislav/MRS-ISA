@@ -1,7 +1,21 @@
+body {
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box;
+}
+  
+#whole {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(241, 241, 241);
+    overflow: hidden;
+    margin: 0;
+}
+
 .container {
     margin: 0 auto;
-    width: 1000px;
-    height: 800px;
+    width: 900px;
+    height: 100%;
     background-color: white;
 }
 
@@ -13,30 +27,19 @@
 }
 
 img {
-    max-height: 100%;
+    max-height: 115%;
+    max-width: 150%;
     margin: auto;
     display: block;
     opacity: 0.7;
 }
 
-input[type=text]{
+input{
     width: 80%;
     padding: 12px;
     border: none;
     border-bottom: 1px solid #ccc;
-    background-color: rgb(241, 241, 241);
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-    text-align: center;
-}
-
-input[type=password]{
-    width: 80%;
-    padding: 12px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    background-color: rgb(241, 241, 241);
+    background-color: white;
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
@@ -44,39 +47,75 @@ input[type=password]{
 }
 
 button {
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
+    padding: 18px 30px;
+    margin: 15px 15px ;
+    border: 1px solid rgb(20, 168, 57);
     border-radius: 4px;
     cursor: pointer;
-    width: 50%;
+    width: 35%;
     opacity: 0.9;
-}
-
-.submitbtn {
-    background-color: rgb(60, 151, 255);
+    background-color: white;
 }
 
 .cancelbtn {
-    background-color: #ccc
-}
-  
-button:hover {
-    
-    color: black;
-    opacity: 0.7;
+    border: 1px solid gray;
+    border-radius: 4px;
 }
 
-h3 {
-    padding-top: 40px;
+#user:focus, #pass:focus {
+    border-bottom: 1px solid rgb(20, 168, 57);
+}
+
+textarea, select, input, button { 
+    outline: none;
+ }
+
+h3, .signup {
+    padding-top: 20px;
     font-size: 30px;
+    font-family: lato;
+    font-weight: 200;
+}
+
+p {
+    font-size: 20px;
     font-family: lato;
 }
   
 .login-form {
     float: right;
     text-align: center;
-    background-color: rgb(241, 241, 241);
-    width: 500px;
+    background-color: white;
+    width: 50%;
     height: 100%;
+}
+
+.cancelbtn:hover {
+    background-color: gray;
+    opacity: 0.6;
+    color: white;
+}
+
+.cancelbtn:focus {
+    background-color: gray;
+    opacity: 1;
+    color: white;
+}
+
+.submitbtn:hover {
+    background: #a8dfb0;
+    color: white;
+    opacity: 0.6;
+}
+
+.submitbtn:focus {
+    background-color: #a8dfb0;
+    opacity: 1;
+    color: white;
+}
+
+#span {
+    color: rgb(20, 168, 57);
+    text-decoration: underline;
+    cursor: pointer;
 }
