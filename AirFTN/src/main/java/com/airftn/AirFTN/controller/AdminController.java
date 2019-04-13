@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.dto.AdminDTO;
 import com.airftn.AirFTN.enumeration.RoleType;
-import com.airftn.AirFTN.model.Admin;
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.Role;
-import com.airftn.AirFTN.repository.AdminRepository;
-import com.airftn.AirFTN.service.IAdminService;
+import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.repository.UserRepository;
 
 @CrossOrigin
 @RestController
@@ -29,18 +28,15 @@ import com.airftn.AirFTN.service.IAdminService;
 public class AdminController {
 
 	@Autowired
-	IAdminService adminService;
-
-	@Autowired
-	AdminRepository adminRepository;
+	UserRepository userRepository;
 
 	@Autowired
 	PasswordEncoder encoder;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<List<Admin>> findAll() {
+	public ResponseEntity<List<User>> findAll() {
 
-		List<Admin> administrators = adminService.findAll();
+		List<User> administrators = userRepository.findAll();
 
 		return new ResponseEntity<>(administrators, HttpStatus.OK);
 	}
@@ -59,16 +55,16 @@ public class AdminController {
 	@PostMapping("/registerAdmin")
 	public ResponseEntity<?> registerAdmin(@RequestBody AdminDTO registerRequest) {
 
-		if (adminRepository.existsByEmail(registerRequest.getEmail())) {
+		if (userRepository.existsByEmail(registerRequest.getEmail())) {
 			return new ResponseEntity<>("Email already in use", HttpStatus.BAD_REQUEST);
 		}
 
-		if (adminRepository.existsByUsername(registerRequest.getUsername())) {
+		if (userRepository.existsByUsername(registerRequest.getUsername())) {
 			return new ResponseEntity<>("Admin with that username already exist", HttpStatus.BAD_REQUEST);
 		}
 
-		Admin admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()));
+		User admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
+				encoder.encode(registerRequest.getPassword()), null, null, null, null, null);
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_AIRLINE_ADMIN);
@@ -78,15 +74,15 @@ public class AdminController {
 
 		admin.setRoles(roles);
 
-		adminRepository.save(admin);
+		userRepository.save(admin);
 
 		return new ResponseEntity<>("Admin  registered successfully!", HttpStatus.OK);
 	}
 
 	@PostMapping("/updateAdmin")
-	public ResponseEntity<Admin> update(@RequestBody Admin admin) {
+	public ResponseEntity<User> update(@RequestBody User admin) {
 
-		Admin administrator = adminService.update(admin);
+		User administrator = userRepository.save(admin);
 
 		if (administrator == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
