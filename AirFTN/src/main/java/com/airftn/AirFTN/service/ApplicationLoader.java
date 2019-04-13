@@ -9,19 +9,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.airftn.AirFTN.enumeration.RoleType;
-import com.airftn.AirFTN.model.Admin;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.SysAdmin;
-import com.airftn.AirFTN.repository.AdminRepository;
+import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.repository.UserRepository;
 
 @Component
 public class ApplicationLoader implements ApplicationRunner {
 
-	private AdminRepository adminRepository;
+	private UserRepository userRepository;
 
-	public ApplicationLoader(AdminRepository adminRepository) {
+	public ApplicationLoader(UserRepository adminRepository) {
 		super();
-		this.adminRepository = adminRepository;
+		this.userRepository = adminRepository;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class ApplicationLoader implements ApplicationRunner {
 
 
 		//Create System Admin if no admin is present
-		if (adminRepository.findAll().size() == 0) {
+		if (userRepository.findAll().size() == 0) {
 			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -38,14 +38,14 @@ public class ApplicationLoader implements ApplicationRunner {
 			Set<Role> roles = new HashSet<>();
 			roles.add(admin_role);
 
-			Admin admin = new SysAdmin();
+			User admin = new SysAdmin();
 
 			admin.setEmail("sys_admin@email.com");
 			admin.setUsername("admin");
 			admin.setPassword(encoder.encode("admin"));
 			admin.setRoles(roles);
 
-			adminRepository.save(admin);
+			userRepository.save(admin);
 			System.out.println("Admin created!");	
 		}
 
