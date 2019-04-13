@@ -37,6 +37,12 @@ public class VerificationToken {
 		this.expiryDate = expiryDate;
 	}
 
+	public VerificationToken(String token2, Passenger passenger) {
+		super();
+		this.token = token2;
+		this.passenger = passenger;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -37,6 +37,7 @@ import com.airftn.AirFTN.model.VerificationToken;
 import com.airftn.AirFTN.repository.RoleRepository;
 import com.airftn.AirFTN.repository.UserRepository;
 import com.airftn.AirFTN.security.JwtProvider;
+import com.airftn.AirFTN.service.IPassengerService;
 import com.airftn.AirFTN.service.IUserService;
 
 @CrossOrigin
@@ -55,9 +56,9 @@ public class UserController {
 
 	@Autowired
 	PasswordEncoder encoder;
-	
+
 	@Autowired
-	IUserService service;
+	IPassengerService service;
 
 	@Autowired
 	JwtProvider jwtProvider;
@@ -73,14 +74,9 @@ public class UserController {
 			return new ResponseEntity<>("Email is already in use", HttpStatus.BAD_REQUEST);
 		}
 
-		User user = new Passenger(true, 
-				registerRequest.getEmail(), 
-				registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()), 
-				registerRequest.getFirst_name(),
-				registerRequest.getLast_name(), 
-				registerRequest.getAddress(), 
-				registerRequest.getPhone_number(),
+		User user = new Passenger(true, registerRequest.getEmail(), registerRequest.getUsername(),
+				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
+				registerRequest.getLast_name(), registerRequest.getAddress(), registerRequest.getPhone_number(),
 				registerRequest.getDate_of_birth());
 
 		Role role = new Role();
@@ -96,46 +92,41 @@ public class UserController {
 		return new ResponseEntity<>("User registered successfully!", HttpStatus.OK);
 
 	}
-	
+
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginRequest) {
-		
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), 
-						loginRequest.getPassword()));
-		
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		String jwt = jwtProvider.generateJwtToken(authentication);
-		
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-	
-		return ResponseEntity.ok( new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
-		
-		
-	}
-	
-	@RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
-	public String confirmRegistration
-	  (WebRequest request, Model model, @RequestParam("token") String token) {
-	     
-	    VerificationToken verificationToken = service.getVerificationToken(token);
-	    if (verificationToken == null) {
-	        
-	        return "Not good";
-	    }
-	     
-	    Passenger user = verificationToken.getPassenger();
-	    Calendar cal = Calendar.getInstance();
-	    if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) 
-	        return "Not good";
-	    
-	     
-	    user.setActive(true);
-	    userRepository.save(user);
-	    
-	    return "redirect:/login"; 
-	}
-	
-}
 
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		String jwt = jwtProvider.generateJwtToken(authentication);
+
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+
+	}
+
+	@RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
+	public String confirmRegistration(WebRequest request, @RequestParam("token") String token) {
+
+		VerificationToken verificationToken = service.getVerificationToken(token);
+		if (verificationToken == null) {
+
+			return "Not good";
+		}
+
+		Passenger user = verificationToken.getPassenger();
+		Calendar cal = Calendar.getInstance();
+		if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0)
+			return "Not good";
+
+		user.setActive(true);
+		userRepository.save(user);
+
+		return "redirect:/login";
+	}
+
+}

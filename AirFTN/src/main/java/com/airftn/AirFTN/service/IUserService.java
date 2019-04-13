@@ -14,9 +14,5 @@ public interface IUserService {
 	User update(User user);
 	
 	boolean delete(Long id);
-
-	void createVerificationToken(User user, String token);
-
-	VerificationToken getVerificationToken(String token);
 	
 }

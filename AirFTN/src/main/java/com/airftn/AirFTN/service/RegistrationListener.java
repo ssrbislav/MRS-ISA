@@ -9,13 +9,13 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.model.Passenger;
 
 @Component
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
 
 	@Autowired
-    private IUserService service;
+    private PassengerService service;
   
     @Autowired
     private MessageSource messages;
@@ -29,7 +29,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     }
 	
 	private void confirmRegistration(OnRegistrationCompleteEvent event) {
-        User user = event.getUser();
+        Passenger user = (Passenger) event.getUser();
         String token = UUID.randomUUID().toString();
         service.createVerificationToken(user, token);
          

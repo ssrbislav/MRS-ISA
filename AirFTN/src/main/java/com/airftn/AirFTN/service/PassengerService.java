@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.PassengerDTO;
 import com.airftn.AirFTN.model.Passenger;
+import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.model.VerificationToken;
 import com.airftn.AirFTN.repository.PassengerRepository;
+import com.airftn.AirFTN.repository.VerificationTokenRepository;
 
 @Service
 public class PassengerService implements IPassengerService {
@@ -15,6 +18,9 @@ public class PassengerService implements IPassengerService {
 	@Autowired
 	PassengerRepository passengerRepository;
 
+	@Autowired
+	VerificationTokenRepository tokenRepository;
+	
 	@Override
 	public List<Passenger> findAll() {
 
@@ -75,8 +81,28 @@ public class PassengerService implements IPassengerService {
 	@Override
 	public boolean activate(Long id) {
 
-		// Implement activate method
+		for(Passenger passenger: findAll()) {
+			if(passenger.getId() == id) {
+				passenger.setActive(true);
+				passengerRepository.save(passenger);
+				return true;
+			}
+		}
 		return false;
 	}
+
+	@Override
+	public void createVerificationToken(Passenger passenger, String token) {
+		VerificationToken myToken = new VerificationToken(token, passenger);
+        tokenRepository.save(myToken);
+		
+	}
+
+	@Override
+	public VerificationToken getVerificationToken(String token) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

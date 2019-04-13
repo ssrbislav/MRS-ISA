@@ -8,6 +8,7 @@ import com.airftn.AirFTN.model.User;
 
 public class OnRegistrationCompleteEvent extends ApplicationEvent {
 
+	private static final long serialVersionUID = 1L;
 	private String appUrl;
 	private Locale locale;
 	private User user;
