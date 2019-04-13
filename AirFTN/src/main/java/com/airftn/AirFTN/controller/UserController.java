@@ -1,6 +1,8 @@
 package com.airftn.AirFTN.controller;
 
+import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -14,11 +16,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
 import com.airftn.AirFTN.dto.JwtResponse;
 import com.airftn.AirFTN.dto.LoginDTO;
@@ -27,9 +33,11 @@ import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.model.VerificationToken;
 import com.airftn.AirFTN.repository.RoleRepository;
 import com.airftn.AirFTN.repository.UserRepository;
 import com.airftn.AirFTN.security.JwtProvider;
+import com.airftn.AirFTN.service.IUserService;
 
 @CrossOrigin
 @RestController
@@ -47,6 +55,9 @@ public class UserController {
 
 	@Autowired
 	PasswordEncoder encoder;
+	
+	@Autowired
+	IUserService service;
 
 	@Autowired
 	JwtProvider jwtProvider;
@@ -102,6 +113,28 @@ public class UserController {
 		return ResponseEntity.ok( new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 		
 		
+	}
+	
+	@RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
+	public String confirmRegistration
+	  (WebRequest request, Model model, @RequestParam("token") String token) {
+	     
+	    VerificationToken verificationToken = service.getVerificationToken(token);
+	    if (verificationToken == null) {
+	        
+	        return "Not good";
+	    }
+	     
+	    Passenger user = verificationToken.getPassenger();
+	    Calendar cal = Calendar.getInstance();
+	    if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) 
+	        return "Not good";
+	    
+	     
+	    user.setActive(true);
+	    userRepository.save(user);
+	    
+	    return "redirect:/login"; 
 	}
 	
 }

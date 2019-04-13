@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.model.VerificationToken;
 import com.airftn.AirFTN.repository.UserRepository;
 
 @Service
@@ -57,6 +58,12 @@ public class UserDetailsServiceImpl implements UserDetailsService, IUserService 
 	public void createVerificationToken(User user, String token) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public VerificationToken getVerificationToken(String token) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

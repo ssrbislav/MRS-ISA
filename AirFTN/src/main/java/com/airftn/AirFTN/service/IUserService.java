@@ -3,6 +3,7 @@ package com.airftn.AirFTN.service;
 import java.util.List;
 
 import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.model.VerificationToken;
 
 public interface IUserService {
 	
@@ -15,5 +16,7 @@ public interface IUserService {
 	boolean delete(Long id);
 
 	void createVerificationToken(User user, String token);
+
+	VerificationToken getVerificationToken(String token);
 	
 }
