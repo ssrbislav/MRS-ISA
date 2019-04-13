@@ -22,7 +22,7 @@ public class Passenger extends User implements Serializable {
 	@Column(nullable = false)
 	private boolean active;
 
-	public Passenger(boolean active, String email, String username, String password, String first_name, String last_name, String address,
+	public Passenger(String email, String username, String password, String first_name, String last_name, String address,
 			String phone_number, Date date_of_birth) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
 		this.active = false;

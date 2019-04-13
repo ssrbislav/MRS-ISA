@@ -74,7 +74,7 @@ public class UserController {
 			return new ResponseEntity<>("Email is already in use", HttpStatus.BAD_REQUEST);
 		}
 
-		User user = new Passenger(true, registerRequest.getEmail(), registerRequest.getUsername(),
+		User user = new Passenger(registerRequest.getEmail(), registerRequest.getUsername(),
 				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
 				registerRequest.getLast_name(), registerRequest.getAddress(), registerRequest.getPhone_number(),
 				registerRequest.getDate_of_birth());

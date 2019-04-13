@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.context.ApplicationEvent;
 
+import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.User;
 
 public class OnRegistrationCompleteEvent extends ApplicationEvent {
@@ -11,11 +12,11 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
 	private static final long serialVersionUID = 1L;
 	private String appUrl;
 	private Locale locale;
-	private User user;
+	private Passenger passenger;
 
-	public OnRegistrationCompleteEvent(User user, Locale locale, String appUrl) {
-		super(user);
-		this.user = user;
+	public OnRegistrationCompleteEvent(Passenger passenger, Locale locale, String appUrl) {
+		super(passenger);
+		this.passenger = passenger;
 		this.locale = locale;
 		this.appUrl = appUrl;
 	}
@@ -37,11 +38,11 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
 	}
 
 	public User getUser() {
-		return user;
+		return passenger;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Passenger passenger) {
+		this.passenger = passenger;
 	}
 
 }

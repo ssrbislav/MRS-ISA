@@ -2,17 +2,19 @@ package com.airftn.AirFTN.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.PassengerDTO;
 import com.airftn.AirFTN.model.Passenger;
-import com.airftn.AirFTN.model.User;
 import com.airftn.AirFTN.model.VerificationToken;
 import com.airftn.AirFTN.repository.PassengerRepository;
 import com.airftn.AirFTN.repository.VerificationTokenRepository;
 
 @Service
+@Transactional
 public class PassengerService implements IPassengerService {
 
 	@Autowired
@@ -41,7 +43,7 @@ public class PassengerService implements IPassengerService {
 					p.getEmail().equals(passenger.getEmail()))
 				return null;
 		
-		Passenger p  = new Passenger(true, passenger.getEmail(), passenger.getUsername(),
+		Passenger p  = new Passenger(passenger.getEmail(), passenger.getUsername(),
 				passenger.getPassword(), passenger.getFirst_name(), passenger.getLast_name(),
 				passenger.getAddress(), passenger.getPhone_number(), passenger.getDate_of_birth());
 		
@@ -99,9 +101,8 @@ public class PassengerService implements IPassengerService {
 	}
 
 	@Override
-	public VerificationToken getVerificationToken(String token) {
-		// TODO Auto-generated method stub
-		return null;
+	public VerificationToken getVerificationToken(String VerificationToken) {
+		return tokenRepository.findByToken(VerificationToken);
 	}
 	
 
