@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../auth/token-storage.service';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenStorage: TokenStorageService,
+    private router: Router,) { }
 
   ngOnInit() {
   }
 
+  cancelForm() {
+    this.router.navigate(['mainPage']);
+  }
+  
+  navigate_login() {
+    this.router.navigate(['login']);
+  }
 }

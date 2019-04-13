@@ -23,13 +23,12 @@
         </div>
       </div>
       <div class="form-group">
-        
-        <button class="submitbtn">LOG IN</button>
-        
-        <div *ngIf="f.submitted && isLoginFailed" style="color: red">
-          Login failed: {{errorMessage}}
-        </div>
+        <button class="submitbtn">LOG IN</button>        
         <button class="cancelbtn" (click)="cancelForm()" type="button" >CANCEL</button>
+
+        <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+            Login error -> Wrong credentials!
+          </div>
       </div>
       <div class="signup">
         <p>Don't have an account -> <span id="span" (click)="signup_navigate()">Sign Up</span></p>

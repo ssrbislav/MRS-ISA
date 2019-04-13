@@ -13,7 +13,7 @@ body {
 
 .container {
     margin: 0 auto;
-    width: 1000px;
+    width: 70%;
     height: 100vh;
     background-color: white;
     overflow: auto;
@@ -36,9 +36,8 @@ body {
 }
 
 img {
-    max-height: 120%;
+    height: auto;
     max-width: 100%;
-    
     display: block;
     opacity: 0.6;
 }
@@ -118,5 +117,9 @@ p {
     font-family: lato;
 }
   
-
+#span {
+    color: rgb(20, 168, 57);
+    text-decoration: underline;
+    cursor: pointer;
+}
 
