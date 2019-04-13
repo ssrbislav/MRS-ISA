@@ -25,10 +25,13 @@ public class Passenger extends User implements Serializable {
 	public Passenger(boolean active, String email, String username, String password, String first_name, String last_name, String address,
 			String phone_number, Date date_of_birth) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
-		this.active = true;
+		this.active = false;
 	}
 	
-	public Passenger() {}
+	public Passenger() {
+		super();
+		this.active = false;
+	}
 
 	public Long getId() {
 		return id;

@@ -30,6 +30,7 @@ public class PassengerDTO {
 	@NotBlank
 	private String phone_number;
 
+	@NotBlank
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date date_of_birth;
 	
