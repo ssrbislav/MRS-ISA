@@ -7,6 +7,7 @@ import { PassengerComponent } from './passenger/passenger.component';
 import { RoleGuardService } from './auth/role-guard.service';
 import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
+import { HotelComponent } from './hotel/hotel.component';
 
 const routes: Routes = [
 
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'hotel',
+        component: HotelComponent
     },
     {
         path: 'passenger',

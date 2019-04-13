@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PassengerComponent } from './passenger/passenger.component';
 import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
+import { HotelComponent } from './hotel/hotel.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
     PassengerComponent,
     SysAdminComponent,
     AirlineAdminComponent,
+    HotelComponent,
   ],
   imports: [
     BrowserModule,
