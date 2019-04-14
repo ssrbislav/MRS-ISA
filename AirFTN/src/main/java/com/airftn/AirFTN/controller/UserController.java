@@ -1,30 +1,28 @@
 package com.airftn.AirFTN.controller;
 
-import java.util.Calendar;
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
 
 import com.airftn.AirFTN.dto.JwtResponse;
 import com.airftn.AirFTN.dto.LoginDTO;
@@ -33,12 +31,12 @@ import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.User;
-import com.airftn.AirFTN.model.VerificationToken;
+import com.airftn.AirFTN.repository.PassengerRepository;
 import com.airftn.AirFTN.repository.RoleRepository;
 import com.airftn.AirFTN.repository.UserRepository;
 import com.airftn.AirFTN.security.JwtProvider;
+import com.airftn.AirFTN.service.EmailService;
 import com.airftn.AirFTN.service.IPassengerService;
-import com.airftn.AirFTN.service.IUserService;
 
 @CrossOrigin
 @RestController
@@ -58,10 +56,20 @@ public class UserController {
 	PasswordEncoder encoder;
 
 	@Autowired
-	IPassengerService service;
+	IPassengerService passengerService;
+	
+	@Autowired
+	PassengerRepository passengerRepository;
 
 	@Autowired
 	JwtProvider jwtProvider;
+	
+	@Autowired
+	private ThreadPoolTaskExecutor taskExecutor;
+	
+	@Autowired
+	private EmailService emailThread;
+
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerRequest) {
@@ -88,6 +96,8 @@ public class UserController {
 		user.setRoles(roles);
 
 		userRepository.save(user);
+	
+		mailSend(user.getEmail(), passengerService.getRegistrationLink(user.getId()));
 
 		return new ResponseEntity<>("User registered successfully!", HttpStatus.OK);
 
@@ -108,11 +118,27 @@ public class UserController {
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 
 	}
+	
+	@RequestMapping("/registrationConfirm/{registrationLink}")
+	public String confirmRegistration(@PathVariable("registrationLink") String registrationLink, HttpServletResponse response) throws IOException {
+		
+		Passenger passenger = passengerRepository.findByRegistrationLink(registrationLink);
+		
+		if(passenger != null) {
+			passenger.setActive(true);
+			userRepository.save((User) passenger);
+		}
+		
+		response.sendRedirect("/login");
+		return "Success";
+		
+	}
 
+/*
 	@RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
 	public String confirmRegistration(WebRequest request, @RequestParam("token") String token) {
 
-		VerificationToken verificationToken = service.getVerificationToken(token);
+		VerificationToken verificationToken = passengerService.getVerificationToken(token);
 		if (verificationToken == null) {
 
 			return "Not good";
@@ -127,6 +153,13 @@ public class UserController {
 		userRepository.save(user);
 
 		return "redirect:/login";
+	}
+*/	
+	private void mailSend(String mailTo, String registrationLink) {
+		String title = "Registration confirmation";
+		String content = "Please activate your account via next link:\nhttp://localhost:8080/registrationConfirm/"+ registrationLink;
+		emailThread.setup(mailTo, title, content);
+		taskExecutor.execute(emailThread);
 	}
 
 }

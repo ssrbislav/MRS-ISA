@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.PassengerDTO;
 import com.airftn.AirFTN.model.Passenger;
-import com.airftn.AirFTN.model.VerificationToken;
 import com.airftn.AirFTN.repository.PassengerRepository;
-import com.airftn.AirFTN.repository.VerificationTokenRepository;
 
 @Service
 @Transactional
@@ -20,9 +18,6 @@ public class PassengerService implements IPassengerService {
 	@Autowired
 	PassengerRepository passengerRepository;
 
-	@Autowired
-	VerificationTokenRepository tokenRepository;
-	
 	@Override
 	public List<Passenger> findAll() {
 
@@ -37,24 +32,23 @@ public class PassengerService implements IPassengerService {
 
 	@Override
 	public Passenger create(PassengerDTO passenger) {
-		
-		for(Passenger p: findAll()) 
-			if(p.getUsername().equals(passenger.getUsername()) || 
-					p.getEmail().equals(passenger.getEmail()))
+
+		for (Passenger p : findAll())
+			if (p.getUsername().equals(passenger.getUsername()) || p.getEmail().equals(passenger.getEmail()))
 				return null;
-		
-		Passenger p  = new Passenger(passenger.getEmail(), passenger.getUsername(),
-				passenger.getPassword(), passenger.getFirst_name(), passenger.getLast_name(),
-				passenger.getAddress(), passenger.getPhone_number(), passenger.getDate_of_birth());
-		
+
+		Passenger p = new Passenger(passenger.getEmail(), passenger.getUsername(), passenger.getPassword(),
+				passenger.getFirst_name(), passenger.getLast_name(), passenger.getAddress(),
+				passenger.getPhone_number(), passenger.getDate_of_birth());
+
 		return passengerRepository.save(p);
 	}
 
 	@Override
 	public Passenger update(Passenger passenger) {
-		
+
 		Passenger p = passengerRepository.getOne(passenger.getId());
-		
+
 		p.setId(passenger.getId());
 		p.setUsername(passenger.getUsername());
 		p.setEmail(passenger.getEmail());
@@ -64,15 +58,15 @@ public class PassengerService implements IPassengerService {
 		p.setDate_of_birth(passenger.getDate_of_birth());
 		p.setPhone_number(passenger.getPhone_number());
 		p.setActive(passenger.isActive());
-		
+
 		return passengerRepository.save(p);
 	}
 
 	@Override
 	public boolean delete(Long id) {
 
-		for(Passenger passenger: findAll()) {
-			if(passenger.getId() == id) {
+		for (Passenger passenger : findAll()) {
+			if (passenger.getId() == id) {
 				passengerRepository.delete(passenger);
 				return true;
 			}
@@ -83,8 +77,8 @@ public class PassengerService implements IPassengerService {
 	@Override
 	public boolean activate(Long id) {
 
-		for(Passenger passenger: findAll()) {
-			if(passenger.getId() == id) {
+		for (Passenger passenger : findAll()) {
+			if (passenger.getId() == id) {
 				passenger.setActive(true);
 				passengerRepository.save(passenger);
 				return true;
@@ -92,18 +86,13 @@ public class PassengerService implements IPassengerService {
 		}
 		return false;
 	}
-
-	@Override
-	public void createVerificationToken(Passenger passenger, String token) {
-		VerificationToken myToken = new VerificationToken(token, passenger);
-        tokenRepository.save(myToken);
-		
-	}
-
-	@Override
-	public VerificationToken getVerificationToken(String VerificationToken) {
-		return tokenRepository.findByToken(VerificationToken);
-	}
 	
+	@Override
+	public String getRegistrationLink(Long id) {
+		
+		Passenger p = passengerRepository.getOne(id);
+		
+		return p.getRegistrationLink();
+	}
 
 }

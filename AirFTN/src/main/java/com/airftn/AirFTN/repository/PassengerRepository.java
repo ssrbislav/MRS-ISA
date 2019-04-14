@@ -7,5 +7,6 @@ import com.airftn.AirFTN.model.Passenger;
 public interface PassengerRepository extends JpaRepository<Passenger, Long> {
 
 	Passenger findByUsername(String username);
-
+	
+	Passenger findByRegistrationLink(String link);
 }

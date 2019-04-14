@@ -36,7 +36,7 @@ public abstract class User {
 	private String email;
 
 	@Column(unique = true, nullable = false)
-	private String username;
+	protected String username;
 
 	@Column(unique = true, nullable = false)
 	private String password;

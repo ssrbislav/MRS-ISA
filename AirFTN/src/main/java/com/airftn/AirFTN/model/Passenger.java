@@ -22,15 +22,19 @@ public class Passenger extends User implements Serializable {
 	@Column(nullable = false)
 	private boolean active;
 
-	public Passenger(String email, String username, String password, String first_name, String last_name, String address,
-			String phone_number, Date date_of_birth) {
+	private String registrationLink;
+
+	public Passenger(String email, String username, String password, String first_name, String last_name,
+			String address, String phone_number, Date date_of_birth) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
 		this.active = false;
+		this.registrationLink = username + "_token";
 	}
-	
+
 	public Passenger() {
 		super();
 		this.active = false;
+		this.registrationLink = this.username + "_token";
 	}
 
 	public Long getId() {
@@ -47,6 +51,14 @@ public class Passenger extends User implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getRegistrationLink() {
+		return registrationLink;
+	}
+
+	public void setRegistrationLink(String registrationLink) {
+		this.registrationLink = registrationLink;
 	}
 
 }
