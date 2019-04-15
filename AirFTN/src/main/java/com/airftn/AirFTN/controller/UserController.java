@@ -1,10 +1,8 @@
 package com.airftn.AirFTN.controller;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,17 +118,16 @@ public class UserController {
 	}
 	
 	@RequestMapping("/registrationConfirm/{registrationLink}")
-	public String confirmRegistration(@PathVariable("registrationLink") String registrationLink, HttpServletResponse response) throws IOException {
+	public ResponseEntity<?> confirmRegistration(@PathVariable("registrationLink") String registrationLink) {
 		
 		Passenger passenger = passengerRepository.findByRegistrationLink(registrationLink);
 		
 		if(passenger != null) {
 			passenger.setActive(true);
-			userRepository.save((User) passenger);
+			passengerService.update(passenger);
 		}
 		
-		response.sendRedirect("/login");
-		return "Success";
+		return new ResponseEntity<>("User activated successfully!", HttpStatus.OK);
 		
 	}
 
@@ -157,7 +154,7 @@ public class UserController {
 */	
 	private void mailSend(String mailTo, String registrationLink) {
 		String title = "Registration confirmation";
-		String content = "Please activate your account via next link:\nhttp://localhost:8080/registrationConfirm/"+ registrationLink;
+		String content = "Please activate your account via next link:\nhttp://localhost:8080/api/user/registrationConfirm/"+ registrationLink;
 		emailThread.setup(mailTo, title, content);
 		taskExecutor.execute(emailThread);
 	}
