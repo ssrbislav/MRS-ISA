@@ -36,7 +36,7 @@ const routes: Routes = [
         component: PassengerComponent,
         canActivate: [RoleGuardService],
         data: {
-            expectedRole: 'ROLE_PASESENGER'
+            expectedRole: 'ROLE_PASSENGER'
         }
     },
     {

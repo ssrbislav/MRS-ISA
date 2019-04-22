@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.model.Passenger;
+import com.airftn.AirFTN.repository.PassengerRepository;
 import com.airftn.AirFTN.service.PassengerService;
 
 @CrossOrigin
@@ -23,6 +24,9 @@ public class PassengerController {
 
 	@Autowired
 	PassengerService passengerService;
+
+	@Autowired
+	PassengerRepository passengerRepository;
 
 	@GetMapping("")
 	public ResponseEntity<List<Passenger>> findAll() {
@@ -43,6 +47,17 @@ public class PassengerController {
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
+	@GetMapping("/getPassengerActive/{username}")
+	private boolean getPassengerActive(@PathVariable String username) {
+
+		Passenger passenger = passengerRepository.findByUsername(username);
+
+		if (!passenger.isActive())
+			return false;
+
+		return true;
+
+	}
 
 	@PostMapping("/updatePassenger")
 	public ResponseEntity<Passenger> update(@RequestBody Passenger passenger) {

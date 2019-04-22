@@ -34,7 +34,7 @@ import { HotelComponent } from './hotel/hotel.component';
     HttpClientModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     RoleGuardService,

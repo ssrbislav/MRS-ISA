@@ -7,7 +7,14 @@
       <br>
       <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
-          
+          <input type="email" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" 
+            required placeholder="EMAIL"/>
+            <div *ngIf="f.submitted && email.invalid">
+              <div *ngIf="email.errors.required" style="color: red">Email is required</div>
+              <div  style="color: red">Email format not correct</div>
+            </div>
+        </div>
+        <div class="form-group">
           <input type="text" id="user" name="username" [(ngModel)]="form.username" #username="ngModel"
             required  placeholder="USERNAME"/>
           <div *ngIf="f.submitted && username.invalid">
@@ -32,37 +39,33 @@
           </div>
         </div>
         <div class="form-group">
-          <input type="email" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" 
-          required placeholder="EMAIL"/>
-          <div *ngIf="f.submitted && email.invalid">
-            <div *ngIf="email.errors.required" style="color: red">Email is required</div>
-            <div  style="color: red">Eamil format not correct</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="form.firstName" #firstName="ngModel" 
           required placeholder="FIRST NAME"/>
-          <div *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required" style="color: red">Password is required</div>
-            <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+          <div *ngIf="f.submitted && firstName.invalid">
+              <div *ngIf="firstName.errors.required" style="color: red">First name is required</div>
           </div>
         </div>
         <div class="form-group">
-          <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" 
           required placeholder="LAST NAME"/>
-          <div *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required" style="color: red">Password is required</div>
-            <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+          <div *ngIf="f.submitted && lastName.invalid">
+            <div *ngIf="lastName.errors.required" style="color: red">Last name is required</div>
           </div>
         </div>
         <div class="form-group">
-          <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="form.password" #password="ngModel" 
+          <input type="text" id="address" name="address" [(ngModel)]="form.address" #address="ngModel" 
           required placeholder="ADDRESS"/>
           <div *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required" style="color: red">Password is required</div>
-            <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 6 characters</div>
+            <div *ngIf="password.errors.required" style="color: red">Address is required</div>
           </div>
         </div>
+        <div class="form-group">
+            <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="form.phoneNumber" #address="ngModel" 
+            required placeholder="PHONE NUMBER"/>
+            <div *ngIf="f.submitted && phoneNumber.invalid">
+              <div *ngIf="phoneNumber.errors.required" style="color: red">Phone number is required</div>
+            </div>
+          </div>
         <div class="form-group">
           <input placeholder="DATE OF BIRTH" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date" [(ngModel)]="form.date" #date="ngModel" 
           required/>

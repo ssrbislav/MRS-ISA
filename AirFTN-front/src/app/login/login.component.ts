@@ -3,6 +3,7 @@ import { LoginInfo } from '../auth/login-info';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { PassengerService } from '../services/passenger.service'
 
 @Component({
   selector: 'app-login',
@@ -17,15 +18,19 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: LoginInfo;
+  private active: boolean;
+  private username: string;
 
   constructor(private tokenStorage: TokenStorageService,
               private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private passengerService: PassengerService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken() !== null) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
+      this.navigate();
     }
   }
 
@@ -50,9 +55,16 @@ export class LoginComponent implements OnInit {
           } else if (role === 'ROLE_AIRLINE_ADMIN') {
             this.router.navigate(['airlineAdmin']);
             return true;
-          } else {
-            this.router.navigate(['passenger']);
-            return true;
+          } else if (role === 'ROLE_PASSENGER') {
+            // if(!this.active) {
+            //   alert("User not active!");
+            //   this.tokenStorage.clear();
+            //   return false;
+            // }
+            // else {
+              this.router.navigate(['passenger']);
+              return true;
+            // }
           }
         });
       },
@@ -69,12 +81,37 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
+  //Check if user is activated!!!
+  checkActive() {
+    this.username = this.tokenStorage.getUsername()
+    this.passengerService.getPassengerActive(this.username).subscribe( data => {
+      this.active = data
+    });
+  }
+
   cancelForm() {
     this.router.navigate(['mainPage']);
   }
 
   signup_navigate() {
     this.router.navigate(['signup']);
+  }
+
+  navigate() {
+      this.roles.every(role => {
+        if (role === 'ROLE_SYSADMIN') {
+          this.router.navigate(['sysAdmin']);
+          return true;
+        } 
+        else if (role === 'ROLE_AIRLINE_ADMIN') {
+          this.router.navigate(['airlineAdmin']);
+          return true;
+        } 
+        else if (role === 'ROLE_PASSENGER') {
+          this.router.navigate(['passenger']);
+           return true;
+        }
+      });
   }
 
 }

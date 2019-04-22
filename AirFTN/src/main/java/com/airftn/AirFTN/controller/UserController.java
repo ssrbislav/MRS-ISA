@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,19 +56,18 @@ public class UserController {
 
 	@Autowired
 	IPassengerService passengerService;
-	
+
 	@Autowired
 	PassengerRepository passengerRepository;
 
 	@Autowired
 	JwtProvider jwtProvider;
-	
+
 	@Autowired
 	private ThreadPoolTaskExecutor taskExecutor;
-	
+
 	@Autowired
 	private EmailService emailThread;
-
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerRequest) {
@@ -94,7 +94,7 @@ public class UserController {
 		user.setRoles(roles);
 
 		userRepository.save(user);
-	
+
 		mailSend(user.getEmail(), passengerService.getRegistrationLink(user.getId()));
 
 		return new ResponseEntity<>("User registered successfully!", HttpStatus.OK);
@@ -113,48 +113,43 @@ public class UserController {
 
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+//		Passenger passenger = passengerRepository.findByUsername(loginRequest.getUsername());
+//		if (!passenger.isActive()) 
+
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 
 	}
-	
+
 	@RequestMapping("/registrationConfirm/{registrationLink}")
 	public ResponseEntity<?> confirmRegistration(@PathVariable("registrationLink") String registrationLink) {
-		
+
 		Passenger passenger = passengerRepository.findByRegistrationLink(registrationLink);
-		
-		if(passenger != null) {
+
+		if (passenger != null) {
 			passenger.setActive(true);
 			passengerService.update(passenger);
 		}
-		
+
 		return new ResponseEntity<>("User activated successfully!", HttpStatus.OK);
-		
+
 	}
 
-/*
-	@RequestMapping(value = "/regitrationConfirm", method = RequestMethod.GET)
-	public String confirmRegistration(WebRequest request, @RequestParam("token") String token) {
+	@GetMapping("/getPassengerActive/{username}")
+	private boolean getPassengerActive(@PathVariable String username) {
 
-		VerificationToken verificationToken = passengerService.getVerificationToken(token);
-		if (verificationToken == null) {
+		Passenger passenger = passengerRepository.findByUsername(username);
 
-			return "Not good";
-		}
+		if (!passenger.isActive())
+			return false;
 
-		Passenger user = verificationToken.getPassenger();
-		Calendar cal = Calendar.getInstance();
-		if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0)
-			return "Not good";
+		return true;
 
-		user.setActive(true);
-		userRepository.save(user);
-
-		return "redirect:/login";
 	}
-*/	
+
 	private void mailSend(String mailTo, String registrationLink) {
 		String title = "Registration confirmation";
-		String content = "Please activate your account via next link:\nhttp://localhost:8080/api/user/registrationConfirm/"+ registrationLink;
+		String content = "Please activate your account via next link:\nhttp://localhost:8080/api/user/registrationConfirm/"
+				+ registrationLink;
 		emailThread.setup(mailTo, title, content);
 		taskExecutor.execute(emailThread);
 	}

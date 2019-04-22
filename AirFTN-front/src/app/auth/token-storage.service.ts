@@ -41,6 +41,10 @@ export class TokenStorageService {
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
+  public clear() {
+    window.sessionStorage.clear();
+  }
+
   public getAuthorities(): string[] {
 
     this.roles = [];
