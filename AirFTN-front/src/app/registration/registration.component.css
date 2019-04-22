@@ -88,14 +88,14 @@ button {
 .submitbtn:hover {
     background: #a8dfb0;
     color: white;
-    opacity: 0.6;
+    opacity: 1;
 }
 
-.submitbtn:focus {
+/* .submitbtn:focus {
     background-color: #a8dfb0;
     opacity: 1;
     color: white;
-}
+} */
 
 textarea, select, input, button { 
     outline: none;

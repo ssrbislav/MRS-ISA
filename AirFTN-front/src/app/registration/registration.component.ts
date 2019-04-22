@@ -12,7 +12,7 @@ import { SignupInfo } from '../auth/signup-info';
 export class RegistrationComponent implements OnInit {
 
   form: any = {};
-  private signupInfo: SignupInfo;
+  signupInfo: SignupInfo = new SignupInfo();
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -36,18 +36,19 @@ export class RegistrationComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  checkSame(pass: string) {
+    this.form.passwordRepeat = pass;
+    if (this.form.passwordRepeat !== this.signupInfo.password) {
+      this.errorMessage = "Passwords do not match!"
+    }
+    else {
+      this.errorMessage = "";
+    }
+  }
+
   onSubmit() {
 
-    this.signupInfo = new SignupInfo(
-      this.form.email,
-      this.form.username,
-      this.form.password,
-      this.form.first_name,
-      this.form.last_name,
-      this.form.address,
-      this.form.phoneNumber,
-      this.form.dateOfBirth
-    );
+    console.log(this.signupInfo.date_of_birth);
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {

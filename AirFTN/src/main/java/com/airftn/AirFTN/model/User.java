@@ -49,7 +49,7 @@ public abstract class User {
 
 	private String phone_number;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm-dd-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date_of_birth;
 	
 	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
