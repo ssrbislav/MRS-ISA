@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
+
 
 @Component({
   selector: 'app-passenger',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./passenger.component.css']
 })
 export class PassengerComponent implements OnInit {
+  
+  @ViewChild("header") header: HeaderComponent;
 
   constructor() { }
 
   ngOnInit() {
+    this.header.passengerView();
   }
 
 }

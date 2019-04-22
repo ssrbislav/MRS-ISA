@@ -1,6 +1,25 @@
-
 <nav class="navbar navbar-default">
-    <div>
-        ooooo JEEEEEEEE
+    <div container container-fluid>
+        <div class="navbar-header">
+            <h2>AirFTN</h2>
+        </div>
+
+        <div class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right" *ngIf="(showView) == 'sysAdmin'">
+                <li><a (click)="ShowProfile()" style="cursor: pointer;">Profil</a></li>
+                <li><a (click)="Logout()" style="cursor: pointer;">Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" *ngIf="(showView) == 'airlineAdmin'">
+                <li><a (click)="ShowProfile()" style="cursor: pointer;">Profil</a></li>
+                <li><a (click)="Logout()" style="cursor: pointer;">Logout</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" *ngIf="(showView) == 'passenger'">
+                <li><a (click)="ShowProfile()" style="cursor: pointer;">Profil</a></li>
+                <li><a (click)="Logout()" style="cursor: pointer;">Logout</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
