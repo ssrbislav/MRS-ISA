@@ -16,6 +16,7 @@ import { PassengerComponent } from './passenger/passenger.component';
 import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HotelComponent } from './hotel/hotel.component';
     SysAdminComponent,
     AirlineAdminComponent,
     HotelComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
