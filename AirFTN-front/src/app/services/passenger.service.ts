@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Passenger } from '../model/passenger.model';
 
-
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content[Type' : 'application/json'})
+  headers: new HttpHeaders({ 'Content[Type': 'application/json' })
 };
 
 @Injectable({
@@ -12,7 +11,7 @@ const httpOptions = {
 })
 export class PassengerService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   passengerUrl = 'http:localhost:8080/api/passenger';
 

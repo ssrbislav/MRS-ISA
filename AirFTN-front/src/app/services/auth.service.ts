@@ -27,4 +27,6 @@ export class AuthService {
   signUp(info: SignupInfo): Observable<string> {
       return this.http.post<string>(this.registrationUrl, info, httpOptions);
   }
+
+  
 }
