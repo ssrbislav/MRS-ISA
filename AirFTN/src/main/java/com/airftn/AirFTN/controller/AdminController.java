@@ -41,17 +41,6 @@ public class AdminController {
 		return new ResponseEntity<>(administrators, HttpStatus.OK);
 	}
 
-	// @RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
-	// public ResponseEntity<Admin> create(@RequestBody Admin admin) {
-	//
-	// Admin administrator = adminService.create(admin);
-	//
-	// if (administrator == null)
-	// return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	//
-	// return new ResponseEntity<>(administrator, HttpStatus.OK);
-	// }
-
 	@PostMapping("/registerAdmin")
 	public ResponseEntity<?> registerAdmin(@RequestBody AdminDTO registerRequest) {
 
@@ -64,7 +53,7 @@ public class AdminController {
 		}
 
 		User admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()), null, null, null, null, null);
+				registerRequest.getPassword(), registerRequest.getFirst_name(), registerRequest.getLast_name(), null, null, null);
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_AIRLINE_ADMIN);
@@ -76,7 +65,7 @@ public class AdminController {
 
 		userRepository.save(admin);
 
-		return new ResponseEntity<>("Admin  registered successfully!", HttpStatus.OK);
+		return new ResponseEntity<>("Airline Admin registered successfully!", HttpStatus.OK);
 	}
 
 	@PostMapping("/updateAdmin")
@@ -89,13 +78,5 @@ public class AdminController {
 
 		return new ResponseEntity<>(administrator, HttpStatus.OK);
 	}
-
-	// @RequestMapping(value = "deleteAdmin/{id}", method = RequestMethod.GET)
-	// public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-	//
-	// boolean delete = adminService.delete(id);
-	//
-	// return new ResponseEntity<>(delete, HttpStatus.OK);
-	// }
 
 }

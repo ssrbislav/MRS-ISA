@@ -15,15 +15,15 @@ export class PassengerComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    //this.header.passengerView();
+    
   }
 
   navigateHotels() {
-    this.router.navigate['hotel'];
+    this.router.navigate(['hotel']);
   }
 
   navigateAirlineCompanies() {
-    this.router.navigate['airlines'];
+    this.router.navigate(['airlines']);
   }
 
 }

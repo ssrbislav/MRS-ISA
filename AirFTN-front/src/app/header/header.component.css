@@ -98,6 +98,7 @@
     font-family: lato;
     height: 100%;
     background-color: #111;
+    text-align: center;
 }
 
 .options {
@@ -121,4 +122,11 @@
     float:right;
     border-left: 1px solid white;
     cursor: pointer;
+    width: 100px;
+}
+
+#profile {
+    margin-left: 10px;
+    border-left: 1px solid white;
+    width: 100px;
 }
