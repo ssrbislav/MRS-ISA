@@ -17,6 +17,7 @@ import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { HeaderComponent } from './header/header.component';
+import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HeaderComponent } from './header/header.component';
     AirlineAdminComponent,
     HotelComponent,
     HeaderComponent,
+    AirlineCompaniesComponent,
   ],
   imports: [
     BrowserModule,
