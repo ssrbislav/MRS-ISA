@@ -8,6 +8,7 @@ import { RoleGuardService } from './auth/role-guard.service';
 import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
+import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
         path: 'hotel',
         component: HotelComponent
+    },
+    {
+        path: 'airlines',
+        component: AirlineCompaniesComponent
     },
     {
         path: 'passenger',

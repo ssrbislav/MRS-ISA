@@ -1,0 +1,24 @@
+#image {
+    background-image: url(../../assets/images/02.jpg);
+    height: 50vh;
+    position: relative;
+    opacity: 0.65;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#airlines {
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 15%;
+    color: white;
+    font-family: lato;
+    font-weight: bold;
+    font-size: 50px;
+    letter-spacing: 5px;
+    background-color: #111;
+    padding: 10px;
+}

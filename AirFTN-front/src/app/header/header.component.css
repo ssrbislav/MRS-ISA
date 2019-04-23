@@ -5,7 +5,7 @@
 
 .passenger {
         background-image: url(../../assets/images/profile.jpg);
-        height: 30vh;
+        height: 40vh;
         position: relative;
         opacity: 0.65;
         width: 100%;
@@ -28,7 +28,7 @@
 }
 
 .airlineAdmin {
-    background-image: url(../../assets/images/airline.jpg);
+    background-image: url(../../assets/images/airlines.jpg);
     height: 30vh;
     position: relative;
     opacity: 0.65;
