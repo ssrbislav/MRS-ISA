@@ -17,7 +17,7 @@
 
 .sysAdmin {
     background-image: url(../../assets/images/sysadmins2.jpeg);
-    height: 30vh;
+    height: 20vh;
     position: relative;
     opacity: 0.65;
     width: 100%;
@@ -29,7 +29,7 @@
 
 .airlineAdmin {
     background-image: url(../../assets/images/airlines.jpg);
-    height: 30vh;
+    height: 20vh;
     position: relative;
     opacity: 0.65;
     width: 100%;
@@ -70,16 +70,25 @@
     width: 100px;
     float:left;
 } */
-
-.div_top_hypers {
+.passenger .div_top_hypers {
     position: absolute;
     background-color: black;
-    top:80%;
-    height: 20%; 
+    top:85%;
+    height: 15%; 
     width: 100%;   
 }
 
+.sysAdmin .div_top_hypers {
+    position: absolute;
+    background-color: black;
+    top:70%;
+    height: 30%; 
+    width: 100%;   
+}
 
+.ul_top_hypers {
+    height: 100%;
+}
 
 .ul_top_hypers li{
     text-transform: uppercase;
@@ -87,5 +96,29 @@
     color: white;
     float: right;
     font-family: lato;
+    height: 100%;
+    background-color: #111;
+}
+
+.options {
+    margin-right: 10px;
+    border-right: 1px solid white;
+    cursor: pointer;
+}
+
+#admin_panel {
+    background-color: rgb(72, 98, 148);
+    width: 200px;
+    height: 100%;
+    text-align: center;
+    float:left;
+    font-weight: bold;
+    border: none;
+    margin-right: 30px;
+}
+
+#logout {
+    float:right;
     border-left: 1px solid white;
+    cursor: pointer;
 }

@@ -34,19 +34,7 @@ export class HeaderComponent implements OnInit {
     }
     
   }
-
-  // sysAdminView() {
-  //   this.showView = 'sysAdmin';
-  // }
-
-  // airlineAdminView() {
-  //   this.showView = 'airlineAdmin';
-  // }
-
-  // passengerView() {
-  //   this.showView = 'passenger';
-  // }
-
+  
   Logout() {
     window.sessionStorage.clear();
     this.router.navigate(['mainPage']);
