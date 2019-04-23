@@ -17,26 +17,52 @@ export class HeaderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    if(this.tokenStorage.getToken()) {
+      this.roles = this.tokenStorage.getAuthorities();
+        this.roles.every(role => {
+          if(role === 'ROLE_SYSADMIN') {
+            this.showView = 'sysAdmin'
+            return true;
+          } else if(role == 'ROLE_AIRLINE_ADMIN') {
+            this.showView = 'airlineAdmin';
+            return true;
+          } else if(role == 'ROLE_PASSENGER'){
+            this.showView = 'passenger';
+            return true;
+          }
+        });
+    }
+    
   }
 
-  sysAdminView() {
-    this.showView = 'sysAdmin';
-  }
+  // sysAdminView() {
+  //   this.showView = 'sysAdmin';
+  // }
 
-  airlineAdminView() {
-    this.showView = 'airlineAdmin';
-  }
+  // airlineAdminView() {
+  //   this.showView = 'airlineAdmin';
+  // }
 
-  passengerView() {
-    this.showView = 'passenger';
-  }
+  // passengerView() {
+  //   this.showView = 'passenger';
+  // }
 
   Logout() {
-    this.featureSelected.emit('logout')
+    window.sessionStorage.clear();
+    this.router.navigate(['mainPage']);
+    window.alert("Successfully Logged out!");
   }
 
   ShowProfile() {
-    this.featureSelected.emit('profile')
+    if (this.showView = 'passenger') {
+      this.router.navigate['passenger'];
+    }
+    else if (this.showView = 'sysAdmin') {
+      this.router.navigate['sysAdmin'];
+    }
+    else if (this.showView = 'airlineAdmin') {
+      this.router.navigate['airlineAdmin'];
+    }
   }
 
 }

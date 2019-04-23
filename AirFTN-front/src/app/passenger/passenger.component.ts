@@ -14,7 +14,7 @@ export class PassengerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.header.passengerView();
+    //this.header.passengerView();
   }
 
 }

@@ -67,6 +67,7 @@ button {
     width: 35%;
     opacity: 0.9;
     background-color: white;
+    font-family: lato;
 }
 
 .cancelbtn {
