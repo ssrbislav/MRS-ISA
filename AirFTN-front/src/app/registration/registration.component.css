@@ -52,6 +52,11 @@ input {
     margin-bottom: 16px;
     resize: vertical;
     text-align: center;
+    font-family: lato;
+}
+
+input::-webkit-input-placeholder {
+    opacity: 0.6; 
 }
 
 input:focus {

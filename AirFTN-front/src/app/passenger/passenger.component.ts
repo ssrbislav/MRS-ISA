@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,10 +12,18 @@ export class PassengerComponent implements OnInit {
   
   @ViewChild("header") header: HeaderComponent;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     //this.header.passengerView();
+  }
+
+  navigateHotels() {
+    this.router.navigate['hotel'];
+  }
+
+  navigateAirlineCompanies() {
+    this.router.navigate['airlines'];
   }
 
 }

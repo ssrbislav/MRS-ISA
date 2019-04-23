@@ -43,6 +43,7 @@ input{
     margin-bottom: 16px;
     resize: vertical;
     text-align: center;
+    font-family: lato;
 }
 
 button {
@@ -107,13 +108,7 @@ p {
 .submitbtn:hover {
     background: #a8dfb0;
     color: white;
-    opacity: 0.6;
-}
-
-.submitbtn:focus {
-    background-color: #a8dfb0;
-    opacity: 1;
-    color: white;
+    opacity: 0.9;
 }
 
 #span {
