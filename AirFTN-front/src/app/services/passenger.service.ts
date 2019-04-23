@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common
 import { Passenger } from '../model/passenger.model';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content[Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable({

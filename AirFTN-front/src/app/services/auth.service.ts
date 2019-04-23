@@ -28,5 +28,4 @@ export class AuthService {
       return this.http.post<string>(this.registrationUrl, info, httpOptions);
   }
 
-  
 }

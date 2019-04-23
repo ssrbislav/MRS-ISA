@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit {
   cancelForm() {
     this.router.navigate(['mainPage']);
   }
-  
+
   navigate_login() {
     this.router.navigate(['login']);
   }
@@ -39,21 +39,18 @@ export class RegistrationComponent implements OnInit {
   checkSame(pass: string) {
     this.form.passwordRepeat = pass;
     if (this.form.passwordRepeat !== this.signupInfo.password) {
-      this.errorMessage = "Passwords do not match!"
-    }
-    else {
-      this.errorMessage = "";
+      this.errorMessage = 'Passwords do not match!';
+    } else {
+      this.errorMessage = '';
     }
   }
 
   onSubmit() {
 
-    console.log(this.signupInfo.date_of_birth);
-
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
-        window.alert("User successfully registered!");
-        window.alert("Please activate your account!");
+        window.alert('User successfully registered!');
+        window.alert('Please activate your account!');
         this.isSignUpFailed = false;
         this.isSignedUp = true;
         this.router.navigate(['login']);
@@ -68,23 +65,19 @@ export class RegistrationComponent implements OnInit {
 
   navigate() {
     this.roles = this.tokenStorage.getAuthorities();
-      this.roles.every(role => {
-        if (role === 'ROLE_SYSADMIN') {
-          this.router.navigate(['sysAdmin']);
-          return true;
-        } 
-        else if (role === 'ROLE_AIRLINE_ADMIN') {
-          this.router.navigate(['airlineAdmin']);
-          return true;
-        } 
-        else if (role === 'ROLE_PASSENGER') {
-          this.router.navigate(['passenger']);
-           return true;
-        }
-      });
+    this.roles.every(role => {
+      if (role === 'ROLE_SYSADMIN') {
+        this.router.navigate(['sysAdmin']);
+        return true;
+      } else if (role === 'ROLE_AIRLINE_ADMIN') {
+        this.router.navigate(['airlineAdmin']);
+        return true;
+      } else if (role === 'ROLE_PASSENGER') {
+        this.router.navigate(['passenger']);
+        return true;
+      }
+    });
   }
-
-  
 
 }
 
