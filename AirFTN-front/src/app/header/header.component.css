@@ -86,6 +86,14 @@
     width: 100%;   
 }
 
+.airlineAdmin .div_top_hypers {
+    position: absolute;
+    background-color: black;
+    top:70%;
+    height: 30%; 
+    width: 100%;   
+}
+
 .ul_top_hypers {
     height: 100%;
 }
@@ -127,7 +135,8 @@
 }
 
 #profile {
-    margin-left: 10px;
+    margin-right: 10px;
     border-left: 1px solid white;
     width: 100px;
+    float: right;
 }

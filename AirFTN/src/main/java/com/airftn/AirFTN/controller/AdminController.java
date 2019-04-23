@@ -53,7 +53,7 @@ public class AdminController {
 		}
 
 		User admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
-				registerRequest.getPassword(), registerRequest.getFirst_name(), registerRequest.getLast_name(), null, null, null);
+				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(), registerRequest.getLast_name(), null, null, null);
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_AIRLINE_ADMIN);

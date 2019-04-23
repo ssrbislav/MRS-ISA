@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   showView: string = '';
   @Output() featureSelected = new EventEmitter<string>();
   private roles: string[];
+  private username: string;
 
   constructor(private tokenStorage: TokenStorageService,
     private router: Router) { }
@@ -33,6 +34,7 @@ export class HeaderComponent implements OnInit {
         });
     }
     
+    this.username = this.tokenStorage.getUsername();
   }
   
   Logout() {
