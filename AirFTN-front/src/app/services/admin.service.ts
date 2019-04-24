@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AirlineAdmin } from '../model/airlineAdmin.model';
+import { AirlineAdminDTO } from '../model/airlineAdmin.model';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -16,7 +16,7 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  adminRegistration(info: AirlineAdmin): Observable<string> {
+  adminRegistration(info: AirlineAdminDTO): Observable<string> {
     return this.http.post<string>(this.adminRegistrationLink, info, httpOptions);
   }
 

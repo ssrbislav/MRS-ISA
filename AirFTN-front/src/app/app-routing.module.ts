@@ -66,7 +66,7 @@ const routes: Routes = [
         data: {
             expectedRole: 'ROLE_AIRLINE_ADMIN'
         }
-    }
+    },
 ];
 
 @NgModule({
@@ -78,4 +78,4 @@ export class AppRoutingModule { }
 
 export const RoutingComponents = {
     RegistrationAdminComponent
-}
+};
