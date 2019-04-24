@@ -53,4 +53,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  clickAdminRegistration() {
+    this.router.navigate(['sysAdmin/registerAdmin']);
+  }
+
+  clickAddHotel() {
+    window.alert('Feature not available!');
+  }
+
 }

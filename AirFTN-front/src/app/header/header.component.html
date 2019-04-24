@@ -1,6 +1,8 @@
 <nav class="navbar navbar-default">
 
     <div class="passenger" *ngIf="(showView) == 'passenger'">
+            <div id="welcome">Welcome</div>
+            <div id="description">Feel free to search our hotels, airline companies <br> or to reserve a plane ticket</div>
         <div class="name">
             <span id="title">Air FTN</span>
         </div>
@@ -20,7 +22,8 @@
         <div class="div_top_hypers">
             <ul class="ul_top_hypers">
                 <li id="logout"><a (click)="Logout()" >Logout</a></li>
-                <li id="admin_panel">AIRLINE ADMIN PANEL</li>
+                <li id="profile" style="width: 150px"><a>Update Profile</a></li>
+                <li id="admin_panel2">AIRLINE ADMIN PANEL</li>
             </ul>
         </div>
     </div>
@@ -34,9 +37,9 @@
             <ul class="ul_top_hypers">
                 <li id="logout"><a (click)="Logout()">Logout</a></li>
                 <li id="admin_panel">ADMIN PANEL</li>
-                <li class="options"><a>Add new admin</a></li>
+                <li class="options"><a (click)="clickAdminRegistration()">Add new admin</a></li>
                 <li class="options"><a>Add new Airline Company</a></li>
-                <li class="options"><a>Add new hotel</a></li>
+                <li class="options"><a (click) = 'clickAddHotel()'>Add new hotel</a></li>
             </ul>
         </div>
     </div>

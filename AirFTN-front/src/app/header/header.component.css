@@ -116,7 +116,18 @@
 }
 
 #admin_panel {
-    background-color: rgb(72, 98, 148);
+    background-color: #3a80c2;
+    width: 200px;
+    height: 100%;
+    text-align: center;
+    float:left;
+    font-weight: bold;
+    border: none;
+    margin-right: 30px;
+}
+
+#admin_panel2 {
+    background-color: #aa7d00;
     width: 200px;
     height: 100%;
     text-align: center;
@@ -138,4 +149,40 @@
     border-left: 1px solid white;
     width: 100px;
     float: right;
+}
+
+#welcome {
+    background: #000;
+    font-size: 30px;
+    opacity: 0.7;
+    font-family: lato;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    color: white;
+    padding: 7px;
+    -webkit-animation: cssAnimation 5s backwards; 
+    animation: cssAnimation 5s backwards;
+}
+
+#description {
+    background: #000;
+    font-size: 30px;
+    opacity: 0.7;
+    font-family: lato;
+    position: absolute;
+    top: 30%;
+    left:50%;
+    color: white;
+    padding: 5px;
+    -webkit-animation: cssAnimation 5s backwards; 
+    animation: cssAnimation 5s backwards;
+}
+@keyframes cssAnimation {
+    0%   {opacity: 0;}
+    100% {opacity: 0.7;}
+}
+@-webkit-keyframes cssAnimation {
+    0%   {opacity: 0;}
+    100% {opacity: 0.7;}
 }

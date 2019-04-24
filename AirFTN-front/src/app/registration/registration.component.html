@@ -62,7 +62,7 @@
           <input type="text" id="address" name="address" [(ngModel)]="signupInfo.address" #address="ngModel" 
           required placeholder="ADDRESS"/>
           <div *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required" style="color: red">Address is required</div>
+            <div *ngIf="address.errors.required" style="color: red">Address is required</div>
           </div>
         </div>
 
