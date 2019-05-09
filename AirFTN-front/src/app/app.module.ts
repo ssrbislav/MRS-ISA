@@ -16,7 +16,6 @@ import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { HeaderComponent } from './header/header.component';
 import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
-import { RegistrationAdminComponent } from './registration-admin/registration-admin.component';
 import { AiradminProfileComponent } from './airline-admin/airadmin-profile/airadmin-profile.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,7 +34,6 @@ import { RegisterAiradminComponent } from './sys-admin/register-airadmin/registe
     HotelComponent,
     HeaderComponent,
     AirlineCompaniesComponent,
-    RegistrationAdminComponent,
     AiradminProfileComponent,
     RegisterSysadminComponent,
     RegisterAiradminComponent,

@@ -11,7 +11,7 @@ export class AiradminProfileComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<any>) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('80%', '%80');
+    this.dialogRef.updateSize('60%', '%80');
   }
 
 }

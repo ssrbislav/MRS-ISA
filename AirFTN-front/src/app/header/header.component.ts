@@ -45,15 +45,15 @@ export class HeaderComponent implements OnInit {
     window.alert('Successfully Logged out!');
   }
 
-  // ShowProfile() {
-  //   if (this.showView === 'passenger') {
-  //     this.router.navigate['passenger'];
-  //   } else if (this.showView === 'sysAdmin') {
-  //     this.router.navigate['sysAdmin'];
-  //   } else if (this.showView === 'airlineAdmin') {
-  //     this.router.navigate['airlineAdmin'];
-  //   }
-  // }
+  ShowProfile() {
+    if (this.showView === 'passenger') {
+      this.router.navigate(['passenger']);
+    } else if (this.showView === 'sysAdmin') {
+      this.router.navigate(['sysAdmin']);
+    } else if (this.showView === 'airlineAdmin') {
+      this.router.navigate(['airlineAdmin']);
+    }
+  }
 
   clickAdminRegistration() {
     this.router.navigate(['sysAdmin/registerAdmin']);
@@ -67,17 +67,17 @@ export class HeaderComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.data = {
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
       id: 1,
       added: false
-      };
+    };
 
     const dialogRef = this.dialog.open(AiradminProfileComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-    console.log("Dialog was closed")
-    console.log(result);
+      console.log('Dialog was closed');
+      console.log(result);
     });
   }
 

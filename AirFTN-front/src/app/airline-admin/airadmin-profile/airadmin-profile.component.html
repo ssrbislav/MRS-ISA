@@ -1,3 +1,62 @@
-<p>
-  airadmin-profile works!
-</p>
+<div class="login-form">
+  <br>
+  <h3>AIRLINE ADMIN iNFO</h3>      
+  <br>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    
+    <div class="form-group">
+      <input type="email" id="email" name="email" [(ngModel)]="adminInfo.email" #email="ngModel" 
+        required placeholder="EMAIL" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"/>
+        <div *ngIf="f.submitted && email.invalid">
+          <div *ngIf="email.errors.required" style="color: red">Email is required</div>
+          <div *ngIf="email.errors.pattern" style="color: red">Email format not correct</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="user" name="username" [(ngModel)]="adminInfo.username" #username="ngModel"
+        required  placeholder="USERNAME"/>
+      <div *ngIf="f.submitted && username.invalid">
+        <div *ngIf="username.errors.required" style="color: red">Username is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="pass" name="password" minlength="8" [(ngModel)]="adminInfo.password" #password="ngModel" 
+      required placeholder="PASSWORD"/>
+      
+      <div *ngIf="f.submitted && password.invalid">
+        <div *ngIf="password.errors.required" style="color: red">Password is required</div>
+        <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 8 characters</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="firstName" name="first_name" [(ngModel)]="adminInfo.first_name" #first_name="ngModel" 
+      required placeholder="FIRST NAME"/>
+      <div *ngIf="f.submitted && last_name.invalid">
+          <div *ngIf="first_name.errors.required" style="color: red">First name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="lastName" name="last_name" [(ngModel)]="adminInfo.last_name" #last_name="ngModel" 
+      required placeholder="LAST NAME"/>
+      <div *ngIf="f.submitted && last_name.invalid">
+        <div *ngIf="last_name.errors.required" style="color: red">Last name is required</div>
+      </div>
+    </div>
+
+    
+    <br>
+
+    <div class="form-group">
+      <button class="button" class="submitbtn">Update info</button>
+      <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+        Registration failed: {{errorMessage}}
+      </div>
+      <button class="cancelbtn" (click)="cancelForm()" type="button" >Cancel</button>
+    </div>
+    <br>
+  </form>
+</div>
