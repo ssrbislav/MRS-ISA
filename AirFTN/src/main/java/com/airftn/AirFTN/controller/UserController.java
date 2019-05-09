@@ -28,6 +28,7 @@ import com.airftn.AirFTN.dto.LoginDTO;
 import com.airftn.AirFTN.dto.RegisterDTO;
 import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.Passenger;
+import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.User;
 import com.airftn.AirFTN.repository.PassengerRepository;
@@ -70,14 +71,19 @@ public class UserController {
 	private EmailService emailThread;
 
 	@PostMapping("/register")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerRequest) {
+	public ResponseEntity<ResponseMessage> registerUser(@Valid @RequestBody RegisterDTO registerRequest) {
 
+		ResponseMessage message = new ResponseMessage();
+		
+		
 		if (userRepository.existsByUsername(registerRequest.getUsername())) {
-			return new ResponseEntity<>("Username is already taken", HttpStatus.BAD_REQUEST);
+			message.setMessage("Username is already taken");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 
 		if (userRepository.existsByEmail(registerRequest.getEmail())) {
-			return new ResponseEntity<>("Email is already in use", HttpStatus.BAD_REQUEST);
+			message.setMessage("Email is already in use");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 
 		User user = new Passenger(registerRequest.getEmail(), registerRequest.getUsername(),
@@ -96,8 +102,8 @@ public class UserController {
 		userRepository.save(user);
 
 		mailSend(user.getEmail(), passengerService.getRegistrationLink(user.getId()));
-
-		return new ResponseEntity<>("User registered successfully!", HttpStatus.OK);
+		message.setMessage("Username successfully registered!");
+		return new ResponseEntity<>(message, HttpStatus.OK);
 
 	}
 

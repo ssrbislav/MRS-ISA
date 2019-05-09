@@ -16,7 +16,6 @@ export class RegistrationAdminComponent implements OnInit {
   errorMessage = '';
   adminInfo: AirlineAdminDTO = new AirlineAdminDTO();
   isSignedUp = false;
-  @ViewChild('header') header: HeaderComponent;
 
   constructor(private tokenStorage: TokenStorageService,
               private router: Router,

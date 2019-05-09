@@ -19,6 +19,11 @@ import { HotelComponent } from './hotel/hotel.component';
 import { HeaderComponent } from './header/header.component';
 import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
 import { RegistrationAdminComponent } from './registration-admin/registration-admin.component';
+import { AiradminProfileComponent } from './airline-admin/airadmin-profile/airadmin-profile.component';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterSysadminComponent } from './sys-admin/register-sysadmin/register-sysadmin.component';
+import { RegisterAiradminComponent } from './sys-admin/register-airadmin/register-airadmin.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,9 @@ import { RegistrationAdminComponent } from './registration-admin/registration-ad
     HeaderComponent,
     AirlineCompaniesComponent,
     RegistrationAdminComponent,
+    AiradminProfileComponent,
+    RegisterSysadminComponent,
+    RegisterAiradminComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,11 +48,19 @@ import { RegistrationAdminComponent } from './registration-admin/registration-ad
     HttpClientModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    BrowserAnimationsModule
+  ],
+  entryComponents: [
+    AiradminProfileComponent
   ],
   providers: [
     RoleGuardService,
     httpInterceptorProviders,
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

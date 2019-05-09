@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./passenger.component.css']
 })
 export class PassengerComponent implements OnInit {
-  
-  @ViewChild("header") header: HeaderComponent;
+
+  @ViewChild('header') header: HeaderComponent;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    
+
   }
 
   navigateHotels() {

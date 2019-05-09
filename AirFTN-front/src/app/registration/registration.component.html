@@ -75,7 +75,7 @@
           </div>
 
         <div class="form-group">
-          <input placeholder="DATE OF BIRTH" type="text" name="date_of_birth" onfocus="(this.type='date')" 
+          <input placeholder="DATE OF BIRTH" type="date" name="date_of_birth" onfocus="(this.type='date')" 
           onblur="(this.type='text')" id="date" [(ngModel)]="signupInfo.date_of_birth" #date_of_birth="ngModel" 
           required/>
           <div *ngIf="f.submitted && date_of_birth.invalid">

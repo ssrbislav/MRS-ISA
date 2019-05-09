@@ -4,6 +4,7 @@ import { LoginInfo } from '../auth/login-info';
 import { Observable } from 'rxjs';
 import { SignupInfo } from '../auth/signup-info';
 import { JwtResponse } from '../auth/jwt-response';
+import { ResponseMessage } from '../model/responseMessage';
 
 
 const httpOptions = {
@@ -24,8 +25,8 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
 
-  signUp(info: SignupInfo): Observable<string> {
-      return this.http.post<string>(this.registrationUrl, info, httpOptions);
+  signUp(info: SignupInfo): Observable<ResponseMessage> {
+      return this.http.post<ResponseMessage>(this.registrationUrl, info, httpOptions);
   }
 
 }
