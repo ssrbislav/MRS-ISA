@@ -55,7 +55,7 @@
       <div *ngIf="f.submitted && isLoginFailed" style="color: red">
         Registration failed: {{errorMessage}}
       </div>
-      <button class="cancelbtn" (click)="cancelForm()" type="button" >CANCEL</button>
+      <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
     </div>
     <br>
   </form>

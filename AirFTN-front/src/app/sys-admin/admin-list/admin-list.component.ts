@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { RegisterAiradminComponent } from './register-airadmin/register-airadmin.component';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-list',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenStorage: TokenStorageService,
+              private router: Router,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  addAirlineAdmin() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false
+    };
+
+    const dialogRef = this.dialog.open(RegisterAiradminComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog was closed');
+      console.log(result);
+    });
   }
 
 }

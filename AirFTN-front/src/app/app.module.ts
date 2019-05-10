@@ -19,8 +19,8 @@ import { AirlineCompaniesComponent } from './airline-companies/airline-companies
 import { AiradminProfileComponent } from './airline-admin/airadmin-profile/airadmin-profile.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterSysadminComponent } from './sys-admin/register-sysadmin/register-sysadmin.component';
-import { RegisterAiradminComponent } from './sys-admin/register-airadmin/register-airadmin.component';
+import { RegisterSysadminComponent } from './sys-admin/admin-list/register-sysadmin/register-sysadmin.component';
+import { RegisterAiradminComponent } from './sys-admin/admin-list/register-airadmin/register-airadmin.component';
 import { SysadminProfileComponent } from './sys-admin/sysadmin-profile/sysadmin-profile.component';
 import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
 
@@ -55,7 +55,9 @@ import { AdminListComponent } from './sys-admin/admin-list/admin-list.component'
   ],
   entryComponents: [
     AiradminProfileComponent,
-    SysadminProfileComponent
+    SysadminProfileComponent,
+    RegisterSysadminComponent,
+    RegisterAiradminComponent
   ],
   providers: [
     RoleGuardService,

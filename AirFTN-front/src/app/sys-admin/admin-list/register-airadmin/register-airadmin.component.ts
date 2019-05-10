@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { AdminDTO } from '../../model/admin.model';
+import { AdminDTO } from '../../../model/admin.model';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
@@ -23,7 +23,7 @@ export class RegisterAiradminComponent implements OnInit {
               private adminService: AdminService) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('50%', '50%');
+    this.dialogRef.updateSize('50%', '90%');
   }
 
   // cancelForm() {
