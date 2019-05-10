@@ -12,12 +12,17 @@ const httpOptions = {
 })
 export class AdminService {
 
-  private adminRegistrationLink = 'http://localhost:8080/api/admin/registerAdmin';
+  private airAdminRegistrationLink = 'http://localhost:8080/api/admin/registerAdmin';
+  private adminUpdateLink = 'http://localhost:8080/api/admin/update';
 
   constructor(private http: HttpClient) { }
 
-  adminRegistration(info: AirlineAdminDTO): Observable<string> {
-    return this.http.post<string>(this.adminRegistrationLink, info, httpOptions);
+  airAdminRegistration(info: AirlineAdminDTO): Observable<string> {
+    return this.http.post<string>(this.airAdminRegistrationLink, info, httpOptions);
+  }
+
+  adminUpdate(info: AirlineAdminDTO): Observable<string> {
+    return this.http.post<string>(this.adminUpdateLink, info, httpOptions);
   }
 
 }

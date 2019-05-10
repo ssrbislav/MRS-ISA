@@ -27,7 +27,7 @@ export class RegisterAiradminComponent implements OnInit {
   }
 
   onSubmit() {
-    this.adminService.adminRegistration(this.adminInfo).subscribe(
+    this.adminService.airAdminRegistration(this.adminInfo).subscribe(
       data => {
         window.alert('Admin successfully registered!');
         this.isSignedUp = true;

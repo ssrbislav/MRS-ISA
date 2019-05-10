@@ -6,7 +6,7 @@
     
     <div class="form-group">
       <input type="email" id="email" name="email" [(ngModel)]="adminInfo.email" #email="ngModel" 
-        required placeholder="EMAIL" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"/>
+        required placeholder="EMAIL" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #inputElement1/>
         <div *ngIf="f.submitted && email.invalid">
           <div *ngIf="email.errors.required" style="color: red">Email is required</div>
           <div *ngIf="email.errors.pattern" style="color: red">Email format not correct</div>
@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <input type="text" id="user" name="username" [(ngModel)]="adminInfo.username" #username="ngModel"
-        required  placeholder="USERNAME"/>
+        required  placeholder="USERNAME" #inputElement2/>
       <div *ngIf="f.submitted && username.invalid">
         <div *ngIf="username.errors.required" style="color: red">Username is required</div>
       </div>
@@ -23,8 +23,7 @@
 
     <div class="form-group">
       <input type="password" id="pass" name="password" minlength="8" [(ngModel)]="adminInfo.password" #password="ngModel" 
-      required placeholder="PASSWORD"/>
-      
+      required placeholder="PASSWORD" #inputElement3/>
       <div *ngIf="f.submitted && password.invalid">
         <div *ngIf="password.errors.required" style="color: red">Password is required</div>
         <div *ngIf="password.errors.minlength" style="color: red">Password must be at least 8 characters</div>
@@ -33,7 +32,7 @@
 
     <div class="form-group">
       <input type="text" id="firstName" name="first_name" [(ngModel)]="adminInfo.first_name" #first_name="ngModel" 
-      required placeholder="FIRST NAME"/>
+      required placeholder="FIRST NAME" #inputElement1/>
       <div *ngIf="f.submitted && last_name.invalid">
           <div *ngIf="first_name.errors.required" style="color: red">First name is required</div>
       </div>
@@ -41,7 +40,7 @@
 
     <div class="form-group">
       <input type="text" id="lastName" name="last_name" [(ngModel)]="adminInfo.last_name" #last_name="ngModel" 
-      required placeholder="LAST NAME"/>
+      required placeholder="LAST NAME" #inputElement1/>
       <div *ngIf="f.submitted && last_name.invalid">
         <div *ngIf="last_name.errors.required" style="color: red">Last name is required</div>
       </div>
@@ -51,8 +50,8 @@
 
     <div class="form-group">
       <button class="button" class="submitbtn">Update info</button>
-      <button class="button" class="submitbtn" [disabled]="true" disabled>Save Info</button>
-      <button class="cancelbtn" (click)="cancelForm()" type="button" mat-dialog-close>Cancel</button>
+      <button class="button" class="submitbtn" [disabled]="true" >Save Info</button>
+      <button class="cancelbtn" mat-dialog-close>Cancel</button>
     </div>
     <br>
   </form>
