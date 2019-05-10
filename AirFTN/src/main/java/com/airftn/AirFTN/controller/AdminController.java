@@ -51,7 +51,7 @@ public class AdminController {
 		return new ResponseEntity<>(administrators, HttpStatus.OK);
 	}
 
-	@PostMapping("/registerAdmin")
+	@PostMapping("/registerAirAdmin")
 	public ResponseEntity<?> registerAdmin(@RequestBody AdminDTO registerRequest) {
 
 		if (userRepository.existsByEmail(registerRequest.getEmail())) {
@@ -84,7 +84,7 @@ public class AdminController {
 	@PostMapping("/updateAdmin")
 	public ResponseEntity<Admin> update(@RequestBody Admin admin) {
 
-		Admin administrator = adminRepository.update(admin);
+		Admin administrator = adminService.update(admin);
 
 		if (administrator == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
