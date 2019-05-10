@@ -3,6 +3,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AiradminProfileComponent } from '../airline-admin/airadmin-profile/airadmin-profile.component';
+import { SysadminProfileComponent } from '../sys-admin/sysadmin-profile/sysadmin-profile.component';
 
 @Component({
   selector: 'app-header',
@@ -63,7 +64,7 @@ export class HeaderComponent implements OnInit {
     window.alert('Feature not available!');
   }
 
-  updateInfo() {
+  updateAirAdminInfo() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -74,6 +75,24 @@ export class HeaderComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(AiradminProfileComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog was closed');
+      console.log(result);
+    });
+  }
+
+  updateSysAdminInfo() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false
+    };
+
+    const dialogRef = this.dialog.open(SysadminProfileComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog was closed');

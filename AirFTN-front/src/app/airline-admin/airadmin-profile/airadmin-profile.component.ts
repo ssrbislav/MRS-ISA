@@ -34,7 +34,6 @@ export class AiradminProfileComponent implements OnInit {
     this.username = this.tokenStorage.getUsername();
     this.passengerService.getPassenger(this.username).subscribe(
       data => {
-        console.log(data.email);
       }
     );
   }

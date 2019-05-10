@@ -21,6 +21,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule } from 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterSysadminComponent } from './sys-admin/register-sysadmin/register-sysadmin.component';
 import { RegisterAiradminComponent } from './sys-admin/register-airadmin/register-airadmin.component';
+import { SysadminProfileComponent } from './sys-admin/sysadmin-profile/sysadmin-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RegisterAiradminComponent } from './sys-admin/register-airadmin/registe
     AiradminProfileComponent,
     RegisterSysadminComponent,
     RegisterAiradminComponent,
+    SysadminProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { RegisterAiradminComponent } from './sys-admin/register-airadmin/registe
     BrowserAnimationsModule
   ],
   entryComponents: [
-    AiradminProfileComponent
+    AiradminProfileComponent,
+    SysadminProfileComponent
   ],
   providers: [
     RoleGuardService,
