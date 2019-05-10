@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AdminDTO } from '../model/admin.model';
 import { Observable } from 'rxjs';
+import { ResponseMessage } from '../model/responseMessage';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json'})
@@ -12,17 +13,22 @@ const httpOptions = {
 })
 export class AdminService {
 
-  private airAdminRegistrationLink = 'http://localhost:8080/api/admin/registerAdmin';
-  private adminUpdateLink = 'http://localhost:8080/api/admin/update';
+  private airAdminRegistrationLink = 'http://localhost:8080/api/admin/registerAirAdmin';
+  private sysAdminRegistrationLink = 'http://localhost:8080/api/admin/registerSysAdmin';
+  private adminUpdateLink = 'http://localhost:8080/api/admin/updateAdmin';
 
   constructor(private http: HttpClient) { }
 
-  airAdminRegistration(info: AdminDTO): Observable<string> {
-    return this.http.post<string>(this.airAdminRegistrationLink, info, httpOptions);
+  airAdminRegistration(info: AdminDTO): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(this.airAdminRegistrationLink, info, httpOptions);
   }
 
-  adminUpdate(info: AdminDTO): Observable<string> {
-    return this.http.post<string>(this.adminUpdateLink, info, httpOptions);
+  sysAdminRegistration(info: AdminDTO): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(this.sysAdminRegistrationLink, info, httpOptions);
+  }
+
+  adminUpdate(info: AdminDTO): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(this.adminUpdateLink, info, httpOptions);
   }
 
 }

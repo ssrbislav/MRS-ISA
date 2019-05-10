@@ -14,7 +14,6 @@ export class RegisterAiradminComponent implements OnInit {
 
   errorMessage = '';
   adminInfo: AdminDTO = new AdminDTO();
-  isSignedUp = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>, 
@@ -26,22 +25,17 @@ export class RegisterAiradminComponent implements OnInit {
     this.dialogRef.updateSize('40%', '90%');
   }
 
-  // cancelForm() {
-  //   this.router.navigate(['sysAdmin']);
-  // }
-
-  // onSubmit() {
-  //   this.adminService.airAdminRegistration(this.adminInfo).subscribe(
-  //     data => {
-  //       window.alert('Admin successfully registered!');
-  //       this.isSignedUp = true;
-  //       this.router.navigate(['sysAdmin']);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //       this.errorMessage = error.error.message;
-  //     }
-  //   );
-  // }
+  onSubmit() {
+    this.adminService.airAdminRegistration(this.adminInfo).subscribe(
+      data => {
+        window.alert('Admin successfully registered!');
+        this.dialogRef.close();
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+      }
+    );
+  }
 
 }
