@@ -15,7 +15,7 @@ public interface IPassengerService {
 
 	Passenger update(Passenger passenger);
 
-	boolean delete(Long id);
+	//boolean delete(Long id);
 
 	boolean activate(Long id);
 	

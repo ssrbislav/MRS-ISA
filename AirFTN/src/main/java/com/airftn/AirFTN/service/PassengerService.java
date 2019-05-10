@@ -62,17 +62,18 @@ public class PassengerService implements IPassengerService {
 		return passengerRepository.save(p);
 	}
 
-	@Override
-	public boolean delete(Long id) {
-
-		for (Passenger passenger : findAll()) {
-			if (passenger.getId() == id) {
-				passengerRepository.delete(passenger);
-				return true;
-			}
-		}
-		return false;
-	}
+	// Bolje da se implementira logicko brisanje!!!
+//	@Override
+//	public boolean delete(Long id) {
+//
+//		for (Passenger passenger : findAll()) {
+//			if (passenger.getId() == id) {
+//				passengerRepository.delete(passenger);
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 	@Override
 	public boolean activate(Long id) {

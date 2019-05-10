@@ -7,4 +7,6 @@ public interface AdminRespository extends JpaRepository<Admin, Long> {
 
 	Admin findByUsername(String username);
 
+	Admin save(Admin admin);
+
 }
