@@ -26,12 +26,12 @@ public class AdminService implements IAdminService {
 	}
 
 	@Override
-	public User update(User admin) {
+	public User update(User admin, Long id) {
 
-		User administrator = userRepository.getOne(admin.getId());
+		User administrator = userRepository.getOne(id);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-		administrator.setId(admin.getId());
+		administrator.setId(id);
 		administrator.setEmail(admin.getEmail());
 		administrator.setPassword(encoder.encode(admin.getPassword()));
 		administrator.setFirst_name(admin.getFirst_name());

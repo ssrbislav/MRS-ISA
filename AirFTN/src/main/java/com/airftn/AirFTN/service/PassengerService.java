@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.PassengerDTO;
@@ -45,13 +46,37 @@ public class PassengerService implements IPassengerService {
 	}
 
 	@Override
+	public Passenger update(Passenger passenger, Long id) {
+
+		Passenger p = passengerRepository.getOne(id);
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		p.setId(id);
+		p.setUsername(passenger.getUsername());
+		p.setEmail(passenger.getEmail());
+		p.setPassword(encoder.encode(passenger.getPassword()));
+		p.setFirst_name(passenger.getFirst_name());
+		p.setLast_name(passenger.getLast_name());
+		p.setAddress(passenger.getAddress());
+		p.setDate_of_birth(passenger.getDate_of_birth());
+		p.setPhone_number(passenger.getPhone_number());
+		p.setActive(passenger.isActive());
+
+		return passengerRepository.save(p);
+	}
+	
+	@Override
 	public Passenger update(Passenger passenger) {
 
 		Passenger p = passengerRepository.getOne(passenger.getId());
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		p.setId(passenger.getId());
 		p.setUsername(passenger.getUsername());
 		p.setEmail(passenger.getEmail());
+		p.setPassword(encoder.encode(passenger.getPassword()));
 		p.setFirst_name(passenger.getFirst_name());
 		p.setLast_name(passenger.getLast_name());
 		p.setAddress(passenger.getAddress());
@@ -62,7 +87,7 @@ public class PassengerService implements IPassengerService {
 		return passengerRepository.save(p);
 	}
 
-	// Bolje da se implementira logicko brisanje!!!
+	
 //	@Override
 //	public boolean delete(Long id) {
 //

@@ -37,10 +37,10 @@ public class AdminController {
 
 	@Autowired
 	PasswordEncoder encoder;
-	
+
 	@Autowired
 	AdminService adminService;
-	
+
 	ResponseMessage message = new ResponseMessage();
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
@@ -65,7 +65,8 @@ public class AdminController {
 		}
 
 		User admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(), registerRequest.getLast_name(), null, null, null);
+				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
+				registerRequest.getLast_name(), null, null, null);
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_AIRLINE_ADMIN);
@@ -77,10 +78,10 @@ public class AdminController {
 
 		userRepository.save(admin);
 		message.setMessage("Airline Admin registered successfully!");
-		
+
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/registerSysAdmin")
 	public ResponseEntity<?> registerSysAdmin(@RequestBody AdminDTO registerRequest) {
 
@@ -95,7 +96,8 @@ public class AdminController {
 		}
 
 		User admin = new SysAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(), registerRequest.getLast_name(), null, null, null);
+				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
+				registerRequest.getLast_name(), null, null, null);
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_SYSADMIN);
@@ -107,14 +109,16 @@ public class AdminController {
 
 		userRepository.save(admin);
 		message.setMessage("System Admin registered successfully!");
-		
+
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 	@PostMapping("/updateAdmin")
 	public ResponseEntity<?> update(@RequestBody User admin) {
 
-		User administrator = adminService.update(admin);
+		User a = userRepository.findByUsername(admin.getUsername());
+
+		User administrator = adminService.update(admin, a.getId());
 
 		if (administrator == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -122,16 +126,16 @@ public class AdminController {
 		message.setMessage("User information successfully updated!");
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/getAdmin")
 	public ResponseEntity<User> getAdmin(@PathVariable String username) {
-		
+
 		User admin = adminService.findByUsername(username);
-		
-		if(admin == null) {
+
+		if (admin == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
+
 		return new ResponseEntity<>(admin, HttpStatus.OK);
 	}
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.model.Passenger;
+import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.repository.PassengerRepository;
 import com.airftn.AirFTN.service.PassengerService;
 
@@ -27,6 +28,8 @@ public class PassengerController {
 
 	@Autowired
 	PassengerRepository passengerRepository;
+	
+	ResponseMessage message = new ResponseMessage();
 
 	@GetMapping("")
 	public ResponseEntity<List<Passenger>> findAll() {
@@ -60,14 +63,18 @@ public class PassengerController {
 	}
 
 	@PostMapping("/updatePassenger")
-	public ResponseEntity<Passenger> update(@RequestBody Passenger passenger) {
+	public ResponseEntity<?> update(@RequestBody Passenger passenger) {
+		
+		Passenger pass = passengerRepository.findByUsername(passenger.getUsername());
 
-		Passenger p = passengerService.update(passenger);
+		Passenger p = passengerService.update(passenger, pass.getId());
 
 		if (p == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-		return new ResponseEntity<>(p, HttpStatus.OK);
+		message.setMessage("User info successfully changed!");
+		
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 }
