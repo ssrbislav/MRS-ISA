@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterSysadminComponent } from './sys-admin/register-sysadmin/register-sysadmin.component';
 import { RegisterAiradminComponent } from './sys-admin/register-airadmin/register-airadmin.component';
 import { SysadminProfileComponent } from './sys-admin/sysadmin-profile/sysadmin-profile.component';
+import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SysadminProfileComponent } from './sys-admin/sysadmin-profile/sysadmin-
     RegisterSysadminComponent,
     RegisterAiradminComponent,
     SysadminProfileComponent,
+    AdminListComponent,
   ],
   imports: [
     BrowserModule,

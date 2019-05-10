@@ -1,4 +1,4 @@
-export class AirlineAdminDTO {
+export class AdminDTO {
 
     id: BigInteger;
     email: string;

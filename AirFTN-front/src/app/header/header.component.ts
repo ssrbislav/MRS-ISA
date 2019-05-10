@@ -56,8 +56,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  clickAdminRegistration() {
-    this.router.navigate(['sysAdmin/registerAdmin']);
+  clickShowAdmins() {
+    this.router.navigate(['sysAdmin/listAdmins']);
   }
 
   clickAddHotel() {

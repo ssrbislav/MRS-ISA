@@ -9,6 +9,7 @@ import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
+import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
 
 const routes: Routes = [
 
@@ -47,6 +48,12 @@ const routes: Routes = [
     {
         path: 'sysAdmin',
         component: SysAdminComponent,
+        children: [
+            {
+                path: 'listAdmins',
+                component: AdminListComponent
+        },
+        ],
         canActivate: [RoleGuardService],
         data: {
             expectedRole: 'ROLE_SYSADMIN'

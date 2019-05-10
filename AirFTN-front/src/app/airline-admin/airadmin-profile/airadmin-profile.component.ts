@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { PassengerService } from 'src/app/services/passenger.service';
-import { AirlineAdminDTO } from 'src/app/model/airlineAdmin.model';
+import { AdminDTO } from 'src/app/model/admin.model';
 import { Passenger } from 'src/app/model/passenger.model';
 
 @Component({
@@ -13,7 +13,7 @@ import { Passenger } from 'src/app/model/passenger.model';
 })
 export class AiradminProfileComponent implements OnInit {
 
-  adminInfo: AirlineAdminDTO = new AirlineAdminDTO();
+  adminInfo: AdminDTO = new AdminDTO();
   passenger: Passenger = new Passenger();
   username: string;
   @ViewChild('inputElement1') public inputEl1: ElementRef;
