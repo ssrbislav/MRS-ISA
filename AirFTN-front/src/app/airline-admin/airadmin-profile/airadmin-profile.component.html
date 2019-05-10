@@ -47,15 +47,12 @@
       </div>
     </div>
 
-    
     <br>
 
     <div class="form-group">
       <button class="button" class="submitbtn">Update info</button>
-      <div *ngIf="f.submitted && isLoginFailed" style="color: red">
-        Registration failed: {{errorMessage}}
-      </div>
-      <button class="cancelbtn" (click)="cancelForm()" type="button" >Cancel</button>
+      <button class="button" class="submitbtn" [disabled]="true" disabled>Save Info</button>
+      <button class="cancelbtn" (click)="cancelForm()" type="button" mat-dialog-close>Cancel</button>
     </div>
     <br>
   </form>

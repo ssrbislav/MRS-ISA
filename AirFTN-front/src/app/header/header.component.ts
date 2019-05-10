@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit {
     window.alert('Feature not available!');
   }
 
-  Update() {
+  updateInfo() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;

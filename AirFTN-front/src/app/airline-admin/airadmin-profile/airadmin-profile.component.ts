@@ -14,4 +14,12 @@ export class AiradminProfileComponent implements OnInit {
     this.dialogRef.updateSize('60%', '%80');
   }
 
+  onSubmit() {
+    
+  }
+
+  cancelForm() {
+    this.dialogRef.close();
+  }
+
 }

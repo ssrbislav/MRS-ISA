@@ -69,7 +69,6 @@ button {
     opacity: 1;
 }
 
-
 textarea, select, input, button { 
     outline: none;
  }
@@ -82,7 +81,7 @@ h3, .signup {
     padding: 10px 10px;
     font-size: 30px;
     font-family: lato;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 p {

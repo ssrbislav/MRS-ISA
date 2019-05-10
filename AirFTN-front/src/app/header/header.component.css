@@ -149,6 +149,7 @@
     border-left: 1px solid white;
     width: 100px;
     float: right;
+    cursor: pointer;
 }
 
 #welcome {
