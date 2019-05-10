@@ -23,7 +23,7 @@ export class RegisterAiradminComponent implements OnInit {
               private adminService: AdminService) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('50%', '90%');
+    this.dialogRef.updateSize('40%', '90%');
   }
 
   // cancelForm() {
