@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,9 +22,10 @@ import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.model.Role;
+import com.airftn.AirFTN.model.SysAdmin;
 import com.airftn.AirFTN.model.User;
-import com.airftn.AirFTN.repository.AdminRespository;
 import com.airftn.AirFTN.repository.UserRepository;
+import com.airftn.AirFTN.service.AdminService;
 
 @CrossOrigin
 @RestController
@@ -39,7 +39,7 @@ public class AdminController {
 	PasswordEncoder encoder;
 	
 	@Autowired
-	AdminRespository adminRepository;
+	AdminService adminService;
 	
 	ResponseMessage message = new ResponseMessage();
 
@@ -52,7 +52,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/registerAirAdmin")
-	public ResponseEntity<?> registerAdmin(@RequestBody AdminDTO registerRequest) {
+	public ResponseEntity<?> registerAirAdmin(@RequestBody AdminDTO registerRequest) {
 
 		if (userRepository.existsByEmail(registerRequest.getEmail())) {
 			message.setMessage("Email already in use");
@@ -80,22 +80,53 @@ public class AdminController {
 		
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
+	
+	@PostMapping("/registerSysAdmin")
+	public ResponseEntity<?> registerSysAdmin(@RequestBody AdminDTO registerRequest) {
+
+		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+			message.setMessage("Email already in use");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		}
+
+		if (userRepository.existsByUsername(registerRequest.getUsername())) {
+			message.setMessage("Admin with that username already exist");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		}
+
+		User admin = new SysAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
+				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(), registerRequest.getLast_name(), null, null, null);
+
+		Role role = new Role();
+		role.setName(RoleType.ROLE_SYSADMIN);
+
+		Set<Role> roles = new HashSet<>();
+		roles.add(role);
+
+		admin.setRoles(roles);
+
+		userRepository.save(admin);
+		message.setMessage("System Admin registered successfully!");
+		
+		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
 
 	@PostMapping("/updateAdmin")
-	public ResponseEntity<Admin> update(@RequestBody Admin admin) {
+	public ResponseEntity<?> update(@RequestBody User admin) {
 
-		Admin administrator = adminService.update(admin);
+		User administrator = adminService.update(admin);
 
 		if (administrator == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-		return new ResponseEntity<>(administrator, HttpStatus.OK);
+		message.setMessage("User information successfully updated!");
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAdmin")
-	public ResponseEntity<Admin> getAdmin(@PathVariable String username) {
+	public ResponseEntity<User> getAdmin(@PathVariable String username) {
 		
-		Admin admin = adminRepository.findByUsername(username);
+		User admin = adminService.findByUsername(username);
 		
 		if(admin == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -152,4 +152,9 @@ public abstract class User {
 		this.roles = roles;
 	}
 
+	public User orElseThrow(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
