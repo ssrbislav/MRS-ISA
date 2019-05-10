@@ -16,9 +16,7 @@ export class RegisterAiradminComponent implements OnInit {
   adminInfo: AdminDTO = new AdminDTO();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef: MatDialogRef<any>, 
-              private tokenStorage: TokenStorageService,
-              private router: Router,
+              public dialogRef: MatDialogRef<any>,
               private adminService: AdminService) { }
 
   ngOnInit() {
