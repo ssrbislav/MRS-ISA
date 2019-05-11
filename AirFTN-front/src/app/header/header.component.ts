@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   showView = '';
   @Output() featureSelected = new EventEmitter<string>();
   private roles: string[];
-  private username: string;
 
   constructor(private tokenStorage: TokenStorageService,
               private router: Router, public dialog: MatDialog) { }
@@ -25,7 +24,7 @@ export class HeaderComponent implements OnInit {
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
         if (role === 'ROLE_SYSADMIN') {
-          this.showView = 'sysAdmin'
+          this.showView = 'sysAdmin';
           return true;
         } else if (role === 'ROLE_AIRLINE_ADMIN') {
           this.showView = 'airlineAdmin';
@@ -36,25 +35,23 @@ export class HeaderComponent implements OnInit {
         }
       });
     }
-
-    this.username = this.tokenStorage.getUsername();
   }
 
   Logout() {
     window.sessionStorage.clear();
     this.router.navigate(['mainPage']);
-    window.alert('Successfully Logged out!');
+    window.alert('Successfully Logged Out!');
   }
 
-  ShowProfile() {
-    if (this.showView === 'passenger') {
-      this.router.navigate(['passenger']);
-    } else if (this.showView === 'sysAdmin') {
-      this.router.navigate(['sysAdmin']);
-    } else if (this.showView === 'airlineAdmin') {
-      this.router.navigate(['airlineAdmin']);
-    }
-  }
+  // ShowProfile() {
+  //   if (this.showView === 'passenger') {
+  //     this.router.navigate(['passenger']);
+  //   } else if (this.showView === 'sysAdmin') {
+  //     this.router.navigate(['sysAdmin']);
+  //   } else if (this.showView === 'airlineAdmin') {
+  //     this.router.navigate(['airlineAdmin']);
+  //   }
+  // }
 
   clickShowAdmins() {
     this.router.navigate(['sysAdmin/listAdmins']);
@@ -65,6 +62,7 @@ export class HeaderComponent implements OnInit {
   }
 
   updateAirAdminInfo() {
+
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -76,28 +74,32 @@ export class HeaderComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AiradminProfileComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog was closed');
-      console.log(result);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog was closed');
+    //   console.log(result);
+    // });
   }
 
   updateSysAdminInfo() {
+    // this.featureSelected.emit('sysAdmin');
+
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+
+    // Still not able to understand this part
     dialogConfig.data = {
       id: 1,
       added: false
     };
 
-    const dialogRef = this.dialog.open(SysadminProfileComponent, dialogConfig);
+    this.dialog.open(SysadminProfileComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog was closed');
-      console.log(result);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog was closed');
+    //   console.log(result);
+    // });
   }
 
 }

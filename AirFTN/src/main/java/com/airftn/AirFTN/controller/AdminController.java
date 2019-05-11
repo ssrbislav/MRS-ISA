@@ -127,7 +127,7 @@ public class AdminController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
-	@GetMapping("/getAdmin")
+	@GetMapping("/getAdmin/{username}")
 	public ResponseEntity<User> getAdmin(@PathVariable String username) {
 
 		User admin = adminService.findByUsername(username);

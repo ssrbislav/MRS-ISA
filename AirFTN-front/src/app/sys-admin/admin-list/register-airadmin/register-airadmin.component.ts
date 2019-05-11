@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AdminDTO } from '../../../model/admin.model';
-import { TokenStorageService } from 'src/app/auth/token-storage.service';
-import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 

@@ -27,18 +27,6 @@ export class AiradminProfileComponent implements OnInit {
 
   ngOnInit() {
     this.dialogRef.updateSize('60%', '90%');
-    this.findAdmin();
-  }
-
-  findAdmin() {
-    this.username = this.tokenStorage.getUsername();
-    this.passengerService.getPassenger(this.username).subscribe(
-      data => {
-      }
-    );
-  }
-
-  onSubmit() {
   }
 
 }
