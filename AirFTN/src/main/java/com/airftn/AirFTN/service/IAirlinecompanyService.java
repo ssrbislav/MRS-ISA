@@ -2,18 +2,22 @@ package com.airftn.AirFTN.service;
 
 import java.util.List;
 
+import com.airftn.AirFTN.dto.AirlineCompanyDTO;
+import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.AirlineCompany;
 
 public interface IAirlinecompanyService {
 
 	List<AirlineCompany> findAll();
 	
-	AirlineCompany getOne();
+	AirlineCompany getOne(Long id);
 	
-	AirlineCompany create();
+	AirlineCompany create(AirlineCompanyDTO company);
 	
-	AirlineCompany update();
+	String update(AirlineCompany company);
 	
-	boolean delete();
+	boolean delete(Long id);
+
+	AirlineCompany updateAdmin(AirlineCompany company, AirlineAdmin admin);
 	
 }
