@@ -1,15 +1,41 @@
 package com.airftn.AirFTN.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Destination {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
+	private Long id;
+	
+	@Column(unique = false, nullable = false)
 	private String city;
 
+	@Column(unique = false, nullable = false)
 	private String country;
 
+	@Column(unique = false, nullable = false)
 	private String description;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+	@JoinTable(name = "destinations",
+    joinColumns = { @JoinColumn(name = "destination_id") },
+    inverseJoinColumns = { @JoinColumn(name = "airline_company_id") })
+	private List<AirlineCompany> companies = new ArrayList<AirlineCompany>();
 
 	public Destination() {
 	}
