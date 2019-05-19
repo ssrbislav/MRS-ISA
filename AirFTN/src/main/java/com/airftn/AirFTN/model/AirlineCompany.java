@@ -1,5 +1,8 @@
 package com.airftn.AirFTN.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +19,24 @@ public class AirlineCompany {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
 	private Long id;
+	
+	@Column(unique = true, nullable = false)
+	private String name;
+	
+	@Column(unique = true, nullable = false)
+	private String city;
+	
+	@Column(nullable = false, unique = false)
+	private String address;
+	
+	@Column(nullable = false, unique = false)
+	private String description;
+	
+	private List<Airplane> planes = new ArrayList<Airplane>();
+	
+	private List<Flight> flights = new ArrayList<Flight>();
+	
+	private List<Destination> destinations = new ArrayList<Destination>();
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="admin_id", nullable = false)
