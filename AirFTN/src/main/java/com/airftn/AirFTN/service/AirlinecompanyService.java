@@ -61,17 +61,6 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	};
 
 	@Override
-	public boolean delete(Long id) {
-
-		for (AirlineCompany company : airlineRepository.findAll())
-			if (company.getId() == id) {
-				return airlineRepository.delete(id);
-			}
-
-		return false;
-	}
-
-	@Override
 	public String update(AirlineCompany company) {
 		
 		return null;

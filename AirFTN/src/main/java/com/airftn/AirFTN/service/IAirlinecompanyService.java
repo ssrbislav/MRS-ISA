@@ -18,8 +18,6 @@ public interface IAirlinecompanyService {
 	AirlineCompany create(AirlineCompanyDTO company);
 	
 	String update(AirlineCompany company);
-	
-	boolean delete(Long id);
 
 	AirlineCompany updateAdmin(AirlineCompany company, AirlineAdmin admin);
 	
