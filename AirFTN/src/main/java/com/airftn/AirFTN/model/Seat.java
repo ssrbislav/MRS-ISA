@@ -1,10 +1,15 @@
 package com.airftn.AirFTN.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Seat {
@@ -14,21 +19,33 @@ public class Seat {
 	@Column(unique = true, nullable = false)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "seat_row")
 	private int row;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "seat_column")
 	private int column;
+
+	@ManyToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(nullable = false, name = "airplane_id")
+	private Airplane airplane;
+	
+	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "seat")
+	private Ticket ticket;
+
+	@Column(nullable = true)
+	private boolean deleted;
 
 	public Seat() {
 		super();
 	}
 
-	public Seat(Long id, int row, int column) {
+	public Seat(Long id, int row, int column, Airplane airplane, boolean deleted) {
 		super();
 		this.id = id;
 		this.row = row;
 		this.column = column;
+		this.airplane = airplane;
+		this.deleted = deleted;
 	}
 
 	public Long getId() {
@@ -53,6 +70,22 @@ public class Seat {
 
 	public void setColumn(int column) {
 		this.column = column;
+	}
+
+	public Airplane getAirplane() {
+		return airplane;
+	}
+
+	public void setAirplane(Airplane airplane) {
+		this.airplane = airplane;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 }

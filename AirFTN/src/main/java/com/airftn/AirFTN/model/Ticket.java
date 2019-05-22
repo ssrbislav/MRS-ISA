@@ -25,20 +25,30 @@ public class Ticket {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "seat_id", nullable = false)
 	private Seat seat;
-	
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "flight_id", nullable = false)
+	private Flight flight;
+
 	@ManyToOne()
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
+
+	@Column(nullable = true)
+	private boolean deleted;
 
 	public Ticket() {
 		super();
 	}
 
-	public Ticket(Long id, double price, Seat seat) {
+	public Ticket(Long id, double price, Seat seat, Flight flight, AirlineCompany company, boolean deleted) {
 		super();
 		this.id = id;
 		this.price = price;
 		this.seat = seat;
+		this.flight = flight;
+		this.company = company;
+		this.deleted = deleted;
 	}
 
 	public Long getId() {
@@ -63,6 +73,22 @@ public class Ticket {
 
 	public void setSeat(Seat seat) {
 		this.seat = seat;
+	}
+
+	public AirlineCompany getCompany() {
+		return company;
+	}
+
+	public void setCompany(AirlineCompany company) {
+		this.company = company;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 }

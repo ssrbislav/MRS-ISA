@@ -51,13 +51,13 @@ public abstract class User {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date_of_birth;
-	
-	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+
+	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	public User(String email, String username, String password, String first_name, String last_name, String address, String phone_number,
-			Date date_of_birth) {
+	public User(String email, String username, String password, String first_name, String last_name, String address,
+			String phone_number, Date date_of_birth) {
 		super();
 		this.email = email;
 		this.username = username;
@@ -143,7 +143,7 @@ public abstract class User {
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
 	}
-	
+
 	public Set<Role> getRoles() {
 		return roles;
 	}

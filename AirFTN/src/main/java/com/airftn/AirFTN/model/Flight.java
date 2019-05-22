@@ -1,6 +1,8 @@
 package com.airftn.AirFTN.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Flight {
@@ -29,11 +35,13 @@ public class Flight {
 
 	@Column(nullable = false)
 	private double mileage;
-	
+
 	@Column(nullable = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
 	private Date departureDate;
 
 	@Column(nullable = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
 	private Date arrivalDate;
 
 	@Column(nullable = false)
@@ -42,9 +50,6 @@ public class Flight {
 	@Column(nullable = false)
 	private int numberOfTransferPoints;
 
-	@Column(nullable = false)
-	private String transferCity;
-	
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "destination_id", nullable = false)
 	private Destination destination;
@@ -57,14 +62,23 @@ public class Flight {
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "transfers", joinColumns = @JoinColumn(name = "transfer_point_id"), inverseJoinColumns = @JoinColumn(name = "flight_id"))
+	private List<TransferPoint> transferPoints = new ArrayList<TransferPoint>();
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "flight")
+	private List<Ticket> tickets = new ArrayList<Ticket>();
+
+	@Column(nullable = false)
+	private boolean deleted;
+
 	public Flight() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Flight(Long id, String flightNumber, double price, double mileage, Date departureDate, Date arrivalDate,
-			int durationOfFlight, int numberOfTransferPoints, String transferCity,
-			Destination destination, Airplane plane, AirlineCompany company) {
+			int durationOfFlight, int numberOfTransferPoints, Destination destination, Airplane plane,
+			AirlineCompany company, List<TransferPoint> transferPoints, List<Ticket> tickets, boolean deleted) {
 		super();
 		this.id = id;
 		this.flightNumber = flightNumber;
@@ -74,10 +88,12 @@ public class Flight {
 		this.arrivalDate = arrivalDate;
 		this.durationOfFlight = durationOfFlight;
 		this.numberOfTransferPoints = numberOfTransferPoints;
-		this.transferCity = transferCity;
 		this.destination = destination;
 		this.plane = plane;
 		this.company = company;
+		this.transferPoints = transferPoints;
+		this.tickets = tickets;
+		this.deleted = deleted;
 	}
 
 	public Long getId() {
@@ -144,14 +160,6 @@ public class Flight {
 		this.numberOfTransferPoints = numberOfTransferPoints;
 	}
 
-	public String getTransferCitie() {
-		return transferCity;
-	}
-
-	public void setTransferCities(String transferCitie) {
-		this.transferCity = transferCitie;
-	}
-
 	public Destination getDestination() {
 		return destination;
 	}
@@ -173,7 +181,31 @@ public class Flight {
 	}
 
 	public void setCompany(AirlineCompany company) {
-		this.company = company;
+
+	}
+
+	public List<TransferPoint> getTransferPoints() {
+		return transferPoints;
+	}
+
+	public void setTransferPoints(List<TransferPoint> transferPoints) {
+		this.transferPoints = transferPoints;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
 
 }

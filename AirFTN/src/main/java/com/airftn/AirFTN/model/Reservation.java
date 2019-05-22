@@ -15,6 +15,9 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false, unique = true)
 	private Long id;
+	
+	@Column(nullable = true)
+	private boolean deleted;
 
 	public Reservation() {
 		super();

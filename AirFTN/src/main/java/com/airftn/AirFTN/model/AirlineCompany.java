@@ -51,13 +51,16 @@ public class AirlineCompany {
 	@JoinColumn(name = "admin_id", nullable = false)
 	private AirlineAdmin admin;
 
+	@Column(nullable = true)
+	private boolean deleted;
+
 	public AirlineCompany() {
 		super();
 	}
 
 	public AirlineCompany(Long id, String name, String city, String address, String description, List<Airplane> planes,
 			List<Flight> flights, List<Destination> destinations, List<Ticket> fastReservationTickets,
-			AirlineAdmin admin) {
+			AirlineAdmin admin, boolean deleted) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,6 +72,7 @@ public class AirlineCompany {
 		this.destinations = destinations;
 		this.fastReservationTickets = fastReservationTickets;
 		this.admin = admin;
+		this.deleted = deleted;
 	}
 
 	public Long getId() {
@@ -149,6 +153,14 @@ public class AirlineCompany {
 
 	public void setFastReservationTickets(List<Ticket> fastReservationTickets) {
 		this.fastReservationTickets = fastReservationTickets;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 }

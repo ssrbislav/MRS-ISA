@@ -22,7 +22,7 @@ public class Destination {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
 	private Long id;
-	
+
 	@Column(unique = false, nullable = false)
 	private String city;
 
@@ -31,24 +31,31 @@ public class Destination {
 
 	@Column(unique = false, nullable = false)
 	private String description;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "destination")
 	private List<Flight> flights;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-	@JoinTable(name = "destinations",
-    joinColumns = { @JoinColumn(name = "destination_id") },
-    inverseJoinColumns = { @JoinColumn(name = "airline_company_id") })
+	@JoinTable(name = "destinations", joinColumns = { @JoinColumn(name = "destination_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "airline_company_id") })
 	private List<AirlineCompany> companies = new ArrayList<AirlineCompany>();
+
+	@Column(nullable = true)
+	private boolean deleted;
 
 	public Destination() {
 	}
 
-	public Destination(String city, String country, String description) {
+	public Destination(Long id, String city, String country, String description, List<Flight> flights,
+			List<AirlineCompany> companies, boolean deleted) {
 		super();
+		this.id = id;
 		this.city = city;
 		this.country = country;
 		this.description = description;
+		this.flights = flights;
+		this.companies = companies;
+		this.deleted = deleted;
 	}
 
 	public String getCity() {
@@ -73,6 +80,38 @@ public class Destination {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Flight> getFlights() {
+		return flights;
+	}
+
+	public void setFlights(List<Flight> flights) {
+		this.flights = flights;
+	}
+
+	public List<AirlineCompany> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(List<AirlineCompany> companies) {
+		this.companies = companies;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 }
