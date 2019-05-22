@@ -62,44 +62,11 @@ export class HeaderComponent implements OnInit {
   }
 
   updateAirAdminInfo() {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-      id: 1,
-      added: false
-    };
-
-    const dialogRef = this.dialog.open(AiradminProfileComponent, dialogConfig);
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('Dialog was closed');
-    //   console.log(result);
-    // });
+    this.featureSelected.emit('airAdmin');
   }
 
   updateSysAdminInfo() {
-    // this.featureSelected.emit('sysAdmin');
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    // Still not able to understand this part
-    dialogConfig.data = {
-      id: 1,
-      added: false
-    };
-
-    this.dialog.open(SysadminProfileComponent, dialogConfig);
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('Dialog was closed');
-    //   console.log(result);
-    // });
+    this.featureSelected.emit('sysAdmin');
   }
 
 }

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { AiradminProfileComponent } from './airadmin-profile/airadmin-profile.component';
+import { MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { TokenStorageService } from '../auth/token-storage.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-airline-admin',
@@ -7,9 +11,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AirlineAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  onNavigate(feature: string) {
+    if (feature === 'airAdmin') {
+      this.updateAirAdminInfo();
+    }
+  }
+
+  updateAirAdminInfo() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false
+    };
+
+    const dialogRef = this.dialog.open(AiradminProfileComponent, dialogConfig);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog was closed');
+    //   console.log(result);
+    // });
   }
 
 }

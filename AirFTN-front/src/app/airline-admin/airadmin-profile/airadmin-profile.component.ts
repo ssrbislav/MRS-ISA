@@ -16,7 +16,6 @@ export class AiradminProfileComponent implements OnInit {
   adminInfo: AdminDTO = new AdminDTO();
   passenger: Passenger = new Passenger();
   username: string;
-  @ViewChild('inputElement1') public inputEl1: ElementRef;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,

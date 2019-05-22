@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Seat {
 
@@ -27,6 +29,7 @@ public class Seat {
 
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(nullable = false, name = "airplane_id")
+	@JsonIgnore
 	private Airplane airplane;
 	
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "seat")

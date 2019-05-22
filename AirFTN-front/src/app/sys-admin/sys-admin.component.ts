@@ -14,18 +14,25 @@ export class SysAdminComponent implements OnInit {
   ngOnInit() {
   }
 
-  // This is from where the pop up window should be intialized, not from Header -> fix this
-//   updateSysAdminInfo() {
-//     const dialogConfig = new MatDialogConfig();
+  onNavigate(feature: string) {
+    if (feature === 'sysAdmin') {
+      this.updateSysAdminInfo();
+    }
+  }
 
-//     dialogConfig.disableClose = true;
-//     dialogConfig.autoFocus = true;
-//     dialogConfig.data = {
-//       id: 1,
-//       added: false
-//     };
+  updateSysAdminInfo() {
+    const dialogConfig = new MatDialogConfig();
 
-//     const dialogRef = this.dialog.open(SysadminProfileComponent, dialogConfig);
-//  }
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    // Still not able to understand this part
+    dialogConfig.data = {
+      id: 1,
+      added: false
+    };
+
+    this.dialog.open(SysadminProfileComponent, dialogConfig);
+ }
 
 }

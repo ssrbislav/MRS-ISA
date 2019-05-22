@@ -23,7 +23,8 @@ export class SysadminProfileComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,
               private tokenStorage: TokenStorageService,
-              private adminService: AdminService,) { }
+              private adminService: AdminService,
+              ) { }
 
   ngOnInit() {
     this.dialogRef.updateSize('60%', '90%');
