@@ -1,3 +1,23 @@
-<p>
-  sysadmin-table works!
-</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="head" scope="col">#</th>
+      <th class="head" scope="col">Email</th>
+      <th class="head" scope="col">Username</th>
+      <th class="head" scope="col">First Name</th>
+      <th class="head" scope="col">Last Name</th>
+      <th class="head" scope="col">Block Admin</th>
+      <th class="head" scope="col">Delete Admin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let admin of admins; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{admin.email}}</td>
+      <td>{{admin.username}}</td>
+      <td>{{admin.first_name}}</td>
+      <td>{{admin.last_name}}</td>
+      <td> <img  src ="assets/images/block.png" alt="Block" style="cursor: pointer;" width="20px" height="20px"></td>
+      <td> <img  src ="assets/images/delete.png" alt="Delete" style="cursor: pointer;" width="20px" height="20px"></td>
+    </tr>
+</table>

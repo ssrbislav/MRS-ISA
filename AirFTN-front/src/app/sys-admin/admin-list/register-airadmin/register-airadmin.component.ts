@@ -26,6 +26,8 @@ export class RegisterAiradminComponent implements OnInit {
       data => {
         window.alert('Admin successfully registered!');
         this.dialogRef.close();
+        location.reload();
+
       },
       error => {
         console.log(error);

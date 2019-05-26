@@ -2,10 +2,12 @@ package com.airftn.AirFTN.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.model.SysAdmin;
 import com.airftn.AirFTN.repository.SysAdminRepository;
 
+@Service
 public class SysAdminService implements ISysAdminService {
 
 	@Autowired
