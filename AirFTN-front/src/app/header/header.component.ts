@@ -69,5 +69,9 @@ export class HeaderComponent implements OnInit {
     this.featureSelected.emit('sysAdmin');
   }
 
+  clickShowAirlineCompanies() {
+    this.router.navigate(['sysAdmin/listCompanies']);
+  }
+
   
 }

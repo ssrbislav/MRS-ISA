@@ -17,6 +17,6 @@ public interface IAirlinecompanyService {
 	
 	String updateAdmin(AirlineCompany company, Long admin_id);
 
-	AirlineCompany update(AirlineCompany company, Long id);
+	AirlineCompany update(AirlineCompany company);
 	
 }

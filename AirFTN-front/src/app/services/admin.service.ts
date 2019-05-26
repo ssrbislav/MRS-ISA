@@ -37,12 +37,12 @@ export class AdminService {
     return this.http.post<ResponseMessage>(this.adminAirUpdateLink, info, httpOptions);
   }
 
-  getAirAdmin(username) {
+  getAirAdmin(username: string) {
     const url = `${this.airAdminUrl + '/getAdmin'}/${username}`;
     return this.http.get<AdminDTO>(url);
   }
 
-  getSysAdmin(username) {
+  getSysAdmin(username: string) {
     const url = `${this.sysAdminUrl + '/getAdmin'}/${username}`;
     return this.http.get<AdminDTO>(url);
   }

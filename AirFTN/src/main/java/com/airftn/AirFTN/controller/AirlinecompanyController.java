@@ -105,10 +105,10 @@ public class AirlinecompanyController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 	
-	@PostMapping("/updateInfo/{id}")
-	public ResponseEntity<ResponseMessage> updateCompanyInfo(@RequestBody AirlineCompany company, @PathVariable Long id) {
+	@PostMapping("/updateInfo")
+	public ResponseEntity<ResponseMessage> updateCompanyInfo(@RequestBody AirlineCompany company) {
 		
-		AirlineCompany aircompany = companyService.update(company, id);
+		AirlineCompany aircompany = companyService.update(company);
 		
 		if (aircompany == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -24,6 +24,7 @@ import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.SysAdmin;
 import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.repository.SysAdminRepository;
+import com.airftn.AirFTN.service.SysAdminService;
 
 @CrossOrigin
 @RestController
@@ -35,6 +36,9 @@ public class SysAdminController {
 
 	@Autowired
 	AirAdminRepository airAdminRepository;
+	
+	@Autowired
+	SysAdminService sysAdminService;
 
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -132,6 +136,21 @@ public class SysAdminController {
 		}
 
 		return new ResponseEntity<>(admin, HttpStatus.OK);
+	}
+	
+	@PostMapping("/updateAdmin")
+	public ResponseEntity<ResponseMessage> update(@RequestBody SysAdmin admin) {
+
+		SysAdmin a = sysAdminRepository.findByUsername(admin.getUsername());
+
+		SysAdmin administrator = sysAdminService.update(admin, a.getId());
+
+		if (administrator == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		message.setMessage("User information successfully updated!");
+
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 }

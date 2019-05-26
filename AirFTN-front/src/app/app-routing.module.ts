@@ -10,6 +10,8 @@ import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
 import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
+import { AirlineCompanyComponent } from './airline-company/airline-company.component';
+import { AirlineCompanyListComponent } from './sys-admin/airline-company-list/airline-company-list.component';
 
 const routes: Routes = [
 
@@ -52,7 +54,11 @@ const routes: Routes = [
             {
                 path: 'listAdmins',
                 component: AdminListComponent
-        },
+            },
+            {
+                path: 'listCompanies',
+                component: AirlineCompanyListComponent
+            },
         ],
         canActivate: [RoleGuardService],
         data: {
@@ -67,6 +73,10 @@ const routes: Routes = [
             expectedRole: 'ROLE_AIRLINE_ADMIN'
         }
     },
+    {
+        path: 'airlineCompany',
+        component: AirlineCompanyComponent,
+    }
 ];
 
 @NgModule({

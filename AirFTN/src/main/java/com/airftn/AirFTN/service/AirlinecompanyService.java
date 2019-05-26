@@ -88,9 +88,9 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	};
 
 	@Override
-	public AirlineCompany update(AirlineCompany company, Long id) {
+	public AirlineCompany update(AirlineCompany company) {
 
-		AirlineCompany airCompany = airlineRepository.getOne(id);
+		AirlineCompany airCompany = airlineRepository.getOne(company.getId());
 
 		airCompany.setName(company.getName());
 		airCompany.setCity(company.getCity());

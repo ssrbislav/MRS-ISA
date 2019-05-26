@@ -63,7 +63,7 @@ public class PassengerController {
 	}
 
 	@PostMapping("/updatePassenger")
-	public ResponseEntity<?> update(@RequestBody Passenger passenger) {
+	public ResponseEntity<ResponseMessage> update(@RequestBody Passenger passenger) {
 		
 		Passenger pass = passengerRepository.findByUsername(passenger.getUsername());
 
