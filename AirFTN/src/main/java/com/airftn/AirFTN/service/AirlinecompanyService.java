@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.airftn.AirFTN.dto.AirlineCompanyDTO;
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.AirlineCompany;
-import com.airftn.AirFTN.model.User;
 import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.repository.AirlinecompanyRepository;
 
@@ -37,12 +36,11 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	}
 
 	@Override
-	public User findByAdminId(Long id) {
+	public AirlineCompany findByAdminId(Long id) {
 
-		// OVA METODA NE VALJA, MORA SE MENJATI!! VALJDA TREBA DA NADJE KOMPANIJU, A NE ADMIN
-		
-		//User admin = adminRepository.getOne(id);
-		return null;
+		AirlineCompany company = airlineRepository.findByAdminId(id);
+
+		return company;
 
 	}
 
@@ -51,8 +49,8 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 
 		AirlineCompany airCompany = new AirlineCompany();
 
-		AirlineAdmin admin =   adminRepository.getOne(company.getAdmin_id());
-		
+		AirlineAdmin admin = adminRepository.getOne(company.getAdmin_id());
+
 		System.out.println(company.getAddress());
 		System.out.println(company.getDescription());
 		System.out.println(company.getName());
@@ -90,12 +88,9 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	};
 
 	@Override
-	public String update(AirlineCompany company) {
+	public AirlineCompany update(AirlineCompany company, Long id) {
 
-		AirlineCompany airCompany = airlineRepository.getOne(company.getId());
-
-		if (airCompany == null)
-			return "Company does not exist!";
+		AirlineCompany airCompany = airlineRepository.getOne(id);
 
 		airCompany.setName(company.getName());
 		airCompany.setCity(company.getCity());
@@ -103,7 +98,7 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 		airCompany.setDescription(company.getDescription());
 
 		airlineRepository.save(airCompany);
-		return "Success";
+		return airCompany;	
 
 	}
 

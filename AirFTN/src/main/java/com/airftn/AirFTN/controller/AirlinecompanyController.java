@@ -97,10 +97,26 @@ public class AirlinecompanyController {
 		}
 
 		company.setAdmin(admin);
+		
+		companyRepository.save(company);
 
 		message.setMessage("Admin successfully updated!");
 
 		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+	
+	@PostMapping("/updateInfo/{id}")
+	public ResponseEntity<ResponseMessage> updateCompanyInfo(@RequestBody AirlineCompany company, @PathVariable Long id) {
+		
+		AirlineCompany aircompany = companyService.update(company, id);
+		
+		if (aircompany == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		message.setMessage("Company profile successfully updated!");
+		
+		return new ResponseEntity<>(message, HttpStatus.OK);
+		
 	}
 
 }

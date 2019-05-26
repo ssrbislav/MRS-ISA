@@ -12,4 +12,6 @@ public interface AirlinecompanyRepository extends JpaRepository<AirlineCompany, 
 	AirlineCompany getOne(Long id);
 	
 	AirlineCompany findByName(String name);
+	
+	AirlineCompany findByAdminId(Long id);
 }
