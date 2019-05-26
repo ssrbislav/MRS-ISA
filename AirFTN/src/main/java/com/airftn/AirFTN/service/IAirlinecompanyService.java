@@ -3,7 +3,6 @@ package com.airftn.AirFTN.service;
 import java.util.List;
 
 import com.airftn.AirFTN.dto.AirlineCompanyDTO;
-import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.User;
 
@@ -15,10 +14,10 @@ public interface IAirlinecompanyService {
 	
 	User findByAdminId(Long id);
 	
-	AirlineCompany create(AirlineCompanyDTO company);
+	AirlineCompany create(AirlineCompanyDTO company, Long admin_id);
 	
-	String update(AirlineCompany company);
+	String updateAdmin(AirlineCompany company, Long admin_id);
 
-	AirlineCompany updateAdmin(AirlineCompany company, AirlineAdmin admin);
+	String update(AirlineCompany company);
 	
 }

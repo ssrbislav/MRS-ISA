@@ -40,30 +40,63 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	public User findByAdminId(Long id) {
 
 		User admin = adminRepository.getOne(id);
-
 		return admin;
 
 	}
 
 	@Override
-	public AirlineCompany create(AirlineCompanyDTO company) {
-		// TODO Auto-generated method stub
-		return null;
+	public AirlineCompany create(AirlineCompanyDTO company, Long admin_id) {
+
+		AirlineCompany airCompany = new AirlineCompany();
+
+		AirlineAdmin admin = (AirlineAdmin) adminRepository.getOne(admin_id);
+
+		airCompany.setName(company.getName());
+		airCompany.setCity(company.getCity());
+		airCompany.setAddress(company.getAddress());
+		airCompany.setDescription(company.getDescription());
+		airCompany.setAdmin(admin);
+
+		return airlineRepository.save(airCompany);
 	}
 
 	@Override
-	public AirlineCompany updateAdmin(AirlineCompany company, AirlineAdmin admin) {
+	public String updateAdmin(AirlineCompany company, Long admin_id) {
 
 		AirlineCompany airlineCompany = airlineRepository.getOne(company.getId());
-		airlineCompany.setAdmin(admin);
 
-		return airlineCompany;
+		AirlineAdmin admin = (AirlineAdmin) adminRepository.getOne(admin_id);
+
+		if (admin == null) {
+			return "Admin does not exist!";
+		}
+
+		if (airlineCompany == null)
+			return "That company does not exist!";
+
+		airlineCompany.setAdmin(admin);
+		airlineRepository.save(airlineCompany);
+
+		return "Success";
+
 	};
 
 	@Override
 	public String update(AirlineCompany company) {
-		
-		return null;
+
+		AirlineCompany airCompany = airlineRepository.GetOne(company.getId());
+
+		if (airCompany == null)
+			return "Company does not exist!";
+
+		airCompany.setName(company.getName());
+		airCompany.setCity(company.getCity());
+		airCompany.setAddress(company.getAddress());
+		airCompany.setDescription(company.getDescription());
+
+		airlineRepository.save(airCompany);
+		return "Success";
+
 	}
 
 }
