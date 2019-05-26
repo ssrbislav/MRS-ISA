@@ -14,7 +14,7 @@ public interface IAirlinecompanyService {
 	
 	User findByAdminId(Long id);
 	
-	AirlineCompany create(AirlineCompanyDTO company, Long admin_id);
+	AirlineCompany create(AirlineCompanyDTO company);
 	
 	String updateAdmin(AirlineCompany company, Long admin_id);
 

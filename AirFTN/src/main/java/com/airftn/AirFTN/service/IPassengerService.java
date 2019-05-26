@@ -15,8 +15,6 @@ public interface IPassengerService {
 
 	Passenger update(Passenger passenger);
 
-	//boolean delete(Long id);
-
 	boolean activate(Long id);
 	
 	public String getRegistrationLink(Long id);

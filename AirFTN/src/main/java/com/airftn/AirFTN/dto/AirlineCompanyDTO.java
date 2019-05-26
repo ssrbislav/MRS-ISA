@@ -19,8 +19,7 @@ public class AirlineCompanyDTO {
 	@NotBlank
 	private Long admin_id;
 
-	public AirlineCompanyDTO(@NotBlank String name, @NotBlank String city, @NotBlank String address,
-			@NotBlank String description, @NotBlank Long admin_id) {
+	public AirlineCompanyDTO(String name, String city, String address, String description, Long admin_id) {
 		super();
 		this.name = name;
 		this.city = city;

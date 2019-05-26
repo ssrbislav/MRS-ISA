@@ -15,12 +15,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class AirlineCompany {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
 	@Column(unique = true, nullable = false)
@@ -55,14 +58,27 @@ public class AirlineCompany {
 	private boolean deleted;
 
 	public AirlineCompany() {
-		super();
 	}
 
 	public AirlineCompany(Long id, String name, String city, String address, String description, List<Airplane> planes,
 			List<Flight> flights, List<Destination> destinations, List<Ticket> fastReservationTickets,
 			AirlineAdmin admin, boolean deleted) {
-		super();
 		this.id = id;
+		this.name = name;
+		this.city = city;
+		this.address = address;
+		this.description = description;
+		this.planes = planes;
+		this.flights = flights;
+		this.destinations = destinations;
+		this.fastReservationTickets = fastReservationTickets;
+		this.admin = admin;
+		this.deleted = deleted;
+	}
+
+	public AirlineCompany(String name, String city, String address, String description, List<Airplane> planes,
+			List<Flight> flights, List<Destination> destinations, List<Ticket> fastReservationTickets,
+			AirlineAdmin admin, boolean deleted) {
 		this.name = name;
 		this.city = city;
 		this.address = address;

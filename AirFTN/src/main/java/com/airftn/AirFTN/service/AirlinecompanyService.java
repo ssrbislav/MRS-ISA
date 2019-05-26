@@ -11,8 +11,8 @@ import com.airftn.AirFTN.dto.AirlineCompanyDTO;
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.repository.AirlinecompanyRepository;
-import com.airftn.AirFTN.repository.UserRepository;
 
 @Service
 @Transactional
@@ -22,7 +22,7 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	AirlinecompanyRepository airlineRepository;
 
 	@Autowired
-	UserRepository adminRepository;
+	AirAdminRepository adminRepository;
 
 	@Override
 	public List<AirlineCompany> findAll() {
@@ -39,17 +39,25 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	@Override
 	public User findByAdminId(Long id) {
 
-		User admin = adminRepository.getOne(id);
-		return admin;
+		// OVA METODA NE VALJA, MORA SE MENJATI!! VALJDA TREBA DA NADJE KOMPANIJU, A NE ADMIN
+		
+		//User admin = adminRepository.getOne(id);
+		return null;
 
 	}
 
 	@Override
-	public AirlineCompany create(AirlineCompanyDTO company, Long admin_id) {
+	public AirlineCompany create(AirlineCompanyDTO company) {
 
 		AirlineCompany airCompany = new AirlineCompany();
 
-		AirlineAdmin admin = (AirlineAdmin) adminRepository.getOne(admin_id);
+		AirlineAdmin admin =   adminRepository.getOne(company.getAdmin_id());
+		
+		System.out.println(company.getAddress());
+		System.out.println(company.getDescription());
+		System.out.println(company.getName());
+		System.out.println(company.getCity());
+		System.out.println(admin);
 
 		airCompany.setName(company.getName());
 		airCompany.setCity(company.getCity());
@@ -65,7 +73,7 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 
 		AirlineCompany airlineCompany = airlineRepository.getOne(company.getId());
 
-		AirlineAdmin admin = (AirlineAdmin) adminRepository.getOne(admin_id);
+		AirlineAdmin admin = adminRepository.getOne(admin_id);
 
 		if (admin == null) {
 			return "Admin does not exist!";
@@ -84,7 +92,7 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 	@Override
 	public String update(AirlineCompany company) {
 
-		AirlineCompany airCompany = airlineRepository.GetOne(company.getId());
+		AirlineCompany airCompany = airlineRepository.getOne(company.getId());
 
 		if (airCompany == null)
 			return "Company does not exist!";

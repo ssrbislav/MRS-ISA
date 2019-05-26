@@ -7,14 +7,13 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.dto.AdminDTO;
@@ -23,48 +22,58 @@ import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.SysAdmin;
-import com.airftn.AirFTN.model.User;
-import com.airftn.AirFTN.repository.UserRepository;
-import com.airftn.AirFTN.service.AdminService;
+import com.airftn.AirFTN.repository.AirAdminRepository;
+import com.airftn.AirFTN.repository.SysAdminRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "api/admin")
-public class AdminController {
+@RequestMapping("api/sysadmin")
+public class SysAdminController {
 
 	@Autowired
-	UserRepository userRepository;
+	SysAdminRepository sysAdminRepository;
 
 	@Autowired
-	PasswordEncoder encoder;
+	AirAdminRepository airAdminRepository;
 
-	@Autowired
-	AdminService adminService;
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-	ResponseMessage message = new ResponseMessage();
+	ResponseMessage message;
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> findAll() {
+	@GetMapping("")
+	public ResponseEntity<List<SysAdmin>> findAll() {
 
-		List<User> administrators = userRepository.findAll();
+		List<SysAdmin> admins = sysAdminRepository.findAll();
 
-		return new ResponseEntity<>(administrators, HttpStatus.OK);
+		return new ResponseEntity<>(admins, HttpStatus.OK);
+	}
+
+	@GetMapping("/getAdminById/{id}")
+	public ResponseEntity<SysAdmin> getAdmin(@PathVariable Long id) {
+
+		SysAdmin admin = sysAdminRepository.getOne(id);
+
+		if (admin == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<>(admin, HttpStatus.OK);
+
 	}
 
 	@PostMapping("/registerAirAdmin")
-	public ResponseEntity<?> registerAirAdmin(@RequestBody AdminDTO registerRequest) {
+	public ResponseEntity<ResponseMessage> registerAirAdmin(@RequestBody AdminDTO registerRequest) {
 
-		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+		if (airAdminRepository.existsByEmail(registerRequest.getEmail())) {
 			message.setMessage("Email already in use");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 
-		if (userRepository.existsByUsername(registerRequest.getUsername())) {
+		if (airAdminRepository.existsByUsername(registerRequest.getUsername())) {
 			message.setMessage("Admin with that username already exist");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 
-		User admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
+		AirlineAdmin admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
 				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
 				registerRequest.getLast_name(), null, null, null);
 
@@ -76,26 +85,26 @@ public class AdminController {
 
 		admin.setRoles(roles);
 
-		userRepository.save(admin);
+		airAdminRepository.save(admin);
 		message.setMessage("Airline Admin registered successfully!");
 
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 	@PostMapping("/registerSysAdmin")
-	public ResponseEntity<?> registerSysAdmin(@RequestBody AdminDTO registerRequest) {
+	public ResponseEntity<ResponseMessage> registerSysAdmin(@RequestBody AdminDTO registerRequest) {
 
-		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+		if (sysAdminRepository.existsByEmail(registerRequest.getEmail())) {
 			message.setMessage("Email already in use");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 
-		if (userRepository.existsByUsername(registerRequest.getUsername())) {
+		if (sysAdminRepository.existsByUsername(registerRequest.getUsername())) {
 			message.setMessage("Admin with that username already exist");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 
-		User admin = new SysAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
+		SysAdmin admin = new SysAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
 				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
 				registerRequest.getLast_name(), null, null, null);
 
@@ -107,30 +116,16 @@ public class AdminController {
 
 		admin.setRoles(roles);
 
-		userRepository.save(admin);
+		sysAdminRepository.save(admin);
 		message.setMessage("System Admin registered successfully!");
 
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
-	@PostMapping("/updateAdmin")
-	public ResponseEntity<?> update(@RequestBody User admin) {
-
-		User a = userRepository.findByUsername(admin.getUsername());
-
-		User administrator = adminService.update(admin, a.getId());
-
-		if (administrator == null)
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-		message.setMessage("User information successfully updated!");
-		return new ResponseEntity<>(message, HttpStatus.OK);
-	}
-
 	@GetMapping("/getAdmin/{username}")
-	public ResponseEntity<User> getAdmin(@PathVariable String username) {
+	public ResponseEntity<SysAdmin> getAdmin(@PathVariable String username) {
 
-		User admin = adminService.findByUsername(username);
+		SysAdmin admin = sysAdminRepository.findByUsername(username);
 
 		if (admin == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

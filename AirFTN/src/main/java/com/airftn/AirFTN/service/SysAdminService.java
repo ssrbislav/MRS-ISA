@@ -2,33 +2,20 @@ package com.airftn.AirFTN.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
-import com.airftn.AirFTN.model.User;
-import com.airftn.AirFTN.repository.UserRepository;
+import com.airftn.AirFTN.model.SysAdmin;
+import com.airftn.AirFTN.repository.SysAdminRepository;
 
-@Service
-public class AdminService implements IAdminService {
+public class SysAdminService implements ISysAdminService {
 
 	@Autowired
-	UserRepository userRepository;
+	SysAdminRepository adminRepository;
 
 	@Override
-	public User findByUsername(String username) {
+	public SysAdmin update(SysAdmin admin, Long id) {
 
-		return userRepository.findByUsername(username);
-	}
+		SysAdmin administrator = adminRepository.getOne(id);
 
-	@Override
-	public User getOne(Long id) {
-
-		return userRepository.getOne(id);
-	}
-
-	@Override
-	public User update(User admin, Long id) {
-
-		User administrator = userRepository.getOne(id);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		administrator.setId(id);
@@ -40,9 +27,7 @@ public class AdminService implements IAdminService {
 		administrator.setDate_of_birth(admin.getDate_of_birth());
 		administrator.setPhone_number(admin.getPhone_number());
 
-		return userRepository.save(administrator);
-		
-		//encoder.matches(rawPassword, encodedPassword)
+		return adminRepository.save(administrator);
 
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,8 @@ import com.airftn.AirFTN.dto.AirlineCompanyDTO;
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.ResponseMessage;
+import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.repository.AirlinecompanyRepository;
-import com.airftn.AirFTN.service.AdminService;
 import com.airftn.AirFTN.service.AirlinecompanyService;
 
 @CrossOrigin
@@ -26,13 +27,13 @@ import com.airftn.AirFTN.service.AirlinecompanyService;
 public class AirlinecompanyController {
 
 	@Autowired
-	AirlinecompanyService companyService;
+	AirAdminRepository adminRepository;
 
 	@Autowired
 	AirlinecompanyRepository companyRepository;
 
 	@Autowired
-	AdminService adminService;
+	AirlinecompanyService companyService;
 
 	ResponseMessage message = new ResponseMessage();
 
@@ -41,7 +42,7 @@ public class AirlinecompanyController {
 
 		List<AirlineCompany> companies = companyService.findAll();
 
-		return new ResponseEntity<List<AirlineCompany>>(companies, HttpStatus.OK);
+		return new ResponseEntity<>(companies, HttpStatus.OK);
 
 	}
 
@@ -58,14 +59,12 @@ public class AirlinecompanyController {
 	}
 
 	@PostMapping("/createCompany")
-	public ResponseEntity<ResponseMessage> create(AirlineCompanyDTO company) {
+	public ResponseEntity<ResponseMessage> create(@RequestBody AirlineCompanyDTO company) {
 
 		AirlineCompany airlineCompany = companyService.create(company);
 
 		if (airlineCompany == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-		companyRepository.save(airlineCompany);
 
 		message.setMessage("Airline Company successfully created!");
 
@@ -77,7 +76,7 @@ public class AirlinecompanyController {
 	public ResponseEntity<ResponseMessage> updateAdmin(@PathVariable("airlineId") Long airlineId,
 			@PathVariable("adminId") Long adminId) {
 
-		AirlineAdmin admin = (AirlineAdmin) adminService.getOne(adminId);
+		AirlineAdmin admin = adminRepository.getOne(adminId);
 
 		ResponseMessage message = new ResponseMessage();
 

@@ -9,7 +9,7 @@ public interface AirlinecompanyRepository extends JpaRepository<AirlineCompany, 
 
 	List<AirlineCompany> findAll();
 	
-	AirlineCompany GetOne(Long id);
+	AirlineCompany getOne(Long id);
 	
 	AirlineCompany findByName(String name);
 }
