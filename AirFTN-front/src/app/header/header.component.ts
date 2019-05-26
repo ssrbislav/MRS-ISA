@@ -43,15 +43,15 @@ export class HeaderComponent implements OnInit {
     window.alert('Successfully Logged Out!');
   }
 
-  // ShowProfile() {
-  //   if (this.showView === 'passenger') {
-  //     this.router.navigate(['passenger']);
-  //   } else if (this.showView === 'sysAdmin') {
-  //     this.router.navigate(['sysAdmin']);
-  //   } else if (this.showView === 'airlineAdmin') {
-  //     this.router.navigate(['airlineAdmin']);
-  //   }
-  // }
+  showProfile() {
+    if (this.showView === 'passenger') {
+      this.router.navigate(['passenger']);
+    } else if (this.showView === 'sysAdmin') {
+      this.router.navigate(['sysAdmin']);
+    } else if (this.showView === 'airlineAdmin') {
+      this.router.navigate(['airlineAdmin']);
+    }
+  }
 
   clickShowAdmins() {
     this.router.navigate(['sysAdmin/listAdmins']);
@@ -69,4 +69,5 @@ export class HeaderComponent implements OnInit {
     this.featureSelected.emit('sysAdmin');
   }
 
+  
 }

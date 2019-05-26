@@ -33,7 +33,7 @@ export class SysadminProfileComponent implements OnInit {
 
   getAdmin() {
     this.username = this.tokenStorage.getUsername();
-    this.adminService.getAdmin(this.username).subscribe (
+    this.adminService.getSysAdmin(this.username).subscribe (
       data => {
         this.adminInfo = data;
         console.log(this.adminInfo.first_name);

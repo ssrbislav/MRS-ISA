@@ -23,6 +23,9 @@ import { RegisterSysadminComponent } from './sys-admin/admin-list/register-sysad
 import { RegisterAiradminComponent } from './sys-admin/admin-list/register-airadmin/register-airadmin.component';
 import { SysadminProfileComponent } from './sys-admin/sysadmin-profile/sysadmin-profile.component';
 import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
+import { AirlineCompanyListComponent } from './sys-admin/airline-company-list/airline-company-list.component';
+import { RegisterAirlineCompanyComponent } from './sys-admin/airline-company-list/register-airline-company/register-airline-company.component';
+import { AirlineCompanyComponent } from './airline-company/airline-company.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { AdminListComponent } from './sys-admin/admin-list/admin-list.component'
     RegisterAiradminComponent,
     SysadminProfileComponent,
     AdminListComponent,
+    AirlineCompanyListComponent,
+    RegisterAirlineCompanyComponent,
+    AirlineCompanyComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,10 +13,11 @@ const httpOptions = {
 })
 export class AdminService {
 
-  private airAdminRegistrationLink = 'http://localhost:8080/api/admin/registerAirAdmin';
-  private sysAdminRegistrationLink = 'http://localhost:8080/api/admin/registerSysAdmin';
-  private adminUpdateLink = 'http://localhost:8080/api/admin/updateAdmin';
-  private adminUrl = 'http://localhost:8080/api/admin';
+  private airAdminRegistrationLink = 'http://localhost:8080/api/sysadmin/registerAirAdmin';
+  private sysAdminRegistrationLink = 'http://localhost:8080/api/sysadmin/registerSysAdmin';
+  private adminAirUpdateLink = 'http://localhost:8080/api/airadmin/updateAdmin';
+  private airAdminUrl = 'http://localhost:8080/api/airadmin';
+  private sysAdminUrl = 'http://localhost:8080/api/sysadmin';
 
   constructor(private http: HttpClient) { }
 
@@ -28,12 +29,21 @@ export class AdminService {
     return this.http.post<ResponseMessage>(this.sysAdminRegistrationLink, info, httpOptions);
   }
 
-  adminUpdate(info: AdminDTO): Observable<ResponseMessage> {
-    return this.http.post<ResponseMessage>(this.adminUpdateLink, info, httpOptions);
+  airAdminUpdate(info: AdminDTO): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(this.adminAirUpdateLink, info, httpOptions);
   }
 
-  getAdmin(username) {
-    const url = `${this.adminUrl + '/getAdmin'}/${username}`;
+  sysAdminUpdate(info: AdminDTO): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(this.adminAirUpdateLink, info, httpOptions);
+  }
+
+  getAirAdmin(username) {
+    const url = `${this.airAdminUrl + '/getAdmin'}/${username}`;
+    return this.http.get<AdminDTO>(url);
+  }
+
+  getSysAdmin(username) {
+    const url = `${this.sysAdminUrl + '/getAdmin'}/${username}`;
     return this.http.get<AdminDTO>(url);
   }
 

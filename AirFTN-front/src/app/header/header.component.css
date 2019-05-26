@@ -124,6 +124,7 @@
     font-weight: bold;
     border: none;
     margin-right: 30px;
+    cursor: pointer;
 }
 
 #admin_panel2 {
@@ -135,6 +136,7 @@
     font-weight: bold;
     border: none;
     margin-right: 30px;
+    cursor: pointer;
 }
 
 #logout {
