@@ -28,6 +28,7 @@ import { RegisterAirlineCompanyComponent } from './sys-admin/airline-company-lis
 import { AirlineCompanyComponent } from './airline-company/airline-company.component';
 import { SysadminTableComponent } from './sys-admin/admin-list/sysadmin-table/sysadmin-table.component';
 import { AiradminTableComponent } from './sys-admin/admin-list/airadmin-table/airadmin-table.component';
+import { AirlineCompanyTableComponent } from './sys-admin/airline-company-list/airline-company-table/airline-company-table.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AiradminTableComponent } from './sys-admin/admin-list/airadmin-table/ai
     AirlineCompanyComponent,
     SysadminTableComponent,
     AiradminTableComponent,
+    AirlineCompanyTableComponent,
   ],
   imports: [
     BrowserModule,

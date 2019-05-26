@@ -1,0 +1,25 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="head" scope="col">#</th>
+      <th class="head" scope="col">Company Name</th>
+      <th class="head" scope="col">City</th>
+      <th class="head" scope="col">Address</th>
+      <th class="head" scope="col">Description</th>
+      <th class="head" scope="col">Admin</th>
+      <th class="head" scope="col">Change Admin</th>
+      <th class="head" scope="col">Delete Company</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let company of companies; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{company.name}}</td>
+      <td>{{company.city}}</td>
+      <td>{{company.address}}</td>
+      <td>{{company.description}}</td>
+      <td>{{company.admin.id}}</td>
+      <td> <img  src ="assets/images/block.png" alt="Change Admin" style="cursor: pointer;" width="20px" height="20px"></td>
+      <td> <img  src ="assets/images/delete.png" alt="Delete" style="cursor: pointer;" width="20px" height="20px"></td>
+    </tr>
+</table>

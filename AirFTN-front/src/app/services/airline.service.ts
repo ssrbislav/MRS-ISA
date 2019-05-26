@@ -15,7 +15,7 @@ export class AirlineService {
 
   constructor(private http: HttpClient) { }
 
-  private airlineCompanyUrl = 'localhost:8080/api/company/';
+  private airlineCompanyUrl = 'http://localhost:8080/api/company/';
 
   getAirlineCompanies() {
     return this.http.get<AirlineCompanyDTO[]>(this.airlineCompanyUrl);
