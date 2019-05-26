@@ -4,6 +4,7 @@ import { RegisterAiradminComponent } from './register-airadmin/register-airadmin
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Router } from '@angular/router';
 import { RegisterSysadminComponent } from './register-sysadmin/register-sysadmin.component';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-admin-list',
@@ -14,7 +15,8 @@ export class AdminListComponent implements OnInit {
 
   constructor(private tokenStorage: TokenStorageService,
               private router: Router,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              public adminService: AdminService) { }
 
   ngOnInit() {
   }

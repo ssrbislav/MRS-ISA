@@ -18,11 +18,10 @@ export class AirlineService {
   private airlineCompanyUrl = 'localhost:8080/api/company/';
 
   getAirlineCompanies() {
-    const url = `${this.airlineCompanyUrl + 'getCompanies'}`;
-    return this.http.get<AirlineCompanyDTO[]>(url);
+    return this.http.get<AirlineCompanyDTO[]>(this.airlineCompanyUrl);
   }
 
-  getAirlineCompanie(id: BigInteger) {
+  getAirlineCompany(id: BigInteger) {
     const url = `${this.airlineCompanyUrl + 'getCompany/{id}'}`;
     return this.http.get<AirlineCompanyDTO>(url);
   }
