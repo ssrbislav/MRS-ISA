@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airftn.AirFTN.dto.AirlineCompanyDTO;
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.AirlineCompany;
+import com.airftn.AirFTN.model.Destination;
 import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.repository.AirlinecompanyRepository;
@@ -88,7 +89,7 @@ public class AirlinecompanyController {
 		}
 
 		AirlineCompany company = companyService.getOne(airlineId);
-		
+
 		if (company == null) {
 
 			message.setMessage("Airline company not found!");
@@ -97,26 +98,56 @@ public class AirlinecompanyController {
 		}
 
 		company.setAdmin(admin);
-		
+
 		companyRepository.save(company);
 
 		message.setMessage("Admin successfully updated!");
 
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/updateInfo")
 	public ResponseEntity<ResponseMessage> updateCompanyInfo(@RequestBody AirlineCompany company) {
-		
+
 		AirlineCompany aircompany = companyService.update(company);
-		
+
 		if (aircompany == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		
+
 		message.setMessage("Company profile successfully updated!");
-		
+
 		return new ResponseEntity<>(message, HttpStatus.OK);
+
+	}
+
+	@PostMapping("/addDestination/{dest_id}/{company_id}")
+	public ResponseEntity<ResponseMessage> addDestinationToCompany(@PathVariable Long dest_id,
+			@PathVariable Long company_id) {
+
+		List<Destination> destinations = companyService.addDestinationToCompany(company_id, dest_id);
 		
+		if(destinations == null) {
+			message.setMessage("Destination already added!");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		}
+
+		message.setMessage("Destination successfully added to company's list");
+		return new ResponseEntity<>(message, HttpStatus.OK);
+
+	}
+	
+	@GetMapping("/getDestinations/{id}")
+	public ResponseEntity<List<Destination>> getAllDestinations(@PathVariable Long id) {
+		
+		AirlineCompany company = companyRepository.getOne(id);
+		
+		if(company == null) {
+			return new ResponseEntity<List<Destination>>(HttpStatus.NOT_FOUND);
+		}
+		
+		List<Destination> destinations = company.getDestinations();
+		
+		return new ResponseEntity<List<Destination>>(destinations, HttpStatus.OK);
 	}
 
 }

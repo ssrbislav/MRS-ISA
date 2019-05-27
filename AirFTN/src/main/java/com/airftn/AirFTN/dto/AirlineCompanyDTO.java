@@ -18,6 +18,11 @@ public class AirlineCompanyDTO {
 
 	@NotBlank
 	private Long admin_id;
+	
+	
+
+	public AirlineCompanyDTO() {
+	}
 
 	public AirlineCompanyDTO(String name, String city, String address, String description, Long admin_id) {
 		super();

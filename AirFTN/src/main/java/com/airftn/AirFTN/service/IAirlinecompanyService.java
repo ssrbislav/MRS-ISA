@@ -22,4 +22,6 @@ public interface IAirlinecompanyService {
 	
 	List<Destination> findAllDestinations(Long id);
 	
+	List<Destination> addDestinationToCompany(Long company_id, Long destination_id);
+	
 }

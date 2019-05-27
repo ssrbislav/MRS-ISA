@@ -6,14 +6,11 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.DestinationDTO;
 import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.Destination;
-import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.repository.DestinationRepository;
 
 @Service

@@ -14,6 +14,7 @@ import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.Destination;
 import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.repository.AirlinecompanyRepository;
+import com.airftn.AirFTN.repository.DestinationRepository;
 
 @Service
 @Transactional
@@ -24,6 +25,12 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 
 	@Autowired
 	AirAdminRepository adminRepository;
+
+	@Autowired
+	IDestinationService destinationService;
+
+	@Autowired
+	DestinationRepository destinationRepository;
 
 	@Override
 	public List<AirlineCompany> findAll() {
@@ -94,19 +101,39 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 		airCompany.setDescription(company.getDescription());
 
 		airlineRepository.save(airCompany);
-		return airCompany;	
+		return airCompany;
 
 	}
-	
+
 	public List<Destination> findAllDestinations(Long id) {
-		
+
 		List<Destination> destinations = new ArrayList<Destination>();
-		
+
 		AirlineCompany company = airlineRepository.getOne(id);
-		
+
 		destinations = company.getDestinations();
-		
+
 		return destinations;
-		
+
 	}
+
+	public List<Destination> addDestinationToCompany(Long company_id, Long destination_id) {
+
+		Destination destination = destinationService.findById(destination_id);
+
+		List<Destination> destinations = new ArrayList<Destination>();
+		destinations.add(destination);
+
+		AirlineCompany company = airlineRepository.getOne(company_id);
+		if(company.getDestinations().contains(destination))
+			return null;
+		
+		company.getDestinations().add(destination);
+		destination.getCompanies().add(company);
+
+		destinationRepository.save(destination);
+		return destinations;
+
+	}
+
 }

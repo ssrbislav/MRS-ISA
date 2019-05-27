@@ -54,7 +54,7 @@ public class DestinationController {
 		return new ResponseEntity<>(destination, HttpStatus.OK);
 	}
 	
-	@PostMapping("/addDestination")
+	@PostMapping("/createDestination")
 	public ResponseEntity<ResponseMessage> create(@RequestBody DestinationDTO dest) {
 		
 		
