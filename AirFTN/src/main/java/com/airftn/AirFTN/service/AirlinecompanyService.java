@@ -1,5 +1,6 @@
 package com.airftn.AirFTN.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.airftn.AirFTN.dto.AirlineCompanyDTO;
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.AirlineCompany;
+import com.airftn.AirFTN.model.Destination;
 import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.repository.AirlinecompanyRepository;
 
@@ -50,12 +52,6 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 		AirlineCompany airCompany = new AirlineCompany();
 
 		AirlineAdmin admin = adminRepository.getOne(company.getAdmin_id());
-
-		System.out.println(company.getAddress());
-		System.out.println(company.getDescription());
-		System.out.println(company.getName());
-		System.out.println(company.getCity());
-		System.out.println(admin);
 
 		airCompany.setName(company.getName());
 		airCompany.setCity(company.getCity());
@@ -101,5 +97,16 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 		return airCompany;	
 
 	}
-
+	
+	public List<Destination> findAllDestinations(Long id) {
+		
+		List<Destination> destinations = new ArrayList<Destination>();
+		
+		AirlineCompany company = airlineRepository.getOne(id);
+		
+		destinations = company.getDestinations();
+		
+		return destinations;
+		
+	}
 }

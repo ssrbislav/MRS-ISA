@@ -24,13 +24,15 @@ public class SysAdmin extends User {
 	public SysAdmin(String email, String username, String password, String first_name, String last_name, String address,
 			String phone_number, Date date_of_birth) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
+		this.active = true;
+		this.deleted = false;
 	}
 
 	public SysAdmin(String email, String username, String password, String first_name, String last_name, String address,
 			String phone_number, Date date_of_birth, boolean active, boolean deleted) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
 		this.active = true;
-		this.deleted = deleted;
+		this.deleted = false;
 	}
 
 	public boolean isActive() {

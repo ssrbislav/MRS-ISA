@@ -32,15 +32,17 @@ public class AirlineAdmin extends User {
 	public AirlineAdmin(String email, String username, String password, String first_name, String last_name,
 			String address, String phone_number, Date date_of_birth) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
+		this.active = true;
+		this.deleted = false;
 	}
 
 	public AirlineAdmin(String email, String username, String password, String first_name, String last_name,
 			String address, String phone_number, Date date_of_birth, boolean active, AirlineCompany airlineCompany,
 			boolean deleted) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
-		this.active = true;
 		this.airlineCompany = airlineCompany;
-		this.deleted = deleted;
+		this.active = true;
+		this.deleted = false;
 	}
 
 	public boolean isActive() {

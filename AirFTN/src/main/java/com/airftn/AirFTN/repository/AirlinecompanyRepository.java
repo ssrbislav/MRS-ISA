@@ -15,4 +15,5 @@ public interface AirlinecompanyRepository extends JpaRepository<AirlineCompany, 
 	AirlineCompany findByName(String name);
 	
 	AirlineCompany findByAdminId(Long id);
+	
 }

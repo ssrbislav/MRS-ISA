@@ -41,15 +41,20 @@ public abstract class User {
 	@Column(unique = true, nullable = false)
 	private String password;
 
+	@Column(unique = false, nullable = false)
 	private String first_name;
 
+	@Column(unique = false, nullable = false)
 	private String last_name;
 
+	@Column(unique = false, nullable = true)
 	private String address;
 
+	@Column(unique = false, nullable = true)
 	private String phone_number;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Column(unique = false, nullable = true)
 	private Date date_of_birth;
 
 	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)

@@ -40,7 +40,7 @@ public class Destination {
 			@JoinColumn(name = "airline_company_id") })
 	private List<AirlineCompany> companies = new ArrayList<AirlineCompany>();
 
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private boolean deleted;
 
 	public Destination() {

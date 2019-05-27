@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.airftn.AirFTN.dto.AirlineCompanyDTO;
 import com.airftn.AirFTN.model.AirlineCompany;
+import com.airftn.AirFTN.model.Destination;
 
 public interface IAirlinecompanyService {
 
@@ -18,5 +19,7 @@ public interface IAirlinecompanyService {
 	String updateAdmin(AirlineCompany company, Long admin_id);
 
 	AirlineCompany update(AirlineCompany company);
+	
+	List<Destination> findAllDestinations(Long id);
 	
 }
