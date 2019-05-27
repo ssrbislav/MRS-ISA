@@ -1,6 +1,7 @@
 package com.airftn.AirFTN.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,7 +11,7 @@ public interface SysAdminRepository extends JpaRepository<SysAdmin, Long>{
 
 	List<SysAdmin> findAll();
 	
-	SysAdmin getOne(Long id);
+	Optional<SysAdmin> findById(Long id);
 	
 	boolean existsByEmail(String email);
 	

@@ -12,16 +12,17 @@ import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.SysAdmin;
 import com.airftn.AirFTN.model.User;
+import com.airftn.AirFTN.repository.SysAdminRepository;
 import com.airftn.AirFTN.repository.UserRepository;
 
 @Component
 public class ApplicationLoader implements ApplicationRunner {
 
-	private UserRepository userRepository;
+	private SysAdminRepository adminRepository;
 
-	public ApplicationLoader(UserRepository adminRepository) {
+	public ApplicationLoader(SysAdminRepository adminRepository) {
 		super();
-		this.userRepository = adminRepository;
+		this.adminRepository = adminRepository;
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class ApplicationLoader implements ApplicationRunner {
 
 
 		//Create System Admin if no admin is present
-		if (userRepository.findAll().size() == 0) {
+		if (adminRepository.findAll().size() == 0) {
 			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -38,18 +39,18 @@ public class ApplicationLoader implements ApplicationRunner {
 			Set<Role> roles = new HashSet<>();
 			roles.add(admin_role);
 
-			User admin = new SysAdmin();
+			SysAdmin admin = new SysAdmin();
 
 			admin.setEmail("sys_admin@email.com");
 			admin.setUsername("admin");
 			admin.setPassword(encoder.encode("admin"));
 			admin.setRoles(roles);
+			admin.setDeleted(false);
 
-			userRepository.save(admin);
+			adminRepository.save(admin);
 			System.out.println("Admin created!");	
 		}
 
 	}
-
 }
 
