@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.airftn.AirFTN.enumeration.SeatType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -27,11 +28,14 @@ public class Seat {
 	@Column(nullable = false, name = "seat_column")
 	private int column;
 
+	@Column(nullable = true, unique = false)
+	private SeatType seatType;
+
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(nullable = false, name = "airplane_id")
 	@JsonIgnore
 	private Airplane airplane;
-	
+
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "seat")
 	private Ticket ticket;
 
@@ -42,13 +46,22 @@ public class Seat {
 		super();
 	}
 
-	public Seat(Long id, int row, int column, Airplane airplane, boolean deleted) {
+	public Seat(Long id, int row, int column, SeatType seatType, Airplane airplane, Ticket ticket) {
 		super();
 		this.id = id;
 		this.row = row;
 		this.column = column;
+		this.seatType = seatType;
 		this.airplane = airplane;
-		this.deleted = deleted;
+		this.ticket = ticket;
+		this.deleted = false;
+	}
+	
+	public Seat( int row, int column, SeatType seatType) {
+		this.row = row;
+		this.column = column;
+		this.seatType = seatType;
+		this.deleted = false;
 	}
 
 	public Long getId() {
