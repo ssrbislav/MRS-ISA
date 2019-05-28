@@ -40,7 +40,7 @@ public class SysAdminService implements ISysAdminService {
 		
 		List<SysAdmin> admins = new ArrayList<SysAdmin>();
 		
-		for(SysAdmin admin : adminRepository.findAll()) {
+		for(SysAdmin admin : adminRepository.findAllByDeletedIsFalse()) {
 			if(admin.getId() != 1) {
 				admins.add(admin);
 			}

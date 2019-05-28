@@ -9,7 +9,7 @@ import com.airftn.AirFTN.model.SysAdmin;
 
 public interface SysAdminRepository extends JpaRepository<SysAdmin, Long>{
 
-	List<SysAdmin> findAll();
+	List<SysAdmin> findAllByDeletedIsFalse();
 	
 	Optional<SysAdmin> findById(Long id);
 	
