@@ -74,10 +74,13 @@ public class AirlinecompanyController {
 	}
 
 	@PostMapping("/updateAdmin/{airlineId}/{adminId}")
-	public ResponseEntity<ResponseMessage> updateAdmin(@PathVariable("airlineId") Long airlineId,
-			@PathVariable("adminId") Long adminId) {
+	public ResponseEntity<ResponseMessage> updateAdmin(@PathVariable("airlineId") String airlineId,
+			@PathVariable("adminId") String adminId) {
+		
+		Long airlineid = Long.parseLong(airlineId);
+		Long adminid = Long.parseLong(adminId);
 
-		AirlineAdmin admin = adminRepository.getOne(adminId);
+		AirlineAdmin admin = adminRepository.getOne(adminid);
 
 		ResponseMessage message = new ResponseMessage();
 
@@ -88,7 +91,7 @@ public class AirlinecompanyController {
 			return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
 		}
 
-		AirlineCompany company = companyService.getOne(airlineId);
+		AirlineCompany company = companyService.getOne(airlineid);
 
 		if (company == null) {
 
@@ -96,9 +99,16 @@ public class AirlinecompanyController {
 
 			return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
 		}
+		
+		Long admin_id = company.getAdmin().getId();
+		AirlineAdmin adminWithoutCompany = adminRepository.getOne(admin_id);
+		adminWithoutCompany.setHasCompany(false);
+		adminRepository.save(adminWithoutCompany);
 
 		company.setAdmin(admin);
+		admin.setHasCompany(true);
 
+		adminRepository.save(admin);
 		companyRepository.save(company);
 
 		message.setMessage("Admin successfully updated!");

@@ -1,0 +1,26 @@
+<div class="login-form">
+  <br>
+  <h3>CHANGE ADMIN</h3>
+  <br>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+      <mat-select name="admin_id" placeholder="ADMIN">
+        <mat-option *ngFor="let admin of admins" [value]='admin.id'>
+          {{admin.username}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <button class="button" class="submitbtn">CHANGE</button>
+      <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+        Registration failed: {{errorMessage}}
+      </div>
+      <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+    </div>
+    <br>
+  </form>
+</div>

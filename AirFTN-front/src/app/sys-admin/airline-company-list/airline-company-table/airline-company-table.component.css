@@ -16,3 +16,15 @@ td {
     font-family: lato;
     font-weight: 300;
 }
+
+#change_admin:hover {
+    cursor: pointer;
+    background: #92949e;
+    opacity: 0.5;
+}
+
+#delete_company:hover {
+    cursor: pointer;
+    background: #92949e;
+    opacity: 0.5;
+}

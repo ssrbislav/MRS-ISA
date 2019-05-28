@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AirlineCompanyDTO } from '../model/company.model';
 import { Observable } from 'rxjs';
 import { ResponseMessage } from '../model/responseMessage';
@@ -33,6 +33,11 @@ export class AirlineService {
 
   updateCompanyProfile(info: AirlineCompanyDTO): Observable<ResponseMessage> {
     const url = `${this.airlineCompanyUrl + 'updateInfo'}`;
+    return this.http.post<ResponseMessage>(url, info, httpOptions);
+  }
+
+  updateCompanyAdmin(info: HttpParams ): Observable<ResponseMessage> {
+    const url = `${this.airlineCompanyUrl + 'updateAdmin/{airlineId}/{adminId}'}`;
     return this.http.post<ResponseMessage>(url, info, httpOptions);
   }
 

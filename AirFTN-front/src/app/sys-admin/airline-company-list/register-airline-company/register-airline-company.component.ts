@@ -37,8 +37,6 @@ export class RegisterAirlineCompanyComponent implements OnInit {
 
   onSubmit() {
 
-    console.log(this.airlineInfo.admin_id)
-
     this.airlineService.createCompany(this.airlineInfo).subscribe(
       data => {
         window.alert('Airline company successfully registered!');
