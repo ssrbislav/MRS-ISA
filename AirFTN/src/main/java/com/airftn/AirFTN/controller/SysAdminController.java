@@ -47,7 +47,7 @@ public class SysAdminController {
 	@GetMapping("")
 	public ResponseEntity<List<SysAdmin>> findAll() {
 
-		List<SysAdmin> admins = sysAdminRepository.findAll();
+		List<SysAdmin> admins = sysAdminService.findAll();
 
 		return new ResponseEntity<>(admins, HttpStatus.OK);
 	}

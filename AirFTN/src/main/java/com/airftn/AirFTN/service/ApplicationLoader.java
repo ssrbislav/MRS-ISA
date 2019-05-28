@@ -42,6 +42,8 @@ public class ApplicationLoader implements ApplicationRunner {
 			admin.setEmail("sys_admin@email.com");
 			admin.setUsername("admin");
 			admin.setPassword(encoder.encode("admin"));
+			admin.setFirst_name("System");
+			admin.setLast_name("Admin");
 			admin.setRoles(roles);
 			admin.setDeleted(false);
 

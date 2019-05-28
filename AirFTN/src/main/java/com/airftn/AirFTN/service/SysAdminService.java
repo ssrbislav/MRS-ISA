@@ -1,5 +1,8 @@
 package com.airftn.AirFTN.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +34,20 @@ public class SysAdminService implements ISysAdminService {
 
 		return adminRepository.save(administrator);
 
+	}
+	
+	public List<SysAdmin> findAll() {
+		
+		List<SysAdmin> admins = new ArrayList<SysAdmin>();
+		
+		for(SysAdmin admin : adminRepository.findAll()) {
+			if(admin.getId() != 1) {
+				admins.add(admin);
+			}
+		}
+		
+		return admins;
+		
 	}
 
 }
