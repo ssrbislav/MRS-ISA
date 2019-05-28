@@ -1,0 +1,19 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="head" scope="col">#</th>
+        <th class="head" scope="col">City</th>
+        <th class="head" scope="col">Country</th>
+        <th class="head" scope="col">Description</th>
+        <th class="head" scope="col">Delete Destination</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let destination of destinations; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{destination.city}}</td>
+        <td>{{destination.country}}</td>
+        <td>{{destination.description}}</td>
+        <td id="delete_destination"> <img  src ="assets/images/delete.png" alt="Delete" style="cursor: pointer;" width="20px" height="20px"></td>
+      </tr>
+  </table>

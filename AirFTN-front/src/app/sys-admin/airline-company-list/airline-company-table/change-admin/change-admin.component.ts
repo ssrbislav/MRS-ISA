@@ -22,7 +22,7 @@ export class ChangeAdminComponent implements OnInit {
               private airlineService: AirlineService) { }
 
   ngOnInit() {
-    this.adminId = this.data.company.admin;
+    // this.adminId = this.data.company.admin.id;
     this.companyId = this.data.company.id;
     this.dialogRef.updateSize('30%', '40%');
     this.getAdmins();
@@ -30,11 +30,7 @@ export class ChangeAdminComponent implements OnInit {
 
   onSubmit() {
 
-    let body = new HttpParams();
-    body = body.set('airlineId', this.companyId.toString());
-    body = body.set('companyId', this.adminId.toString());
-
-    this.airlineService.updateCompanyAdmin(body).subscribe(
+    this.airlineService.updateCompanyAdmin(this.companyId, this.adminId).subscribe(
       data => {
         window.alert('Airline company admin successfully updated!');
         this.dialogRef.close();

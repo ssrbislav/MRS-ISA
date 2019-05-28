@@ -12,6 +12,7 @@ import { AirlineCompaniesComponent } from './airline-companies/airline-companies
 import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
 import { AirlineCompanyComponent } from './airline-company/airline-company.component';
 import { AirlineCompanyListComponent } from './sys-admin/airline-company-list/airline-company-list.component';
+import { DestinationsListComponent } from './sys-admin/destinations-list/destinations-list.component';
 
 const routes: Routes = [
 
@@ -59,6 +60,10 @@ const routes: Routes = [
                 path: 'listCompanies',
                 component: AirlineCompanyListComponent
             },
+            {
+                path: 'listDestinations',
+                component: DestinationsListComponent
+            }
         ],
         canActivate: [RoleGuardService],
         data: {

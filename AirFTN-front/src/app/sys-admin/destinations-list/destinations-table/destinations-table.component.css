@@ -1,0 +1,28 @@
+thead {
+    background-color: #4b4e5d;
+    color: white;
+}
+
+td {
+    background-color: #ececee;
+    border-right: 1px solid black;
+}
+
+.head {
+    border-right: 1px solid white;
+}
+
+* {
+    font-family: lato;
+    font-weight: 300;
+}
+
+#delete_destination{
+    width: 200px;
+}
+
+#delete_destination:hover {
+    cursor: pointer;
+    background: #92949e;
+    opacity: 0.5;
+}

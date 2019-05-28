@@ -74,13 +74,10 @@ public class AirlinecompanyController {
 	}
 
 	@PostMapping("/updateAdmin/{airlineId}/{adminId}")
-	public ResponseEntity<ResponseMessage> updateAdmin(@PathVariable("airlineId") String airlineId,
-			@PathVariable("adminId") String adminId) {
-		
-		Long airlineid = Long.parseLong(airlineId);
-		Long adminid = Long.parseLong(adminId);
+	public ResponseEntity<ResponseMessage> updateAdmin(@PathVariable("airlineId") Long airlineId,
+			@PathVariable("adminId") Long adminId) {
 
-		AirlineAdmin admin = adminRepository.getOne(adminid);
+		AirlineAdmin admin = adminRepository.getOne(adminId);
 
 		ResponseMessage message = new ResponseMessage();
 
@@ -91,7 +88,7 @@ public class AirlinecompanyController {
 			return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
 		}
 
-		AirlineCompany company = companyService.getOne(airlineid);
+		AirlineCompany company = companyService.getOne(airlineId);
 
 		if (company == null) {
 

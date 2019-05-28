@@ -73,5 +73,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['sysAdmin/listCompanies']);
   }
 
-  
+  clickShowDestinations() {
+    this.router.navigate(['sysAdmin/listDestinations'])
+  }
+
+
 }

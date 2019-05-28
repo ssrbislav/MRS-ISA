@@ -36,9 +36,10 @@ export class AirlineService {
     return this.http.post<ResponseMessage>(url, info, httpOptions);
   }
 
-  updateCompanyAdmin(info: HttpParams ): Observable<ResponseMessage> {
-    const url = `${this.airlineCompanyUrl + 'updateAdmin/{airlineId}/{adminId}'}`;
-    return this.http.post<ResponseMessage>(url, info, httpOptions);
+  updateCompanyAdmin(airlineId: BigInteger,  adminId: BigInteger): Observable<ResponseMessage> {
+    const url = `${this.airlineCompanyUrl + 'updateAdmin/' + airlineId + '/' + adminId}`;
+    console.log(url);
+    return this.http.post<ResponseMessage>(url, httpOptions);
   }
 
 }

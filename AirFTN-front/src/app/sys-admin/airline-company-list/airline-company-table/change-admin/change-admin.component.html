@@ -5,8 +5,8 @@
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
 
     <div class="form-group">
-      <mat-select name="admin_id" placeholder="ADMIN">
-        <mat-option *ngFor="let admin of admins" [value]='admin.id'>
+      <mat-select name="adminId" [(ngModel)]="adminId" placeholder="ADMIN">
+        <mat-option *ngFor="let admin of admins"  [value]='admin.id'>
           {{admin.username}}
         </mat-option>
       </mat-select>
