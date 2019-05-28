@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.SysAdmin;
-import com.airftn.AirFTN.model.User;
 import com.airftn.AirFTN.repository.SysAdminRepository;
-import com.airftn.AirFTN.repository.UserRepository;
 
 @Component
 public class ApplicationLoader implements ApplicationRunner {
