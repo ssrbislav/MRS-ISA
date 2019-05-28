@@ -31,10 +31,13 @@ public class AirplaneService implements IAirplaneService {
 	@Override
 	public Airplane create(AirplaneDTO airplane) {
 
+		AirlineCompany company = airlineService.getOne(airplane.getAirlineId());
+
 		Airplane plane = new Airplane();
 		plane.setModel(airplane.getModel());
 		plane.setNumberOfSeats(airplane.getNumOfSeats());
-		
+		plane.setCompany(company);
+
 		return airplaneRepository.save(plane);
 
 	}
@@ -45,17 +48,8 @@ public class AirplaneService implements IAirplaneService {
 		Airplane plane = airplaneRepository.getOne(airplane.getId());
 		plane.setModel(airplane.getModel());
 		plane.setNumberOfSeats(airplane.getNumberOfSeats());
-		
-		return null;
-	}
 
-	@Override
-	public List<Airplane> findAllByCompanyId(Long id) {
-		
-		AirlineCompany company = airlineService.getOne(id);
-		
-		return airplaneRepository.findAllByCompany(company);
-		
+		return null;
 	}
 
 }

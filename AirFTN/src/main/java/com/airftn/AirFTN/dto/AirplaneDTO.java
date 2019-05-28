@@ -6,6 +6,8 @@ public class AirplaneDTO {
 
 	private int numOfSeats;
 
+	private Long airlineId;
+
 	public AirplaneDTO() {
 		super();
 	}
@@ -14,6 +16,13 @@ public class AirplaneDTO {
 		super();
 		this.model = model;
 		this.numOfSeats = numOfSeats;
+	}
+
+	public AirplaneDTO(String model, int numOfSeats, Long airlineId) {
+		super();
+		this.model = model;
+		this.numOfSeats = numOfSeats;
+		this.airlineId = airlineId;
 	}
 
 	public String getModel() {
@@ -30,6 +39,14 @@ public class AirplaneDTO {
 
 	public void setNumOfSeats(int numOfSeats) {
 		this.numOfSeats = numOfSeats;
+	}
+
+	public Long getAirlineId() {
+		return airlineId;
+	}
+
+	public void setAirlineId(Long airlineId) {
+		this.airlineId = airlineId;
 	}
 
 }
