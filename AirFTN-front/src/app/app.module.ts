@@ -33,6 +33,9 @@ import { ChangeAdminComponent } from './sys-admin/airline-company-list/airline-c
 import { DestinationsListComponent } from './sys-admin/destinations-list/destinations-list.component';
 import { DestinationsTableComponent } from './sys-admin/destinations-list/destinations-table/destinations-table.component';
 import { CreateDestinationComponent } from './sys-admin/destinations-list/create-destination/create-destination.component';
+import { AirplaneListComponent } from './sys-admin/airplane-list/airplane-list.component';
+import { AirplaneTableComponent } from './sys-admin/airplane-list/airplane-table/airplane-table.component';
+import { CreateAirplaneComponent } from './sys-admin/airplane-list/create-airplane/create-airplane.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { CreateDestinationComponent } from './sys-admin/destinations-list/create
     DestinationsListComponent,
     DestinationsTableComponent,
     CreateDestinationComponent,
+    AirplaneListComponent,
+    AirplaneTableComponent,
+    CreateAirplaneComponent,
   ],
   imports: [
     BrowserModule,
