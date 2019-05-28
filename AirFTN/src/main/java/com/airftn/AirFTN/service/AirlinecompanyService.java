@@ -65,6 +65,9 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 		airCompany.setAddress(company.getAddress());
 		airCompany.setDescription(company.getDescription());
 		airCompany.setAdmin(admin);
+		
+		admin.setHasCompany(true);
+		adminRepository.save(admin);
 
 		return airlineRepository.save(airCompany);
 	}

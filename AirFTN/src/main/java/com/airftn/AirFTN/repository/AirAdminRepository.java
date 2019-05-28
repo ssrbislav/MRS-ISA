@@ -21,4 +21,6 @@ public interface AirAdminRepository extends JpaRepository<AirlineAdmin, Long> {
 		
 	AirlineAdmin findByUsername(String username);
 	
+	List<AirlineAdmin> findAllByHasCompanyFalse();
+	
 }

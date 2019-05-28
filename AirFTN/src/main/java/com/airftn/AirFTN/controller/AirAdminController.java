@@ -82,5 +82,14 @@ public class AirAdminController {
 		return new ResponseEntity<>(admin, HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "/findAllWithoutCompany", method = RequestMethod.GET)
+	public ResponseEntity<List<AirlineAdmin>> findAllWithoutCompany() {
+		
+		List<AirlineAdmin> administrators = adminService.findAllByAirlineCompanyNotExist();
+
+		return new ResponseEntity<>(administrators, HttpStatus.OK);
+		
+	}
 
 }

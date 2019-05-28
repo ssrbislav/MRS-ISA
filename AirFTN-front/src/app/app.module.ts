@@ -17,7 +17,7 @@ import { HotelComponent } from './hotel/hotel.component';
 import { HeaderComponent } from './header/header.component';
 import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
 import { AiradminProfileComponent } from './airline-admin/airadmin-profile/airadmin-profile.component';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule, MatSelectModule, MatOptionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterSysadminComponent } from './sys-admin/admin-list/register-sysadmin/register-sysadmin.component';
 import { RegisterAiradminComponent } from './sys-admin/admin-list/register-airadmin/register-airadmin.component';
@@ -63,13 +63,16 @@ import { AirlineCompanyTableComponent } from './sys-admin/airline-company-list/a
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   entryComponents: [
     AiradminProfileComponent,
     SysadminProfileComponent,
     RegisterSysadminComponent,
-    RegisterAiradminComponent
+    RegisterAiradminComponent,
+    RegisterAirlineCompanyComponent
   ],
   providers: [
     RoleGuardService,

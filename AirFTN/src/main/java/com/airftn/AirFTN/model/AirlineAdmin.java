@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class AirlineAdmin extends User {
 
@@ -21,6 +21,9 @@ public class AirlineAdmin extends User {
 	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH, mappedBy = "admin")
 	AirlineCompany airlineCompany;
+
+	@Column(nullable = false)
+	boolean hasCompany;
 
 	@Column(nullable = true)
 	private boolean deleted;
@@ -38,10 +41,11 @@ public class AirlineAdmin extends User {
 
 	public AirlineAdmin(String email, String username, String password, String first_name, String last_name,
 			String address, String phone_number, Date date_of_birth, boolean active, AirlineCompany airlineCompany,
-			boolean deleted) {
+			boolean hasCompany, boolean deleted) {
 		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
-		this.airlineCompany = airlineCompany;
 		this.active = true;
+		this.airlineCompany = airlineCompany;
+		this.hasCompany = false;
 		this.deleted = false;
 	}
 
@@ -67,6 +71,14 @@ public class AirlineAdmin extends User {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public boolean isHasCompany() {
+		return hasCompany;
+	}
+
+	public void setHasCompany(boolean hasCompany) {
+		this.hasCompany = hasCompany;
 	}
 
 }

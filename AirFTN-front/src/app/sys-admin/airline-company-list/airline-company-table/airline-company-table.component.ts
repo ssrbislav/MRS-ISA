@@ -20,9 +20,8 @@ export class AirlineCompanyTableComponent implements OnInit {
     this.arlineService.getAirlineCompanies().subscribe(
       data => {
         this.companies = data;
-        console.log(data.toString());
       }
-    )
+    );
   }
 
 }

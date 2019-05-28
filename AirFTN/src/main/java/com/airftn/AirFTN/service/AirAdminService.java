@@ -1,5 +1,7 @@
 package com.airftn.AirFTN.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,14 @@ public class AirAdminService implements IAirAdminService {
 		
 		//encoder.matches(rawPassword, encodedPassword)
 
+	}
+	
+	public List<AirlineAdmin> findAllByAirlineCompanyNotExist() {
+		
+		List<AirlineAdmin> admins = adminRepository.findAllByHasCompanyFalse();
+		
+		return admins;
+		
 	}
 
 }

@@ -17,6 +17,7 @@ export class AdminService {
   private sysAdminRegistrationLink = 'http://localhost:8080/api/sysadmin/registerSysAdmin';
   private adminAirUpdateLink = 'http://localhost:8080/api/airadmin/updateAdmin';
   private airAdminUrl = 'http://localhost:8080/api/airadmin';
+  private airAdminNoCompanyUrl = 'http://localhost:8080/api/airadmin/findAllWithoutCompany';
   private sysAdminUrl = 'http://localhost:8080/api/sysadmin';
 
   constructor(private http: HttpClient) { }
@@ -39,6 +40,10 @@ export class AdminService {
 
   getAirAdmins() {
     return this.http.get(this.airAdminUrl);
+  }
+
+  getAirAdminsNoCompany() {
+    return this.http.get(this.airAdminNoCompanyUrl);
   }
 
   getSysAdmins() {
