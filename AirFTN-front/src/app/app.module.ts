@@ -32,6 +32,7 @@ import { AirlineCompanyTableComponent } from './sys-admin/airline-company-list/a
 import { ChangeAdminComponent } from './sys-admin/airline-company-list/airline-company-table/change-admin/change-admin.component';
 import { DestinationsListComponent } from './sys-admin/destinations-list/destinations-list.component';
 import { DestinationsTableComponent } from './sys-admin/destinations-list/destinations-table/destinations-table.component';
+import { CreateDestinationComponent } from './sys-admin/destinations-list/create-destination/create-destination.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { DestinationsTableComponent } from './sys-admin/destinations-list/destin
     ChangeAdminComponent,
     DestinationsListComponent,
     DestinationsTableComponent,
+    CreateDestinationComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +82,7 @@ import { DestinationsTableComponent } from './sys-admin/destinations-list/destin
     RegisterAiradminComponent,
     RegisterAirlineCompanyComponent,
     ChangeAdminComponent,
+    CreateDestinationComponent
   ],
   providers: [
     RoleGuardService,

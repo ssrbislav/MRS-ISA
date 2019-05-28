@@ -119,8 +119,10 @@ public class UserController {
 
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-//		Passenger passenger = passengerRepository.findByUsername(loginRequest.getUsername());
-//		if (!passenger.isActive()) 
+		User user = passengerRepository.findByUsername(loginRequest.getUsername());
+		if (!user.isBlocked()) 
+			return null;
+		
 
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 

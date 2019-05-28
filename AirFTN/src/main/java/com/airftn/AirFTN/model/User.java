@@ -57,12 +57,15 @@ public abstract class User {
 	@Column(unique = false, nullable = true)
 	private Date date_of_birth;
 
+	@Column(nullable = false)
+	private boolean blocked;
+
 	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	public User(String email, String username, String password, String first_name, String last_name, String address,
-			String phone_number, Date date_of_birth) {
+	public User(@Email String email, String username, String password, String first_name, String last_name,
+			String address, String phone_number, Date date_of_birth) {
 		super();
 		this.email = email;
 		this.username = username;
@@ -72,6 +75,7 @@ public abstract class User {
 		this.address = address;
 		this.phone_number = phone_number;
 		this.date_of_birth = date_of_birth;
+		this.blocked = false;
 	}
 
 	public User() {
@@ -151,6 +155,14 @@ public abstract class User {
 
 	public Set<Role> getRoles() {
 		return roles;
+	}
+
+	public boolean isBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
 	}
 
 	public void setRoles(Set<Role> roles) {

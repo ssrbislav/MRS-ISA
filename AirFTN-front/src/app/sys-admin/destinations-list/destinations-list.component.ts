@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { DestinationsTableComponent } from './destinations-table/destinations-table.component';
+import { CreateDestinationComponent } from './create-destination/create-destination.component';
 
 @Component({
   selector: 'app-destinations-list',
@@ -24,7 +25,7 @@ export class DestinationsListComponent implements OnInit {
       added: false
     };
 
-    const dialogRef = this.dialog.open(DestinationsTableComponent, dialogConfig);
+    const dialogRef = this.dialog.open(CreateDestinationComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog was closed');

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.ResponseMessage;
+import com.airftn.AirFTN.model.SysAdmin;
 import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.service.AirAdminService;
 
@@ -90,6 +91,23 @@ public class AirAdminController {
 
 		return new ResponseEntity<>(administrators, HttpStatus.OK);
 		
+	}
+	
+	@PostMapping("/blockAdmin/{id}")
+	public ResponseEntity<ResponseMessage> blockAdmin(@PathVariable Long id) {
+
+		AirlineAdmin admin = adminRepository.getOne(id);
+		
+		if(admin == null ) {
+			message.setMessage("Admin does not exist!");
+			return new ResponseEntity<ResponseMessage>(message, HttpStatus.BAD_REQUEST);
+		}
+		
+		admin.setBlocked(true);
+		adminRepository.save(admin);
+
+		message.setMessage("Admin successfully blocked!");
+		return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
 	}
 
 }

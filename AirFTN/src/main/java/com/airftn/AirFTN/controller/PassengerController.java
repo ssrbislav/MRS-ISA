@@ -76,5 +76,22 @@ public class PassengerController {
 		
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
+	
+	@PostMapping("/blockUser/{id}")
+	public ResponseEntity<ResponseMessage> blockUser(@PathVariable Long id) {
+
+		Passenger passenger = passengerRepository.getOne(id);
+		
+		if(passenger == null ) {
+			message.setMessage("User does not exist!");
+			return new ResponseEntity<ResponseMessage>(message, HttpStatus.BAD_REQUEST);
+		}
+		
+		passenger.setBlocked(true);
+		passengerRepository.save(passenger);
+
+		message.setMessage("User successfully blocked!");
+		return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
+	}
 
 }

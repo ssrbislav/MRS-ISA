@@ -1,0 +1,43 @@
+<div class="login-form">
+  <br>
+  <h3>ADD NEW DESTINATION</h3>
+  <br>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+      <input type="text" name="city" [(ngModel)]="destinationInfo.city" #city="ngModel" required placeholder="CITY" />
+      <div *ngIf="f.submitted && city.invalid">
+        <div *ngIf="city.errors.required" style="color: red">City is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" name="country" [(ngModel)]="destinationInfo.country" #country="ngModel" required
+        placeholder="COUNTRY" />
+      <div *ngIf="f.submitted && country.invalid">
+        <div *ngIf="country.errors.required" style="color: red">Country is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" name="description" minlength="6" [(ngModel)]="destinationInfo.description" #description="ngModel"
+        required placeholder="DESCRIPTION" />
+
+      <div *ngIf="f.submitted && description.invalid">
+        <div *ngIf="description.errors.required" style="color: red">Description is required</div>
+
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <button class="button" class="submitbtn">CREATE</button>
+      <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+        Registration failed: {{errorMessage}}
+      </div>
+      <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+    </div>
+    <br>
+  </form>
+</div>
