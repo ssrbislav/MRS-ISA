@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.model.AirlineAdmin;
 import com.airftn.AirFTN.model.ResponseMessage;
-import com.airftn.AirFTN.model.SysAdmin;
 import com.airftn.AirFTN.repository.AirAdminRepository;
 import com.airftn.AirFTN.service.AirAdminService;
 

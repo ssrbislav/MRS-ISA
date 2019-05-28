@@ -47,9 +47,11 @@ public class AirlineCompany {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<Flight> flights = new ArrayList<Flight>();
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "companies")
 	private List<Destination> destinations = new ArrayList<Destination>();
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "company")
 	private List<Ticket> fastReservationTickets = new ArrayList<Ticket>();
 

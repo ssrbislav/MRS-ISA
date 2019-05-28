@@ -93,5 +93,22 @@ public class PassengerController {
 		message.setMessage("User successfully blocked!");
 		return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
 	}
+	
+	@PostMapping("/isActive/{id}")
+	public ResponseEntity<Boolean> checkIfActive(@PathVariable Long id) {
+		
+		Passenger passenger = passengerRepository.getOne(id);
+		
+		if(passenger == null ) {
+			message.setMessage("User does not exist!");
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		if(passenger.isActive())
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(false, HttpStatus.OK);
+		
+	}
 
 }

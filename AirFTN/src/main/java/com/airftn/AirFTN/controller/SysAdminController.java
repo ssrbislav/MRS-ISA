@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airftn.AirFTN.dto.AdminDTO;
 import com.airftn.AirFTN.enumeration.RoleType;
 import com.airftn.AirFTN.model.AirlineAdmin;
-import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.model.Role;
 import com.airftn.AirFTN.model.SysAdmin;
