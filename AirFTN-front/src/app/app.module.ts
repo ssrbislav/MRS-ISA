@@ -30,6 +30,7 @@ import { SysadminTableComponent } from './sys-admin/admin-list/sysadmin-table/sy
 import { AiradminTableComponent } from './sys-admin/admin-list/airadmin-table/airadmin-table.component';
 import { AirlineCompanyTableComponent } from './sys-admin/airline-company-list/airline-company-table/airline-company-table.component';
 import { ChangeAdminComponent } from './sys-admin/airline-company-list/airline-company-table/change-admin/change-admin.component';
+import { DestinationsListComponent } from './sys-admin/destinations-list/destinations-list.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ChangeAdminComponent } from './sys-admin/airline-company-list/airline-c
     AiradminTableComponent,
     AirlineCompanyTableComponent,
     ChangeAdminComponent,
+    DestinationsListComponent,
   ],
   imports: [
     BrowserModule,
