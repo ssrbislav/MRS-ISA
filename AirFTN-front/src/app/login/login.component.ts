@@ -3,7 +3,7 @@ import { LoginInfo } from '../auth/login-info';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { PassengerService } from '../services/passenger.service'
+import { PassengerService } from '../services/passenger.service';
 
 @Component({
   selector: 'app-login',
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        window.alert("Wrong credentials!")
+        window.alert('Wrong credentials!')
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       }
