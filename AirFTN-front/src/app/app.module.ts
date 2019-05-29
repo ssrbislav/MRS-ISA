@@ -37,6 +37,11 @@ import { AirplaneListComponent } from './sys-admin/airplane-list/airplane-list.c
 import { AirplaneTableComponent } from './sys-admin/airplane-list/airplane-table/airplane-table.component';
 import { CreateAirplaneComponent } from './sys-admin/airplane-list/create-airplane/create-airplane.component';
 import { AirlineProfileComponent } from './airline-admin/airline-profile/airline-profile.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 @NgModule({
   declarations: [
@@ -81,7 +86,10 @@ import { AirlineProfileComponent } from './airline-admin/airline-profile/airline
     MatButtonModule,
     BrowserAnimationsModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatGridListModule,
+    MatListModule,
+    MatIconModule
   ],
   entryComponents: [
     AiradminProfileComponent,

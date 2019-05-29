@@ -34,10 +34,8 @@ export class AiradminProfileComponent implements OnInit {
     this.adminService.getAirAdmin(this.username).subscribe (
       data => {
         this.adminInfo = data;
-        console.log(this.adminInfo.first_name);
       }
     );
-    console.log(this.adminInfo.first_name);
   }
 
 }

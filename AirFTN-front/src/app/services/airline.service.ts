@@ -22,7 +22,7 @@ export class AirlineService {
   }
 
   getAirlineCompany(id: BigInteger) {
-    const url = `${this.airlineCompanyUrl + 'getCompany/{id}'}`;
+    const url = `${this.airlineCompanyUrl + 'getCompany/' + id}`;
     return this.http.get<AirlineCompanyDTO>(url);
   }
 

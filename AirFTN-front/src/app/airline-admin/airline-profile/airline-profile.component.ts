@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { AdminService } from 'src/app/services/admin.service';
+import { AdminDTO } from 'src/app/model/admin.model';
+import { AirlineService } from 'src/app/services/airline.service';
+import { AirlineCompanyDTO } from 'src/app/model/company.model';
 
 @Component({
   selector: 'app-airline-profile',
@@ -7,9 +12,74 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AirlineProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenStorage: TokenStorageService,
+              private adminService: AdminService,
+              private airlineService: AirlineService) { }
+
+  username: string;
+  adminId: BigInteger;
+  airline: AirlineCompanyDTO;
+  companies: AirlineCompanyDTO[];
+  adminInfo: AdminDTO = new AdminDTO();
+
+  tiles = [
+    {text: 'ARILIEN INFORMATION', cols: 3, rows: 1, color: 'lightgray'},
+    {text: 'FLIGHTS', cols: 1, rows: 2, color: 'lightgray'},
+    {text: 'DESTINATIONS', cols: 1, rows: 1, color: 'lightgray'},
+    {text: 'OTHER STUFF', cols: 2, rows: 1, color: 'lightgray'},
+  ];
+
+  folders = [
+    {
+      name: 'Photos',
+      updated: new Date('1/1/16'),
+    },
+    {
+      name: 'Recipes',
+      updated: new Date('1/17/16'),
+    },
+    {
+      name: 'Work',
+      updated: new Date('1/28/16'),
+    }
+  ];
+  notes = [
+    {
+      name: 'Vacation Itinerary',
+      updated: new Date('2/20/16'),
+    },
+    {
+      name: 'Kitchen Remodel',
+      updated: new Date('1/18/16'),
+    }
+  ];
 
   ngOnInit() {
+    this.getAdmin();
   }
+
+  getAdmin() {
+    this.username = this.tokenStorage.getUsername();
+    this.adminService.getAirAdmin(this.username).subscribe(
+      data => {
+        this.adminInfo = data;
+        this.getAirlineCompanies();
+      }
+    );
+  }
+
+  getAirlineCompanies() {
+    this.airlineService.getAirlineCompanies().subscribe(
+      data => {
+        data.forEach(element => {
+          this.adminId = element.admin.id;
+          if (this.adminId === this.adminInfo.id) {
+                this.airline = element;
+          }
+        });
+      }
+    );
+  }
+
 
 }
