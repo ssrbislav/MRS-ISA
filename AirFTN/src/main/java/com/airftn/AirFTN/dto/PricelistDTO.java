@@ -17,6 +17,11 @@ public class PricelistDTO {
 
 	@NotBlank
 	private Double discountedPrecentage;
+	
+	
+
+	public PricelistDTO() {
+	}
 
 	public PricelistDTO(@NotBlank Double priceByKm, @NotBlank Double economyPricePrecentage,
 			@NotBlank Double bussinessPricePrecentage, @NotBlank Double firstPricePrecentage,
