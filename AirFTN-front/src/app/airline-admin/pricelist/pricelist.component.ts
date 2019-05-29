@@ -6,6 +6,7 @@ import { AdminDTO } from 'src/app/model/admin.model';
 import { AirlineCompanyDTO } from 'src/app/model/company.model';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { AirlineService } from 'src/app/services/airline.service';
+import { PricelistService } from 'src/app/services/pricelist.service';
 
 
 @Component({
@@ -21,24 +22,41 @@ export class PricelistComponent implements OnInit {
   airline: AirlineCompanyDTO;
   companies: AirlineCompanyDTO[];
   adminInfo: AdminDTO = new AdminDTO();
+  errorMessage = '';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,
               private adminService: AdminService,
               private airlineService: AirlineService,
-              private tokenStorage: TokenStorageService) { }
+              private tokenStorage: TokenStorageService,
+              private pricelistService: PricelistService) { }
 
   ngOnInit() {
     this.dialogRef.updateSize('30%', '70%');
     this.getAdmin();
+    this.checkIfPricelistExist();
+  }
+
+  checkIfPricelistExist() {
+    console.log(this.pricelist.priceByKm);
+    if (this.pricelist.priceByKm !== undefined) {
+      window.alert('Pricelist already exist!');
+      this.dialogRef.close();
+    }
   }
 
   onSubmit() {
-    if (this.pricelist === undefined) {
-      
-    } else {
-      window.alert("Pricelist already created");
-    }
+    this.pricelistService.createPricelist(this.pricelist, this.airline.id).subscribe(
+      data => {
+        window.alert('Pricelist successfully created!');
+        this.dialogRef.close();
+        location.reload();
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+      }
+    );
   }
 
   getAdmin() {
@@ -57,7 +75,7 @@ export class PricelistComponent implements OnInit {
         data.forEach(element => {
           this.adminId = element.admin.id;
           if (this.adminId === this.adminInfo.id) {
-                this.airline = element;
+            this.airline = element;
           }
         });
       }

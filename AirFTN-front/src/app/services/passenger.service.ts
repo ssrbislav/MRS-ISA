@@ -13,7 +13,7 @@ export class PassengerService {
 
   constructor(private http: HttpClient) { }
 
-  passengerUrl = 'http:localhost:8080/api/passenger';
+  passengerUrl = 'http://localhost:8080/api/passenger';
 
   public getPassengers() {
     return this.http.get<Passenger[]>(this.passengerUrl);

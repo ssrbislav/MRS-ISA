@@ -5,5 +5,4 @@ export class PricelistDTO {
     bussinessPricePrecentage: number;
     firstPricePrecentage: number;
     discountedPrecentage: number;
-    
 }
