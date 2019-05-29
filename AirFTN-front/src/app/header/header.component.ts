@@ -81,4 +81,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['sysAdmin/listAirplanes']);
   }
 
+  clickShowPricelist() {
+    this.featureSelected.emit('pricelist');
+  }
+
 }

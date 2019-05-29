@@ -14,6 +14,7 @@ import { AirlineCompanyComponent } from './airline-company/airline-company.compo
 import { AirlineCompanyListComponent } from './sys-admin/airline-company-list/airline-company-list.component';
 import { DestinationsListComponent } from './sys-admin/destinations-list/destinations-list.component';
 import { AirplaneListComponent } from './sys-admin/airplane-list/airplane-list.component';
+import { PricelistComponent } from './airline-admin/pricelist/pricelist.component';
 
 const routes: Routes = [
 
@@ -78,6 +79,12 @@ const routes: Routes = [
     {
         path: 'airlineAdmin',
         component: AirlineAdminComponent,
+        // children: [
+        //     {
+        //         path: '',
+        //         component: PricelistComponent
+        //     }
+        // ],
         canActivate: [RoleGuardService],
         data: {
             expectedRole: 'ROLE_AIRLINE_ADMIN'
