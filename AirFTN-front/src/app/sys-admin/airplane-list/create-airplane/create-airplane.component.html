@@ -1,3 +1,41 @@
-<p>
-  create-airplane works!
-</p>
+<div class="login-form">
+    <br>
+    <h3>ADD NEW AIRPLANE</h3>
+    <br>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  
+      <div class="form-group">
+        <input type="text" name="model" [(ngModel)]="airplane.model" #model="ngModel" required placeholder="MODEL" />
+        <div *ngIf="f.submitted && model.invalid">
+          <div *ngIf="model.errors.required" style="color: red">Model is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <input type="text" name="numberOfSeats" [(ngModel)]="airplane.numberOfSeats" #numberOfSeats="ngModel" required
+          placeholder="NUMBER OF SEATS" />
+        <div *ngIf="f.submitted && numberOfSeats.invalid">
+          <div *ngIf="numberOfSeats.errors.required" style="color: red">Number od seats is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+          <mat-select name="airlineId" [(ngModel)]="airplane.airlineId" placeholder="AIRLINE" >
+            <mat-option *ngFor = "let airline of airlines" [value]='airline.id'>
+                {{airline.name}}
+            </mat-option>
+          </mat-select>
+        </div>
+  
+      <br>
+  
+      <div class="form-group">
+        <button class="button" class="submitbtn">CREATE</button>
+        <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+          Registration failed: {{errorMessage}}
+        </div>
+        <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+      </div>
+      <br>
+    </form>
+  </div>

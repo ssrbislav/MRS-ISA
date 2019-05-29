@@ -36,6 +36,7 @@ import { CreateDestinationComponent } from './sys-admin/destinations-list/create
 import { AirplaneListComponent } from './sys-admin/airplane-list/airplane-list.component';
 import { AirplaneTableComponent } from './sys-admin/airplane-list/airplane-table/airplane-table.component';
 import { CreateAirplaneComponent } from './sys-admin/airplane-list/create-airplane/create-airplane.component';
+import { AirlineProfileComponent } from './airline-admin/airline-profile/airline-profile.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { CreateAirplaneComponent } from './sys-admin/airplane-list/create-airpla
     AirplaneListComponent,
     AirplaneTableComponent,
     CreateAirplaneComponent,
+    AirlineProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ import { CreateAirplaneComponent } from './sys-admin/airplane-list/create-airpla
     RegisterAiradminComponent,
     RegisterAirlineCompanyComponent,
     ChangeAdminComponent,
-    CreateDestinationComponent
+    CreateDestinationComponent,
+    CreateAirplaneComponent
   ],
   providers: [
     RoleGuardService,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AirplaneService } from 'src/app/services/airplane.service';
 
 @Component({
   selector: 'app-airplane-table',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AirplaneTableComponent implements OnInit {
 
-  constructor() { }
+  airplanes: any;
+
+  constructor(private airplaneService: AirplaneService) { }
 
   ngOnInit() {
+    this.getAirplanes();
+  }
+
+  getAirplanes() {
+    this.airplaneService.getAllAirplanes().subscribe(
+      data => {
+        this.airplanes = data;
+      }
+    )
   }
 
 }

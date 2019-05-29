@@ -35,7 +35,7 @@ public class AirplaneService implements IAirplaneService {
 
 		Airplane plane = new Airplane();
 		plane.setModel(airplane.getModel());
-		plane.setNumberOfSeats(airplane.getNumOfSeats());
+		plane.setNumberOfSeats(airplane.getNumberOfSeats());
 		plane.setCompany(company);
 
 		return airplaneRepository.save(plane);
