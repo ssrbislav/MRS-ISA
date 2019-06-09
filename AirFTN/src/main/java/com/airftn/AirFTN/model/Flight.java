@@ -47,9 +47,6 @@ public class Flight {
 	@Column(nullable = false)
 	private int durationOfFlight;
 
-	@Column(nullable = false)
-	private int numberOfTransferPoints;
-
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "destination_id", nullable = false)
 	private Destination destination;
@@ -77,7 +74,7 @@ public class Flight {
 	}
 
 	public Flight(Long id, String flightNumber, double price, double mileage, Date departureDate, Date arrivalDate,
-			int durationOfFlight, int numberOfTransferPoints, Destination destination, Airplane plane,
+			int durationOfFlight, Destination destination, Airplane plane,
 			AirlineCompany company, List<TransferPoint> transferPoints, List<Ticket> tickets, boolean deleted) {
 		super();
 		this.id = id;
@@ -87,7 +84,6 @@ public class Flight {
 		this.departureDate = departureDate;
 		this.arrivalDate = arrivalDate;
 		this.durationOfFlight = durationOfFlight;
-		this.numberOfTransferPoints = numberOfTransferPoints;
 		this.destination = destination;
 		this.plane = plane;
 		this.company = company;
@@ -150,14 +146,6 @@ public class Flight {
 
 	public void setMileage(double mileage) {
 		this.mileage = mileage;
-	}
-
-	public int getNumberOfTransferPoints() {
-		return numberOfTransferPoints;
-	}
-
-	public void setNumberOfTransferPoints(int numberOfTransferPoints) {
-		this.numberOfTransferPoints = numberOfTransferPoints;
 	}
 
 	public Destination getDestination() {

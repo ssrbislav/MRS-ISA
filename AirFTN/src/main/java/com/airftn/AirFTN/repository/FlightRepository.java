@@ -15,4 +15,8 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 	
 	List<Flight> findAllByCompanyId(Long id);
 	
+	List<Flight> findAllByDeletedIsFalse();
+
+	Flight save(Optional<Flight> f);
+	
 }
