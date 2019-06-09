@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.airftn.AirFTN.dto.FlightDTO;
 import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.Airplane;
+import com.airftn.AirFTN.model.Destination;
 import com.airftn.AirFTN.model.Flight;
 import com.airftn.AirFTN.repository.FlightRepository;
 
@@ -25,6 +26,9 @@ public class FlightService implements IFlightService {
 
 	@Autowired
 	IAirplaneService airplaneService;
+	
+	@Autowired
+	IDestinationService destinationService;
 
 	@Override
 	public List<Flight> findAll() {
@@ -35,7 +39,7 @@ public class FlightService implements IFlightService {
 	@Override
 	public List<Flight> findAllNotDeleted() {
 
-		return findAllNotDeleted();
+		return flightRepository.findAllByDeletedIsFalse();
 	}
 
 	@Override
@@ -50,6 +54,8 @@ public class FlightService implements IFlightService {
 		AirlineCompany company = companyService.getOne(flight.getCompanyId());
 
 		Airplane airplane = airplaneService.getOne(flight.getAirplaneId());
+		
+		Destination destination = destinationService.findById(flight.getDestinationId());
 
 		Calendar departureTime = Calendar.getInstance();
 		departureTime.setTime(flight.getDeparture());
@@ -60,18 +66,20 @@ public class FlightService implements IFlightService {
 		double durationOfFlight = ChronoUnit.HOURS.between(arrivalTime.toInstant(), departureTime.toInstant());
 
 		Flight f = new Flight();
+		System.out.println(company.getId());
 		
 		f.setFlightNumber(flight.getFlightNumber());
 		f.setCompany(company);
 		f.setPlane(airplane);
 		f.setDepartureDate(flight.getDeparture());
 		f.setArrivalDate(flight.getArrival());
-		f.setDestination(flight.getDestination());
+		f.setDestination(destination);
 		f.setMileage(flight.getMillage());
 		f.setTransferPoints(flight.getTransfers());
 		f.setDurationOfFlight(durationOfFlight);
 		f.setPrice(flight.getPrice());
 		f.setDeleted(false);
+		System.out.println(f.getPlane().getModel());
 		
 
 		return flightRepository.save(f);

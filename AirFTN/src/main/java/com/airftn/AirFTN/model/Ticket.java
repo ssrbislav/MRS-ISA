@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Ticket {
 
@@ -26,6 +28,7 @@ public class Ticket {
 	@JoinColumn(name = "seat_id", nullable = false)
 	private Seat seat;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "flight_id", nullable = false)
 	private Flight flight;

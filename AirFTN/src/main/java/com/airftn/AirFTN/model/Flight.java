@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Flight {
@@ -59,6 +60,7 @@ public class Flight {
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "transfers", joinColumns = @JoinColumn(name = "transfer_point_id"), inverseJoinColumns = @JoinColumn(name = "flight_id"))
 	private List<TransferPoint> transferPoints = new ArrayList<TransferPoint>();
@@ -169,7 +171,7 @@ public class Flight {
 	}
 
 	public void setCompany(AirlineCompany company) {
-
+		this.company = company;
 	}
 
 	public List<TransferPoint> getTransferPoints() {
