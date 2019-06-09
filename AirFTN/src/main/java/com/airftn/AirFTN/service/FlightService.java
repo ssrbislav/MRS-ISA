@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airftn.AirFTN.dto.FlightDTO;
 import com.airftn.AirFTN.model.Flight;
 import com.airftn.AirFTN.repository.FlightRepository;
 
@@ -34,12 +35,12 @@ public class FlightService implements IFlightService {
 	}
 
 	@Override
-	public Flight create() {
+	public Flight create(FlightDTO flight) {
 
-		Flight flight = new Flight();
+		Flight f= new Flight();
 		
 		
-		return flightRepository.save(flight);
+		return flightRepository.save(f);
 		
 	}
 

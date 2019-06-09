@@ -28,7 +28,7 @@ public class TransferPoint {
 
 	@Column(nullable = false)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
-	private String city;
+	private String countryAndCity;
 
 	@Column(nullable = true)
 	private boolean deleted;
@@ -37,12 +37,12 @@ public class TransferPoint {
 		super();
 	}
 
-	public TransferPoint(Long id, Date arivalTime, Date departureTime, String city, boolean deleted) {
+	public TransferPoint(Long id, Date arivalTime, Date departureTime, String countryAndCity, boolean deleted) {
 		super();
 		this.id = id;
 		this.arivalTime = arivalTime;
 		this.departureTime = departureTime;
-		this.city = city;
+		this.countryAndCity = countryAndCity;
 		this.deleted = deleted;
 	}
 
@@ -70,12 +70,12 @@ public class TransferPoint {
 		this.departureTime = departureTime;
 	}
 
-	public String getCity() {
-		return city;
+	public String getCountryAndCity() {
+		return countryAndCity;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCountryAndCity(String countryAndCity) {
+		this.countryAndCity = countryAndCity;
 	}
 
 	public boolean isDeleted() {

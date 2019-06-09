@@ -3,6 +3,7 @@ package com.airftn.AirFTN.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.airftn.AirFTN.dto.FlightDTO;
 import com.airftn.AirFTN.model.Flight;
 
 public interface IFlightService {
@@ -15,7 +16,7 @@ public interface IFlightService {
 
 	Optional<Flight> getOne(Long id);
 
-	Flight create();
+	Flight create(FlightDTO flight);
 
 	Flight update(Flight flight);
 
