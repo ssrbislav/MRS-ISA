@@ -10,6 +10,8 @@ import javassist.tools.rmi.ObjectNotFoundException;
 public interface IAirplaneService {
 	
 	List<Airplane> findAll();
+	
+	Airplane getOne(Long id);
 
 	Airplane create(AirplaneDTO airplane) throws ObjectNotFoundException;
 	

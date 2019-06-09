@@ -27,6 +27,11 @@ public class AirplaneService implements IAirplaneService {
 
 		return airplaneRepository.findAll();
 	}
+	
+	@Override
+	public Airplane getOne(Long id) {
+		return airplaneRepository.getOne(id);
+	}
 
 	@Override
 	public Airplane create(AirplaneDTO airplane) {

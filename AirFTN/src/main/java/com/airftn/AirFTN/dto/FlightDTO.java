@@ -8,6 +8,7 @@ import com.airftn.AirFTN.model.TransferPoint;
 
 public class FlightDTO {
 
+	private String flightNumber;
 	private Long companyId;
 	private Long airplaneId;
 	private Date departure;
@@ -15,6 +16,7 @@ public class FlightDTO {
 	private Destination destination;
 	private double millage;
 	private List<TransferPoint> transfers;
+	private double price;
 
 	public Long getCompanyId() {
 		return companyId;
@@ -70,6 +72,22 @@ public class FlightDTO {
 
 	public void setTransfers(List<TransferPoint> transfers) {
 		this.transfers = transfers;
+	}
+
+	public String getFlightNumber() {
+		return flightNumber;
+	}
+
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }
