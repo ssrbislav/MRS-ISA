@@ -26,6 +26,7 @@ export class RegisterSysadminComponent implements OnInit {
       data => {
         window.alert('System Admin successfully registered!');
         this.dialogRef.close();
+        location.reload();
       },
       error => {
         console.log(error);

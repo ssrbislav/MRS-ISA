@@ -36,6 +36,7 @@ public class Destination {
 	@Column(unique = false, nullable = false)
 	private String description;
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "destination")
 	private List<Flight> flights;
 	

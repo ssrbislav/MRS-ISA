@@ -26,7 +26,7 @@ public class FlightService implements IFlightService {
 
 	@Autowired
 	IAirplaneService airplaneService;
-	
+
 	@Autowired
 	IDestinationService destinationService;
 
@@ -54,7 +54,7 @@ public class FlightService implements IFlightService {
 		AirlineCompany company = companyService.getOne(flight.getCompanyId());
 
 		Airplane airplane = airplaneService.getOne(flight.getAirplaneId());
-		
+
 		Destination destination = destinationService.findById(flight.getDestinationId());
 
 		Calendar departureTime = Calendar.getInstance();
@@ -63,11 +63,23 @@ public class FlightService implements IFlightService {
 		Calendar arrivalTime = Calendar.getInstance();
 		arrivalTime.setTime(flight.getArrival());
 
-		double durationOfFlight = ChronoUnit.HOURS.between(arrivalTime.toInstant(), departureTime.toInstant());
+		double durationOfFlight = ChronoUnit.HOURS.between(departureTime.toInstant(), arrivalTime.toInstant());
+
+		for (Flight f : flightRepository.findAll()) {
+			if (f.getFlightNumber().equals(flight.getFlightNumber()))
+				return null;
+		}
+
+		Calendar today = Calendar.getInstance();
+
+		if (departureTime.getTime().before(today.getTime()))
+			return null;
+
+		if (arrivalTime.before(departureTime))
+			return null;
 
 		Flight f = new Flight();
-		System.out.println(company.getId());
-		
+
 		f.setFlightNumber(flight.getFlightNumber());
 		f.setCompany(company);
 		f.setPlane(airplane);
@@ -79,8 +91,6 @@ public class FlightService implements IFlightService {
 		f.setDurationOfFlight(durationOfFlight);
 		f.setPrice(flight.getPrice());
 		f.setDeleted(false);
-		System.out.println(f.getPlane().getModel());
-		
 
 		return flightRepository.save(f);
 
@@ -89,20 +99,20 @@ public class FlightService implements IFlightService {
 	@Override
 	public Flight update(Flight flight) {
 
-		Optional<Flight> f = flightRepository.findById(flight.getId());
+		Flight f = flightRepository.getOne(flight.getId());
 
-		f.get().setCompany(flight.getCompany());
-		f.get().setDepartureDate(flight.getDepartureDate());
-		f.get().setArrivalDate(flight.getArrivalDate());
-		f.get().setDestination(flight.getDestination());
-		f.get().setDurationOfFlight(flight.getDurationOfFlight());
-		f.get().setFlightNumber(flight.getFlightNumber());
-		f.get().setMileage(flight.getMileage());
-		f.get().setPlane(flight.getPlane());
-		f.get().setPrice(flight.getPrice());
-		f.get().setTransferPoints(flight.getTransferPoints());
-		f.get().setTickets(flight.getTickets());
-		f.get().setDeleted(flight.isDeleted());
+		f.setCompany(flight.getCompany());
+		f.setDepartureDate(flight.getDepartureDate());
+		f.setArrivalDate(flight.getArrivalDate());
+		f.setDestination(flight.getDestination());
+		f.setDurationOfFlight(flight.getDurationOfFlight());
+		f.setFlightNumber(flight.getFlightNumber());
+		f.setMileage(flight.getMileage());
+		f.setPlane(flight.getPlane());
+		f.setPrice(flight.getPrice());
+		f.setTransferPoints(flight.getTransferPoints());
+		f.setTickets(flight.getTickets());
+		f.setDeleted(flight.isDeleted());
 
 		return flightRepository.save(f);
 	}

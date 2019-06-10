@@ -12,14 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class Flight {
 
@@ -60,9 +60,7 @@ public class Flight {
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "transfers", joinColumns = @JoinColumn(name = "transfer_point_id"), inverseJoinColumns = @JoinColumn(name = "flight_id"))
+	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "flight")
 	private List<TransferPoint> transferPoints = new ArrayList<TransferPoint>();
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "flight")
@@ -76,8 +74,8 @@ public class Flight {
 	}
 
 	public Flight(Long id, String flightNumber, double price, double mileage, Date departureDate, Date arrivalDate,
-			double durationOfFlight, Destination destination, Airplane plane,
-			AirlineCompany company, List<TransferPoint> transferPoints, List<Ticket> tickets, boolean deleted) {
+			double durationOfFlight, Destination destination, Airplane plane, AirlineCompany company,
+			List<TransferPoint> transferPoints, List<Ticket> tickets, boolean deleted) {
 		super();
 		this.id = id;
 		this.flightNumber = flightNumber;
