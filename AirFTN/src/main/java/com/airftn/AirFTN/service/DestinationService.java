@@ -19,61 +19,62 @@ public class DestinationService implements IDestinationService {
 
 	@Autowired
 	DestinationRepository destinationRepository;
-	
+
 	@Autowired
 	IAirlinecompanyService companyService;
-	
+
 	@Override
 	public Destination create(DestinationDTO dest) {
-		
-		for(Destination d : destinationRepository.findAll()) {
-			if((dest.getCity().equals(d.getCity()) ) && (dest.getCountry().equals(d.getCountry()))) {
+
+		for (Destination d : destinationRepository.findAll()) {
+			if ((dest.getCity().equals(d.getCity())) && (dest.getCountry().equals(d.getCountry()))) {
 				return null;
 			}
 		}
-		
+
 		Destination destination = new Destination();
-		
+
 		destination.setCity(dest.getCity());
 		destination.setCountry(dest.getCountry());
 		destination.setDescription(dest.getDescription());
 		destination.setDeleted(false);
-		
+
 		return destinationRepository.save(destination);
 	}
 
 	@Override
 	public List<Destination> findAll() {
-		
+
 		return destinationRepository.findAll();
 	}
 
-	// For now, update method has no purpose, if one is found the method will be implemented
+	// For now, update method has no purpose, if one is found the method will be
+	// implemented
 	@Override
 	public Destination update(Destination destination) {
 
 		Destination dest = destinationRepository.getOne(destination.getId());
-		
+
 		return dest;
-		
+
 	}
 
 	@Override
 	public List<AirlineCompany> findAllCompanies(Long id) {
-		
+
 		List<AirlineCompany> companies = new ArrayList<>();
 
 		Destination destination = destinationRepository.getOne(id);
-		
+
 		companies = destination.getCompanies();
-		
+
 		return companies;
-		
+
 	}
 
 	@Override
 	public Destination findById(Long id) {
-		
+
 		return destinationRepository.getOne(id);
 	}
 

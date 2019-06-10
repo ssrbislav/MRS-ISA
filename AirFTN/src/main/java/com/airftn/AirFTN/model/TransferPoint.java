@@ -13,7 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class TransferPoint {
 
@@ -37,7 +39,7 @@ public class TransferPoint {
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "flight_id", nullable = false)
 	private Flight flight;
-	
+
 	@Column(nullable = true)
 	private boolean deleted;
 
@@ -45,12 +47,14 @@ public class TransferPoint {
 		super();
 	}
 
-	public TransferPoint(Long id, Date arivalTime, Date departureTime, String countryAndCity, boolean deleted) {
+	public TransferPoint(Long id, Date arivalTime, Date departureTime, String countryAndCity, Flight flight,
+			boolean deleted) {
 		super();
 		this.id = id;
 		this.arivalTime = arivalTime;
 		this.departureTime = departureTime;
 		this.countryAndCity = countryAndCity;
+		this.flight = flight;
 		this.deleted = deleted;
 	}
 
@@ -84,6 +88,14 @@ public class TransferPoint {
 
 	public void setCountryAndCity(String countryAndCity) {
 		this.countryAndCity = countryAndCity;
+	}
+
+	public Flight getFlight() {
+		return flight;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
 	}
 
 	public boolean isDeleted() {

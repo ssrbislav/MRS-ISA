@@ -40,6 +40,20 @@ public class FlightController {
 		return new ResponseEntity<>(flights, HttpStatus.OK);
 	}
 
+	@GetMapping("/getFlight/{id}")
+	public ResponseEntity<Flight> getOne(@PathVariable Long id) {
+
+		Flight flight = flightService.getOne(id);
+
+		if (flight == null) {
+
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>(flight, HttpStatus.OK);
+
+	}
+
 	@PostMapping("/createFlight")
 	public ResponseEntity<ResponseMessage> create(@RequestBody FlightDTO flight) {
 

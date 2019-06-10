@@ -43,9 +43,9 @@ public class FlightService implements IFlightService {
 	}
 
 	@Override
-	public Optional<Flight> getOne(Long id) {
+	public Flight getOne(Long id) {
 
-		return flightRepository.findById(id);
+		return flightRepository.getOne(id);
 	}
 
 	@Override
