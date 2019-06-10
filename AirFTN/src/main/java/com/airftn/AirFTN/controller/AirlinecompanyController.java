@@ -24,7 +24,7 @@ import com.airftn.AirFTN.service.AirlinecompanyService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api/company")
+@RequestMapping("api/airline")
 public class AirlinecompanyController {
 
 	@Autowired

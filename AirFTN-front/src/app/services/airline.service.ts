@@ -15,29 +15,29 @@ export class AirlineService {
 
   constructor(private http: HttpClient) { }
 
-  private airlineCompanyUrl = 'http://localhost:8080/api/company/';
+  private airlineCompanyUrl = 'http://localhost:8080/api/airline';
 
   getAirlineCompanies() {
     return this.http.get<AirlineCompanyDTO[]>(this.airlineCompanyUrl);
   }
 
   getAirlineCompany(id: BigInteger) {
-    const url = `${this.airlineCompanyUrl + 'getCompany/' + id}`;
+    const url = `${this.airlineCompanyUrl + '/getCompany/' + id}`;
     return this.http.get<AirlineCompanyDTO>(url);
   }
 
   createCompany(info: AirlineCompanyDTO): Observable<ResponseMessage> {
-    const url = `${this.airlineCompanyUrl + 'createCompany'}`;
+    const url = `${this.airlineCompanyUrl + '/createCompany'}`;
     return this.http.post<ResponseMessage>(url, info, httpOptions);
   }
 
   updateCompanyProfile(info: AirlineCompanyDTO): Observable<ResponseMessage> {
-    const url = `${this.airlineCompanyUrl + 'updateInfo'}`;
+    const url = `${this.airlineCompanyUrl + '/updateInfo'}`;
     return this.http.post<ResponseMessage>(url, info, httpOptions);
   }
 
   updateCompanyAdmin(airlineId: BigInteger,  adminId: BigInteger): Observable<ResponseMessage> {
-    const url = `${this.airlineCompanyUrl + 'updateAdmin/' + airlineId + '/' + adminId}`;
+    const url = `${this.airlineCompanyUrl + '/updateAdmin/' + airlineId + '/' + adminId}`;
     console.log(url);
     return this.http.post<ResponseMessage>(url, httpOptions);
   }

@@ -57,6 +57,7 @@ public class Flight {
 	@JoinColumn(nullable = false, name = "airplane_id")
 	private Airplane plane;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;

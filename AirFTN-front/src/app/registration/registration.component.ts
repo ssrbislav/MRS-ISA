@@ -49,7 +49,6 @@ export class RegistrationComponent implements OnInit {
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
-        window.alert(data.message);
         window.alert('Please activate your account!');
         this.isSignUpFailed = false;
         this.isSignedUp = true;

@@ -17,8 +17,9 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class AirlineCompany {
 
@@ -40,14 +41,12 @@ public class AirlineCompany {
 	private String description;
 
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<Airplane> planes = new ArrayList<Airplane>();
 
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<Flight> flights = new ArrayList<Flight>();
 
-	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "companies")
 	private List<Destination> destinations = new ArrayList<Destination>();
 

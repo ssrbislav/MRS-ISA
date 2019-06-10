@@ -20,15 +20,15 @@ export class PassengerService {
   }
 
   public getPassengerById(id: BigInteger) {
-    return this.http.get<Passenger>(`${this.passengerUrl + 'getPassengerById'}/${id}`);
+    return this.http.get<Passenger>(`${this.passengerUrl + '/getPassengerById'}/${id}`);
   }
 
-  public getPassenger(username: string) {
-    return this.http.get<Passenger>(`${this.passengerUrl + 'getPassenger'}/${username}`);
-  }
+  // public getPassenger(username: string) {
+  //   return this.http.get<Passenger>(`${this.passengerUrl + '/getPassenger'}/${username}`);
+  // }
 
   public getPassengerActive(username: string) {
-    return this.http.get<boolean>(`${this.passengerUrl + 'getPassengerActive'}/${username}`);
+    return this.http.get<boolean>(`${this.passengerUrl + '/getPassengerActive'}/${username}`);
   }
 
 }

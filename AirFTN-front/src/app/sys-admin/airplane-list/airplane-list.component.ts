@@ -27,7 +27,6 @@ export class AirplaneListComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateAirplaneComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog was closed');
       console.log(result);
     });
   }
