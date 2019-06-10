@@ -1,0 +1,67 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.info {
+    width: 30%;
+    height: 500px;
+    border-right: 3px solid rgb(71, 71, 71);
+    float: left;
+}
+
+.flights {
+    width: 70%;
+    height: 500px;
+    border-left: 3px solid rgb(71, 71, 71);
+    float: left;
+}
+
+.destinations {
+    width: 40%;
+    height: 500px;
+    outline: 3px solid rgb(71, 71, 71);
+    float: left;
+    overflow: scroll;
+}
+
+.other {
+    width: 60%;
+    height: 500px;
+    outline: 3px solid rgb(71, 71, 71);
+    float: left;
+}
+
+h3 {
+    background: rgb(71, 71, 71);
+    height: 30px;
+    color: white;
+    font-family: lato;
+    text-align: center;
+    padding-top: 5px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20;
+}
+
+table {
+    margin: 0 auto;
+    width: 95%;
+    height: 400px;
+    margin-top: 5px;
+}
+
+th {
+    font-size: 20px;
+    color: white;
+    background: gray;
+    padding-top: 20px;
+}
+
+tr {
+    background: #eaebd9;
+}
+
+.addDest {
+    margin: 5px 0px 5px 20px;
+}

@@ -11,6 +11,8 @@ import { SignupInfo } from '../auth/signup-info';
 })
 export class RegistrationComponent implements OnInit {
 
+  minDate = new Date(1919, 0, 1);
+  maxDate = new Date(2001, 0, 1);
   form: any = {};
   signupInfo: SignupInfo = new SignupInfo();
   isSignedUp = false;

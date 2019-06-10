@@ -17,7 +17,10 @@ import { HotelComponent } from './hotel/hotel.component';
 import { HeaderComponent } from './header/header.component';
 import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
 import { AiradminProfileComponent } from './airline-admin/airadmin-profile/airadmin-profile.component';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule, MatSelectModule, MatOptionModule } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule, MatSortModule } from '@angular/material';
+import {MatSelectModule, MatOptionModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterSysadminComponent } from './sys-admin/admin-list/register-sysadmin/register-sysadmin.component';
 import { RegisterAiradminComponent } from './sys-admin/admin-list/register-airadmin/register-airadmin.component';
@@ -76,6 +79,7 @@ import { PricelistComponent } from './airline-admin/pricelist/pricelist.componen
     CreateAirplaneComponent,
     AirlineProfileComponent,
     PricelistComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,14 @@ import { PricelistComponent } from './airline-admin/pricelist/pricelist.componen
     MatOptionModule,
     MatGridListModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatTableDataSource
   ],
   entryComponents: [
     AiradminProfileComponent,

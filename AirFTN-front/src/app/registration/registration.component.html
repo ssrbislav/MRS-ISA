@@ -73,7 +73,7 @@
               <div *ngIf="phone_number.errors.required" style="color: red">Phone number is required</div>
             </div>
           </div>
-
+<!-- 
         <div class="form-group">
           <input placeholder="DATE OF BIRTH" type="date" name="date_of_birth" onfocus="(this.type='date')" 
           onblur="(this.type='text')" id="date" [(ngModel)]="signupInfo.date_of_birth" #date_of_birth="ngModel" 
@@ -81,7 +81,15 @@
           <div *ngIf="f.submitted && date_of_birth.invalid">
             <div *ngIf="date_of_birth.errors.required" style="color: red">Date is required</div>
           </div>
-        </div>
+        </div> -->
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="DATE OF BIRTH" [min]="minDate" [max]="maxDate" 
+          id="date" name="date_of_birth" [(ngModel)]="signupInfo.date_of_birth" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
         <br>
 
         <div class="form-group">
