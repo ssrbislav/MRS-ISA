@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -60,7 +61,7 @@ public class Flight {
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
 
-	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "flight")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "flight")
 	private List<TransferPoint> transferPoints = new ArrayList<TransferPoint>();
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "flight")

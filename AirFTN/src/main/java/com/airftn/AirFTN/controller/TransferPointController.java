@@ -82,7 +82,7 @@ public class TransferPointController {
 		return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
 	}
 	
-	@PostMapping("deleteTP")
+	@PostMapping("/deleteTP")
 	public ResponseEntity<ResponseMessage> delete(@PathVariable Long id) {
 		
 		boolean deleted = transferPointService.delete(id);

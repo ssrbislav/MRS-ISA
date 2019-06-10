@@ -1,6 +1,7 @@
 package com.airftn.AirFTN.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,19 +51,39 @@ public class TransferPointService implements ITransferPointService {
 	}
 
 	@Override
-	public TransferPoint create(TransferPointDTO tranferPoint) {
-		
-		Flight flight = flightService.getOne(tranferPoint.getFlightId());
+	public TransferPoint create(TransferPointDTO transferPoint) {
+
+		// Returns null, but saves it in database
+		// Flight info not visible, don't know why
+
+		Flight flight = flightService.getOne(transferPoint.getFlightId());
+
+		Calendar flightDepTime = Calendar.getInstance();
+		flightDepTime.setTime(flight.getDepartureDate());
+
+		Calendar flightArrTime = Calendar.getInstance();
+		flightArrTime.setTime(flight.getArrivalDate());
+
+		if (!transferPoint.getArrivalTime().after(flightDepTime.getTime())
+				&& !transferPoint.getArrivalTime().before(flightArrTime.getTime()))
+			return null;
+
+		if (!transferPoint.getDepartureTime().after(transferPoint.getArrivalTime())
+				&& !transferPoint.getDepartureTime().before(flightArrTime.getTime()))
+			return null;
+
+		if (transferPoint.getDepartureTime().before(transferPoint.getArrivalTime()))
+			return null;
 
 		TransferPoint tp = new TransferPoint();
-		tp.setArivalTime(tranferPoint.getArrivalTime());
-		tp.setDepartureTime(tranferPoint.getDepartureTime());
-		tp.setCountryAndCity(tranferPoint.getCoutryAndCity());
+		tp.setArivalTime(transferPoint.getArrivalTime());
+		tp.setDepartureTime(transferPoint.getDepartureTime());
+		tp.setCountryAndCity(transferPoint.getCoutryAndCity());
 		tp.setFlight(flight);
 		tp.setDeleted(false);
-		
+
 		return transferPointRepository.save(tp);
-		
+
 	}
 
 	@Override
@@ -74,9 +95,9 @@ public class TransferPointService implements ITransferPointService {
 		tp.setCountryAndCity(tranferPoint.getCountryAndCity());
 		tp.setFlight(tranferPoint.getFlight());
 		tp.setDeleted(false);
-		
+
 		return transferPointRepository.save(tp);
-		
+
 	}
 
 	@Override
