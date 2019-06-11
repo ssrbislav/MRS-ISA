@@ -45,6 +45,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { PricelistComponent } from './airline-admin/pricelist/pricelist.component';
 import { AddDestinationComponent } from './airline-admin/airline-profile/add-destination/add-destination.component';
+import { AddAirplaneComponent } from './airline-admin/airline-profile/add-airplane/add-airplane.component';
 
 
 
@@ -81,6 +82,7 @@ import { AddDestinationComponent } from './airline-admin/airline-profile/add-des
     AirlineProfileComponent,
     PricelistComponent,
     AddDestinationComponent,
+    AddAirplaneComponent,
 
   ],
   imports: [
@@ -115,7 +117,8 @@ import { AddDestinationComponent } from './airline-admin/airline-profile/add-des
     CreateDestinationComponent,
     CreateAirplaneComponent,
     PricelistComponent,
-    AddDestinationComponent
+    AddDestinationComponent,
+    AddAirplaneComponent
   ],
   providers: [
     RoleGuardService,

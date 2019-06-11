@@ -13,6 +13,7 @@ import { AirplaneService } from 'src/app/services/airplane.service';
 import { Airplane, AirplaneDTO } from 'src/app/model/airplane.model';
 import { ChangeAdminComponent } from 'src/app/sys-admin/airline-company-list/airline-company-table/change-admin/change-admin.component';
 import { AddDestinationComponent } from './add-destination/add-destination.component';
+import { AddAirplaneComponent } from './add-airplane/add-airplane.component';
 
 @Component({
   selector: 'app-airline-profile',
@@ -109,7 +110,7 @@ export class AirlineProfileComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  addDestination(company) {
+  addDestination(company: any) {
 
     const dialogConfig = new MatDialogConfig();
 
@@ -122,6 +123,26 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(AddDestinationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed');
+      console.log(result);
+    });
+  }
+
+  addAirplane(company: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      company
+    };
+
+    const dialogRef = this.dialog.open(AddAirplaneComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed');

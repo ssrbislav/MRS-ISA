@@ -1,0 +1,22 @@
+<div class="login-form">
+    <br>
+    <h3>DEMAND NEW AIRPLANE</h3>
+    <br>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  
+      <div class="form-group">
+        <input type="text" placeholder="Enter a message for sys admin">
+      </div>
+  
+      <br>
+  
+      <div class="form-group">
+        <button class="button" class="submitbtn">SEND</button>
+        <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+          Adding failed: {{errorMessage}}
+        </div>
+        <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+      </div>
+      <br>
+    </form>
+  </div>

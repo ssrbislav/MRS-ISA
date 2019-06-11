@@ -102,7 +102,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-
   </div>
 
   <!-- DESTINATIONS panel -->
@@ -112,23 +111,25 @@
 
     <h3>DESTINATIONS</h3>
     <table class="table table-hover">
-        <thead>
-          <tr>
-            <th class="head" scope="col">City</th>
-            <th class="head" scope="col">Country</th>
-            <th class="head" scope="col">Description</th>
-            <th class="head" scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor = "let destination of destinations; let i = index">
-            <td>{{destination.city}}</td>
-            <td>{{destination.country}}</td>
-            <td>{{destination.description}}</td>
-            <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
-          </tr>
-          <mat-divider></mat-divider>
-      </table>
+      <thead>
+        <tr>
+          <th class="head" scope="col">City</th>
+          <th class="head" scope="col">Country</th>
+          <th class="head" scope="col">Description</th>
+          <th class="head" scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let destination of destinations; let i = index">
+          <td>{{destination.city}}</td>
+          <td>{{destination.country}}</td>
+          <td>{{destination.description}}</td>
+          <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button></td>
+        </tr>
+        <mat-divider></mat-divider>
+    </table>
 
   </div>
 
@@ -136,31 +137,33 @@
   <!-- AIRPLANE panel -->
   <div class="airplanes grid-item ">
 
-      <button class="addDest" mat-raised-button (click)="addAirplane(airline.id)"> Add new airplane </button>
-  
-      <h3>AIRPLANES</h3>
-      <table class="table table-hover">
-          <thead>
-            <tr>
-              <th class="head" scope="col">MODEL</th>
-              <th class="head" scope="col">NUMBER OF SEATS</th>
-              <th class="head" scope="col">DELETE</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor = "let airplane of airplanes; let i = index">
-              <td>{{airplane.model}}</td>
-              <td>{{airplane.numberOfSeats}}</td>
-              <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
-            </tr>
-            <mat-divider></mat-divider>
-        </table>
-  
-    </div>
+    <button class="addAirplane" mat-raised-button (click)="addAirplane(airline.id)"> Demand new airplane </button>
+
+    <h3>AIRPLANES</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="head" scope="col">MODEL</th>
+          <th class="head" scope="col">NUMBER OF SEATS</th>
+          <th class="head" scope="col">DELETE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let airplane of airplanes; let i = index">
+          <td>{{airplane.model}}</td>
+          <td>{{airplane.numberOfSeats}}</td>
+          <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button></td>
+        </tr>
+        <mat-divider></mat-divider>
+    </table>
+
+  </div>
 
   <div class="other grid-item">
     <h3>OTHER INFORMATION</h3>
-    <p>Something will eventually come to my mind. I hope so!</p>
+    <p>Something will eventually come to my mind.</p>
   </div>
 
 </div>

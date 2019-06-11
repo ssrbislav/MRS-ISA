@@ -82,6 +82,11 @@ th {
     float:left;
 }
 
+.addAirplane {
+    margin: 40px 0 10px 15px;
+    float:left;
+}
+
 .search {
     margin-left: 20px;
 }

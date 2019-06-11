@@ -1,0 +1,96 @@
+body {
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box;
+}
+
+
+
+.login-form {
+    text-align: center;
+    background-color: white;
+    height: 100%;
+    overflow: auto;
+    margin: 0 auto;
+}
+
+input {
+    width: 80%;
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    text-align: center;
+    font-family: lato;
+}
+
+input::-webkit-input-placeholder {
+    opacity: 0.6; 
+}
+
+input:focus {
+    border-bottom: 1px solid rgb(20, 168, 57);
+}
+
+button {
+    padding: 18px 30px;
+    margin: 15px 15px ;
+    border: 1px solid rgb(20, 168, 57);
+    border-radius: 4px;
+    cursor: pointer;
+    width: 35%;
+    opacity: 0.9;
+    background-color: white;
+    font-family: lato;
+}
+
+.cancelbtn {
+    border: 1px solid gray;
+}
+  
+.cancelbtn:hover {
+    background-color: gray;
+    opacity: 0.6;
+    color: white;
+}
+
+.cancelbtn:focus {
+    background-color: gray;
+    opacity: 1;
+    color: white;
+}
+
+.submitbtn:hover {
+    background: #a8dfb0;
+    color: white;
+    opacity: 1;
+}
+
+textarea, select, input, button { 
+    outline: none;
+ }
+
+a {
+    color:  rgb(20, 168, 57);
+}
+
+h3, .signup {
+    padding: 10px 10px;
+    font-size: 30px;
+    font-family: lato;
+    font-weight: 300;
+}
+
+p {
+    font-size: 20px;
+    font-family: lato;
+}
+  
+#span {
+    color: rgb(20, 168, 57);
+    text-decoration: underline;
+    cursor: pointer;
+}
