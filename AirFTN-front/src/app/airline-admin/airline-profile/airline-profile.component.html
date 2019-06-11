@@ -22,7 +22,11 @@
   <div class="flights grid-item ">
     <h3>FLIGHTS</h3>
 
-    
+    <mat-form-field class="search">
+        <input (keyup)="filterFlights($event.target.value)" matInput placeholder="Search">
+      </mat-form-field>
+  
+      <button class="addDest" mat-raised-button (click)="addFlight()">Create new flight </button>
   </div>
 
   <div class="destinations grid-item ">
