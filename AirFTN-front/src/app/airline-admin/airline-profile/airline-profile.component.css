@@ -8,6 +8,7 @@
     height: 500px;
     border-right: 3px solid rgb(71, 71, 71);
     float: left;
+
 }
 
 .flights {
@@ -15,6 +16,7 @@
     height: 500px;
     border-left: 3px solid rgb(71, 71, 71);
     float: left;
+    background-color: black;
 }
 
 .destinations {
@@ -22,7 +24,7 @@
     height: 500px;
     outline: 3px solid rgb(71, 71, 71);
     float: left;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .other {
@@ -30,6 +32,7 @@
     height: 500px;
     outline: 3px solid rgb(71, 71, 71);
     float: left;
+    background-color: black;
 }
 
 h3 {
@@ -52,16 +55,31 @@ table {
 }
 
 th {
-    font-size: 20px;
+    font-size: 16px;
     color: white;
     background: gray;
     padding-top: 20px;
 }
 
 tr {
-    background: #eaebd9;
+    background: #0f0f0e;
+}
+
+td {
+    color: white;
 }
 
 .addDest {
-    margin: 5px 0px 5px 20px;
+    margin: 10px 20px 5px -0;
+    float:right;
+}
+
+.search {
+    margin-left: 20px;
+}
+
+.white {
+    color: white;
+    font: lato;
+    text-transform: uppercase;
 }

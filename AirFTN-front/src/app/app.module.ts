@@ -20,7 +20,7 @@ import { AiradminProfileComponent } from './airline-admin/airadmin-profile/airad
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule, MatSortModule } from '@angular/material';
 import {MatSelectModule, MatOptionModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
-import {MatTableModule, MatTableDataSource} from '@angular/material/table';
+import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterSysadminComponent } from './sys-admin/admin-list/register-sysadmin/register-sysadmin.component';
 import { RegisterAiradminComponent } from './sys-admin/admin-list/register-airadmin/register-airadmin.component';
@@ -102,7 +102,6 @@ import { PricelistComponent } from './airline-admin/pricelist/pricelist.componen
     MatInputModule,
     MatTableModule,
     MatSortModule,
-    MatTableDataSource
   ],
   entryComponents: [
     AiradminProfileComponent,

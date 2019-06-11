@@ -1,19 +1,40 @@
 <div class="wrapper">
-  
+
   <div class="info grid-item ">
     <h3>AIRLINE INFO</h3>
+    <mat-list>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader class="white">NAME : {{airline.name}}</h3>           
+           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader class="white">CITY : {{airline.city}}</h3>           
+           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader class="white">ADDRESS : {{airline.address}}</h3>           
+           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader class="white">DESCRIPTION : {{airline.description}}</h3>           
+           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        <mat-divider></mat-divider>
+     </mat-list>
   </div>
 
   <div class="flights grid-item ">
     <h3>FLIGHTS</h3>
+
+    
   </div>
 
   <div class="destinations grid-item ">
     <h3>DESTINATIONS</h3>
 
+    <mat-form-field class="search">
+      <input (keyup)="filterDestinations($event.target.value)" matInput placeholder="Search">
+    </mat-form-field>
+
     <button class="addDest" mat-raised-button (click)="addDestination()"> Add Destination to airline company </button>
 
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSourceDestination" matSort class="mat-elevation-z8">
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->

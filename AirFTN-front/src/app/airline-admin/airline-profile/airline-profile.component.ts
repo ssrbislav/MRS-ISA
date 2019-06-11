@@ -26,7 +26,7 @@ export class AirlineProfileComponent implements OnInit {
   companies: AirlineCompanyDTO[];
   adminInfo: AdminDTO = new AdminDTO();
   destinations: DestinationDTO[];
-  dataSource: MatTableDataSource<DestinationDTO>;
+  dataSourceDestination: MatTableDataSource<DestinationDTO>;
 
   displayedColumns: string[] = ['city', 'country', 'description'];
 
@@ -64,10 +64,14 @@ export class AirlineProfileComponent implements OnInit {
     this.destinationService.getAllDestinations().toPromise().then(
       data => {
         this.destinations = data;
-        this.dataSource = new MatTableDataSource(this.destinations);
-        this.dataSource.sort = this.sort;
+        this.dataSourceDestination = new MatTableDataSource(this.destinations);
+        this.dataSourceDestination.sort = this.sort;
       }
     );
+  }
+
+  filterDestinations(filterValue: string) {
+    this.dataSourceDestination.filter = filterValue.trim().toLowerCase();
   }
 
 }
