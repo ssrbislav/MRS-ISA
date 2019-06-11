@@ -6,3 +6,12 @@ export class DestinationDTO {
 
 }
 
+export class Destination {
+
+  id: BigInteger;
+  city: string;
+  country: string;
+  description: string;
+
+}
+

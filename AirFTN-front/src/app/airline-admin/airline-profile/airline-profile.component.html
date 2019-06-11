@@ -3,7 +3,7 @@
   <!-- INFORMATION panel -->
   <div class="info grid-item ">
     <h3>AIRLINE INFO</h3>
-    <mat-list>
+    <mat-list *ngIf="airline">
       <mat-divider></mat-divider>
       <h3 mat-subheader class="white">NAME : {{airline.name}}</h3>
       <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
@@ -125,13 +125,15 @@
             <td>{{destination.city}}</td>
             <td>{{destination.country}}</td>
             <td>{{destination.description}}</td>
-            <td id="delete_airplane" onclick="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
+            <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
           </tr>
           <mat-divider></mat-divider>
       </table>
 
   </div>
 
+
+  <!-- AIRPLANE panel -->
   <div class="airplanes grid-item ">
 
       <button class="addDest" mat-raised-button (click)="addAirplane(airline.id)"> Add new airplane </button>
@@ -149,7 +151,7 @@
             <tr *ngFor = "let airplane of airplanes; let i = index">
               <td>{{airplane.model}}</td>
               <td>{{airplane.numberOfSeats}}</td>
-              <td id="delete_airplane" onclick="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
+              <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
             </tr>
             <mat-divider></mat-divider>
         </table>

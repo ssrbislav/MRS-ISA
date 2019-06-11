@@ -26,6 +26,11 @@ export class AirlineService {
     return this.http.get<AirlineCompanyDTO>(url);
   }
 
+  addDestinationToCompany(destId: BigInteger, companyId: BigInteger) {
+    const url = `${this.airlineCompanyUrl + '/addDestination/' + destId + '/' + companyId}`;
+    return this.http.post<ResponseMessage>(url, httpOptions);
+  }
+
   createCompany(info: AirlineCompanyDTO): Observable<ResponseMessage> {
     const url = `${this.airlineCompanyUrl + '/createCompany'}`;
     return this.http.post<ResponseMessage>(url, info, httpOptions);

@@ -6,11 +6,13 @@ import { AirlineService } from 'src/app/services/airline.service';
 import { AirlineCompanyDTO } from 'src/app/model/company.model';
 import { DestinationDTO } from 'src/app/model/destination.model';
 import { DestinationService } from 'src/app/services/destination.service';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatDialog, MatDialogConfig } from '@angular/material';
 import { FlightDTO, Flight } from 'src/app/model/flight.model';
 import { FlightService } from 'src/app/services/flight.service';
 import { AirplaneService } from 'src/app/services/airplane.service';
 import { Airplane, AirplaneDTO } from 'src/app/model/airplane.model';
+import { ChangeAdminComponent } from 'src/app/sys-admin/airline-company-list/airline-company-table/change-admin/change-admin.component';
+import { AddDestinationComponent } from './add-destination/add-destination.component';
 
 @Component({
   selector: 'app-airline-profile',
@@ -24,7 +26,8 @@ export class AirlineProfileComponent implements OnInit {
               private airlineService: AirlineService,
               private destinationService: DestinationService,
               private flightService: FlightService,
-              private airplaneService: AirplaneService) { }
+              private airplaneService: AirplaneService,
+              private dialog: MatDialog) { }
 
   username: string;
   adminId: BigInteger;
@@ -105,5 +108,26 @@ export class AirlineProfileComponent implements OnInit {
   filterFlights(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  addDestination(company) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      company
+    };
+
+    const dialogRef = this.dialog.open(AddDestinationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed');
+      console.log(result);
+    });
+  }
+
 
 }

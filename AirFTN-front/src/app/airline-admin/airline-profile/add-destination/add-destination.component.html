@@ -1,0 +1,26 @@
+<div class="login-form">
+    <br>
+    <h3>ADD NEW DESTINATION</h3>
+    <br>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  
+      <div class="form-group">
+        <mat-select name="dest" [(ngModel)]="dest" placeholder="DESTINATIONS">
+          <mat-option *ngFor="let destination of destinations"  [value]='destination.id'>
+            {{destination.city}}
+          </mat-option>
+        </mat-select>
+      </div>
+  
+      <br>
+  
+      <div class="form-group">
+        <button class="button" class="submitbtn">ADD</button>
+        <div *ngIf="f.submitted && isLoginFailed" style="color: red">
+          Adding failed: {{errorMessage}}
+        </div>
+        <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+      </div>
+      <br>
+    </form>
+  </div>
