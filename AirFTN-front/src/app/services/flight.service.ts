@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { FlightDTO } from '../model/flight.model';
+import { FlightDTO, Flight } from '../model/flight.model';
 import { ResponseMessage } from '../model/responseMessage';
 import { Observable } from 'rxjs';
 
@@ -36,8 +36,6 @@ export class FlightService {
     return this.http.post<ResponseMessage> (url, info, httpOptions);
   }
 
-  // Check this method, I should not pass DTO object but FLight object
-  // At least I think so
   updateFlight(info: FlightDTO): Observable<ResponseMessage> {
     const url = `${this.flightUrl + '/updateFlight'}`;
     return this.http.post<ResponseMessage> (url, info, httpOptions);

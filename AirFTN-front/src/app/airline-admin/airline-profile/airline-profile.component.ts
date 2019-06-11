@@ -7,7 +7,7 @@ import { AirlineCompanyDTO } from 'src/app/model/company.model';
 import { DestinationDTO } from 'src/app/model/destination.model';
 import { DestinationService } from 'src/app/services/destination.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { FlightDTO } from 'src/app/model/flight.model';
+import { FlightDTO, Flight } from 'src/app/model/flight.model';
 import { FlightService } from 'src/app/services/flight.service';
 
 @Component({
@@ -29,19 +29,20 @@ export class AirlineProfileComponent implements OnInit {
 
   airline: AirlineCompanyDTO;
   companies: AirlineCompanyDTO[];
- 
+
   destinations: DestinationDTO[];
-  dataSourceDestination: MatTableDataSource<DestinationDTO>;
+  dataSource: MatTableDataSource<FlightDTO>;
 
   flights: FlightDTO[];
 
-  displayedColumns: string[] = ['city', 'country', 'description', 'delete'];
+  displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
+                     'arrival', 'destination', 'mileage',
+                      'duration', 'price',  'transfer', 'edit'];
 
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
     this.getAdmin();
-    this.getDestinations();
   }
 
   getAdmin() {
@@ -63,30 +64,36 @@ export class AirlineProfileComponent implements OnInit {
                 this.airline = element;
           }
         });
+        this.getCompanyDestinations(this.airline.id);
+        this.getCompanyFlights(this.airline.id);
       }
     );
   }
 
-  getDestinations() {
-    this.destinationService.getAllDestinations().toPromise().then(
+  getCompanyDestinations(id: BigInteger) {
+    this.destinationService.getAllByCompanyId(this.airline.id).toPromise().then(
       data => {
         this.destinations = data;
-        this.dataSourceDestination = new MatTableDataSource(this.destinations);
-        this.dataSourceDestination.sort = this.sort;
+        // this.dataSource = new MatTableDataSource(this.destinations);
+        // this.dataSource.sort = this.sort;
       }
     );
   }
 
-  getFlights() {
+  getCompanyFlights(id: BigInteger) {
     this.flightService.getAllAirlineFlights(this.airline.id).toPromise().then(
       data => {
         this.flights = data;
+        console.log(this.flights);
+        this.dataSource = new MatTableDataSource(this.flights);
+        console.log(this.dataSource);
+        this.dataSource.sort = this.sort;
       }
     )
   }
 
-  filterDestinations(filterValue: string) {
-    this.dataSourceDestination.filter = filterValue.trim().toLowerCase();
+  filterFlights(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

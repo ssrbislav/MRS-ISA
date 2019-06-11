@@ -21,6 +21,11 @@ export class DestinationService {
     return this.http.get<DestinationDTO[]>(this.destinationUrl);
   }
 
+  getAllByCompanyId(id: BigInteger) {
+    const url = `${this.destinationUrl + '/getDestinationByCompanyId/' + id}`;
+    return this.http.get<DestinationDTO[]>(url);
+  }
+
   createDestination(info: DestinationDTO): Observable<ResponseMessage> {
     const url = `${this.destinationUrl + '/createDestination'}`;
     return this.http.post<ResponseMessage> (url, info, httpOptions);

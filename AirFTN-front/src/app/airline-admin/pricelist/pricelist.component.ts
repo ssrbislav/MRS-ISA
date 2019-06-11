@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { AdminService } from 'src/app/services/admin.service';
 import { PricelistDTO } from 'src/app/model/pricelist.model';
 import { AdminDTO } from 'src/app/model/admin.model';
-import { AirlineCompanyDTO } from 'src/app/model/company.model';
+import { AirlineCompanyDTO, AirlineCompany } from 'src/app/model/company.model';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { AirlineService } from 'src/app/services/airline.service';
 import { PricelistService } from 'src/app/services/pricelist.service';
@@ -19,8 +19,8 @@ export class PricelistComponent implements OnInit {
   pricelist: PricelistDTO = new PricelistDTO();
   username: string;
   adminId: BigInteger;
-  airline: AirlineCompanyDTO;
-  companies: AirlineCompanyDTO[];
+  airline: AirlineCompany;
+  companies: AirlineCompany[];
   adminInfo: AdminDTO = new AdminDTO();
   errorMessage = '';
 

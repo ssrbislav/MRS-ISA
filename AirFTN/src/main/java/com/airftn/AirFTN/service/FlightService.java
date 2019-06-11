@@ -4,6 +4,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,8 +63,12 @@ public class FlightService implements IFlightService {
 
 		Calendar arrivalTime = Calendar.getInstance();
 		arrivalTime.setTime(flight.getArrival());
-
-		double durationOfFlight = ChronoUnit.HOURS.between(departureTime.toInstant(), arrivalTime.toInstant());
+		
+		long start = departureTime.getTimeInMillis();
+	    long end = arrivalTime.getTimeInMillis();
+	    double durationOfFlight = TimeUnit.MILLISECONDS.toHours(Math.abs(end - start));
+		
+		System.out.println(durationOfFlight);
 
 		for (Flight f : flightRepository.findAll()) {
 			if (f.getFlightNumber().equals(flight.getFlightNumber()))

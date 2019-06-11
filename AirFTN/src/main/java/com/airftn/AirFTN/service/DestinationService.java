@@ -78,4 +78,14 @@ public class DestinationService implements IDestinationService {
 		return destinationRepository.getOne(id);
 	}
 
+	@Override
+	public List<Destination> findAllByCompaniesId(Long id) {
+
+		AirlineCompany company = companyService.getOne(id);
+		
+		List<Destination> destinations = company.getDestinations();
+		
+		return destinations;
+	}
+
 }

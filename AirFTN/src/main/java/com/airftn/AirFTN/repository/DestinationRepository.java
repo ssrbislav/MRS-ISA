@@ -11,5 +11,7 @@ public interface DestinationRepository extends JpaRepository<Destination, Long> 
 	List<Destination> findAllByCity(String city);
 
 	List<Destination> findAllByCountry(String country);
+	
+	List<Destination> findAllByCompaniesId(Long id);
 
 }

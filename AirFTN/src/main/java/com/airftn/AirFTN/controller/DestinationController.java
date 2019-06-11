@@ -54,6 +54,18 @@ public class DestinationController {
 		return new ResponseEntity<>(destination, HttpStatus.OK);
 	}
 	
+	@GetMapping("/getDestinationByCompanyId/{id}")
+	public ResponseEntity<List<Destination>> getDestinationsByCompanyId(@PathVariable Long id) {
+		
+		List<Destination> destinations = destinationService.findAllByCompaniesId(id);
+		
+		if(destinations == null)
+			return new ResponseEntity<List<Destination>>(HttpStatus.BAD_REQUEST);
+		
+		return new ResponseEntity<List<Destination>>(destinations, HttpStatus.OK);
+		
+	}
+	
 	@PostMapping("/createDestination")
 	public ResponseEntity<ResponseMessage> create(@RequestBody DestinationDTO dest) {
 		
