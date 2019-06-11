@@ -9,6 +9,8 @@ import { DestinationService } from 'src/app/services/destination.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { FlightDTO, Flight } from 'src/app/model/flight.model';
 import { FlightService } from 'src/app/services/flight.service';
+import { AirplaneService } from 'src/app/services/airplane.service';
+import { Airplane, AirplaneDTO } from 'src/app/model/airplane.model';
 
 @Component({
   selector: 'app-airline-profile',
@@ -21,7 +23,8 @@ export class AirlineProfileComponent implements OnInit {
               private adminService: AdminService,
               private airlineService: AirlineService,
               private destinationService: DestinationService,
-              private flightService: FlightService) { }
+              private flightService: FlightService,
+              private airplaneService: AirplaneService) { }
 
   username: string;
   adminId: BigInteger;
@@ -35,9 +38,11 @@ export class AirlineProfileComponent implements OnInit {
 
   flights: FlightDTO[];
 
+  airplanes: Airplane[];
+
   displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
-                     'arrival', 'destination', 'mileage',
-                      'duration', 'price',  'transfer', 'edit'];
+    'arrival', 'destination', 'mileage',
+    'duration', 'price', 'transfer', 'edit'];
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -61,11 +66,12 @@ export class AirlineProfileComponent implements OnInit {
         data.forEach(element => {
           this.adminId = element.admin.id;
           if (this.adminId === this.adminInfo.id) {
-                this.airline = element;
+            this.airline = element;
           }
         });
         this.getCompanyDestinations(this.airline.id);
         this.getCompanyFlights(this.airline.id);
+        this.getCompanyAirplanes(this.airline.id);
       }
     );
   }
@@ -74,8 +80,6 @@ export class AirlineProfileComponent implements OnInit {
     this.destinationService.getAllByCompanyId(this.airline.id).toPromise().then(
       data => {
         this.destinations = data;
-        // this.dataSource = new MatTableDataSource(this.destinations);
-        // this.dataSource.sort = this.sort;
       }
     );
   }
@@ -84,12 +88,18 @@ export class AirlineProfileComponent implements OnInit {
     this.flightService.getAllAirlineFlights(this.airline.id).toPromise().then(
       data => {
         this.flights = data;
-        console.log(this.flights);
         this.dataSource = new MatTableDataSource(this.flights);
-        console.log(this.dataSource);
         this.dataSource.sort = this.sort;
       }
-    )
+    );
+  }
+
+  getCompanyAirplanes(id: BigInteger) {
+    this.airplaneService.getCompanyAirplanes(this.airline.id).toPromise().then(
+      data => {
+        this.airplanes = data;
+      }
+    );
   }
 
   filterFlights(filterValue: string) {

@@ -8,7 +8,6 @@
     height: 500px;
     border-right: 3px solid rgb(71, 71, 71);
     float: left;
-
 }
 
 .flights {
@@ -22,15 +21,24 @@
 .destinations {
     width: 40%;
     height: 500px;
-    outline: 3px solid rgb(71, 71, 71);
+    border-right: 3px solid rgb(71, 71, 71);
     float: left;
     overflow: hidden;
 }
 
-.other {
-    width: 60%;
+.airplanes {
+    width: 30%;
     height: 500px;
-    outline: 3px solid rgb(71, 71, 71);
+    border-right: 3px solid rgb(71, 71, 71);
+    float: left;
+    overflow: hidden;
+}
+
+
+.other {
+    width: 30%;
+    height: 500px;
+    border-left: 3px solid rgb(71, 71, 71);
     float: left;
 }
 
@@ -44,13 +52,17 @@ h3 {
     position: -webkit-sticky;
     position: sticky;
     top: 20;
+    font-weight: 500;
+    font-size: 18px;
 }
+
 
 table {
     margin: 0 auto;
     width: 95%;
     height: 380px;
     margin-top: 5px;
+    font-family: lato;
 }
 
 th {
@@ -60,9 +72,14 @@ th {
     padding-top: 20px;
 }
 
-.addDest {
-    margin: 10px 20px 5px -0;
+.addFlight {
+    margin: 10px 35px 5px 0;
     float:right;
+}
+
+.addDest {
+    margin: 40px 0 10px 20px;
+    float:left;
 }
 
 .search {
@@ -74,3 +91,38 @@ th {
     font: lato;
     text-transform: uppercase;
 }
+
+/* thead {
+    background-color: #4b4e5d;
+    color: white;
+    text-transform: uppercase
+} */
+
+.table {
+    font-family: lato;
+    -webkit-box-shadow: 2px 10px 33px -8px rgba(0,0,0,0.44);
+-moz-box-shadow: 2px 10px 33px -8px rgba(0,0,0,0.44);
+box-shadow: 2px 10px 33px -8px rgba(0,0,0,0.44);
+}
+
+.table th {
+    font-weight: 400;
+    text-transform: uppercase
+}
+
+table tr:hover { 
+    box-sizing: border-box; 
+    background-color: WHITE;
+    box-shadow: 0px 0px 10px #000;
+    -webkit-box-shadow: 0px 0px 10px #000;
+    -moz-box-shadow: 0px 0px 10px #000;
+ }
+
+ .other p {
+     background: #000;
+     color: white;
+     margin-top: 50px;
+     font-size: 40px;
+     font-family: lato;
+     text-align: center;
+ }

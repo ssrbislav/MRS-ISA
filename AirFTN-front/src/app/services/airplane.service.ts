@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { AirplaneDTO } from '../model/airplane.model';
+import { AirplaneDTO, Airplane } from '../model/airplane.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json'})
@@ -16,7 +16,12 @@ export class AirplaneService {
   airplaneUrl = 'http://localhost:8080/api/airplane';
 
   getAllAirplanes() {
-    return this.http.get(this.airplaneUrl);
+    return this.http.get<Airplane[]>(this.airplaneUrl);
+  }
+
+  getCompanyAirplanes(id: BigInteger) {
+    const url = `${this.airplaneUrl + '/findByCompanyId/' + id}`;
+    return this.http.get<Airplane[]>(url);
   }
 
   createAirplane(info: AirplaneDTO) {

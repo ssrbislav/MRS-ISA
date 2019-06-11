@@ -4,20 +4,20 @@
   <div class="info grid-item ">
     <h3>AIRLINE INFO</h3>
     <mat-list>
-        <mat-divider></mat-divider>
-        <h3 mat-subheader class="white">NAME : {{airline.name}}</h3>           
-           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-        <mat-divider></mat-divider>
-        <h3 mat-subheader class="white">CITY : {{airline.city}}</h3>           
-           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-        <mat-divider></mat-divider>
-        <h3 mat-subheader class="white">ADDRESS : {{airline.address}}</h3>           
-           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-        <mat-divider></mat-divider>
-        <h3 mat-subheader class="white">DESCRIPTION : {{airline.description}}</h3>           
-           <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-        <mat-divider></mat-divider>
-     </mat-list>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader class="white">NAME : {{airline.name}}</h3>
+      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader class="white">CITY : {{airline.city}}</h3>
+      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader class="white">ADDRESS : {{airline.address}}</h3>
+      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader class="white">DESCRIPTION : {{airline.description}}</h3>
+      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      <mat-divider></mat-divider>
+    </mat-list>
   </div>
 
   <!-- FLIGHT panel -->
@@ -25,96 +25,140 @@
     <h3>FLIGHTS</h3>
 
     <mat-form-field class="search">
-        <input (keyup)="filterFlights($event.target.value)" matInput placeholder="Search">
-      </mat-form-field>
-  
-      <button class="addDest" mat-raised-button (click)="addFlight(airline.id)"> Create new flight </button>
-  
-      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-  
-        <!--- Note that these columns can be defined in any order.
+      <input (keyup)="filterFlights($event.target.value)" matInput placeholder="Search">
+    </mat-form-field>
+
+    <button class="addFlight" mat-raised-button (click)="addFlight(airline.id)"> Create new flight </button>
+
+    <table class="flightTable" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
-        <ng-container matColumnDef="flightNumber">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Flight Number </th>
-          <td mat-cell *matCellDef="let flight"> {{flight.flightNumber}} </td>
-        </ng-container>
 
-        <ng-container matColumnDef="airline">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Airline </th>
-            <td mat-cell *matCellDef="let flight"> {{airline.name}} </td>
-          </ng-container>
+      <ng-container matColumnDef="flightNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> FLIGHT NUMBER </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.flightNumber}} </td>
+      </ng-container>
 
-          <ng-container matColumnDef="airplane">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Airplane </th>
-              <td mat-cell *matCellDef="let flight"> {{flight.plane.model}} </td>
-            </ng-container>
-      
-        <ng-container matColumnDef="departure">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Departure </th>
-          <td mat-cell *matCellDef="let flight"> {{flight.departureDate}} </td>
-        </ng-container>
+      <ng-container matColumnDef="airline">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> AIRLINE </th>
+        <td mat-cell *matCellDef="let flight"> {{airline.name}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="arrival">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Arrival </th>
-            <td mat-cell *matCellDef="let flight"> {{flight.arrivalDate}} </td>
-          </ng-container>
+      <ng-container matColumnDef="airplane">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> AIRPLANE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.plane.model}} </td>
+      </ng-container>
 
-          <ng-container matColumnDef="destination">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
-              <td mat-cell *matCellDef="let flight"> {{flight.destination.city}} </td>
-            </ng-container>
+      <ng-container matColumnDef="departure">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DEPARTURE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.departureDate}} </td>
+      </ng-container>
 
-            <ng-container matColumnDef="mileage">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Mileage </th>
-                <td mat-cell *matCellDef="let flight"> {{flight.mileage}} </td>
-              </ng-container>
+      <ng-container matColumnDef="arrival">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ARRIVAL </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.arrivalDate}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="duration">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration of flight </th>
-                  <td mat-cell *matCellDef="let flight"> {{flight.durationOfFlight}} </td>
-                </ng-container>
+      <ng-container matColumnDef="destination">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DESTINATION </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.destination.city}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="transfer">
-            <th mat-header-cell *matHeaderCellDef > Transfers </th>
-            <td mat-cell *matCellDef="let flight" > 
-                <button mat-button >
-                    <mat-icon>flight_takeof</mat-icon>
-                </button>
-            </td>
-          </ng-container> 
+      <ng-container matColumnDef="mileage">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> MILEAGE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.mileage}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="price">
-              <th mat-header-cell *matHeaderCellDef > Price </th>
-              <td mat-cell *matCellDef="let flight" > {{flight.price}} </td>
-        </ng-container>
-        
-        <ng-container matColumnDef="edit">
-            <th mat-header-cell *matHeaderCellDef style="padding-top: 15px"> Edit </th>
-            <td mat-cell *matCellDef="let row" style="padding-top: 15px"> 
-                <button mat-button >
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </td>
-          </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+      <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> FLIGHT DURATION </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.durationOfFlight}} </td>
+      </ng-container>
 
-    
+      <ng-container matColumnDef="transfer">
+        <th mat-header-cell *matHeaderCellDef> TRANSFERS </th>
+        <td mat-cell *matCellDef="let flight">
+          <button mat-raised-button (click)="showFlightTransfers(flight.id)">
+            <mat-icon>flight_takeof</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> PRICE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef style="padding-top: 15px"> EDIT </th>
+        <td mat-cell *matCellDef="let row" style="padding-top: 15px">
+          <button mat-raised-button (click)="editFlight(flight.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
   </div>
 
   <!-- DESTINATIONS panel -->
   <div class="destinations grid-item ">
-    <h3>DESTINATIONS</h3>
 
+    <button class="addDest" mat-raised-button (click)="addDestination(airline.id)"> Add new destination </button>
+
+    <h3>DESTINATIONS</h3>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="head" scope="col">City</th>
+            <th class="head" scope="col">Country</th>
+            <th class="head" scope="col">Description</th>
+            <th class="head" scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let destination of destinations; let i = index">
+            <td>{{destination.city}}</td>
+            <td>{{destination.country}}</td>
+            <td>{{destination.description}}</td>
+            <td id="delete_airplane" onclick="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
+          </tr>
+          <mat-divider></mat-divider>
+      </table>
 
   </div>
 
+  <div class="airplanes grid-item ">
+
+      <button class="addDest" mat-raised-button (click)="addAirplane(airline.id)"> Add new airplane </button>
+  
+      <h3>AIRPLANES</h3>
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="head" scope="col">MODEL</th>
+              <th class="head" scope="col">NUMBER OF SEATS</th>
+              <th class="head" scope="col">DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let airplane of airplanes; let i = index">
+              <td>{{airplane.model}}</td>
+              <td>{{airplane.numberOfSeats}}</td>
+              <td id="delete_airplane" onclick="deleteDestination(destination.id)"><button mat-raised-button><mat-icon>delete</mat-icon></button></td>
+            </tr>
+            <mat-divider></mat-divider>
+        </table>
+  
+    </div>
 
   <div class="other grid-item">
     <h3>OTHER INFORMATION</h3>
+    <p>Something will eventually come to my mind. I hope so!</p>
   </div>
-  
+
 </div>

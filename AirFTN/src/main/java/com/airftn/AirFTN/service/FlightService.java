@@ -55,6 +55,11 @@ public class FlightService implements IFlightService {
 		AirlineCompany company = companyService.getOne(flight.getCompanyId());
 
 		Airplane airplane = airplaneService.getOne(flight.getAirplaneId());
+		
+		for(Flight f: flightRepository.findAll()) {
+			if(f.getPlane().getId() == flight.getAirplaneId())
+				return null;
+		}
 
 		Destination destination = destinationService.findById(flight.getDestinationId());
 
@@ -66,7 +71,7 @@ public class FlightService implements IFlightService {
 		
 		long start = departureTime.getTimeInMillis();
 	    long end = arrivalTime.getTimeInMillis();
-	    double durationOfFlight = TimeUnit.MILLISECONDS.toHours(Math.abs(end - start));
+	    double durationOfFlight = TimeUnit.MILLISECONDS.toMinutes(Math.abs(end - start));
 		
 		System.out.println(durationOfFlight);
 

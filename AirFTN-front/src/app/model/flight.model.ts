@@ -5,8 +5,8 @@ import { AirplaneDTO } from './airplane.model';
 export class FlightDTO {
 
     flightNumber: string;
-    // companyId: BigInteger;
-    // airplaneId: BigInteger;
+    companyId: BigInteger;
+    airplaneId: BigInteger;
     company: AirlineCompanyDTO;
     plane: AirplaneDTO;
     departureDate: Date;
