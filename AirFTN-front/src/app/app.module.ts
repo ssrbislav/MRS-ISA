@@ -46,6 +46,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { PricelistComponent } from './airline-admin/pricelist/pricelist.component';
 import { AddDestinationComponent } from './airline-admin/airline-profile/add-destination/add-destination.component';
 import { AddAirplaneComponent } from './airline-admin/airline-profile/add-airplane/add-airplane.component';
+import { CreateFlightComponent } from './airline-admin/airline-profile/create-flight/create-flight.component';
 
 
 
@@ -83,6 +84,7 @@ import { AddAirplaneComponent } from './airline-admin/airline-profile/add-airpla
     PricelistComponent,
     AddDestinationComponent,
     AddAirplaneComponent,
+    CreateFlightComponent,
 
   ],
   imports: [
@@ -118,7 +120,8 @@ import { AddAirplaneComponent } from './airline-admin/airline-profile/add-airpla
     CreateAirplaneComponent,
     PricelistComponent,
     AddDestinationComponent,
-    AddAirplaneComponent
+    AddAirplaneComponent,
+    CreateFlightComponent
   ],
   providers: [
     RoleGuardService,

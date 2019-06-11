@@ -28,7 +28,7 @@
       <input (keyup)="filterFlights($event.target.value)" matInput placeholder="Search">
     </mat-form-field>
 
-    <button class="addFlight" mat-raised-button (click)="addFlight(airline.id)"> Create new flight </button>
+    <button class="addFlight" mat-raised-button (click)="createFlight(airline.id)"> Create new flight </button>
 
     <table class="flightTable" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

@@ -14,6 +14,7 @@ import { Airplane, AirplaneDTO } from 'src/app/model/airplane.model';
 import { ChangeAdminComponent } from 'src/app/sys-admin/airline-company-list/airline-company-table/change-admin/change-admin.component';
 import { AddDestinationComponent } from './add-destination/add-destination.component';
 import { AddAirplaneComponent } from './add-airplane/add-airplane.component';
+import { CreateFlightComponent } from './create-flight/create-flight.component';
 
 @Component({
   selector: 'app-airline-profile',
@@ -124,10 +125,10 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AddDestinationComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed');
-      console.log(result);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog closed');
+    //   console.log(result);
+    // });
   }
 
   addAirplane(company: any) {
@@ -143,6 +144,26 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(AddAirplaneComponent, dialogConfig);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog closed');
+    //   console.log(result);
+    // });
+  }
+
+  createFlight(company: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      company
+    };
+
+    const dialogRef = this.dialog.open(CreateFlightComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed');
