@@ -7,7 +7,7 @@
       <div class="form-group">
         <mat-select name="dest" [(ngModel)]="dest" placeholder="DESTINATIONS">
           <mat-option *ngFor="let destination of destinations"  [value]='destination.id'>
-            {{destination.city}}
+            {{destination.city}} , {{destination.country}}
           </mat-option>
         </mat-select>
       </div>

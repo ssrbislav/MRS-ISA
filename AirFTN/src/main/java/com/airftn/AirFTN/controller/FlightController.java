@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airftn.AirFTN.dto.FlightDTO;
 import com.airftn.AirFTN.model.Flight;
 import com.airftn.AirFTN.model.ResponseMessage;
+import com.airftn.AirFTN.model.TransferPoint;
 import com.airftn.AirFTN.repository.FlightRepository;
 import com.airftn.AirFTN.service.FlightService;
 
@@ -99,6 +100,18 @@ public class FlightController {
 
 		return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
 
+	}
+	
+	@GetMapping("/getTransferPoints/{id}")
+	public ResponseEntity<List<TransferPoint>> getAllTransferPoints(@PathVariable Long id) {
+		
+		List<TransferPoint> tp = flightService.getAllTransferPoints(id);	
+		
+		if(tp == null) 
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+		
+		return new ResponseEntity<List<TransferPoint>>(tp, HttpStatus.OK);
+		
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.airftn.AirFTN.service;
 
-import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +14,7 @@ import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.Airplane;
 import com.airftn.AirFTN.model.Destination;
 import com.airftn.AirFTN.model.Flight;
+import com.airftn.AirFTN.model.TransferPoint;
 import com.airftn.AirFTN.repository.FlightRepository;
 
 @Service
@@ -30,6 +31,9 @@ public class FlightService implements IFlightService {
 
 	@Autowired
 	IDestinationService destinationService;
+
+	@Autowired
+	ITransferPointService transferPointService;
 
 	@Override
 	public List<Flight> findAll() {
@@ -55,9 +59,9 @@ public class FlightService implements IFlightService {
 		AirlineCompany company = companyService.getOne(flight.getCompanyId());
 
 		Airplane airplane = airplaneService.getOne(flight.getAirplaneId());
-		
-		for(Flight f: flightRepository.findAll()) {
-			if(f.getPlane().getId() == flight.getAirplaneId())
+
+		for (Flight f : flightRepository.findAll()) {
+			if (f.getPlane().getId() == flight.getAirplaneId())
 				return null;
 		}
 
@@ -68,11 +72,11 @@ public class FlightService implements IFlightService {
 
 		Calendar arrivalTime = Calendar.getInstance();
 		arrivalTime.setTime(flight.getArrival());
-		
+
 		long start = departureTime.getTimeInMillis();
-	    long end = arrivalTime.getTimeInMillis();
-	    double durationOfFlight = TimeUnit.MILLISECONDS.toMinutes(Math.abs(end - start));
-		
+		long end = arrivalTime.getTimeInMillis();
+		double durationOfFlight = TimeUnit.MILLISECONDS.toMinutes(Math.abs(end - start));
+
 		System.out.println(durationOfFlight);
 
 		for (Flight f : flightRepository.findAll()) {
@@ -140,6 +144,21 @@ public class FlightService implements IFlightService {
 		flight.get().setDeleted(false);
 
 		return flightRepository.save(flight);
+	}
+
+	@Override
+	public List<TransferPoint> getAllTransferPoints(Long id) {
+
+		List<TransferPoint> transferPoints = new ArrayList<>();
+
+		Flight f = flightRepository.getOne(id);
+
+		for (TransferPoint tp : f.getTransferPoints()) {
+			if (!tp.isDeleted())
+				transferPoints.add(tp);
+		}
+
+		return transferPoints;
 	}
 
 }

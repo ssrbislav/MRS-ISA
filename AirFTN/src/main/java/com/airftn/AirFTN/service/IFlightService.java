@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.airftn.AirFTN.dto.FlightDTO;
 import com.airftn.AirFTN.model.Flight;
+import com.airftn.AirFTN.model.TransferPoint;
 
 public interface IFlightService {
 
@@ -20,5 +21,7 @@ public interface IFlightService {
 	Flight update(Flight flight);
 
 	Flight delete(Long id);
+	
+	List<TransferPoint> getAllTransferPoints(Long id);
 
 }

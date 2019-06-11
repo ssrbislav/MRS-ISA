@@ -1,0 +1,30 @@
+thead {
+    background-color: #4b4e5d;
+    color: white;
+}
+
+.border {
+    background-color: #ececee;
+    border-right: 1px solid black;
+}
+
+.head {
+    border-right: 1px solid white;
+    text-transform: uppercase;
+}
+
+* {
+    font-family: lato;
+    font-weight: 300;
+}
+
+h3 {
+    text-align: center;
+    font-size: 30px;
+}
+
+table {
+    height: 70%;
+    width: 100%;
+    margin: 0 auto;
+}

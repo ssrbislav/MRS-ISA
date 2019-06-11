@@ -1,0 +1,30 @@
+<div class="transfers grid-item ">
+
+    <h3>TRANSFERS</h3>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="head" scope="col">Arrival time</th>
+          <th class="head" scope="col">Departure time</th>
+          <th class="head" scope="col">Place</th>
+          <th class="head" scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transfer of transfers">
+          <td class="border">{{transfer.arivalTime}}</td>
+          <td class="border">{{transfer.departureTime}}</td>
+          <td class="border">{{transfer.countryAndCity}}</td>
+          <td id="delete_airplane" (onclick)="deleteDestination(destination.id)">
+            <button mat-raised-button>D
+            </button>
+          </td>
+        </tr>
+        <mat-divider></mat-divider>
+    </table>
+
+    <br>
+    <button class="addTransfer" mat-raised-button (click)="addTransferPoint(flight.id)" style="font-size: 17px"> Add new transfer point </button>
+
+  </div>

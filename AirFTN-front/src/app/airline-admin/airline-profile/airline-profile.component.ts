@@ -15,6 +15,7 @@ import { ChangeAdminComponent } from 'src/app/sys-admin/airline-company-list/air
 import { AddDestinationComponent } from './add-destination/add-destination.component';
 import { AddAirplaneComponent } from './add-airplane/add-airplane.component';
 import { CreateFlightComponent } from './create-flight/create-flight.component';
+import { ListTransferPointsComponent } from './list-transfer-points/list-transfer-points.component';
 
 @Component({
   selector: 'app-airline-profile',
@@ -164,6 +165,25 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(CreateFlightComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed');
+      console.log(result);
+    });
+  }
+
+  showFlightTransfers(flight: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      flight
+    };
+
+    const dialogRef = this.dialog.open(ListTransferPointsComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed');

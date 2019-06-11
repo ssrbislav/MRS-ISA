@@ -124,7 +124,7 @@ table tr:hover {
  }
 
  .other p {
-     background: #000;
+    background: rgb(71, 71, 71);
      color: white;
      margin-top: 50px;
      font-size: 40px;

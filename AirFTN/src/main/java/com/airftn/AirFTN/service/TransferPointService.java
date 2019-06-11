@@ -80,7 +80,7 @@ public class TransferPointService implements ITransferPointService {
 		TransferPoint tp = new TransferPoint();
 		tp.setArivalTime(transferPoint.getArrivalTime());
 		tp.setDepartureTime(transferPoint.getDepartureTime());
-		tp.setCountryAndCity(transferPoint.getCoutryAndCity());
+		tp.setCountryAndCity(transferPoint.getCountryAndCity());
 		tp.setFlight(flight);
 		tp.setDeleted(false);
 

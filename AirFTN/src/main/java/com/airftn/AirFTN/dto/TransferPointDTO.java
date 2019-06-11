@@ -12,7 +12,7 @@ public class TransferPointDTO {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
 	private Date departureTime;
 
-	private String coutryAndCity;
+	private String countryAndCity;
 
 	private Long flightId;
 
@@ -32,12 +32,12 @@ public class TransferPointDTO {
 		this.departureTime = departureTime;
 	}
 
-	public String getCoutryAndCity() {
-		return coutryAndCity;
+	public String getCountryAndCity() {
+		return countryAndCity;
 	}
 
-	public void setCoutryAndCity(String coutryAndCity) {
-		this.coutryAndCity = coutryAndCity;
+	public void setCountryAndCity(String countryAndCity) {
+		this.countryAndCity = countryAndCity;
 	}
 
 	public Long getFlightId() {
