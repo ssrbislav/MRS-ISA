@@ -57,6 +57,8 @@ public class TransferPointService implements ITransferPointService {
 		// Flight info not visible, don't know why
 
 		Flight flight = flightService.getOne(transferPoint.getFlightId());
+		System.out.println(flight.getFlightNumber());
+		
 
 		Calendar flightDepTime = Calendar.getInstance();
 		flightDepTime.setTime(flight.getDepartureDate());

@@ -44,6 +44,7 @@ public class AirlineCompany {
 	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<Airplane> planes = new ArrayList<Airplane>();
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<Flight> flights = new ArrayList<Flight>();
 

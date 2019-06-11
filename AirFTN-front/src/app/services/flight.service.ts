@@ -15,7 +15,7 @@ export class FlightService {
 
   constructor(private http: HttpClient) { }
 
-  flightUrl = 'http://localhost:8080/api/flight';
+  private flightUrl = 'http://localhost:8080/api/flight';
 
   getAllFlights() {
     return this.http.get<FlightDTO[]>(this.flightUrl);

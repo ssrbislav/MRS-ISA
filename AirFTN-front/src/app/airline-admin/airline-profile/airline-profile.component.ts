@@ -7,6 +7,8 @@ import { AirlineCompanyDTO } from 'src/app/model/company.model';
 import { DestinationDTO } from 'src/app/model/destination.model';
 import { DestinationService } from 'src/app/services/destination.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { FlightDTO } from 'src/app/model/flight.model';
+import { FlightService } from 'src/app/services/flight.service';
 
 @Component({
   selector: 'app-airline-profile',
@@ -18,17 +20,22 @@ export class AirlineProfileComponent implements OnInit {
   constructor(private tokenStorage: TokenStorageService,
               private adminService: AdminService,
               private airlineService: AirlineService,
-              private destinationService: DestinationService) { }
+              private destinationService: DestinationService,
+              private flightService: FlightService) { }
 
   username: string;
   adminId: BigInteger;
+  adminInfo: AdminDTO = new AdminDTO();
+
   airline: AirlineCompanyDTO;
   companies: AirlineCompanyDTO[];
-  adminInfo: AdminDTO = new AdminDTO();
+ 
   destinations: DestinationDTO[];
   dataSourceDestination: MatTableDataSource<DestinationDTO>;
 
-  displayedColumns: string[] = ['city', 'country', 'description'];
+  flights: FlightDTO[];
+
+  displayedColumns: string[] = ['city', 'country', 'description', 'delete'];
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -68,6 +75,14 @@ export class AirlineProfileComponent implements OnInit {
         this.dataSourceDestination.sort = this.sort;
       }
     );
+  }
+
+  getFlights() {
+    this.flightService.getAllAirlineFlights(this.airline.id).toPromise().then(
+      data => {
+        this.flights = data;
+      }
+    )
   }
 
   filterDestinations(filterValue: string) {

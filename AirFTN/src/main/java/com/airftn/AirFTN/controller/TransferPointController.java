@@ -22,82 +22,80 @@ import com.airftn.AirFTN.service.ITransferPointService;
 @RestController
 @RequestMapping("api/transferPoint")
 public class TransferPointController {
-	
+
 	@Autowired
 	ITransferPointService transferPointService;
-	
-	ResponseMessage message;
-	
+
+	ResponseMessage message = new ResponseMessage();
+
 	@GetMapping("")
 	public ResponseEntity<List<TransferPoint>> findAll() {
-		
+
 		List<TransferPoint> transferPoints = transferPointService.findAll();
-		
+
 		return new ResponseEntity<List<TransferPoint>>(transferPoints, HttpStatus.OK);
-		
+
 	}
 
 	@GetMapping("/getTP/{id}")
 	public ResponseEntity<TransferPoint> getOne(@PathVariable Long id) {
-	
+
 		TransferPoint tp = transferPointService.getOne(id);
-		
-		if(tp == null)
+
+		if (tp == null)
 			return new ResponseEntity<TransferPoint>(HttpStatus.BAD_REQUEST);
-		
+
 		return new ResponseEntity<TransferPoint>(tp, HttpStatus.OK);
-		
+
 	}
-	
+
 	@PostMapping("/createTP")
 	public ResponseEntity<ResponseMessage> create(@RequestBody TransferPointDTO transferPoint) {
-		
+
 		TransferPoint tp = transferPointService.create(transferPoint);
-		
-		if(tp == null) {
-			
-			message.setMessage("Not able to create new Trnasfer Point");
+
+		if (tp == null) {
+
+			message.setMessage("Not able to create new Transfer Point");
 			return new ResponseEntity<ResponseMessage>(message, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		message.setMessage("Transfer Point successfully created!");
-		
+
 		return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
-		
+
 	}
-	
+
 	@PostMapping("/updateTP")
 	public ResponseEntity<ResponseMessage> update(@RequestBody TransferPoint transferPoint) {
-		
+
 		TransferPoint tp = transferPointService.update(transferPoint);
-		
-		if(tp == null) {
-			
+
+		if (tp == null) {
+
 			message.setMessage("Not able update new Trnasfer Point");
 			return new ResponseEntity<ResponseMessage>(message, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		message.setMessage("Transfer Point successfully updated!");
-		
+
 		return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/deleteTP")
 	public ResponseEntity<ResponseMessage> delete(@PathVariable Long id) {
-		
+
 		boolean deleted = transferPointService.delete(id);
-		
-		if(!deleted) {
+
+		if (!deleted) {
 			message.setMessage("Not able to delete transfer point!");
-			
+
 			return new ResponseEntity<ResponseMessage>(message, HttpStatus.NOT_FOUND);
 		}
-		
+
 		message.setMessage("Transfer point successfully deleted!");
-		
+
 		return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
 	}
-	
-	
 
 }
