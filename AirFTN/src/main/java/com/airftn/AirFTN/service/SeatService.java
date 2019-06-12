@@ -96,6 +96,7 @@ public class SeatService implements ISeatService {
 
 		Seat seat = seatRepository.getOne(id);
 		seat.setDeleted(true);
+		seatRepository.save(seat);
 		return seat.isDeleted();
 
 	}

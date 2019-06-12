@@ -18,6 +18,4 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
 	
 	Optional<Seat> findById(Long id);
 	
-	boolean delete(Long id);
-	
 }

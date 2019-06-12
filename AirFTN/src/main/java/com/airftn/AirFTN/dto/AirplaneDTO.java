@@ -1,11 +1,16 @@
 package com.airftn.AirFTN.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class AirplaneDTO {
 
+	@NotNull
 	private String model;
 
+	@NotNull
 	private int numberOfSeats;
 
+	@NotNull
 	private Long airlineId;
 
 	public AirplaneDTO() {
