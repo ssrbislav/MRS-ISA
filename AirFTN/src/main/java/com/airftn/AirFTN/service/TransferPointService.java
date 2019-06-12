@@ -53,12 +53,7 @@ public class TransferPointService implements ITransferPointService {
 	@Override
 	public TransferPoint create(TransferPointDTO transferPoint) {
 
-		// Returns null, but saves it in database
-		// Flight info not visible, don't know why
-
 		Flight flight = flightService.getOne(transferPoint.getFlightId());
-		System.out.println(flight.getFlightNumber());
-		
 
 		Calendar flightDepTime = Calendar.getInstance();
 		flightDepTime.setTime(flight.getDepartureDate());

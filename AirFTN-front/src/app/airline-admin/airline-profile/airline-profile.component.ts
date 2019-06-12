@@ -185,10 +185,10 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ListTransferPointsComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed');
-      console.log(result);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog closed');
+    //   console.log(result);
+    // });
   }
 
 

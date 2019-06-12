@@ -1,17 +1,21 @@
+import { Flight } from './flight.model';
+
 export class TransferPointDTO {
 
-    arrival: Date;
-    departure: Date;
+    arrivalTime: Date;
+    departureTime: Date;
     countryAndCity: string;
+    flightId: BigInteger;
 
 }
 
 export class TransferPoint {
 
     id: BigInteger;
-    arrival: Date;
-    departure: Date;
+    arrivalTime: Date;
+    departureTime: Date;
     countryAndCity: string;
+    flight: Flight;
     deleted: boolean;
 
 }
