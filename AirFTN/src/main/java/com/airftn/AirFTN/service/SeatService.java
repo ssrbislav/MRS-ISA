@@ -35,7 +35,7 @@ public class SeatService implements ISeatService {
 	}
 
 	@Override
-	public List<Seat> findAbbBySeatType(SeatType seatType) {
+	public List<Seat> findAllBySeatType(SeatType seatType) {
 
 		return seatRepository.findAllBySeatType(seatType);
 	}
@@ -60,9 +60,9 @@ public class SeatService implements ISeatService {
 	}
 
 	@Override
-	public Seat create(SeatDTO seat, Long ariplaneId) {
+	public Seat create(SeatDTO seat, Long airplaneId) {
 
-		Airplane airplane = airplaneService.getOne(ariplaneId);
+		Airplane airplane = airplaneService.getOne(airplaneId);
 
 		if (airplane == null)
 			return null;

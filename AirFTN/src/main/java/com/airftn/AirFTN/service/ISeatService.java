@@ -14,11 +14,11 @@ public interface ISeatService {
 
 	List<Seat> findAllByAirplaneId(Long id);
 	
-	List<Seat> findAbbBySeatType(SeatType seatType);
+	List<Seat> findAllBySeatType(SeatType seatType);
 	
 	Seat getOne(Long id);
 	
-	Seat create(SeatDTO seat, Long ariplaneId);
+	Seat create(SeatDTO seat, Long airplaneId);
 	
 	Seat update(Seat seat);
 	
