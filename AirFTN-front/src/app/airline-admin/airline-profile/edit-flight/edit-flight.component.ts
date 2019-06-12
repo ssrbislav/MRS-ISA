@@ -15,9 +15,9 @@ export class EditFlightComponent implements OnInit {
 
   errorMessage: string;
   flightId: any;
-  flight: Flight;
+  flight: Flight = new Flight();
   format: string;
-  company: any;
+  company: AirlineCompanyDTO = new AirlineCompanyDTO();
   airplanes: Airplane[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -51,6 +51,7 @@ export class EditFlightComponent implements OnInit {
   }
 
   onSubmit() {
+    this.flight.id = this.flightId;
     this.flightService.updateFlight(this.flight).subscribe(
       data => {
         this.dialogRef.close();

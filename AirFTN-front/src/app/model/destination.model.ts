@@ -1,5 +1,6 @@
 export class DestinationDTO {
 
+  id: BigInteger;
   city: string;
   country: string;
   description: string;

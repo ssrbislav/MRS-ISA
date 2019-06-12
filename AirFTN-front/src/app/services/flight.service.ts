@@ -38,7 +38,7 @@ export class FlightService {
   }
 
   createFlight(info: FlightDTO): Observable<ResponseMessage> {
-    const url = `${this.flightUrl + '/createFlght'}`;
+    const url = `${this.flightUrl + '/createFlight'}`;
     return this.http.post<ResponseMessage> (url, info, httpOptions);
   }
 
