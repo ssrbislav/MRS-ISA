@@ -49,6 +49,7 @@ import { AddAirplaneComponent } from './airline-admin/airline-profile/add-airpla
 import { CreateFlightComponent } from './airline-admin/airline-profile/create-flight/create-flight.component';
 import { ListTransferPointsComponent } from './airline-admin/airline-profile/list-transfer-points/list-transfer-points.component';
 import { AddTransferPointComponent } from './airline-admin/airline-profile/list-transfer-points/add-transfer-point/add-transfer-point.component';
+import { EditFlightComponent } from './airline-admin/airline-profile/edit-flight/edit-flight.component';
 
 
 
@@ -89,6 +90,7 @@ import { AddTransferPointComponent } from './airline-admin/airline-profile/list-
     CreateFlightComponent,
     ListTransferPointsComponent,
     AddTransferPointComponent,
+    EditFlightComponent,
 
   ],
   imports: [
@@ -127,7 +129,8 @@ import { AddTransferPointComponent } from './airline-admin/airline-profile/list-
     AddAirplaneComponent,
     CreateFlightComponent,
     ListTransferPointsComponent,
-    AddTransferPointComponent
+    AddTransferPointComponent,
+    EditFlightComponent
   ],
   providers: [
     RoleGuardService,

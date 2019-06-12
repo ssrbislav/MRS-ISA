@@ -16,6 +16,7 @@ import { AddDestinationComponent } from './add-destination/add-destination.compo
 import { AddAirplaneComponent } from './add-airplane/add-airplane.component';
 import { CreateFlightComponent } from './create-flight/create-flight.component';
 import { ListTransferPointsComponent } from './list-transfer-points/list-transfer-points.component';
+import { EditFlightComponent } from './edit-flight/edit-flight.component';
 
 @Component({
   selector: 'app-airline-profile',
@@ -166,10 +167,10 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(CreateFlightComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog closed');
-      console.log(result);
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog closed');
+    //   console.log(result);
+    // });
   }
 
   showFlightTransfers(flight: any) {
@@ -184,6 +185,25 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(ListTransferPointsComponent, dialogConfig);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('Dialog closed');
+    //   console.log(result);
+    // });
+  }
+
+  editFlight(flight: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      flight
+    };
+
+    const dialogRef = this.dialog.open(EditFlightComponent, dialogConfig);
 
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log('Dialog closed');

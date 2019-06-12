@@ -36,37 +36,20 @@ input:focus {
 }
 
 button {
-    padding: 18px 30px;
-    margin: 15px 15px ;
-    border: 1px solid rgb(20, 168, 57);
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 8px 10px;
+    margin: 15px 15px;
     width: 35%;
-    opacity: 0.9;
-    background-color: white;
     font-family: lato;
 }
 
-.cancelbtn {
-    border: 1px solid gray;
-}
-  
 .cancelbtn:hover {
     background-color: gray;
-    opacity: 0.6;
-    color: white;
-}
-
-.cancelbtn:focus {
-    background-color: gray;
-    opacity: 1;
     color: white;
 }
 
 .submitbtn:hover {
     background: #a8dfb0;
     color: white;
-    opacity: 1;
 }
 
 textarea, select, input, button { 
@@ -79,7 +62,7 @@ a {
 
 h3, .signup {
     padding: 10px 10px;
-    font-size: 30px;
+    font-size: 25px;
     font-family: lato;
     font-weight: 300;
 }

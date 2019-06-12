@@ -12,16 +12,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let transfer of transfers">
+        <tr *ngFor="let transfer of transfers" class="red">
           <td class="border">{{transfer.arivalTime}}</td>
           <td class="border">{{transfer.departureTime}}</td>
           <td class="border">{{transfer.countryAndCity}}</td>
-          <td id="delete_airplane" (onclick)="deleteDestination(destination.id)">
+          <td class="border" (onclick)="deleteTransferPoint()">
             <button mat-raised-button>D
             </button>
           </td>
         </tr>
-        <mat-divider></mat-divider>
+        
     </table>
 
     <br>

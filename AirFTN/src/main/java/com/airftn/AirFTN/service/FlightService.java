@@ -100,8 +100,7 @@ public class FlightService implements IFlightService {
 		f.setDepartureDate(flight.getDeparture());
 		f.setArrivalDate(flight.getArrival());
 		f.setDestination(destination);
-		f.setMileage(flight.getMillage());
-		f.setTransferPoints(flight.getTransfers());
+		f.setMileage(flight.getMileage());
 		f.setDurationOfFlight(durationOfFlight);
 		f.setPrice(flight.getPrice());
 		f.setDeleted(false);

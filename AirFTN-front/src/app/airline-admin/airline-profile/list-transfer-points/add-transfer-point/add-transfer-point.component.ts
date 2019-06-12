@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { TransferPoint, TransferPointDTO } from 'src/app/model/transfer.model';
+import { TransferPointDTO } from 'src/app/model/transfer.model';
 import { TransferService } from 'src/app/services/transfer.service';
 
 @Component({
@@ -20,7 +20,6 @@ transferPoint: TransferPointDTO = new TransferPointDTO();
 
   ngOnInit() {
     this.flight = this.data.flight;
-    console.log(this.flight)
   }
 
   addTransferPoint() {

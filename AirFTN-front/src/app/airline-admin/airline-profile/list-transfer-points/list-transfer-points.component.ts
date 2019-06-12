@@ -51,4 +51,8 @@ export class ListTransferPointsComponent implements OnInit {
     });
   }
 
+  deleteTransferPoint() {
+    // THIS SHOULD BE IMPLEMENTED
+  }
+
 }

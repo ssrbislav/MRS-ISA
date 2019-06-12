@@ -1,0 +1,18 @@
+* {
+    font-family: lato;
+}
+
+button {
+    width: 100px;
+    margin: 0 auto;
+}
+
+.submitbtn:hover {
+    background: #a8dfb0;
+    color: white;
+}
+
+.cancelbtn:hover {
+    background: gray;
+    color: white;
+}

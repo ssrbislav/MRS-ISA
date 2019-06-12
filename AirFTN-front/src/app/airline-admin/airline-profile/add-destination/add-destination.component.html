@@ -15,11 +15,11 @@
       <br>
   
       <div class="form-group">
-        <button class="button" class="submitbtn">ADD</button>
+        <button class="button" class="submitbtn" mat-raised-button>ADD</button>
         <div *ngIf="f.submitted && isLoginFailed" style="color: red">
           Adding failed: {{errorMessage}}
         </div>
-        <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+        <button class="cancelbtn" type="button" mat-dialog-close mat-raised-button>CANCEL</button>
       </div>
       <br>
     </form>

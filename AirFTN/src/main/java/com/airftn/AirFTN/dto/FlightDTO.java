@@ -1,9 +1,7 @@
 package com.airftn.AirFTN.dto;
 
 import java.util.Date;
-import java.util.List;
 
-import com.airftn.AirFTN.model.TransferPoint;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class FlightDTO {
@@ -16,8 +14,7 @@ public class FlightDTO {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
 	private Date arrival;
 	private Long destinationId;
-	private double millage;
-	private List<TransferPoint> transfers;
+	private double mileage;
 	private double price;
 
 	public Long getCompanyId() {
@@ -60,20 +57,12 @@ public class FlightDTO {
 		this.destinationId = destinationId;
 	}
 
-	public double getMillage() {
-		return millage;
+	public double getMileage() {
+		return mileage;
 	}
 
-	public void setMillage(double millage) {
-		this.millage = millage;
-	}
-
-	public List<TransferPoint> getTransfers() {
-		return transfers;
-	}
-
-	public void setTransfers(List<TransferPoint> transfers) {
-		this.transfers = transfers;
+	public void setMileage(double mileage) {
+		this.mileage = mileage;
 	}
 
 	public String getFlightNumber() {
