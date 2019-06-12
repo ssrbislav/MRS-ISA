@@ -36,6 +36,7 @@ public class Seat {
 	@JsonIgnore
 	private Airplane airplane;
 
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "seat")
 	private Ticket ticket;
 
@@ -103,5 +104,23 @@ public class Seat {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+
+	public SeatType getSeatType() {
+		return seatType;
+	}
+
+	public void setSeatType(SeatType seatType) {
+		this.seatType = seatType;
+	}
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
+	
+	
 
 }
