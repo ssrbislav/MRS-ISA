@@ -77,7 +77,6 @@ public class FlightService implements IFlightService {
 		long end = arrivalTime.getTimeInMillis();
 		double durationOfFlight = TimeUnit.MILLISECONDS.toMinutes(Math.abs(end - start));
 
-		System.out.println(durationOfFlight);
 
 		for (Flight f : flightRepository.findAll()) {
 			if (f.getFlightNumber().equals(flight.getFlightNumber()))
@@ -113,12 +112,30 @@ public class FlightService implements IFlightService {
 	public Flight update(Flight flight) {
 
 		Flight f = flightRepository.getOne(flight.getId());
+		
+		Calendar departureTime = Calendar.getInstance();
+		departureTime.setTime(flight.getDepartureDate());
+
+		Calendar arrivalTime = Calendar.getInstance();
+		arrivalTime.setTime(flight.getArrivalDate());
+
+		long start = departureTime.getTimeInMillis();
+		long end = arrivalTime.getTimeInMillis();
+		double durationOfFlight = TimeUnit.MILLISECONDS.toMinutes(Math.abs(end - start));
+
+		Calendar today = Calendar.getInstance();
+
+		if (departureTime.getTime().before(today.getTime()))
+			return null;
+
+		if (arrivalTime.before(departureTime))
+			return null;
 
 		f.setCompany(flight.getCompany());
 		f.setDepartureDate(flight.getDepartureDate());
 		f.setArrivalDate(flight.getArrivalDate());
 		f.setDestination(flight.getDestination());
-		f.setDurationOfFlight(flight.getDurationOfFlight());
+		f.setDurationOfFlight(durationOfFlight);
 		f.setFlightNumber(flight.getFlightNumber());
 		f.setMileage(flight.getMileage());
 		f.setPlane(flight.getPlane());
