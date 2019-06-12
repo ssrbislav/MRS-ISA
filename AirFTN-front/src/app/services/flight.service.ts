@@ -29,6 +29,11 @@ export class FlightService {
 
   getFlight(id: BigInteger) {
     const url = `${this.flightUrl + '/getFlight/' + id}`;
+    return this.http.get<Flight>(url);
+  }
+
+  getFlightDTO(id: BigInteger) {
+    const url = `${this.flightUrl + '/getFlight/' + id}`;
     return this.http.get<FlightDTO>(url);
   }
 
@@ -37,7 +42,7 @@ export class FlightService {
     return this.http.post<ResponseMessage> (url, info, httpOptions);
   }
 
-  updateFlight(info: FlightDTO): Observable<ResponseMessage> {
+  updateFlight(info: Flight): Observable<ResponseMessage> {
     const url = `${this.flightUrl + '/updateFlight'}`;
     return this.http.post<ResponseMessage> (url, info, httpOptions);
   }

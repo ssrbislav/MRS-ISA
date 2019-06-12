@@ -92,7 +92,7 @@
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef style="padding-top: 15px"> EDIT </th>
         <td mat-cell *matCellDef="let flight" style="padding-top: 15px">
-          <button mat-raised-button (click)="editFlight(flight.id)">
+          <button mat-raised-button (click)="editFlight(flight.id, airline)">
             <mat-icon>edit</mat-icon>
           </button>
         </td>

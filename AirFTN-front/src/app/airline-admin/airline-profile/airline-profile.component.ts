@@ -192,15 +192,17 @@ export class AirlineProfileComponent implements OnInit {
     // });
   }
 
-  editFlight(flight: any) {
+  editFlight(flight: any, company: any) {
 
     const dialogConfig = new MatDialogConfig();
 
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       id: 1,
       added: false,
-      flight
+      flight,
+      company
     };
 
     const dialogRef = this.dialog.open(EditFlightComponent, dialogConfig);

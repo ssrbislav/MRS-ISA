@@ -4,6 +4,9 @@ body {
     box-sizing:border-box;
 }
 
+* {
+    font-family: lato;
+}
 
 
 .login-form {

@@ -1,13 +1,26 @@
 <h1 mat-dialog-title>ADD NEW TRANSFER POINT</h1>
 <div mat-dialog-content>
 
-  <mat-form-field>
-    <input matInput [(ngModel)]="transferPoint.arrivalTime" placeholder="Arrival time">
+
+  <!-- <mat-form-field>
+    <input type="datetime-local" id="arrival-time" name="arrival-time" matInput
+      [ngModel]="transferPoint.arrivalTime | date: format" 
+      placeholder="Arrival timee">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="transferPoint.departureTime" placeholder="Departure time">
+    <input type="datetime-local" id="departure-time" name="departure-time" matInput
+      [ngModel]="transferPoint.departureTime | date: format" 
+      placeholder="Departure time">
   </mat-form-field>
+  <br> -->
+  <mat-form-field>
+      <input id="arrival-time" name="arrival-time"   matInput [(ngModel)]="transferPoint.arrivalTime" placeholder="Arrival time">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input  id="departure-time" name="departure-time"matInput [(ngModel)]="transferPoint.departureTime" placeholder="Departure time">
+    </mat-form-field>
   <br>
   <mat-form-field>
     <input matInput [(ngModel)]="transferPoint.countryAndCity" placeholder="Country and City">
@@ -17,5 +30,5 @@
 <div mat-dialog-actions>
   <button class="submitbtn" mat-raised-button (click)='addTransferPoint()'>ADD</button>
   <button class="cancelbtn" mat-raised-button mat-dialog-close>CANCEL</button>
-  
+
 </div>

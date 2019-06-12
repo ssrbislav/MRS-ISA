@@ -1,26 +1,87 @@
 <div class="login-form">
-    <br>
-    <h3>EDIT FLIGHT</h3>
-    <br>
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-  
-      <div class="form-group">
-        <mat-select name="dest" [(ngModel)]="dest" placeholder="DESTINATIONS">
-          <mat-option *ngFor="let destination of destinations"  [value]='destination.id'>
-            {{destination.city}} , {{destination.country}}
-          </mat-option>
-        </mat-select>
+  <br>
+  <h3>EDIT FLIGHT</h3>
+  <br>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+      <input type="text" id="number" name="number" [(ngModel)]="flight.flightNumber" required
+        placeholder="FLIGHT NUMBER" />
+      <div *ngIf="f.submitted && number.invalid">
+        <div *ngIf="number.errors.required" style="color: red">Number is required</div>
       </div>
-  
-      <br>
-  
-      <div class="form-group">
-        <button class="button" class="submitbtn" mat-raised-button>ADD</button>
-        <div *ngIf="f.submitted && isLoginFailed" style="color: red">
-          Adding failed: {{errorMessage}}
-        </div>
-        <button class="cancelbtn" type="button" mat-dialog-close mat-raised-button>CANCEL</button>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="company" name="company" [(ngModel)]="flight.company.name" #company="ngModel" required
+        placeholder="COMPANY" [disabled]='true' #inputElement1 />
+      <div *ngIf="f.submitted && last_name.invalid">
+        <div *ngIf="company.errors.required" style="color: red">Company Id is required</div>
       </div>
-      <br>
-    </form>
-  </div>
+    </div>
+
+    <div class="form-group">
+      <mat-select name="airplane" [(ngModel)]="flight.airplane" placeholder="AIRPLANE">
+        <mat-option *ngFor="let airplane of airplanes" [value]='airplane'>
+          {{airplane.model}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="departure" name="departure" [(ngModel)]="flight.departureDate" #departure="ngModel"
+        required placeholder="DEPARTURE DATE" #inputElement2 />
+      <div *ngIf="f.submitted && departure.invalid">
+        <div *ngIf="departure.errors.required" style="color: red">Departure date is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="arrival" name="arrival" [(ngModel)]="flight.arrivalDate" #arrival="ngModel"
+        required placeholder="arrival" #inputElement3 />
+      <div *ngIf="f.submitted && arrival.invalid">
+        <div *ngIf="arrival.errors.required" style="color: red">Arrival is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="destination" name="destination"  [(ngModel)]="flight.destination.city" #destination="ngModel"
+        required placeholder="destination" #inputElement3 [disabled]='true' />
+      <div *ngIf="f.submitted && destination.invalid">
+        <div *ngIf="destination.errors.required" style="color: red">Destination is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="mileage" name="mileage" [(ngModel)]="flight.mileage" #mileage="ngModel"
+        required placeholder="mileage" #inputElement3 />
+      <div *ngIf="f.submitted && mileage.invalid">
+        <div *ngIf="mileage.errors.required" style="color: red">Mileage is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="durationOfFlight" name="durationOfFlight" [(ngModel)]="flight.durationOfFlight"
+        #durationOfFlight="ngModel" required placeholder="durationOfFlight" #inputElement3 />
+      <div *ngIf="f.submitted && durationOfFlight.invalid">
+        <div *ngIf="durationOfFlight.errors.required" style="color: red">Duration of flight is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="price" name="price" [(ngModel)]="flight.price"
+        #price="ngModel" required placeholder="price" #inputElement3 />
+      <div *ngIf="f.submitted && price.invalid">
+        <div *ngIf="price.errors.required" style="color: red">Price of flight is required</div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <button class="button" class="submitbtn" mat-raised-button>UPDATE INFO</button>
+      <button class="cancelbtn" mat-dialog-close mat-raised-button>CANCEL</button>
+    </div>
+    <br>
+  </form>
+</div>

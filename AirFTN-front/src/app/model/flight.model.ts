@@ -1,6 +1,7 @@
 import { TransferPointDTO } from './transfer.model';
 import { AirlineCompanyDTO, AirlineCompany } from './company.model';
 import { AirplaneDTO } from './airplane.model';
+import { Destination } from './destination.model';
 
 export class FlightDTO {
 
@@ -27,8 +28,8 @@ export class Flight {
     airplane: AirplaneDTO;
     departureDate: Date;
     arrivalDate: Date;
-    destinationId: BigInteger;
-    millage: number;
+    destination: Destination;
+    mileage: number;
     durationOfFlight: number;
     transfers: TransferPointDTO[];
     price: number;

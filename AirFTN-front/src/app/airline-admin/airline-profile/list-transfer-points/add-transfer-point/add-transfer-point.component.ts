@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TransferPointDTO } from 'src/app/model/transfer.model';
 import { TransferService } from 'src/app/services/transfer.service';
+import { FlightService } from 'src/app/services/flight.service';
+import { Flight, FlightDTO } from 'src/app/model/flight.model';
 
 @Component({
   selector: 'app-add-transfer-point',
@@ -11,19 +13,29 @@ import { TransferService } from 'src/app/services/transfer.service';
 export class AddTransferPointComponent implements OnInit {
 
 errorMessage: string;
-flight: any;
+flightId: any;
+flight: FlightDTO;
 transferPoint: TransferPointDTO = new TransferPointDTO();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,
-              private transferPointService: TransferService) { }
+              private transferPointService: TransferService,
+              private flightService: FlightService) { }
 
   ngOnInit() {
-    this.flight = this.data.flight;
+    this.flightId = this.data.flight;
+  }
+
+  getFlight() {
+    this.flightService.getFlightDTO(this.flightId).toPromise().then(
+      data => {
+        this.flight = data;
+      }
+    );
   }
 
   addTransferPoint() {
-    this.transferPoint.flightId = this.flight;
+    this.transferPoint.flightId = this.flightId;
     this.transferPointService.createTransferPoint(this.transferPoint).subscribe(
       data => {
         this.dialogRef.close();
