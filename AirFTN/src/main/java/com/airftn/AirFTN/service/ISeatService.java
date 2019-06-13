@@ -14,7 +14,7 @@ public interface ISeatService {
 
 	List<Seat> findAllByAirplaneId(Long id);
 	
-	List<Seat> findAllBySeatType(SeatType seatType);
+	List<Seat> findAllBySeatType(int seatType);
 	
 	Seat getOne(Long id);
 	

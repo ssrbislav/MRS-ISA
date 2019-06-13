@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.AirplaneDTO;
+import com.airftn.AirFTN.enumeration.SeatType;
 import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.Airplane;
 import com.airftn.AirFTN.model.Seat;
@@ -53,6 +54,7 @@ public class AirplaneService implements IAirplaneService {
 				s.setColumn(j);
 				s.setRow(i);
 				s.setAirplane(plane);
+				s.setSeatType(SeatType.ECONOMY_CLASS);
 				seats.add(s);
 			}
 		}

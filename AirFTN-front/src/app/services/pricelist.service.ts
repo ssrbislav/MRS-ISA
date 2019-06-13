@@ -27,7 +27,7 @@ export class PricelistService {
   }
 
   updatePricelist(info: PricelistDTO): Observable<ResponseMessage> {
-    const url = `${this.pricelistUrl + '/updatePricelist'}`;
+    const url = `${this.pricelistUrl + 'updatePricelist'}`;
     return this.http.post<ResponseMessage> (url, info, httpOptions);
   }
 

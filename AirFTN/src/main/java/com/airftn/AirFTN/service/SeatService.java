@@ -1,5 +1,6 @@
 package com.airftn.AirFTN.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,34 @@ public class SeatService implements ISeatService {
 	}
 
 	@Override
-	public List<Seat> findAllBySeatType(SeatType seatType) {
+	public List<Seat> findAllBySeatType(int seatType) {
 
-		return seatRepository.findAllBySeatType(seatType);
+		List<Seat> seats = new ArrayList<>();
+		
+		SeatType type = null;
+		
+		switch(seatType) {
+		case 1:
+			type = SeatType.BUSINESS_CLASS;
+			break;
+		case 2:
+			type = SeatType.FIRST_CLASS;
+			break;
+		case 3:
+			type = SeatType.ECONOMY_CLASS;
+			break;
+		}
+		
+		if(type == null)
+			return null;
+		
+		
+		for(Seat s: seatRepository.findAllByDeletedIsFalse()) {
+			if(s.getSeatType() == type)
+				seats.add(s);
+		}
+		
+		return seats;
 	}
 
 	@Override
@@ -85,6 +111,7 @@ public class SeatService implements ISeatService {
 		s.setRow(seat.getRow());
 		s.setColumn(seat.getColumn());
 		s.setAirplane(seat.getAirplane());
+		s.setSeatType(seat.getSeatType());
 		s.setDeleted(false);
 
 		return seatRepository.save(s);

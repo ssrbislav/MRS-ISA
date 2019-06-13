@@ -3,6 +3,7 @@ package com.airftn.AirFTN.dto;
 import javax.validation.constraints.NotNull;
 
 import com.airftn.AirFTN.enumeration.SeatType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class SeatDTO {
 

@@ -40,7 +40,7 @@ public class SeatController {
 
 	}
 
-	@GetMapping("findAllByAirplaneId/{id}")
+	@GetMapping("/findAllByAirplaneId/{id}")
 	public ResponseEntity<List<Seat>> findAllByAirplaneId(@PathVariable Long id) {
 
 		List<Seat> seats = seatService.findAllByAirplaneId(id);
@@ -49,8 +49,8 @@ public class SeatController {
 
 	}
 
-	@GetMapping("findAllBySeatType/{seatType}")
-	public ResponseEntity<List<Seat>> findAllBySeatType(@RequestBody SeatType seatType) {
+	@GetMapping("/findAllBySeatType/{seatType}")
+	public ResponseEntity<List<Seat>> findAllBySeatType(@PathVariable int seatType) {
 
 		List<Seat> seats = seatService.findAllBySeatType(seatType);
 
@@ -58,7 +58,7 @@ public class SeatController {
 
 	}
 
-	@GetMapping("findById/{id}")
+	@GetMapping("/findById/{id}")
 	public ResponseEntity<Seat> findById(@PathVariable Long id) {
 
 		Seat seat = seatService.getOne(id);
@@ -100,7 +100,7 @@ public class SeatController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
-	@PostMapping("update/{id}")
+	@PostMapping("/update/{id}")
 	public ResponseEntity<ResponseMessage> update(@PathVariable Long id) {
 		
 		Seat s = seatService.getOne(id);
@@ -122,7 +122,7 @@ public class SeatController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
-	@PostMapping("delete/{id}")
+	@PostMapping("/delete/{id}")
 	public ResponseEntity<ResponseMessage> delete(@PathVariable Long id) throws ObjectNotFoundException {
 
 		boolean deleted = seatService.delete(id);
