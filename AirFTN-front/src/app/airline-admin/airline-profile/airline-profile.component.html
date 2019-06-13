@@ -36,32 +36,32 @@
               The actual rendered columns are set as a property on the row definition" -->
 
       <ng-container matColumnDef="flightNumber">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> FLIGHT NUMBER </th>
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> FLIGHT NUMBER </th>
         <td mat-cell *matCellDef="let flight"> {{flight.flightNumber}} </td>
       </ng-container>
 
       <ng-container matColumnDef="airline">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> AIRLINE </th>
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> AIRLINE </th>
         <td mat-cell *matCellDef="let flight"> {{airline.name}} </td>
       </ng-container>
 
       <ng-container matColumnDef="airplane">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> AIRPLANE </th>
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> AIRPLANE </th>
         <td mat-cell *matCellDef="let flight"> {{flight.plane.model}} </td>
       </ng-container>
 
       <ng-container matColumnDef="departure">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DEPARTURE </th>
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> DEPARTURE </th>
         <td mat-cell *matCellDef="let flight"> {{flight.departureDate}} </td>
       </ng-container>
 
       <ng-container matColumnDef="arrival">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ARRIVAL </th>
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> ARRIVAL </th>
         <td mat-cell *matCellDef="let flight"> {{flight.arrivalDate}} </td>
       </ng-container>
 
       <ng-container matColumnDef="destination">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DESTINATION </th>
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> DESTINATION </th>
         <td mat-cell *matCellDef="let flight"> {{flight.destination.city}} </td>
       </ng-container>
 
@@ -80,6 +80,15 @@
         <td mat-cell *matCellDef="let flight">
           <button mat-raised-button (click)="showFlightTransfers(flight.id)">
             <mat-icon>flight_takeof</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="seats">
+        <th mat-header-cell *matHeaderCellDef> SEATS </th>
+        <td mat-cell *matCellDef="let flight">
+          <button mat-raised-button (click)="showFlightSeats(flight.id)">
+            <mat-icon>event_seat</mat-icon>
           </button>
         </td>
       </ng-container>

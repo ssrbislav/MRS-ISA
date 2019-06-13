@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Seat } from '../model/seat.model';
-import { SeatType } from '../model/seat-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class SeatService {
     return this.http.get<Seat[]>(this.seatUrl);
   }
 
-  getSeatsBySeatType(seatType: SeatType) {
+  getSeatsBySeatType(seatType: number) {
     const url = `${this.seatUrl + '/findAllByAirplaneId/' + seatType}`;
     return this.http.get<Seat[]>(url);
   }

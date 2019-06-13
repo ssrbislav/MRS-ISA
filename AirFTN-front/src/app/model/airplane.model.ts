@@ -13,7 +13,7 @@ export class Airplane {
     id: BigInteger;
     model: string;
     numberOfSeats: number;
-    seats: Seat;
+    seats: Seat[];
     airline: AirlineCompany;
     deleted: boolean;
 }

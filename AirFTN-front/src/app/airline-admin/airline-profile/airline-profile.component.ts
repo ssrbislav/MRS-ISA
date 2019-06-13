@@ -17,11 +17,20 @@ import { AddAirplaneComponent } from './add-airplane/add-airplane.component';
 import { CreateFlightComponent } from './create-flight/create-flight.component';
 import { ListTransferPointsComponent } from './list-transfer-points/list-transfer-points.component';
 import { EditFlightComponent } from './edit-flight/edit-flight.component';
+import { DefineSeatsComponent } from './define-seats/define-seats.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-airline-profile',
   templateUrl: './airline-profile.component.html',
-  styleUrls: ['./airline-profile.component.css']
+  styleUrls: ['./airline-profile.component.css',],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class AirlineProfileComponent implements OnInit {
 
@@ -49,7 +58,7 @@ export class AirlineProfileComponent implements OnInit {
 
   displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
     'arrival', 'destination', 'mileage',
-    'duration', 'price', 'transfer', 'edit'];
+    'duration', 'price', 'transfer', 'seats', 'edit'];
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -213,5 +222,19 @@ export class AirlineProfileComponent implements OnInit {
     // });
   }
 
+  showFlightSeats(flight: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      flight,
+    }
+
+    const dialogRef = this.dialog.open(DefineSeatsComponent, dialogConfig);
+  }
 
 }

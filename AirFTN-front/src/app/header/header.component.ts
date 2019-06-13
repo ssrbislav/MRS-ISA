@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
   Logout() {
     window.sessionStorage.clear();
     this.router.navigate(['mainPage']);
-    window.alert('Successfully Logged Out!');
   }
 
   showProfile() {
