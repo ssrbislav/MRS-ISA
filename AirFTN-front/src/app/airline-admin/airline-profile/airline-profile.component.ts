@@ -21,6 +21,7 @@ import { DefineSeatsComponent } from './define-seats/define-seats.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { PricelistDTO, Pricelist } from 'src/app/model/pricelist.model';
 import { PricelistService } from 'src/app/services/pricelist.service';
+import { ResponseMessage } from 'src/app/model/responseMessage';
 
 @Component({
   selector: 'app-airline-profile',
@@ -63,7 +64,7 @@ export class AirlineProfileComponent implements OnInit {
 
   pricelist: Pricelist = new Pricelist();
 
-  message: any;
+  responseMessage: ResponseMessage;
 
   displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
     'arrival', 'destination', 'mileage',
@@ -254,7 +255,8 @@ export class AirlineProfileComponent implements OnInit {
     if (this.pricelistDTO === undefined) {
       this.pricelistService.createPricelist(this.pricelist, this.airline.id).subscribe(
         data => {
-          this.message = data;
+          this.responseMessage = data;
+          alert(this.responseMessage.message);
         }
       );
       location.reload();
@@ -262,7 +264,8 @@ export class AirlineProfileComponent implements OnInit {
       console.log(this.pricelist);
       this.pricelistService.updatePricelist(this.pricelist).subscribe(
         data => {
-          this.message = data;
+          this.responseMessage = data;
+          alert(this.responseMessage.message);
         }
       );
       location.reload();

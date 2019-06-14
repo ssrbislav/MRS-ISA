@@ -11,7 +11,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 
 	List<Reservation> findAllByDeletedIsFalse();
 
-	List<Reservation> findAllByPassengerId();
+	List<Reservation> findAllByPassengerId(Long id);
 	
 	Optional<Reservation> findById(Long id);
 	

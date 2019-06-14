@@ -35,4 +35,44 @@ public class Reservation {
 		super();
 	}
 
+	public Reservation(Long id, Passenger passenger, List<Ticket> tickets, boolean deleted) {
+		super();
+		this.id = id;
+		this.passenger = passenger;
+		this.tickets = tickets;
+		this.deleted = deleted;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Passenger getPassenger() {
+		return passenger;
+	}
+
+	public void setPassenger(Passenger passenger) {
+		this.passenger = passenger;
+	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
 }
