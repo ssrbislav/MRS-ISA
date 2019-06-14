@@ -39,7 +39,7 @@ public class ReservationController {
 		return new ResponseEntity<List<Reservation>>(reservations, HttpStatus.OK);
 	}
 
-	@GetMapping("findAllByPassengerId/{id}")
+	@GetMapping("/findAllByPassengerId/{id}")
 	public ResponseEntity<List<Reservation>> findAllByPassengerId(@PathVariable Long id) {
 
 		List<Reservation> reservations = reservationService.findAllByPassengerId(id);
@@ -50,7 +50,7 @@ public class ReservationController {
 		return new ResponseEntity<List<Reservation>>(reservations, HttpStatus.OK);
 	}
 	
-	@GetMapping("findById/{id}")
+	@GetMapping("/findById/{id}")
 	public ResponseEntity<Reservation> findById(@PathVariable Long id) {
 
 		Reservation reservation = reservationService.getOne(id);

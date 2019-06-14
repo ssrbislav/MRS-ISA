@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Reservation {
@@ -20,11 +21,11 @@ public class Reservation {
 	@Column(nullable = false, unique = true)
 	private Long id;
 
-	@Column(nullable = false)
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "passenger_id", nullable = false)
 	Passenger passenger;
 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reservation")
 	@Column(nullable = false)
 	List<Ticket> tickets;
 

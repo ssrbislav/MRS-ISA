@@ -9,12 +9,14 @@ import com.airftn.AirFTN.model.Ticket;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	
-	List<Ticket> findAllByCompanyId();
+	List<Ticket> findAllByCompanyId(Long id);
 	
-	List<Ticket> findAllByFlightId();
+	List<Ticket> findAllByFlightId(Long id);
+	
+	List<Ticket> findAllBySeatOccupiedIsFalse();
 	
 	Optional<Ticket> findById(Long id);
 	
-	Ticket findBySeatId();
+	Ticket findBySeatId(Long id);
 
 }

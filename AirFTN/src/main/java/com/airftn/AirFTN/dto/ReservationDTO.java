@@ -2,21 +2,20 @@ package com.airftn.AirFTN.dto;
 
 import java.util.List;
 
-import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Ticket;
 
 public class ReservationDTO {
 
-	Passenger passenger;
+	private Long passengerId;
 
 	List<Ticket> tickets;
 
-	public Passenger getPassenger() {
-		return passenger;
+	public Long getPassengerId() {
+		return passengerId;
 	}
 
-	public void setPassenger(Passenger passenger) {
-		this.passenger = passenger;
+	public void setPassengerId(Long passengerId) {
+		this.passengerId = passengerId;
 	}
 
 	public List<Ticket> getTickets() {

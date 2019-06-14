@@ -36,6 +36,11 @@ public class Ticket {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
+	
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(nullable = false, name = "reservation_id")
+	private Reservation reservation;
 
 	@Column(nullable = true)
 	private boolean deleted;
@@ -92,6 +97,14 @@ public class Ticket {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public Flight getFlight() {
+		return flight;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
 	}
 
 }

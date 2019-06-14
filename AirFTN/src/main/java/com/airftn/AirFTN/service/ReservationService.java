@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.ReservationDTO;
+import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Reservation;
 import com.airftn.AirFTN.model.Ticket;
 import com.airftn.AirFTN.repository.ReservationRepository;
@@ -15,6 +16,9 @@ public class ReservationService implements IReservationService {
 
 	@Autowired
 	ReservationRepository reservationRepository;
+	
+	@Autowired
+	IPassengerService passengerService;
 
 	@Override
 	public List<Reservation> findAll() {
@@ -36,10 +40,12 @@ public class ReservationService implements IReservationService {
 
 	@Override
 	public Reservation create(ReservationDTO reservation) {
+		
+		Passenger passenger = passengerService.getOne(reservation.getPassengerId());
 
 		Reservation res = new Reservation();
 		res.setDeleted(false);
-		res.setPassenger(reservation.getPassenger());
+		res.setPassenger(passenger);
 		res.setTickets(reservation.getTickets());
 		setTicketsToOccupied(res);
 
