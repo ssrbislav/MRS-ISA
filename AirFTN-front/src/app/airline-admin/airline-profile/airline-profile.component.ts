@@ -59,7 +59,7 @@ export class AirlineProfileComponent implements OnInit {
 
   airplanes: Airplane[];
 
-  pricelistDTO: PricelistDTO = new PricelistDTO();
+  pricelistDTO: PricelistDTO;
 
   pricelist: Pricelist = new Pricelist();
 
@@ -232,11 +232,11 @@ export class AirlineProfileComponent implements OnInit {
     this.pricelistService.getPricelistByAirlineId(id).subscribe(
       data => {
         this.pricelist = data;
+        this.pricelistDTO = data;
       });
   }
 
   enablePricelistEdit() {
-    console.log(this.pricelist);
     const elements = document.getElementsByClassName('pricelist-elem');
     for (var i = 0; i < elements.length; i++) {
       elements[i].removeAttribute('disabled');
@@ -251,27 +251,22 @@ export class AirlineProfileComponent implements OnInit {
     }
     document.getElementsByClassName('pricelist-update')[0].setAttribute('disabled', 'disabled');
 
-    const pr = this.getPricelistByCompanyId(this.airline.id);
-
-    console.log(pr);
-
-    if (pr === undefined) {
+    if (this.pricelistDTO === undefined) {
       this.pricelistService.createPricelist(this.pricelist, this.airline.id).subscribe(
         data => {
           this.message = data;
-          console.log(this.message);
         }
       );
+      location.reload();
     } else {
+      console.log(this.pricelist);
       this.pricelistService.updatePricelist(this.pricelist).subscribe(
         data => {
           this.message = data;
-          console.log(this.message);
         }
       );
+      location.reload();
     }
   }
-
-  
 
 }
