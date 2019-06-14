@@ -61,8 +61,20 @@ public class PricelistService implements IPricelistService {
 		priceList.setBussinessPricePrecentage(pricelist.getBussinessPricePrecentage());
 		priceList.setFirstPricePrecentage(pricelist.getFirstPricePrecentage());
 		priceList.setDiscountedPrecentage(pricelist.getDiscountedPrecentage());
+		priceList.setDeleted(pricelist.isDeleted());
+		priceList.setAirline(pricelist.getAirline());
 		
 		return pricelistRepository.save(priceList);
+	}
+
+	@Override
+	public Pricelist getByAirlineId(Long id) {
+
+		AirlineCompany company = airlineService.getOne(id);
+		
+		Pricelist pricelist = company.getPricelist();
+	
+		return pricelist;
 	}
 
 	

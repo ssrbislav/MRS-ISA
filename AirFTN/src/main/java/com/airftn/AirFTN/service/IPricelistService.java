@@ -15,4 +15,6 @@ public interface IPricelistService {
 	
 	Pricelist update(Pricelist pricelist);
 	
+	Pricelist getByAirlineId(Long id);
+	
 }

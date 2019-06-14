@@ -53,6 +53,7 @@ public class PricelistController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 		
 	}
+	
 	@RequestMapping("/updatePricelist")
 	public ResponseEntity<ResponseMessage> updatePricelist(@RequestBody Pricelist pricelist) {
 		
@@ -63,8 +64,22 @@ public class PricelistController {
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 
-		message.setMessage("Pricelist updated created!");
+		message.setMessage("Pricelist updated!");
 		return new ResponseEntity<>(message, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping("/getByAirlineId/{id}")
+	public ResponseEntity<Pricelist> updatePricelist(@PathVariable Long id) {
+		
+		Pricelist pricelist = pricelistService.getByAirlineId(id);
+		
+		if (pricelist == null) {
+	
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<>(pricelist, HttpStatus.OK);
 		
 	}
 	

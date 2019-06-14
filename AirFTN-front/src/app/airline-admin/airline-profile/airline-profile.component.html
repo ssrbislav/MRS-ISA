@@ -20,6 +20,59 @@
     </mat-list>
   </div>
 
+
+  <!-- PRICELIST panel -->
+  <div class="pricelist grid-item">
+    <h3>PRICELIST</h3>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input class="pricelist-elem" matInput placeholder="PRICE BY KM" disabled name="priceByKm" [(ngModel)]="pricelist.priceByKm">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input class="pricelist-elem" matInput placeholder="ECONOMY PRICE PRECENTAGE" disabled name="priceByKm" [(ngModel)]="pricelist.economyPricePrecentage">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input class="pricelist-elem"  matInput placeholder="BUSSINES PRICE PRECENTAGE" disabled name="priceByKm" [(ngModel)]="pricelist.bussinessPricePrecentage">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input class="pricelist-elem" matInput placeholder="FIRST CLASS PRECENTAGE" disabled name="priceByKm" [(ngModel)]="pricelist.firstPricePrecentage">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input class="pricelist-elem" matInput placeholder="DISCOUNTED PRECENTAGES" disabled name="priceByKm" [(ngModel)]="pricelist.discountedPrecentage">
+      </mat-form-field>
+
+      <button class="pricelist-enable" (click)="enablePricelistEdit()" mat-raised-button>ENABLE EDITING</button>
+      <button class="pricelist-update" (click)="updatePricelist()" type="submit" mat-raised-button disabled>UPDATE PRICELIST</button>
+    </form>
+  </div>
+
+  <!-- AIRPLANE panel -->
+  <div class="airplanes grid-item ">
+
+      <button class="addAirplane" mat-raised-button (click)="addAirplane(airline.id)"> Demand new airplane </button>
+  
+      <h3>AIRPLANES</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="head" scope="col">MODEL</th>
+            <th class="head" scope="col">NUMBER OF SEATS</th>
+            <th class="head" scope="col">DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let airplane of airplanes; let i = index">
+            <td>{{airplane.model}}</td>
+            <td>{{airplane.numberOfSeats}}</td>
+            <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button>
+                <mat-icon>delete</mat-icon>
+              </button></td>
+          </tr>
+          <mat-divider></mat-divider>
+      </table>
+  
+    </div>
+
   <!-- FLIGHT panel -->
   <div class="flights grid-item ">
     <h3>FLIGHTS</h3>
@@ -143,32 +196,7 @@
   </div>
 
 
-  <!-- AIRPLANE panel -->
-  <div class="airplanes grid-item ">
-
-    <button class="addAirplane" mat-raised-button (click)="addAirplane(airline.id)"> Demand new airplane </button>
-
-    <h3>AIRPLANES</h3>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th class="head" scope="col">MODEL</th>
-          <th class="head" scope="col">NUMBER OF SEATS</th>
-          <th class="head" scope="col">DELETE</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let airplane of airplanes; let i = index">
-          <td>{{airplane.model}}</td>
-          <td>{{airplane.numberOfSeats}}</td>
-          <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button>
-              <mat-icon>delete</mat-icon>
-            </button></td>
-        </tr>
-        <mat-divider></mat-divider>
-    </table>
-
-  </div>
+  
 
 
   <!-- FAST TICKET RESERVATIOn -->

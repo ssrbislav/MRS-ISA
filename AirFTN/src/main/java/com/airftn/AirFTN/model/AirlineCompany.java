@@ -17,7 +17,6 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
@@ -58,6 +57,9 @@ public class AirlineCompany {
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "admin_id", nullable = false)
 	private AirlineAdmin admin;
+
+	@OneToOne(mappedBy = "airline")
+	private Pricelist pricelist;
 
 	@Column(nullable = true)
 	private boolean deleted;
@@ -182,6 +184,14 @@ public class AirlineCompany {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public Pricelist getPricelist() {
+		return pricelist;
+	}
+
+	public void setPricelist(Pricelist pricelist) {
+		this.pricelist = pricelist;
 	}
 
 }

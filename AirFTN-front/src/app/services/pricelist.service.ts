@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PricelistDTO } from '../model/pricelist.model';
+import { PricelistDTO, Pricelist } from '../model/pricelist.model';
 import { Observable } from 'rxjs';
 import { ResponseMessage } from '../model/responseMessage';
 
@@ -19,6 +19,11 @@ export class PricelistService {
 
   getPricelists() {
     return this.http.get<PricelistDTO[]>(this.pricelistUrl);
+  }
+
+  getPricelistByAirlineId(id: BigInteger) {
+    const url = `${this.pricelistUrl + 'getByAirlineId/' + id}`;
+    return this.http.get<Pricelist>(url);
   }
 
   createPricelist(info: PricelistDTO, id: BigInteger): Observable<ResponseMessage> {

@@ -18,7 +18,9 @@ import { CreateFlightComponent } from './create-flight/create-flight.component';
 import { ListTransferPointsComponent } from './list-transfer-points/list-transfer-points.component';
 import { EditFlightComponent } from './edit-flight/edit-flight.component';
 import { DefineSeatsComponent } from './define-seats/define-seats.component';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { PricelistDTO, Pricelist } from 'src/app/model/pricelist.model';
+import { PricelistService } from 'src/app/services/pricelist.service';
 
 @Component({
   selector: 'app-airline-profile',
@@ -26,8 +28,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   styleUrls: ['./airline-profile.component.css',],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -35,18 +37,19 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class AirlineProfileComponent implements OnInit {
 
   constructor(private tokenStorage: TokenStorageService,
-              private adminService: AdminService,
-              private airlineService: AirlineService,
-              private destinationService: DestinationService,
-              private flightService: FlightService,
-              private airplaneService: AirplaneService,
-              private dialog: MatDialog) { }
+    private adminService: AdminService,
+    private airlineService: AirlineService,
+    private destinationService: DestinationService,
+    private flightService: FlightService,
+    private airplaneService: AirplaneService,
+    private dialog: MatDialog,
+    private pricelistService: PricelistService) { }
 
   username: string;
   adminId: BigInteger;
   adminInfo: AdminDTO = new AdminDTO();
 
-  airline: AirlineCompanyDTO;
+  airline: AirlineCompanyDTO = new AirlineCompanyDTO();
   companies: AirlineCompanyDTO[];
 
   destinations: DestinationDTO[];
@@ -55,6 +58,12 @@ export class AirlineProfileComponent implements OnInit {
   flights: FlightDTO[];
 
   airplanes: Airplane[];
+
+  pricelistDTO: PricelistDTO = new PricelistDTO();
+
+  pricelist: Pricelist = new Pricelist();
+
+  message: any;
 
   displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
     'arrival', 'destination', 'mileage',
@@ -88,6 +97,7 @@ export class AirlineProfileComponent implements OnInit {
         this.getCompanyDestinations(this.airline.id);
         this.getCompanyFlights(this.airline.id);
         this.getCompanyAirplanes(this.airline.id);
+        this.getPricelistByCompanyId(this.airline.id);
       }
     );
   }
@@ -217,5 +227,51 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DefineSeatsComponent, dialogConfig);
   }
+
+  getPricelistByCompanyId(id: BigInteger) {
+    this.pricelistService.getPricelistByAirlineId(id).subscribe(
+      data => {
+        this.pricelist = data;
+      });
+  }
+
+  enablePricelistEdit() {
+    console.log(this.pricelist);
+    const elements = document.getElementsByClassName('pricelist-elem');
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].removeAttribute('disabled');
+    }
+    document.getElementsByClassName('pricelist-update')[0].removeAttribute('disabled');
+  }
+
+  updatePricelist() {
+    const elements = document.getElementsByClassName('pricelist-elem');
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].setAttribute('disabled', 'disabled');
+    }
+    document.getElementsByClassName('pricelist-update')[0].setAttribute('disabled', 'disabled');
+
+    const pr = this.getPricelistByCompanyId(this.airline.id);
+
+    console.log(pr);
+
+    if (pr === undefined) {
+      this.pricelistService.createPricelist(this.pricelist, this.airline.id).subscribe(
+        data => {
+          this.message = data;
+          console.log(this.message);
+        }
+      );
+    } else {
+      this.pricelistService.updatePricelist(this.pricelist).subscribe(
+        data => {
+          this.message = data;
+          console.log(this.message);
+        }
+      );
+    }
+  }
+
+  
 
 }
