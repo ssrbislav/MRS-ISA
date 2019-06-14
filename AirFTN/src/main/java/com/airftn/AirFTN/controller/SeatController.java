@@ -1,5 +1,6 @@
 package com.airftn.AirFTN.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airftn.AirFTN.dto.SeatDTO;
-import com.airftn.AirFTN.enumeration.SeatType;
 import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.model.Seat;
 import com.airftn.AirFTN.service.ISeatService;
@@ -41,11 +41,11 @@ public class SeatController {
 	}
 
 	@GetMapping("/findAllByAirplaneId/{id}")
-	public ResponseEntity<List<Seat>> findAllByAirplaneId(@PathVariable Long id) {
+	public ResponseEntity<List<ArrayList<Seat>>> findAllByAirplaneId(@PathVariable Long id) {
 
-		List<Seat> seats = seatService.findAllByAirplaneId(id);
+		List<ArrayList<Seat>> seats = seatService.findAllByAirplaneId(id);
 
-		return new ResponseEntity<List<Seat>>(seats, HttpStatus.OK);
+		return new ResponseEntity<>(seats, HttpStatus.OK);
 
 	}
 
@@ -136,6 +136,18 @@ public class SeatController {
 		}
 		
 		message.setMessage("Seat deleted successfully!");
+		
+		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+	
+	@PostMapping("/updateSeatClass")
+	public ResponseEntity<ResponseMessage> updateSeatsClasses(@RequestBody List<Seat> seats) {
+		
+		for(Seat seat : seats) {
+			seatService.update(seat);
+		}
+		
+		message.setMessage("Seats updated successfully!");
 		
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}

@@ -68,5 +68,17 @@ public class AirplaneController {
 
 		return new ResponseEntity<>(airplanes, HttpStatus.OK);
 	}
+	
+	@RequestMapping("/findByFlightId/{id}")
+	public ResponseEntity<Airplane> findByCompanyId(@PathVariable Long id){
+		
+		Airplane airplane = airplaneService.findByFlightId(id);
+		
+		if(airplane == null) {
+			return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>(airplane, HttpStatus.OK);
+		
+	}
 
 }

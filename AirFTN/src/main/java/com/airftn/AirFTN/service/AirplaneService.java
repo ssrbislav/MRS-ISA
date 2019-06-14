@@ -48,11 +48,11 @@ public class AirplaneService implements IAirplaneService {
 		plane.setNumberOfSeats(airplane.getNumberOfSeats());
 		plane.setCompany(company);
 		
-		for(int j = 0; j < 4; j++) {
-			for(int i = 0; i < airplane.getNumberOfSeats(); i++) {
+		for(int j = 0; j < airplane.getNumberOfSeats(); j++) {
+			for(int i = 0; i < 6; i++) {
 				Seat s = new Seat();
-				s.setColumn(j);
-				s.setRow(i);
+				s.setColumn(i);
+				s.setRow(j);
 				s.setAirplane(plane);
 				s.setSeatType(SeatType.ECONOMY_CLASS);
 				seats.add(s);
@@ -73,6 +73,14 @@ public class AirplaneService implements IAirplaneService {
 		plane.setNumberOfSeats(airplane.getNumberOfSeats());
 
 		return null;
+	}
+	
+	@Override
+	public Airplane findByFlightId(Long id) {
+		
+		Airplane airplane = airplaneRepository.findByFlightId(id);
+
+		return airplane;
 	}
 
 }

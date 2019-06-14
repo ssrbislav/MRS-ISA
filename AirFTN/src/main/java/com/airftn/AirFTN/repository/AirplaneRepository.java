@@ -11,4 +11,6 @@ public interface AirplaneRepository extends JpaRepository<Airplane, Long> {
 	
 	List<Airplane> findAllByCompany(AirlineCompany company);
 
+	Airplane findByFlightId(Long id);
+	
 }

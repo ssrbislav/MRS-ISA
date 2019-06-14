@@ -30,19 +30,34 @@ public class SeatService implements ISeatService {
 	}
 
 	@Override
-	public List<Seat> findAllByAirplaneId(Long id) {
+	public List<ArrayList<Seat>> findAllByAirplaneId(Long id) {
 
-		return seatRepository.findAllByAirplaneId(id);
+		Airplane airplane = airplaneService.getOne(id);
+
+		List<Seat> seats = seatRepository.findAllByAirplaneId(id);
+
+		List<ArrayList<Seat>> seatMatrix = new ArrayList<ArrayList<Seat>>();
+
+		for (int i = 0; i < airplane.getNumberOfSeats(); i++) {
+			ArrayList<Seat> seatsInRow = new ArrayList<>();
+			for (Seat s : seats) {
+				if (s.getRow() == i)
+					seatsInRow.add(s);
+			}
+			seatMatrix.add(seatsInRow);
+		}
+
+		return seatMatrix;
 	}
 
 	@Override
 	public List<Seat> findAllBySeatType(int seatType) {
 
 		List<Seat> seats = new ArrayList<>();
-		
+
 		SeatType type = null;
-		
-		switch(seatType) {
+
+		switch (seatType) {
 		case 1:
 			type = SeatType.BUSINESS_CLASS;
 			break;
@@ -53,16 +68,15 @@ public class SeatService implements ISeatService {
 			type = SeatType.ECONOMY_CLASS;
 			break;
 		}
-		
-		if(type == null)
+
+		if (type == null)
 			return null;
-		
-		
-		for(Seat s: seatRepository.findAllByDeletedIsFalse()) {
-			if(s.getSeatType() == type)
+
+		for (Seat s : seatRepository.findAllByDeletedIsFalse()) {
+			if (s.getSeatType() == type)
 				seats.add(s);
 		}
-		
+
 		return seats;
 	}
 
@@ -71,7 +85,7 @@ public class SeatService implements ISeatService {
 
 		return seatRepository.getOne(id);
 	}
-	
+
 	@Override
 	public Seat create(SeatDTO seat) {
 

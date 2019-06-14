@@ -1,9 +1,9 @@
 package com.airftn.AirFTN.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.airftn.AirFTN.dto.SeatDTO;
-import com.airftn.AirFTN.enumeration.SeatType;
 import com.airftn.AirFTN.model.Seat;
 
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -12,7 +12,7 @@ public interface ISeatService {
 	
 	List<Seat> findAll();
 
-	List<Seat> findAllByAirplaneId(Long id);
+	List<ArrayList<Seat>> findAllByAirplaneId(Long id);
 	
 	List<Seat> findAllBySeatType(int seatType);
 	

@@ -17,4 +17,6 @@ public interface IAirplaneService {
 	
 	Airplane update(Airplane airplane);
 	
+	Airplane findByFlightId(Long id);
+	
 }

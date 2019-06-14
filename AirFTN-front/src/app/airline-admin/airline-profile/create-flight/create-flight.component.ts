@@ -58,7 +58,7 @@ export class CreateFlightComponent implements OnInit {
         location.reload();
       },
       error => {
-        console.log(error);
+        window.alert(error.errorMessage);
         this.errorMessage = error.error.message;
       }
     );

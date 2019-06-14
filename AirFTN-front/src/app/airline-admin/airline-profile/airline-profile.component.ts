@@ -155,11 +155,6 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(AddAirplaneComponent, dialogConfig);
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('Dialog closed');
-    //   console.log(result);
-    // });
   }
 
   createFlight(company: any) {
@@ -175,11 +170,6 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(CreateFlightComponent, dialogConfig);
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('Dialog closed');
-    //   console.log(result);
-    // });
   }
 
   showFlightTransfers(flight: any) {
@@ -195,10 +185,6 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ListTransferPointsComponent, dialogConfig);
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('Dialog closed');
-    //   console.log(result);
-    // });
   }
 
   editFlight(flight: any, company: any) {
@@ -215,11 +201,6 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(EditFlightComponent, dialogConfig);
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('Dialog closed');
-    //   console.log(result);
-    // });
   }
 
   showFlightSeats(flight: any) {
@@ -232,7 +213,7 @@ export class AirlineProfileComponent implements OnInit {
       id: 1,
       added: false,
       flight,
-    }
+    };
 
     const dialogRef = this.dialog.open(DefineSeatsComponent, dialogConfig);
   }
