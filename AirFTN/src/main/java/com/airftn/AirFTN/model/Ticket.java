@@ -33,7 +33,7 @@ public class Ticket {
 	@JoinColumn(name = "flight_id", nullable = false)
 	private Flight flight;
 
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
 

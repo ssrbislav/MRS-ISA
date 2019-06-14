@@ -40,6 +40,9 @@ public class Seat {
 	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "seat")
 	private Ticket ticket;
 
+	@Column(nullable = false)
+	private boolean occupied;
+
 	@Column(nullable = true)
 	private boolean deleted;
 
@@ -47,7 +50,8 @@ public class Seat {
 		super();
 	}
 
-	public Seat(Long id, int row, int column, SeatType seatType, Airplane airplane, Ticket ticket) {
+	public Seat(Long id, int row, int column, SeatType seatType, Airplane airplane, Ticket ticket, boolean occupied,
+			boolean deleted) {
 		super();
 		this.id = id;
 		this.row = row;
@@ -55,10 +59,11 @@ public class Seat {
 		this.seatType = seatType;
 		this.airplane = airplane;
 		this.ticket = ticket;
-		this.deleted = false;
+		this.occupied = occupied;
+		this.deleted = deleted;
 	}
-	
-	public Seat( int row, int column, SeatType seatType) {
+
+	public Seat(int row, int column, SeatType seatType) {
 		this.row = row;
 		this.column = column;
 		this.seatType = seatType;
@@ -120,7 +125,13 @@ public class Seat {
 	public void setTicket(Ticket ticket) {
 		this.ticket = ticket;
 	}
-	
-	
+
+	public boolean isOccupied() {
+		return occupied;
+	}
+
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
 
 }

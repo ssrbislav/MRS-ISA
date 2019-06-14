@@ -2,12 +2,16 @@ package com.airftn.AirFTN.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Passenger extends User implements Serializable {
@@ -21,6 +25,9 @@ public class Passenger extends User implements Serializable {
 
 	@Column(nullable = false)
 	private boolean active;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "passenger")
+	List<Reservation> reservations;
 
 	private String registrationLink;
 
