@@ -25,10 +25,10 @@
   <div class="pricelist grid-item">
     <h3>PRICELIST</h3>
     <form class="example-form">
-      <mat-form-field class="example-full-width">
+      <!-- <mat-form-field class="example-full-width">
         <input class="pricelist-elem" matInput placeholder="PRICE BY KM" disabled name="priceByKm"
           [(ngModel)]="pricelist.priceByKm">
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field class="example-full-width">
         <input class="pricelist-elem" matInput placeholder="ECONOMY PRICE PRECENTAGE" disabled name="economyPricePrecentage"
           [value]='pricelist.economyPricePrecentage' [(ngModel)]="pricelist.economyPricePrecentage">
@@ -85,8 +85,12 @@
   <div class="flights grid-item ">
     <h3>FLIGHTS</h3>
 
-    <mat-form-field class="search">
+    <!-- <mat-form-field class="search">
       <input (keyup)="filterFlights($event.target.value)" matInput placeholder="Search">
+    </mat-form-field> -->
+
+    <mat-form-field class="search">
+      <input matInput (keyup)="filterFlights($event.target.value)" placeholder="FILTER">
     </mat-form-field>
 
     <button class="addFlight" mat-raised-button (click)="createFlight(airline.id)"> Create new flight </button>
@@ -99,9 +103,10 @@
       </ng-container>
 
       <ng-container matColumnDef="airline">
-        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> AIRLINE </th>
-        <td mat-cell *matCellDef="let flight"> {{airline.name}} </td>
-      </ng-container>
+          <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> AIRLINE </th>
+          <td mat-cell *matCellDef="let flight"> {{airline.name}} </td>
+        </ng-container>
+
 
       <ng-container matColumnDef="airplane">
         <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> AIRPLANE </th>

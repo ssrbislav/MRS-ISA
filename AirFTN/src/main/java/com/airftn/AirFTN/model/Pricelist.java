@@ -18,9 +18,9 @@ public class Pricelist {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false, unique = true)
 	private Long id;
-
-	@Column(nullable = false)
-	private Double priceByKm;
+//
+//	@Column(nullable = false)
+//	private Double priceByKm;
 
 	@Column(nullable = false)
 	private Double economyPricePrecentage;
@@ -47,10 +47,10 @@ public class Pricelist {
 		this.deleted = false;
 	}
 
-	public Pricelist(Double priceByKm, Double economyPricePrecentage, Double bussinessPricePrecentage,
+	public Pricelist(Double economyPricePrecentage, Double bussinessPricePrecentage,
 			Double firstPricePrecentage, Double discountedPrecentage, boolean deleted, AirlineCompany airline) {
 		super();
-		this.priceByKm = priceByKm;
+//		this.priceByKm = priceByKm;
 		this.economyPricePrecentage = economyPricePrecentage;
 		this.bussinessPricePrecentage = bussinessPricePrecentage;
 		this.firstPricePrecentage = firstPricePrecentage;
@@ -66,14 +66,14 @@ public class Pricelist {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Double getPriceByKm() {
-		return priceByKm;
-	}
-
-	public void setPriceByKm(Double priceByKm) {
-		this.priceByKm = priceByKm;
-	}
+//
+//	public Double getPriceByKm() {
+//		return priceByKm;
+//	}
+//
+//	public void setPriceByKm(Double priceByKm) {
+//		this.priceByKm = priceByKm;
+//	}
 
 	public Double getEconomyPricePrecentage() {
 		return economyPricePrecentage;

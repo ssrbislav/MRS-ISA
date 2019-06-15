@@ -84,7 +84,6 @@ public class AirAdminController {
 
 	}
 	
-	@PreAuthorize("hasRole('ROLE_AIRLINE_ADMIN')")
 	@RequestMapping(value = "/findAllWithoutCompany", method = RequestMethod.GET)
 	public ResponseEntity<List<AirlineAdmin>> findAllWithoutCompany() {
 		

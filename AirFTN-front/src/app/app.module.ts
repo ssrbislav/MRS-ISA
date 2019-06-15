@@ -43,7 +43,6 @@ import { AirlineProfileComponent } from './airline-admin/airline-profile/airline
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
-import { PricelistComponent } from './airline-admin/pricelist/pricelist.component';
 import { AddDestinationComponent } from './airline-admin/airline-profile/add-destination/add-destination.component';
 import { AddAirplaneComponent } from './airline-admin/airline-profile/add-airplane/add-airplane.component';
 import { CreateFlightComponent } from './airline-admin/airline-profile/create-flight/create-flight.component';
@@ -86,7 +85,6 @@ import { CreateFastReservationComponent } from './airline-admin/airline-profile/
     AirplaneTableComponent,
     CreateAirplaneComponent,
     AirlineProfileComponent,
-    PricelistComponent,
     AddDestinationComponent,
     AddAirplaneComponent,
     CreateFlightComponent,
@@ -128,7 +126,6 @@ import { CreateFastReservationComponent } from './airline-admin/airline-profile/
     ChangeAdminComponent,
     CreateDestinationComponent,
     CreateAirplaneComponent,
-    PricelistComponent,
     AddDestinationComponent,
     AddAirplaneComponent,
     CreateFlightComponent,

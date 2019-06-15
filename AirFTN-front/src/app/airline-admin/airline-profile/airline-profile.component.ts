@@ -39,13 +39,13 @@ import { CreateFastReservationComponent } from './create-fast-reservation/create
 export class AirlineProfileComponent implements OnInit {
 
   constructor(private tokenStorage: TokenStorageService,
-    private adminService: AdminService,
-    private airlineService: AirlineService,
-    private destinationService: DestinationService,
-    private flightService: FlightService,
-    private airplaneService: AirplaneService,
-    private dialog: MatDialog,
-    private pricelistService: PricelistService) { }
+              private adminService: AdminService,
+              private airlineService: AirlineService,
+              private destinationService: DestinationService,
+              private flightService: FlightService,
+              private airplaneService: AirplaneService,
+              private dialog: MatDialog,
+              private pricelistService: PricelistService) { }
 
   username: string;
   adminId: BigInteger;

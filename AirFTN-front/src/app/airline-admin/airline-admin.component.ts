@@ -1,9 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AiradminProfileComponent } from './airadmin-profile/airadmin-profile.component';
 import { MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { TokenStorageService } from '../auth/token-storage.service';
-import { AdminService } from '../services/admin.service';
-import { PricelistComponent } from './pricelist/pricelist.component';
+
 
 @Component({
   selector: 'app-airline-admin',
@@ -21,9 +19,6 @@ export class AirlineAdminComponent implements OnInit {
     if (feature === 'airAdmin') {
       this.updateAirAdminInfo();
     }
-    // if (feature === 'pricelist') {
-    //   this.createPricelist();
-    // }
   }
 
   updateAirAdminInfo() {
@@ -43,23 +38,5 @@ export class AirlineAdminComponent implements OnInit {
       console.log(result);
     });
   }
-
-  // createPricelist() {
-  //   const dialogConfig = new MatDialogConfig();
-
-  //   dialogConfig.disableClose = true;
-  //   dialogConfig.autoFocus = true;
-  //   dialogConfig.data = {
-  //     id: 1,
-  //     added: false
-  //   };
-
-  //   const dialogRef = this.dialog.open(PricelistComponent, dialogConfig);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('Dialog was closed');
-  //     console.log(result);
-  //   });
-  // }
 
 }
