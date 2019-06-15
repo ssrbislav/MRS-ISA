@@ -29,6 +29,9 @@ public class Reservation {
 	@Column(nullable = false)
 	List<Ticket> tickets;
 
+	@Column(nullable = false)
+	private boolean fastReservation;
+
 	@Column(nullable = true)
 	private boolean deleted;
 
@@ -36,11 +39,12 @@ public class Reservation {
 		super();
 	}
 
-	public Reservation(Long id, Passenger passenger, List<Ticket> tickets, boolean deleted) {
+	public Reservation(Long id, Passenger passenger, List<Ticket> tickets, boolean fastReservation, boolean deleted) {
 		super();
 		this.id = id;
 		this.passenger = passenger;
 		this.tickets = tickets;
+		this.fastReservation = fastReservation;
 		this.deleted = deleted;
 	}
 
@@ -74,6 +78,14 @@ public class Reservation {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public boolean isFastReservation() {
+		return fastReservation;
+	}
+
+	public void setFastReservation(boolean fastReservation) {
+		this.fastReservation = fastReservation;
 	}
 
 }

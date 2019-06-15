@@ -10,7 +10,9 @@ import com.airftn.AirFTN.dto.SeatDTO;
 import com.airftn.AirFTN.enumeration.SeatType;
 import com.airftn.AirFTN.model.Airplane;
 import com.airftn.AirFTN.model.Seat;
+import com.airftn.AirFTN.model.Ticket;
 import com.airftn.AirFTN.repository.SeatRepository;
+import com.airftn.AirFTN.repository.TicketRepository;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -22,6 +24,12 @@ public class SeatService implements ISeatService {
 
 	@Autowired
 	IAirplaneService airplaneService;
+	
+	@Autowired
+	ITicketService ticketService;
+	
+	@Autowired
+	TicketRepository ticketRepository;
 
 	@Override
 	public List<Seat> findAll() {
@@ -130,6 +138,27 @@ public class SeatService implements ISeatService {
 
 		return seatRepository.save(s);
 
+	}
+	
+	public boolean updateSeatType(List<Seat> seats) {
+		
+		for(Seat seat: seats) {
+			Seat s = seatRepository.getOne(seat.getId());
+			s.setSeatType(seat.getSeatType());
+			updateTicketPrice(s);
+			seatRepository.save(s);
+		}
+		
+		return true;
+		
+	}
+	
+	public void updateTicketPrice(Seat s) {
+		
+		Ticket ticket = s.getTicket();
+		
+		ticket.setPrice(ticketService.calculatePrice(ticket));	
+		ticketRepository.save(ticket);
 	}
 
 	@Override

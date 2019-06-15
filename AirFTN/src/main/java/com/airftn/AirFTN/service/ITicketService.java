@@ -21,6 +21,8 @@ public interface ITicketService {
 	
 	Ticket update(Ticket ticket);
 	
+	double calculatePrice(Ticket ticket);
+	
 //	boolean delete();
 	
 }

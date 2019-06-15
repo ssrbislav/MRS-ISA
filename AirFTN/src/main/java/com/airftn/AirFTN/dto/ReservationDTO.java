@@ -10,6 +10,8 @@ public class ReservationDTO {
 
 	List<Ticket> tickets;
 
+	private boolean fastReservation;
+
 	public Long getPassengerId() {
 		return passengerId;
 	}
@@ -24,6 +26,14 @@ public class ReservationDTO {
 
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
+	}
+
+	public boolean isFastReservation() {
+		return fastReservation;
+	}
+
+	public void setFastReservation(boolean fastReservation) {
+		this.fastReservation = fastReservation;
 	}
 
 }

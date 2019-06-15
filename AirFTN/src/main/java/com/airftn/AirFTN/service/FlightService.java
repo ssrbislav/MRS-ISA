@@ -14,8 +14,12 @@ import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.Airplane;
 import com.airftn.AirFTN.model.Destination;
 import com.airftn.AirFTN.model.Flight;
+import com.airftn.AirFTN.model.Pricelist;
+import com.airftn.AirFTN.model.Seat;
+import com.airftn.AirFTN.model.Ticket;
 import com.airftn.AirFTN.model.TransferPoint;
 import com.airftn.AirFTN.repository.FlightRepository;
+import com.airftn.AirFTN.repository.TicketRepository;
 
 @Service
 public class FlightService implements IFlightService {
@@ -34,6 +38,12 @@ public class FlightService implements IFlightService {
 
 	@Autowired
 	ITransferPointService transferPointService;
+	
+	@Autowired
+	IPricelistService pricelistService;
+	
+	@Autowired
+	TicketRepository ticketRepository;
 
 	@Override
 	public List<Flight> findAll() {
@@ -59,6 +69,8 @@ public class FlightService implements IFlightService {
 		AirlineCompany company = companyService.getOne(flight.getCompanyId());
 
 		Airplane airplane = airplaneService.getOne(flight.getAirplaneId());
+		
+		Pricelist pricelist = pricelistService.getByAirlineId(company.getId());
 
 		for (Flight f : flightRepository.findAll()) {
 			if (f.getPlane().getId() == flight.getAirplaneId())
@@ -104,6 +116,42 @@ public class FlightService implements IFlightService {
 		f.setPrice(flight.getPrice());
 		f.setDeleted(false);
 
+		for (Seat seat : airplane.getSeats()) {
+			Ticket ticket = new Ticket();
+			ticket.setCompany(company);
+			ticket.setDeleted(false);
+			ticket.setFlight(f);
+			ticket.setSeat(seat);
+			ticket.setFastTicket(false);
+			
+			double price = flight.getPrice();
+			
+			price = price + (price * (pricelist.getEconomyPricePrecentage() / 100));
+			
+			ticket.setPrice(price);
+			
+//			double price;
+//			
+//			if(seat.getSeatType() == SeatType.BUSINESS_CLASS) {
+//				price = flight.getPrice() * (pricelist.getBussinessPricePrecentage() / 100);
+//				price -= price;
+//				ticket.setPrice(price);
+//			}
+//			else if(seat.getSeatType() == SeatType.ECONOMY_CLASS) {
+//				price = flight.getPrice() * (pricelist.getEconomyPricePrecentage() / 100);
+//				price -= price;
+//				ticket.setPrice(price);
+//			}
+//			else if(seat.getSeatType() == SeatType.FIRST_CLASS) {
+//				price = flight.getPrice() * (pricelist.getFirstPricePrecentage() / 100);
+//				price -= price;
+//				ticket.setPrice(price);
+//			}
+			
+			ticketRepository.save(ticket);
+				
+		}
+		
 		return flightRepository.save(f);
 
 	}

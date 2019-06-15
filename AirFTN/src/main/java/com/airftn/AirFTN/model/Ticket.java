@@ -36,11 +36,14 @@ public class Ticket {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
-	
+
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(nullable = false, name = "reservation_id")
+	@JoinColumn(name = "reservation_id")
 	private Reservation reservation;
+
+	@Column(nullable = false)
+	private boolean fastTicket;
 
 	@Column(nullable = true)
 	private boolean deleted;
@@ -49,13 +52,16 @@ public class Ticket {
 		super();
 	}
 
-	public Ticket(Long id, double price, Seat seat, Flight flight, AirlineCompany company, boolean deleted) {
+	public Ticket(Long id, double price, Seat seat, Flight flight, AirlineCompany company, Reservation reservation,
+			boolean fastTicket, boolean deleted) {
 		super();
 		this.id = id;
 		this.price = price;
 		this.seat = seat;
 		this.flight = flight;
 		this.company = company;
+		this.reservation = reservation;
+		this.fastTicket = fastTicket;
 		this.deleted = deleted;
 	}
 
@@ -105,6 +111,22 @@ public class Ticket {
 
 	public void setFlight(Flight flight) {
 		this.flight = flight;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
+	public boolean isFastTicket() {
+		return fastTicket;
+	}
+
+	public void setFastTicket(boolean fastTicket) {
+		this.fastTicket = fastTicket;
 	}
 
 }

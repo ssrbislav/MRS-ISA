@@ -40,6 +40,7 @@ public class TicketService implements ITicketService {
 
 	@Override
 	public List<Ticket> findAllByCompanyId(Long id) {
+		
 		return ticketRepository.findAllByCompanyId(id);
 	}
 
@@ -78,16 +79,14 @@ public class TicketService implements ITicketService {
 		t.setFlight(flight);
 
 		return ticketRepository.save(t);
-
 	}
 
+	@Override
 	public double calculatePrice(Ticket ticket) {
 
 		double totalPrice = 0;
 
 		AirlineCompany company = ticket.getCompany();
-
-		//Flight flight = ticket.getFlight();
 
 		Seat seat = ticket.getSeat();
 
@@ -117,11 +116,17 @@ public class TicketService implements ITicketService {
 		return ticketRepository.save(t);
 	}
 	
-
-	// @Override
-	// public boolean delete() {
-	// // TODO Auto-generated method stub
-	// return false;
-	// }
+//	public Ticket updateTicketPrice(List<Ticket> tickets) {
+//		
+//		for(Ticket ticket : tickets) {
+//			Ticket t = ticketRepository.getOne(ticket.getId());
+//			t.setPrice(calculatePrice(ticket));
+//		}
+	
+//		hhhmmmm, ovo bi trebalo izmeniti
+//		
+//		
+//	}
+//	
 
 }
