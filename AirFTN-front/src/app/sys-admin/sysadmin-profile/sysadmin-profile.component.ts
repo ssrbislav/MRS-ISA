@@ -36,10 +36,8 @@ export class SysadminProfileComponent implements OnInit {
     this.adminService.getSysAdmin(this.username).subscribe (
       data => {
         this.adminInfo = data;
-        console.log(this.adminInfo.first_name);
       }
     );
-    console.log(this.adminInfo.first_name);
   }
 
 }

@@ -19,6 +19,7 @@ export class EditFlightComponent implements OnInit {
   format: string;
   company: AirlineCompanyDTO = new AirlineCompanyDTO();
   airplanes: Airplane[];
+  freeAirplanes: Airplane[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,
@@ -32,12 +33,22 @@ export class EditFlightComponent implements OnInit {
     this.dialogRef.updateSize('35%', '80%');
     this.getFlight();
     this.getAirplanes();
+    this.getNotTakenAirplanes();
   }
 
   getAirplanes() {
     this.airplaneService.getCompanyAirplanes(this.company.id).toPromise().then(
       data => {
         this.airplanes = data;
+      }
+    );
+  }
+
+  getNotTakenAirplanes() {
+    this.airplaneService.getNotTakenAirplanes(this.company.id).subscribe(
+      data => {
+        this.freeAirplanes = data;
+        console.log(data);
       }
     );
   }

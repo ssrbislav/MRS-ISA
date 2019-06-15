@@ -26,52 +26,60 @@
     <h3>PRICELIST</h3>
     <form class="example-form">
       <mat-form-field class="example-full-width">
-        <input class="pricelist-elem" matInput placeholder="PRICE BY KM" disabled name="priceByKm" [(ngModel)]="pricelist.priceByKm">
+        <input class="pricelist-elem" matInput placeholder="PRICE BY KM" disabled name="priceByKm"
+          [(ngModel)]="pricelist.priceByKm">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input class="pricelist-elem" matInput placeholder="ECONOMY PRICE PRECENTAGE" disabled name="priceByKm" [(ngModel)]="pricelist.economyPricePrecentage">
+        <input class="pricelist-elem" matInput placeholder="ECONOMY PRICE PRECENTAGE" disabled name="economyPricePrecentage"
+          [value]='pricelist.economyPricePrecentage' [(ngModel)]="pricelist.economyPricePrecentage">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input class="pricelist-elem"  matInput placeholder="BUSSINES PRICE PRECENTAGE" disabled name="priceByKm" [(ngModel)]="pricelist.bussinessPricePrecentage">
+        <input class="pricelist-elem" matInput placeholder="BUSSINES PRICE PRECENTAGE" disabled name="bussinessPricePrecentage"
+          [value]='pricelist.bussinessPricePrecentage' [(ngModel)]="pricelist.bussinessPricePrecentage">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input class="pricelist-elem" matInput placeholder="FIRST CLASS PRECENTAGE" disabled name="priceByKm" [(ngModel)]="pricelist.firstPricePrecentage">
+        <input class="pricelist-elem" matInput placeholder="FIRST CLASS PRECENTAGE" disabled name="firstPricePrecentage"
+          [value]='pricelist.firstPricePrecentage' [(ngModel)]="pricelist.firstPricePrecentage">
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input class="pricelist-elem" matInput placeholder="DISCOUNTED PRECENTAGES" disabled name="priceByKm" [(ngModel)]="pricelist.discountedPrecentage">
+        <input class="pricelist-elem" matInput placeholder="DISCOUNTED PRECENTAGES" disabled name="discountedPrecentage"
+          [value]='pricelist.discountedPrecentage' [(ngModel)]="pricelist.discountedPrecentage">
       </mat-form-field>
 
-      <button class="pricelist-enable" (click)="enablePricelistEdit()" mat-raised-button>ENABLE EDITING</button>
-      <button class="pricelist-update" (click)="updatePricelist()" type="submit" mat-raised-button disabled>UPDATE PRICELIST</button>
+      <button class="pricelist-enable" id="update" (click)="enablePricelistEdit()" mat-raised-button>ENABLE EDITING</button>
+      <button class="pricelist-update" (click)="updatePricelist()" type="submit" mat-raised-button disabled>UPDATE
+        PRICELIST</button>
     </form>
   </div>
+
 
   <!-- AIRPLANE panel -->
   <div class="airplanes grid-item ">
 
-      <button class="addAirplane" mat-raised-button (click)="addAirplane(airline.id)"> Demand new airplane </button>
-  
-      <h3>AIRPLANES</h3>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th class="head" scope="col">MODEL</th>
-            <th class="head" scope="col">NUMBER OF SEATS</th>
-            <th class="head" scope="col">DELETE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let airplane of airplanes; let i = index">
-            <td>{{airplane.model}}</td>
-            <td>{{airplane.numberOfSeats}}</td>
-            <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button>
-                <mat-icon>delete</mat-icon>
-              </button></td>
-          </tr>
-          <mat-divider></mat-divider>
-      </table>
-  
-    </div>
+    <button class="addAirplane" mat-raised-button (click)="addAirplane(airline.id)"> Demand new airplane </button>
+
+    <h3>AIRPLANES</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="head" scope="col">MODEL</th>
+          <th class="head" scope="col">NUMBER OF SEATS</th>
+          <th class="head" scope="col">DELETE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let airplane of airplanes; let i = index">
+          <td>{{airplane.model}}</td>
+          <td>{{airplane.numberOfSeats}}</td>
+          <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button></td>
+        </tr>
+        <mat-divider></mat-divider>
+    </table>
+
+  </div>
+
 
   <!-- FLIGHT panel -->
   <div class="flights grid-item ">
@@ -84,9 +92,6 @@
     <button class="addFlight" mat-raised-button (click)="createFlight(airline.id)"> Create new flight </button>
 
     <table class="flightTable" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-      <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
 
       <ng-container matColumnDef="flightNumber">
         <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> FLIGHT NUMBER </th>
@@ -166,6 +171,7 @@
 
   </div>
 
+
   <!-- DESTINATIONS panel -->
   <div class="destinations grid-item ">
 
@@ -196,13 +202,35 @@
   </div>
 
 
-  
-
-
   <!-- FAST TICKET RESERVATIOn -->
   <div class="other grid-item">
-    <h3>FAST TICKET RESERVATION</h3>
-    <p>FAST TICKET RESERVATION</p>
+    
+    <button class="addDest" mat-raised-button (click)="addReservation(airline.id)"> Create new fast reservation </button>
+
+    <h3>FAST RESERVATIONS</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="head" scope="col">From</th>
+          <th class="head" scope="col">To</th>
+          <th class="head" scope="col">Seat</th>
+          <th class="head" scope="col">Price</th>
+          <th class="head" scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of reservations; let i = index">
+          <td>{{reservation.city}}</td>
+          <td>{{reservation.country}}</td>
+          <td>{{reservation.description}}</td>
+          <td>{{reservation.description}}</td>
+          <td id="delete_reservation" (onclick)="deleteReservation(reservation.id)"><button mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button></td>
+        </tr>
+        <mat-divider></mat-divider>
+    </table>
+
   </div>
 
 </div>

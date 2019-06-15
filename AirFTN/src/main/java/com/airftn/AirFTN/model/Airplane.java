@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class Airplane {
 
@@ -44,6 +44,9 @@ public class Airplane {
 	@JoinColumn(name = "airline_company_id")
 	private AirlineCompany company;
 
+	@Column(nullable = false)
+	private boolean taken;
+
 	@Column(nullable = true)
 	private boolean deleted;
 
@@ -61,6 +64,7 @@ public class Airplane {
 		this.flight = flight;
 		this.company = company;
 		this.deleted = deleted;
+		this.taken = false;
 	}
 
 	public Long getId() {
@@ -117,6 +121,14 @@ public class Airplane {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public boolean isTaken() {
+		return taken;
+	}
+
+	public void setTaken(boolean taken) {
+		this.taken = taken;
 	}
 
 }

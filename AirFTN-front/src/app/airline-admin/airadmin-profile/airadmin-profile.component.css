@@ -52,6 +52,11 @@ button {
     color: white;
 }
 
+.passwordbtn:hover {
+    background-color: gray;
+    color: white;
+}
+
 textarea, select, input, button { 
     outline: none;
  }

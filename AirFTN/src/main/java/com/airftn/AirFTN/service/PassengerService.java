@@ -38,10 +38,16 @@ public class PassengerService implements IPassengerService {
 			if (p.getUsername().equals(passenger.getUsername()) || p.getEmail().equals(passenger.getEmail()))
 				return null;
 
-		Passenger p = new Passenger(passenger.getEmail(), passenger.getUsername(), passenger.getPassword(),
-				passenger.getFirst_name(), passenger.getLast_name(), passenger.getAddress(),
-				passenger.getPhone_number(), passenger.getDate_of_birth());
-
+		Passenger p = new Passenger();
+		p.setEmail(passenger.getEmail());
+		p.setUsername(passenger.getUsername());
+		p.setPassword(passenger.getPassword());
+		p.setFirstName(passenger.getFirstName());
+		p.setLastName(passenger.getLastName());
+		p.setAddress(passenger.getAddress());
+		p.setPhoneNumber(passenger.getPhoneNumber());
+		p.setDateOfBirth(passenger.getDateOfBirth());
+		
 		return passengerRepository.save(p);
 	}
 
@@ -56,11 +62,11 @@ public class PassengerService implements IPassengerService {
 		p.setUsername(passenger.getUsername());
 		p.setEmail(passenger.getEmail());
 		p.setPassword(encoder.encode(passenger.getPassword()));
-		p.setFirst_name(passenger.getFirst_name());
-		p.setLast_name(passenger.getLast_name());
+		p.setFirstName(passenger.getFirstName());
+		p.setLastName(passenger.getLastName());
 		p.setAddress(passenger.getAddress());
-		p.setDate_of_birth(passenger.getDate_of_birth());
-		p.setPhone_number(passenger.getPhone_number());
+		p.setDateOfBirth(passenger.getDateOfBirth());
+		p.setPhoneNumber(passenger.getPhoneNumber());
 		p.setActive(passenger.isActive());
 
 		return passengerRepository.save(p);
@@ -77,11 +83,11 @@ public class PassengerService implements IPassengerService {
 		p.setUsername(passenger.getUsername());
 		p.setEmail(passenger.getEmail());
 		p.setPassword(encoder.encode(passenger.getPassword()));
-		p.setFirst_name(passenger.getFirst_name());
-		p.setLast_name(passenger.getLast_name());
+		p.setFirstName(passenger.getFirstName());
+		p.setLastName(passenger.getLastName());
 		p.setAddress(passenger.getAddress());
-		p.setDate_of_birth(passenger.getDate_of_birth());
-		p.setPhone_number(passenger.getPhone_number());
+		p.setDateOfBirth(passenger.getDateOfBirth());
+		p.setPhoneNumber(passenger.getPhoneNumber());
 		p.setActive(passenger.isActive());
 
 		return passengerRepository.save(p);

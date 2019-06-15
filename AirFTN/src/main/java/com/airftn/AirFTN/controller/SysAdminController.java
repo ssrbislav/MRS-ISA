@@ -78,8 +78,8 @@ public class SysAdminController {
 		}
 
 		AirlineAdmin admin = new AirlineAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
-				registerRequest.getLast_name(), null, null, null);
+				encoder.encode(registerRequest.getPassword()), registerRequest.getFirstName(),
+				registerRequest.getLastName(), null, null, null);
 		
 
 		Role role = new Role();
@@ -110,8 +110,8 @@ public class SysAdminController {
 		}
 
 		SysAdmin admin = new SysAdmin(registerRequest.getEmail(), registerRequest.getUsername(),
-				encoder.encode(registerRequest.getPassword()), registerRequest.getFirst_name(),
-				registerRequest.getLast_name(), null, null, null);
+				encoder.encode(registerRequest.getPassword()), registerRequest.getFirstName(),
+				registerRequest.getLastName(), null, null, null);
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_SYSADMIN);

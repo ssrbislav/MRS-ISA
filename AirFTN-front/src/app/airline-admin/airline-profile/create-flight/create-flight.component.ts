@@ -18,6 +18,7 @@ export class CreateFlightComponent implements OnInit {
   flight: FlightDTO = new FlightDTO();
   errorMessage: string;
   airplanes: Airplane[];
+  freeAirplanes: Airplane[];
   destinations: DestinationDTO[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,6 +31,7 @@ export class CreateFlightComponent implements OnInit {
     this.dialogRef.updateSize('35%', '80%');
     this.getAirplanes();
     this.getDestinations();
+    this.getNotTakenAirplanes();
   }
 
   getAirplanes() {
@@ -37,7 +39,15 @@ export class CreateFlightComponent implements OnInit {
       data => {
         this.airplanes = data;
       }
-    )
+    );
+  }
+
+  getNotTakenAirplanes() {
+    this.airplaneService.getNotTakenAirplanes(this.data.company).subscribe(
+      data => {
+        this.freeAirplanes = data;
+      }
+    );
   }
 
   getDestinations() {

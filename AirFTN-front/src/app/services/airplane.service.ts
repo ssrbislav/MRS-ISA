@@ -24,9 +24,14 @@ export class AirplaneService {
     return this.http.get<Airplane[]>(url);
   }
 
+  getNotTakenAirplanes(id: BigInteger) {
+    const url = `${this.airplaneUrl + '/findByNotTakend/' + id}`;
+    return this.http.get<Airplane[]>(url);
+  }
+
   getFlightAirplane(id: BigInteger) {
     const url = `${this.airplaneUrl + '/findByFlightId/' + id}`;
-    return this.http.get<Airplane>(url)
+    return this.http.get<Airplane>(url);
   }
 
   createAirplane(info: AirplaneDTO) {

@@ -18,6 +18,7 @@ import com.airftn.AirFTN.model.Pricelist;
 import com.airftn.AirFTN.model.Seat;
 import com.airftn.AirFTN.model.Ticket;
 import com.airftn.AirFTN.model.TransferPoint;
+import com.airftn.AirFTN.repository.AirplaneRepository;
 import com.airftn.AirFTN.repository.FlightRepository;
 import com.airftn.AirFTN.repository.TicketRepository;
 
@@ -44,6 +45,9 @@ public class FlightService implements IFlightService {
 	
 	@Autowired
 	TicketRepository ticketRepository;
+	
+	@Autowired
+	AirplaneRepository airplaneRepository;
 
 	@Override
 	public List<Flight> findAll() {
@@ -69,6 +73,9 @@ public class FlightService implements IFlightService {
 		AirlineCompany company = companyService.getOne(flight.getCompanyId());
 
 		Airplane airplane = airplaneService.getOne(flight.getAirplaneId());
+		
+		airplane.setTaken(true);
+		airplaneRepository.save(airplane);
 		
 		Pricelist pricelist = pricelistService.getByAirlineId(company.getId());
 

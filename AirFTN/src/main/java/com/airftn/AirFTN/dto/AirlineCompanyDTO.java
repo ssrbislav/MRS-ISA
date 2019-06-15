@@ -17,20 +17,20 @@ public class AirlineCompanyDTO {
 	private String description;
 
 	@NotBlank
-	private Long admin_id;
+	private Long adminId;
 	
 	
 
 	public AirlineCompanyDTO() {
 	}
 
-	public AirlineCompanyDTO(String name, String city, String address, String description, Long admin_id) {
+	public AirlineCompanyDTO(String name, String city, String address, String description, Long adminId) {
 		super();
 		this.name = name;
 		this.city = city;
 		this.address = address;
 		this.description = description;
-		this.admin_id = admin_id;
+		this.adminId = adminId;
 	}
 
 	public String getName() {
@@ -65,12 +65,12 @@ public class AirlineCompanyDTO {
 		this.description = description;
 	}
 
-	public Long getAdmin_id() {
-		return admin_id;
+	public Long getAdminId() {
+		return adminId;
 	}
 
-	public void setAdmin_id(Long admin_id) {
-		this.admin_id = admin_id;
+	public void setAdminId(Long adminId) {
+		this.adminId = adminId;
 	}
 
 }

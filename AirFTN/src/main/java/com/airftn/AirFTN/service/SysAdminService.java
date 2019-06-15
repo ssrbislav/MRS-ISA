@@ -26,11 +26,11 @@ public class SysAdminService implements ISysAdminService {
 		administrator.setId(id);
 		administrator.setEmail(admin.getEmail());
 		administrator.setPassword(encoder.encode(admin.getPassword()));
-		administrator.setFirst_name(admin.getFirst_name());
-		administrator.setLast_name(admin.getLast_name());
+		administrator.setFirstName(admin.getFirstName());
+		administrator.setLastName(admin.getLastName());
 		administrator.setAddress(admin.getAddress());
-		administrator.setDate_of_birth(admin.getDate_of_birth());
-		administrator.setPhone_number(admin.getPhone_number());
+		administrator.setDateOfBirth(admin.getDateOfBirth());
+		administrator.setPhoneNumber(admin.getPhoneNumber());
 
 		return adminRepository.save(administrator);
 

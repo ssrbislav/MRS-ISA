@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -32,20 +33,20 @@ public class AirlineAdmin extends User {
 		super();
 	}
 
-	public AirlineAdmin(String email, String username, String password, String first_name, String last_name,
-			String address, String phone_number, Date date_of_birth) {
-		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
-		this.active = true;
-		this.deleted = false;
-	}
-
-	public AirlineAdmin(String email, String username, String password, String first_name, String last_name,
-			String address, String phone_number, Date date_of_birth, boolean active, AirlineCompany airlineCompany,
+	public AirlineAdmin(@Email String email, String username, String password, String firstName, String lastName,
+			String address, String phoneNumber, Date dateOfBirth, boolean active, AirlineCompany airlineCompany,
 			boolean hasCompany, boolean deleted) {
-		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
+		super(email, username, password, firstName, lastName, address, phoneNumber, dateOfBirth);
 		this.active = true;
 		this.airlineCompany = airlineCompany;
 		this.hasCompany = false;
+		this.deleted = false;
+	}
+
+	public AirlineAdmin(@Email String email, String username, String password, String firstName, String lastName,
+			String address, String phoneNumber, Date dateOfBirth) {
+		super(email, username, password, firstName, lastName, address, phoneNumber, dateOfBirth);
+		this.active = true;
 		this.deleted = false;
 	}
 

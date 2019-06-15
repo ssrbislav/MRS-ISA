@@ -30,7 +30,7 @@ public class AirplaneService implements IAirplaneService {
 
 		return airplaneRepository.findAll();
 	}
-	
+
 	@Override
 	public Airplane getOne(Long id) {
 		return airplaneRepository.getOne(id);
@@ -40,16 +40,16 @@ public class AirplaneService implements IAirplaneService {
 	public Airplane create(AirplaneDTO airplane) {
 
 		AirlineCompany company = airlineService.getOne(airplane.getAirlineId());
-		
+
 		List<Seat> seats = new ArrayList<>();
-		
+
 		Airplane plane = new Airplane();
 		plane.setModel(airplane.getModel());
 		plane.setNumberOfSeats(airplane.getNumberOfSeats());
 		plane.setCompany(company);
-		
-		for(int j = 0; j < airplane.getNumberOfSeats(); j++) {
-			for(int i = 0; i < 6; i++) {
+
+		for (int j = 0; j < airplane.getNumberOfSeats(); j++) {
+			for (int i = 0; i < 6; i++) {
 				Seat s = new Seat();
 				s.setColumn(i);
 				s.setRow(j);
@@ -58,7 +58,7 @@ public class AirplaneService implements IAirplaneService {
 				seats.add(s);
 			}
 		}
-		
+
 		plane.setSeats(seats);
 
 		return airplaneRepository.save(plane);
@@ -74,13 +74,19 @@ public class AirplaneService implements IAirplaneService {
 
 		return null;
 	}
-	
+
 	@Override
 	public Airplane findByFlightId(Long id) {
-		
+
 		Airplane airplane = airplaneRepository.findByFlightId(id);
 
 		return airplane;
+	}
+
+	@Override
+	public List<Airplane> findAllNotTaken() {
+
+		return airplaneRepository.findAllByTakenIsFalse();
 	}
 
 }

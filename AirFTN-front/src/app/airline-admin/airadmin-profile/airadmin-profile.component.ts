@@ -5,6 +5,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { PassengerService } from 'src/app/services/passenger.service';
 import { AdminDTO } from 'src/app/model/admin.model';
 import { Passenger } from 'src/app/model/passenger.model';
+import { ResponseMessage } from 'src/app/model/responseMessage';
 
 @Component({
   selector: 'app-airadmin-profile',
@@ -16,6 +17,8 @@ export class AiradminProfileComponent implements OnInit {
   adminInfo: AdminDTO = new AdminDTO();
   passenger: Passenger = new Passenger();
   username: string;
+  disabled = true;
+  message: ResponseMessage;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,6 +39,31 @@ export class AiradminProfileComponent implements OnInit {
         this.adminInfo = data;
       }
     );
+  }
+
+  updateAdminInfo() {
+    if (this.disabled === true) {
+      const elements = document.getElementsByClassName('adminInfo');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].removeAttribute('disabled');
+      }
+      document.getElementById('updatebtn').innerHTML = 'UPDATE INFO';
+      this.disabled = false;
+    } else {
+      this.adminService.airAdminUpdate(this.adminInfo).subscribe(
+        data => {
+          this.message = data;
+          alert(this.message.message);
+        }
+      );
+      const elements = document.getElementsByClassName('adminInfo');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].setAttribute('disabled', 'disabled');
+      }
+      document.getElementById('updatebtn').innerHTML = 'ENABLE CHANGES';
+      this.disabled = true;
+      location.reload();
+    }
   }
 
 }

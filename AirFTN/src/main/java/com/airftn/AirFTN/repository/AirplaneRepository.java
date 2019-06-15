@@ -10,6 +10,8 @@ import com.airftn.AirFTN.model.Airplane;
 public interface AirplaneRepository extends JpaRepository<Airplane, Long> {
 	
 	List<Airplane> findAllByCompany(AirlineCompany company);
+	
+	List<Airplane> findAllByTakenIsFalse();
 
 	Airplane findByFlightId(Long id);
 	

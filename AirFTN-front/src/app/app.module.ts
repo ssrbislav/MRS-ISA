@@ -92,7 +92,7 @@ import { DefineSeatsComponent } from './airline-admin/airline-profile/define-sea
     ListTransferPointsComponent,
     AddTransferPointComponent,
     EditFlightComponent,
-    DefineSeatsComponent,
+    DefineSeatsComponent
 
   ],
   imports: [

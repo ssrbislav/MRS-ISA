@@ -4,11 +4,11 @@ export class Passenger {
     email: string;
     username: string;
     password: string;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     address: string;
-    phone_number: string;
-    date_of_birth: Date;
+    phoneNumber: string;
+    dateOfBirth: Date;
     roles: string[];
     active: boolean;
     registrationLink: string;

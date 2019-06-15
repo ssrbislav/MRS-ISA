@@ -12,7 +12,7 @@ export class AirlineCompanyDTO {
     destination: any;
     fastReservationTickets: any;
     admin: AdminDTO;
-    admin_id: BigInteger;
+    adminId: BigInteger;
     deleted: boolean;
 
 }

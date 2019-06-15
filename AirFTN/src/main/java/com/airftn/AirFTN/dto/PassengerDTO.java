@@ -19,37 +19,36 @@ public class PassengerDTO {
 	private String password;
 
 	@NotBlank
-	private String first_name;
+	private String firstName;
 
 	@NotBlank
-	private String last_name;
+	private String lastName;
 
 	@NotBlank
 	private String address;
 
 	@NotBlank
-	private String phone_number;
+	private String phoneNumber;
 
 	@NotBlank
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private Date date_of_birth;
-	
+	private Date dateOfBirth;
+
 	private Set<String> role;
 
-	public PassengerDTO(String email, String username, String password,
-			String first_name, String last_name, String address,
-			String phone_number, Date date_of_birth) {
+	public PassengerDTO(String email, String username, String password, String firstName, String lastName,
+			String address, String phoneNumber, Date dateOfBirth) {
 		super();
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.first_name = first_name;
-		this.last_name = last_name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.address = address;
-		this.phone_number = phone_number;
-		this.date_of_birth = date_of_birth;
+		this.phoneNumber = phoneNumber;
+		this.dateOfBirth = dateOfBirth;
 	}
-	
+
 	public PassengerDTO() {
 	}
 
@@ -77,20 +76,20 @@ public class PassengerDTO {
 		this.password = password;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getAddress() {
@@ -101,22 +100,22 @@ public class PassengerDTO {
 		this.address = address;
 	}
 
-	public String getPhone_number() {
-		return phone_number;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public Date getDate_of_birth() {
-		return date_of_birth;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDate_of_birth(Date date_of_birth) {
-		this.date_of_birth = date_of_birth;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
-	
+
 	public Set<String> getRole() {
 		return role;
 	}

@@ -21,7 +21,7 @@
 
     <div class="form-group">
       <mat-select name="airplane" [(ngModel)]="flight.airplane" placeholder="AIRPLANE">
-        <mat-option *ngFor="let airplane of airplanes" [value]='airplane'>
+        <mat-option *ngFor="let airplane of freeAirplanes" [value]='airplane'>
           {{airplane.model}}
         </mat-option>
       </mat-select>

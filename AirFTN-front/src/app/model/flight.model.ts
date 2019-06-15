@@ -8,14 +8,11 @@ export class FlightDTO {
     flightNumber: string;
     companyId: BigInteger;
     airplaneId: BigInteger;
-    // company: AirlineCompanyDTO;
-    // plane: AirplaneDTO;
     departure: Date;
     arrival: Date;
     destinationId: BigInteger;
     mileage: number;
     durationOfFlight: number;
-    // transfers: TransferPointDTO[];
     price: number;
 
 }

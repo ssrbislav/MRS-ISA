@@ -27,31 +27,31 @@ public class UserPrinciple implements UserDetails {
 
 	private String email;
 
-	private String first_name;
+	private String firstName;
 
-	private String last_name;
+	private String lastName;
 
 	private String address;
 
-	private String phone_number;
+	private String phoneNumber;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy.")
-	private Date date_birth;
+	private Date dateOfBirth;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserPrinciple(Long id, String username, String password, String email, String first_name, String last_name,
-			String address, String phone_number, Date date_birth, Collection<? extends GrantedAuthority> authorities) {
+	public UserPrinciple(Long id, String username, String password, String email, String firstName, String lastName,
+			String address, String phoneNumber, Date dateOfBirth, Collection<? extends GrantedAuthority> authorities) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.first_name = first_name;
-		this.last_name = last_name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.address = address;
-		this.phone_number = phone_number;
-		this.date_birth = date_birth;
+		this.phoneNumber = phoneNumber;
+		this.dateOfBirth = dateOfBirth;
 		this.authorities = authorities;
 	}
 
@@ -60,8 +60,8 @@ public class UserPrinciple implements UserDetails {
 				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
 		return new UserPrinciple(user.getId(), user.getUsername(), user.getPassword(), user.getEmail(),
-				user.getFirst_name(), user.getLast_name(), user.getAddress(), user.getPhone_number(),
-				user.getDate_of_birth(), authorities);
+				user.getFirstName(), user.getLastName(), user.getAddress(), user.getPhoneNumber(),
+				user.getDateOfBirth(), authorities);
 	}
 
 	public Long getId() {
@@ -72,24 +72,24 @@ public class UserPrinciple implements UserDetails {
 		return email;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
 	public String getAddress() {
 		return address;
 	}
 
-	public String getPhone_number() {
-		return phone_number;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public Date getDate_birth() {
-		return date_birth;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
 	@Override

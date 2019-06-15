@@ -66,6 +66,8 @@ export class AirlineProfileComponent implements OnInit {
 
   responseMessage: ResponseMessage;
 
+  disabled = true;
+
   displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
     'arrival', 'destination', 'mileage',
     'duration', 'price', 'transfer', 'seats', 'edit'];
@@ -238,11 +240,23 @@ export class AirlineProfileComponent implements OnInit {
   }
 
   enablePricelistEdit() {
-    const elements = document.getElementsByClassName('pricelist-elem');
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].removeAttribute('disabled');
+    if (this.disabled === true) {
+      const elements = document.getElementsByClassName('pricelist-elem');
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].removeAttribute('disabled');
+      }
+      this.disabled = false;
+      document.getElementsByClassName('pricelist-update')[0].removeAttribute('disabled');
+      document.getElementById('update').innerHTML = 'DISABLE EDITING';
+    } else {
+      const elements = document.getElementsByClassName('pricelist-elem');
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].setAttribute('disabled', 'disabled');
+      }
+      this.disabled = true;
+      document.getElementsByClassName('pricelist-update')[0].setAttribute('disabled', 'disabled');
+      document.getElementById('update').innerHTML = 'ENABLE EDITING';
     }
-    document.getElementsByClassName('pricelist-update')[0].removeAttribute('disabled');
   }
 
   updatePricelist() {
@@ -250,7 +264,9 @@ export class AirlineProfileComponent implements OnInit {
     for (var i = 0; i < elements.length; i++) {
       elements[i].setAttribute('disabled', 'disabled');
     }
+    this.disabled = true;
     document.getElementsByClassName('pricelist-update')[0].setAttribute('disabled', 'disabled');
+    document.getElementById('update').innerHTML = 'ENABLE EDITING';
 
     if (this.pricelistDTO === undefined) {
       this.pricelistService.createPricelist(this.pricelist, this.airline.id).subscribe(

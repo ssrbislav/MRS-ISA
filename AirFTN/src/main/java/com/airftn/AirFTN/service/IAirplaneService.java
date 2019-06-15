@@ -11,6 +11,8 @@ public interface IAirplaneService {
 	
 	List<Airplane> findAll();
 	
+	List<Airplane> findAllNotTaken();
+	
 	Airplane getOne(Long id);
 
 	Airplane create(AirplaneDTO airplane) throws ObjectNotFoundException;

@@ -58,14 +58,14 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 
 		AirlineCompany airCompany = new AirlineCompany();
 
-		AirlineAdmin admin = adminRepository.getOne(company.getAdmin_id());
+		AirlineAdmin admin = adminRepository.getOne(company.getAdminId());
 
 		airCompany.setName(company.getName());
 		airCompany.setCity(company.getCity());
 		airCompany.setAddress(company.getAddress());
 		airCompany.setDescription(company.getDescription());
 		airCompany.setAdmin(admin);
-		
+
 		admin.setHasCompany(true);
 		adminRepository.save(admin);
 
@@ -128,9 +128,9 @@ public class AirlinecompanyService implements IAirlinecompanyService {
 		destinations.add(destination);
 
 		AirlineCompany company = airlineRepository.getOne(company_id);
-		if(company.getDestinations().contains(destination))
+		if (company.getDestinations().contains(destination))
 			return null;
-		
+
 		company.getDestinations().add(destination);
 		destination.getCompanies().add(company);
 

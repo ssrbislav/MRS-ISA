@@ -21,9 +21,9 @@ export class AirlineAdminComponent implements OnInit {
     if (feature === 'airAdmin') {
       this.updateAirAdminInfo();
     }
-    if (feature === 'pricelist') {
-      this.createPricelist();
-    }
+    // if (feature === 'pricelist') {
+    //   this.createPricelist();
+    // }
   }
 
   updateAirAdminInfo() {
@@ -44,22 +44,22 @@ export class AirlineAdminComponent implements OnInit {
     });
   }
 
-  createPricelist() {
-    const dialogConfig = new MatDialogConfig();
+  // createPricelist() {
+  //   const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-      id: 1,
-      added: false
-    };
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.data = {
+  //     id: 1,
+  //     added: false
+  //   };
 
-    const dialogRef = this.dialog.open(PricelistComponent, dialogConfig);
+  //   const dialogRef = this.dialog.open(PricelistComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog was closed');
-      console.log(result);
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('Dialog was closed');
+  //     console.log(result);
+  //   });
+  // }
 
 }

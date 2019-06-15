@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class SysAdmin extends User {
 
@@ -21,16 +21,16 @@ public class SysAdmin extends User {
 		super();
 	}
 
-	public SysAdmin(String email, String username, String password, String first_name, String last_name, String address,
-			String phone_number, Date date_of_birth) {
-		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
+	public SysAdmin(String email, String username, String password, String firstName, String lastName,
+			String address, String phoneNumber, Date dateOfBirth) {
+		super(email, username, password, firstName, lastName, address, phoneNumber, dateOfBirth);
 		this.active = true;
 		this.deleted = false;
 	}
 
-	public SysAdmin(String email, String username, String password, String first_name, String last_name, String address,
-			String phone_number, Date date_of_birth, boolean active, boolean deleted) {
-		super(email, username, password, first_name, last_name, address, phone_number, date_of_birth);
+	public SysAdmin(String email, String username, String password, String firstName, String lastName,
+			String address, String phoneNumber, Date dateOfBirth, boolean active, boolean deleted) {
+		super(email, username, password, firstName, lastName, address, phoneNumber, dateOfBirth);
 		this.active = true;
 		this.deleted = false;
 	}
