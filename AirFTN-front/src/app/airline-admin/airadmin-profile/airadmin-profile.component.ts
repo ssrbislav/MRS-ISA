@@ -41,9 +41,14 @@ export class AiradminProfileComponent implements OnInit {
     );
   }
 
+  changePassword() {
+    alert('Not Implemented');
+  }
+
   updateAdminInfo() {
     if (this.disabled === true) {
       const elements = document.getElementsByClassName('adminInfo');
+// tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < elements.length; i++) {
         elements[i].removeAttribute('disabled');
       }
@@ -57,6 +62,7 @@ export class AiradminProfileComponent implements OnInit {
         }
       );
       const elements = document.getElementsByClassName('adminInfo');
+// tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < elements.length; i++) {
         elements[i].setAttribute('disabled', 'disabled');
       }

@@ -35,7 +35,7 @@ input:focus {
     border-bottom: 1px solid rgb(20, 168, 57);
 }
 
-button {
+/* button {
     padding: 18px 30px;
     margin: 15px 15px ;
     border: 1px solid rgb(20, 168, 57);
@@ -67,6 +67,27 @@ button {
     background: #a8dfb0;
     color: white;
     opacity: 1;
+} */
+
+button {
+    padding: 8px 10px;
+    margin: 15px 15px;
+    width: 35%;
+    font-family: lato;
+}
+
+.cancelbtn:hover {
+    background-color: gray;
+    color: white;
+}
+
+.submitbtn:hover {
+    background:  #a8dfb0;
+    color: white;
+}
+
+.submitbtn {
+    border: 1px solid #a8dfb0;
 }
 
 textarea, select, input, button { 

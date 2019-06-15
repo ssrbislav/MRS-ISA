@@ -22,11 +22,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { PricelistDTO, Pricelist } from 'src/app/model/pricelist.model';
 import { PricelistService } from 'src/app/services/pricelist.service';
 import { ResponseMessage } from 'src/app/model/responseMessage';
+import { CreateFastReservationComponent } from './create-fast-reservation/create-fast-reservation.component';
 
 @Component({
   selector: 'app-airline-profile',
   templateUrl: './airline-profile.component.html',
-  styleUrls: ['./airline-profile.component.css',],
+  styleUrls: ['./airline-profile.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -105,35 +106,7 @@ export class AirlineProfileComponent implements OnInit {
     );
   }
 
-  getCompanyDestinations(id: BigInteger) {
-    this.destinationService.getAllByCompanyId(this.airline.id).toPromise().then(
-      data => {
-        this.destinations = data;
-      }
-    );
-  }
-
-  getCompanyFlights(id: BigInteger) {
-    this.flightService.getAllAirlineFlights(this.airline.id).toPromise().then(
-      data => {
-        this.flights = data;
-        this.dataSource = new MatTableDataSource(this.flights);
-        this.dataSource.sort = this.sort;
-      }
-    );
-  }
-
-  getCompanyAirplanes(id: BigInteger) {
-    this.airplaneService.getCompanyAirplanes(this.airline.id).toPromise().then(
-      data => {
-        this.airplanes = data;
-      }
-    );
-  }
-
-  filterFlights(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  // DESTINATION STUFF
 
   addDestination(company: any) {
 
@@ -149,11 +122,17 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AddDestinationComponent, dialogConfig);
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('Dialog closed');
-    //   console.log(result);
-    // });
   }
+
+  getCompanyDestinations(id: BigInteger) {
+    this.destinationService.getAllByCompanyId(this.airline.id).toPromise().then(
+      data => {
+        this.destinations = data;
+      }
+    );
+  }
+
+  // AIRPLANE STUFF
 
   addAirplane(company: any) {
 
@@ -170,6 +149,16 @@ export class AirlineProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(AddAirplaneComponent, dialogConfig);
   }
 
+  getCompanyAirplanes(id: BigInteger) {
+    this.airplaneService.getCompanyAirplanes(this.airline.id).toPromise().then(
+      data => {
+        this.airplanes = data;
+      }
+    );
+  }
+
+  // FLIGHT STUFF
+
   createFlight(company: any) {
 
     const dialogConfig = new MatDialogConfig();
@@ -184,6 +173,21 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(CreateFlightComponent, dialogConfig);
   }
+
+  getCompanyFlights(id: BigInteger) {
+    this.flightService.getAllAirlineFlights(this.airline.id).toPromise().then(
+      data => {
+        this.flights = data;
+        this.dataSource = new MatTableDataSource(this.flights);
+        this.dataSource.sort = this.sort;
+      }
+    );
+  }
+
+  filterFlights(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 
   showFlightTransfers(flight: any) {
 
@@ -231,6 +235,8 @@ export class AirlineProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(DefineSeatsComponent, dialogConfig);
   }
 
+  // PRICELIST STUFF
+
   getPricelistByCompanyId(id: BigInteger) {
     this.pricelistService.getPricelistByAirlineId(id).subscribe(
       data => {
@@ -242,7 +248,8 @@ export class AirlineProfileComponent implements OnInit {
   enablePricelistEdit() {
     if (this.disabled === true) {
       const elements = document.getElementsByClassName('pricelist-elem');
-      for (var i = 0; i < elements.length; i++) {
+// tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < elements.length; i++) {
         elements[i].removeAttribute('disabled');
       }
       this.disabled = false;
@@ -250,7 +257,8 @@ export class AirlineProfileComponent implements OnInit {
       document.getElementById('update').innerHTML = 'DISABLE EDITING';
     } else {
       const elements = document.getElementsByClassName('pricelist-elem');
-      for (var i = 0; i < elements.length; i++) {
+// tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < elements.length; i++) {
         elements[i].setAttribute('disabled', 'disabled');
       }
       this.disabled = true;
@@ -261,7 +269,8 @@ export class AirlineProfileComponent implements OnInit {
 
   updatePricelist() {
     const elements = document.getElementsByClassName('pricelist-elem');
-    for (var i = 0; i < elements.length; i++) {
+// tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < elements.length; i++) {
       elements[i].setAttribute('disabled', 'disabled');
     }
     this.disabled = true;
@@ -286,6 +295,23 @@ export class AirlineProfileComponent implements OnInit {
       );
       location.reload();
     }
+  }
+
+  // FAST RESERVATION STUFF
+
+  createFastReservation(airline: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      airline,
+    };
+
+    const dialogRef = this.dialog.open(CreateFastReservationComponent, dialogConfig);
   }
 
 }

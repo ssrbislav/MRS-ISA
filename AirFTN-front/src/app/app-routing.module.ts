@@ -79,12 +79,6 @@ const routes: Routes = [
     {
         path: 'airlineAdmin',
         component: AirlineAdminComponent,
-        // children: [
-        //     {
-        //         path: '',
-        //         component: PricelistComponent
-        //     }
-        // ],
         canActivate: [RoleGuardService],
         data: {
             expectedRole: 'ROLE_AIRLINE_ADMIN'

@@ -13,7 +13,7 @@
   
       <div class="form-group">
         <input type="text" name="numberOfSeats" [(ngModel)]="airplane.numberOfSeats" #numberOfSeats="ngModel" required
-          placeholder="NUMBER OF SEATS" />
+          placeholder="NUMBER OF SEAT ROWS" />
         <div *ngIf="f.submitted && numberOfSeats.invalid">
           <div *ngIf="numberOfSeats.errors.required" style="color: red">Number od seats is required</div>
         </div>
@@ -30,11 +30,11 @@
       <br>
   
       <div class="form-group">
-        <button class="button" class="submitbtn">CREATE</button>
+        <button class="button" mat-raised-button class="submitbtn">CREATE</button>
         <div *ngIf="f.submitted && isLoginFailed" style="color: red">
           Registration failed: {{errorMessage}}
         </div>
-        <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+        <button class="cancelbtn" type="button" mat-raised-button mat-dialog-close>CANCEL</button>
       </div>
       <br>
     </form>

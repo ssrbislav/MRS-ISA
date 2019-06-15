@@ -23,7 +23,7 @@ export class RegisterAirlineCompanyComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('40%', '90%');
+    this.dialogRef.updateSize('40%', '80%');
     this.getAdmins();
   }
 
@@ -36,7 +36,7 @@ export class RegisterAirlineCompanyComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log(this.airlineInfo)
     this.airlineService.createCompany(this.airlineInfo).subscribe(
       data => {
         window.alert('Airline company successfully registered!');

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,6 +84,7 @@ public class AirAdminController {
 
 	}
 	
+	@PreAuthorize("hasRole('ROLE_AIRLINE_ADMIN')")
 	@RequestMapping(value = "/findAllWithoutCompany", method = RequestMethod.GET)
 	public ResponseEntity<List<AirlineAdmin>> findAllWithoutCompany() {
 		

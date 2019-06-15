@@ -18,7 +18,7 @@ export class CreateDestinationComponent implements OnInit {
               private destinationService: DestinationService) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('40%', '90%');
+    this.dialogRef.updateSize('40%', '60%');
   }
 
   onSubmit() {

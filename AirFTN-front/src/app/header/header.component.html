@@ -9,8 +9,8 @@
         <div class="div_top_hypers">
             <ul class="ul_top_hypers">
                 <li class="options">Welcome, {{ username }}</li>
-                <li id="logout"><a (click)="Logout()" >Logout</a></li>
-                <li id="profile"><a (click)="updateProfileInfo()" >Profile</a></li>
+                <li id="logout"(click)="Logout()" >Logout</li>
+                <li id="profile" click)="updateProfileInfo()">ADMIN INFO</li>
             </ul>
         </div>
     </div>
@@ -21,8 +21,8 @@
         </div>
         <div class="div_top_hypers">
             <ul class="ul_top_hypers">
-                <li id="logout"><a (click)="Logout()" >Logout</a></li>
-                <li id="profile" style="width: 150px" (click) = "updateAirAdminInfo()"><a>Profile Info</a></li>
+                <li id="logout" (click)="Logout()">LOGOUT</li>
+                <li id="profile" style="width: 150px" (click) = "updateAirAdminInfo()">Profile Info</li>
                 <li id="admin_panel2">AIRLINE ADMIN PANEL</li>
                 <!-- <li class="options"><a (click) = 'clickShowPricelist()'>Pricelist</a></li> -->
             </ul>
@@ -36,13 +36,13 @@
 
         <div class="div_top_hypers">
             <ul class="ul_top_hypers">
-                <li id="logout"><a (click)="Logout()">Logout</a></li>
+                <li id="logout" (click)="Logout()">Logout</li>
                 <li id="admin_panel" (click) = 'showProfile()'>ADMIN PANEL</li>
-                <li class="options"><a (click) = 'clickShowAdmins()'>Show admins</a></li>
-                <li class="options"><a (click) = 'clickShowAirlineCompanies()'>Show Airline Companies</a></li>
-                <li class="options"><a (click) = 'clickShowDestinations()'>Show destinations</a></li>
-                <li class="options"><a (click) = 'clickShowAirplanes()'>Show airplanes</a></li>
-                <li id="profile" style="width: 150px" (click) = "updateSysAdminInfo()"><a>Profile Info</a></li>
+                <li class="options"(click) = 'clickShowAdmins()'>Show admins</li>
+                <li class="options" (click) = 'clickShowAirlineCompanies()'>Show Airline Companies</li>
+                <li class="options" (click) = 'clickShowDestinations()'>Show destinations</li>
+                <li class="options" (click) = 'clickShowAirplanes()'>Show airplanes</li>
+                <!-- <li id="profile" style="width: 150px" (click) = "updateSysAdminInfo()"><a>Profile Info</a></li> -->
             </ul>
         </div>
     </div>

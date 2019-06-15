@@ -21,7 +21,7 @@ export class CreateAirplaneComponent implements OnInit {
               private airlineService: AirlineService) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('40%', '90%');
+    this.dialogRef.updateSize('40%', '50%');
     this.getAirlineCommpanies();
   }
 

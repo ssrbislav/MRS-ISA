@@ -43,18 +43,18 @@
         </div>
 
         <div class="form-group">
-          <input type="text" id="firstName" name="first_name" [(ngModel)]="signupInfo.first_name" #first_name="ngModel" 
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="signupInfo.firstName" #firstName="ngModel" 
           required placeholder="FIRST NAME"/>
-          <div *ngIf="f.submitted && last_name.invalid">
-              <div *ngIf="first_name.errors.required" style="color: red">First name is required</div>
+          <div *ngIf="f.submitted && firstName.invalid">
+              <div *ngIf="firstName.errors.required" style="color: red">First name is required</div>
           </div>
         </div>
 
         <div class="form-group">
-          <input type="text" id="lastName" name="last_name" [(ngModel)]="signupInfo.last_name" #last_name="ngModel" 
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="signupInfo.lastName" #lastName="ngModel" 
           required placeholder="LAST NAME"/>
-          <div *ngIf="f.submitted && last_name.invalid">
-            <div *ngIf="last_name.errors.required" style="color: red">Last name is required</div>
+          <div *ngIf="f.submitted && lastName.invalid">
+            <div *ngIf="lastName.errors.required" style="color: red">Last name is required</div>
           </div>
         </div>
 
@@ -67,10 +67,10 @@
         </div>
 
         <div class="form-group">
-            <input type="text" id="phoneNumber" name="phone_number" [(ngModel)]="signupInfo.phone_number" #phone_number="ngModel" 
+            <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="signupInfo.phoneNumber" #phoneNumber="ngModel" 
             required placeholder="PHONE NUMBER"/>
-            <div *ngIf="f.submitted && phone_number.invalid">
-              <div *ngIf="phone_number.errors.required" style="color: red">Phone number is required</div>
+            <div *ngIf="f.submitted && phoneNumber.invalid">
+              <div *ngIf="phoneNumber.errors.required" style="color: red">Phone number is required</div>
             </div>
           </div>
 <!-- 
@@ -85,7 +85,7 @@
 
         <mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="DATE OF BIRTH" [min]="minDate" [max]="maxDate" 
-          id="date" name="date_of_birth" [(ngModel)]="signupInfo.date_of_birth" required>
+          id="date" name="dateOfBirth" [(ngModel)]="signupInfo.dateOfBirth" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

@@ -25,8 +25,6 @@ export class SysAdminComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
-    // Still not able to understand this part
     dialogConfig.data = {
       id: 1,
       added: false

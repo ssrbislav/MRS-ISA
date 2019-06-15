@@ -32,11 +32,11 @@
     <br>
 
     <div class="form-group">
-      <button class="button" class="submitbtn">CREATE</button>
+      <button class="button" mat-raised-button class="submitbtn">CREATE</button>
       <div *ngIf="f.submitted && isLoginFailed" style="color: red">
         Registration failed: {{errorMessage}}
       </div>
-      <button class="cancelbtn" type="button" mat-dialog-close>CANCEL</button>
+      <button class="cancelbtn" type="button" mat-raised-button mat-dialog-close>CANCEL</button>
     </div>
     <br>
   </form>

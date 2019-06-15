@@ -18,7 +18,7 @@ export class RegisterSysadminComponent implements OnInit {
               private adminService: AdminService) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('40%', '90%');
+    this.dialogRef.updateSize('40%', '80%');
   }
 
   onSubmit() {

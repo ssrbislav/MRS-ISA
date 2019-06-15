@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +53,7 @@ public class SysAdminController {
 		return new ResponseEntity<>(admins, HttpStatus.OK);
 	}
 
+	@PreAuthorize("hasRole('ROLE_SYSADMIN')")
 	@GetMapping("/getAdminById/{id}")
 	public ResponseEntity<SysAdmin> getAdmin(@PathVariable Long id) {
 
@@ -64,6 +66,7 @@ public class SysAdminController {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_SYSADMIN')")
 	@PostMapping("/registerAirAdmin")
 	public ResponseEntity<ResponseMessage> registerAirAdmin(@RequestBody AdminDTO registerRequest) {
 
@@ -96,6 +99,7 @@ public class SysAdminController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
+	@PreAuthorize("hasRole('ROLE_SYSADMIN')")
 	@PostMapping("/registerSysAdmin")
 	public ResponseEntity<ResponseMessage> registerSysAdmin(@RequestBody AdminDTO registerRequest) {
 
@@ -127,6 +131,7 @@ public class SysAdminController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
+	@PreAuthorize("hasRole('ROLE_SYSADMIN')")
 	@GetMapping("/getAdmin/{username}")
 	public ResponseEntity<SysAdmin> getAdmin(@PathVariable String username) {
 
@@ -139,6 +144,7 @@ public class SysAdminController {
 		return new ResponseEntity<>(admin, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_SYSADMIN')")
 	@PostMapping("/updateAdmin")
 	public ResponseEntity<ResponseMessage> update(@RequestBody SysAdmin admin) {
 
@@ -154,6 +160,7 @@ public class SysAdminController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_SYSADMIN')")
 	@PostMapping("/blockAdmin/{id}")
 	public ResponseEntity<ResponseMessage> blockAdmin(@PathVariable Long id) {
 
