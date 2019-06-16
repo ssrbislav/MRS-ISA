@@ -26,7 +26,7 @@
 
         <div class="form-group">
           <input type="password" id="pass" name="password" minlength="5" [(ngModel)]="signupInfo.password" #password="ngModel" 
-          required placeholder="PASSWORD"/>
+          required placeholder="PASSWORD" disabled/>
           
           <div *ngIf="f.submitted && password.invalid">
             <div *ngIf="password.errors.required" style="color: red">Password is required</div>

@@ -38,8 +38,19 @@ public class PassengerController {
 
 		return new ResponseEntity<>(passengers, HttpStatus.OK);
 	}
+	
+	@GetMapping("getPassenger/{username}")
+	public ResponseEntity<Passenger> getOneByUsername(@PathVariable String username) {
 
-	@GetMapping("getPassenger/{id}")
+		Passenger p = passengerService.getOneByUsername(username);
+
+		if (p == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+
+	@GetMapping("getPassengerById/{id}")
 	public ResponseEntity<Passenger> getOne(@PathVariable Long id) {
 
 		Passenger p = passengerService.getOne(id);

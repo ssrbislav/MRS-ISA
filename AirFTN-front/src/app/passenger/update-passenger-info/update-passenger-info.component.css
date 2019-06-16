@@ -1,0 +1,82 @@
+body {
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box;
+}
+
+* {
+    font-family: lato;
+}
+
+
+.login-form {
+    text-align: center;
+    background-color: white;
+    height: 100%;
+    overflow: auto;
+    margin: 0 auto;
+}
+
+input {
+    width: 80%;
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    text-align: center;
+    font-family: lato;
+}
+
+input::-webkit-input-placeholder {
+    opacity: 0.6; 
+}
+
+input:focus {
+    border-bottom: 1px solid rgb(20, 168, 57);
+}
+
+button {
+    padding: 8px 10px;
+    margin: 15px 15px;
+    width: 35%;
+    font-family: lato;
+}
+
+.cancelbtn:hover {
+    background-color: gray;
+    color: white;
+}
+
+.submitbtn:hover {
+    background: #a8dfb0;
+    color: white;
+}
+
+textarea, select, input, button { 
+    outline: none;
+ }
+
+a {
+    color:  rgb(20, 168, 57);
+}
+
+h3, .signup {
+    padding: 10px 10px;
+    font-size: 25px;
+    font-family: lato;
+    font-weight: 300;
+}
+
+p {
+    font-size: 20px;
+    font-family: lato;
+}
+  
+#span {
+    color: rgb(20, 168, 57);
+    text-decoration: underline;
+    cursor: pointer;
+}

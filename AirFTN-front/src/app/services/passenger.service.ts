@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Passenger } from '../model/passenger.model';
+import { Observable } from 'rxjs';
+import { ResponseMessage } from '../model/responseMessage';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,6 +31,10 @@ export class PassengerService {
 
   public getPassengerActive(username: string) {
     return this.http.get<boolean>(`${this.passengerUrl + '/getPassengerActive'}/${username}`);
+  }
+
+  public updatePassenger(info: Passenger): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(`${this.passengerUrl + '/updatePassenger'}`, info, httpOptions);
   }
 
 }

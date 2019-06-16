@@ -20,5 +20,7 @@ public interface IPassengerService {
 	public String getRegistrationLink(Long id);
 
 	Passenger update(Passenger passenger, Long id);
+	
+	Passenger getOneByUsername(String username);
 
 }

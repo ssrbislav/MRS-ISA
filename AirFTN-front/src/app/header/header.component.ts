@@ -56,16 +56,16 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['sysAdmin/listAdmins']);
   }
 
-  clickAddHotel() {
-    window.alert('Feature not available!');
-  }
-
   updateAirAdminInfo() {
     this.featureSelected.emit('airAdmin');
   }
 
   updateSysAdminInfo() {
     this.featureSelected.emit('sysAdmin');
+  }
+
+  updateProfileInfo() {
+    this.featureSelected.emit('passenger');
   }
 
   clickShowAirlineCompanies() {
@@ -78,10 +78,6 @@ export class HeaderComponent implements OnInit {
 
   clickShowAirplanes() {
     this.router.navigate(['sysAdmin/listAirplanes']);
-  }
-
-  clickShowPricelist() {
-    this.featureSelected.emit('pricelist');
   }
 
 }

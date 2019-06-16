@@ -52,6 +52,8 @@ import { EditFlightComponent } from './airline-admin/airline-profile/edit-flight
 import { DefineSeatsComponent } from './airline-admin/airline-profile/define-seats/define-seats.component';
 import { CreateFastReservationComponent } from './airline-admin/airline-profile/create-fast-reservation/create-fast-reservation.component';
 import { UpdateAirlineInfoComponent } from './airline-admin/airline-profile/update-airline-info/update-airline-info.component';
+import { UpdatePassengerInfoComponent } from './passenger/update-passenger-info/update-passenger-info.component';
+
 
 
 
@@ -94,7 +96,9 @@ import { UpdateAirlineInfoComponent } from './airline-admin/airline-profile/upda
     EditFlightComponent,
     DefineSeatsComponent,
     CreateFastReservationComponent,
-    UpdateAirlineInfoComponent
+    UpdateAirlineInfoComponent,
+    UpdatePassengerInfoComponent,
+
 
   ],
   imports: [
@@ -136,7 +140,9 @@ import { UpdateAirlineInfoComponent } from './airline-admin/airline-profile/upda
     EditFlightComponent,
     DefineSeatsComponent,
     CreateFastReservationComponent,
-    UpdateAirlineInfoComponent
+    UpdateAirlineInfoComponent,
+    UpdatePassengerInfoComponent,
+
   ],
   providers: [
     RoleGuardService,

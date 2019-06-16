@@ -47,7 +47,7 @@ public class PassengerService implements IPassengerService {
 		p.setAddress(passenger.getAddress());
 		p.setPhoneNumber(passenger.getPhoneNumber());
 		p.setDateOfBirth(passenger.getDateOfBirth());
-		
+
 		return passengerRepository.save(p);
 	}
 
@@ -55,7 +55,7 @@ public class PassengerService implements IPassengerService {
 	public Passenger update(Passenger passenger, Long id) {
 
 		Passenger p = passengerRepository.getOne(id);
-		
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		p.setId(id);
@@ -71,12 +71,12 @@ public class PassengerService implements IPassengerService {
 
 		return passengerRepository.save(p);
 	}
-	
+
 	@Override
 	public Passenger update(Passenger passenger) {
 
 		Passenger p = passengerRepository.getOne(passenger.getId());
-		
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		p.setId(passenger.getId());
@@ -105,13 +105,19 @@ public class PassengerService implements IPassengerService {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String getRegistrationLink(Long id) {
-		
+
 		Passenger p = passengerRepository.getOne(id);
-		
+
 		return p.getRegistrationLink();
+	}
+
+	@Override
+	public Passenger getOneByUsername(String username) {
+
+		return passengerRepository.findByUsername(username);
 	}
 
 }
