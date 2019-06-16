@@ -4,8 +4,8 @@ import javax.validation.constraints.NotBlank;
 
 public class PricelistDTO {
 
-//	@NotBlank
-//	private Double priceByKm;
+	@NotBlank
+	private Double luggagePrice;
 
 	@NotBlank
 	private Double economyPricePrecentage;
@@ -17,30 +17,28 @@ public class PricelistDTO {
 
 	@NotBlank
 	private Double discountedPrecentage;
-	
-	
 
 	public PricelistDTO() {
 	}
 
-	public PricelistDTO(@NotBlank Double priceByKm, @NotBlank Double economyPricePrecentage,
+	public PricelistDTO(@NotBlank Double luggagePrice, @NotBlank Double economyPricePrecentage,
 			@NotBlank Double bussinessPricePrecentage, @NotBlank Double firstPricePrecentage,
 			@NotBlank Double discountedPrecentage) {
 		super();
-//		this.priceByKm = priceByKm;
+		this.luggagePrice = luggagePrice;
 		this.economyPricePrecentage = economyPricePrecentage;
 		this.bussinessPricePrecentage = bussinessPricePrecentage;
 		this.firstPricePrecentage = firstPricePrecentage;
 		this.discountedPrecentage = discountedPrecentage;
 	}
 
-//	public Double getPriceByKm() {
-//		return priceByKm;
-//	}
-//
-//	public void setPriceByKm(Double priceByKm) {
-//		this.priceByKm = priceByKm;
-//	}
+	public Double getLuggagePrice() {
+		return luggagePrice;
+	}
+
+	public void setLuggagePrice(Double luggagePrice) {
+		this.luggagePrice = luggagePrice;
+	}
 
 	public Double getEconomyPricePrecentage() {
 		return economyPricePrecentage;

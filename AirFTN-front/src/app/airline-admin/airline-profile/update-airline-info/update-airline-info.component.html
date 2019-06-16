@@ -1,0 +1,43 @@
+<div class="login-form">
+  <br>
+  <h3>EDIT AIRLINE INFO</h3>
+  <br>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+      <input type="text" id="number" name="number" [(ngModel)]="airline.name" required placeholder="airline NUMBER" />
+      <div *ngIf="f.submitted && number.invalid">
+        <div *ngIf="number.errors.required" style="color: red">Number is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="city" name="city" [(ngModel)]="airline.city" required placeholder="airline city" />
+      <div *ngIf="f.submitted && city.invalid">
+        <div *ngIf="city.errors.required" style="color: red">city is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="address" name="address" [(ngModel)]="airline.address" #address="ngModel" required
+        placeholder="address DATE" />
+      <div *ngIf="f.submitted && address.invalid">
+        <div *ngIf="address.errors.required" style="color: red">Address is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="description" name="description" [(ngModel)]="airline.description" #description="ngModel"
+        required placeholder="DESCRIPTION" />
+      <div *ngIf="f.submitted && description.invalid">
+        <div *ngIf="description.errors.required" style="color: red">description is required</div>
+      </div>
+    </div>
+    <br>
+
+    <button class="button" (click)="updateInfo()" mat-raised-button>UPDATE INFO</button>
+    <button class="cancelbtn" mat-dialog-close mat-raised-button>CANCEL</button>
+
+    <br>
+  </form>
+</div>

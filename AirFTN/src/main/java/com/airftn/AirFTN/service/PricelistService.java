@@ -40,7 +40,7 @@ public class PricelistService implements IPricelistService {
 		AirlineCompany company = airlineService.getOne(companyId);
 
 		Pricelist priceList = new Pricelist();
-//		priceList.setPriceByKm(pricelist.getPriceByKm());
+		priceList.setLuggagePrice(pricelist.getLuggagePrice());
 		priceList.setEconomyPricePrecentage(pricelist.getEconomyPricePrecentage());
 		priceList.setBussinessPricePrecentage(pricelist.getBussinessPricePrecentage());
 		priceList.setFirstPricePrecentage(pricelist.getFirstPricePrecentage());
@@ -56,7 +56,7 @@ public class PricelistService implements IPricelistService {
 		
 		Pricelist priceList = pricelistRepository.getOne(pricelist.getId());
 		
-//		priceList.setPriceByKm(pricelist.getPriceByKm());
+		priceList.setLuggagePrice(pricelist.getLuggagePrice());
 		priceList.setEconomyPricePrecentage(pricelist.getEconomyPricePrecentage());
 		priceList.setBussinessPricePrecentage(pricelist.getBussinessPricePrecentage());
 		priceList.setFirstPricePrecentage(pricelist.getFirstPricePrecentage());

@@ -18,6 +18,7 @@
       <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
       <mat-divider></mat-divider>
     </mat-list>
+    <button class="airline-info" mat-raised-button (click)="AirlineInfoUpdate(airline)">UPDATE AIRLINE INFO</button>
   </div>
 
 
@@ -25,10 +26,10 @@
   <div class="pricelist grid-item">
     <h3>PRICELIST</h3>
     <form class="example-form">
-      <!-- <mat-form-field class="example-full-width">
-        <input class="pricelist-elem" matInput placeholder="PRICE BY KM" disabled name="priceByKm"
-          [(ngModel)]="pricelist.priceByKm">
-      </mat-form-field> -->
+      <mat-form-field class="example-full-width">
+        <input class="pricelist-elem" matInput placeholder="LUGGAGE PRICE (KG)" disabled name="luggagePrice"
+          [(ngModel)]="pricelist.luggagePrice">
+      </mat-form-field>
       <mat-form-field class="example-full-width">
         <input class="pricelist-elem" matInput placeholder="ECONOMY PRICE PRECENTAGE" disabled name="economyPricePrecentage"
           [value]='pricelist.economyPricePrecentage' [(ngModel)]="pricelist.economyPricePrecentage">

@@ -2,7 +2,7 @@ import { AirlineCompany } from './company.model';
 
 export class PricelistDTO {
 
-    priceByKm: number;
+    luggagePrice: number;
     economyPricePrecentage: number;
     bussinessPricePrecentage: number;
     firstPricePrecentage: number;
@@ -12,7 +12,7 @@ export class PricelistDTO {
 export class Pricelist {
 
     id: BigInteger;
-    priceByKm: number;
+    luggagePrice: number;
     economyPricePrecentage: number;
     bussinessPricePrecentage: number;
     firstPricePrecentage: number;
