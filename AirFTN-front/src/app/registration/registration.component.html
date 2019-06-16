@@ -85,8 +85,8 @@
 
         <mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="DATE OF BIRTH" [min]="minDate" [max]="maxDate" 
-          id="date" name="dateOfBirth" [(ngModel)]="signupInfo.dateOfBirth" required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          id="dateOfBirth" name="dateOfBirth" [(ngModel)]="signupInfo.dateOfBirth" [value]="signupInfo.dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 

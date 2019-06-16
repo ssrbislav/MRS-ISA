@@ -36,11 +36,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    // this.passengerService.getPassenger(this.form.username).subscribe(
-    //   data => {
-    //     this.active = data.active;
-    //   }
-    // );
+    this.passengerService.getPassenger(this.form.username).subscribe(
+      data => {
+        this.active = data.active;
+      }
+    );
 
     this.loginInfo = new LoginInfo(
       this.form.username,
@@ -63,13 +63,12 @@ export class LoginComponent implements OnInit {
             return true;
           } else if (role === 'ROLE_PASSENGER') {
             // if(!this.active) {
-            //   alert("User not active!");
+            //   alert('Please activate your account!');
             //   this.tokenStorage.clear();
             //   return false;
-            // }
-            // else {
-            this.router.navigate(['passenger']);
-            return true;
+            // } else {
+              this.router.navigate(['passenger']);
+              return true;
             // }
           }
         });

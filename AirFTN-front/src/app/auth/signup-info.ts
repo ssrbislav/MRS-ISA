@@ -3,11 +3,11 @@ export class SignupInfo {
     email: string;
     username: string;
     password: string;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     address: string;
-    phone_number: string;
-    date_of_birth: string;
+    phoneNumber: string;
+    dateOfBirth: string;
 
     // constructor(email: string, username: string, password: string, firstName: string, lastName: string,
     //             address: string, phoneNumber: string, dateOfBirth: string) {

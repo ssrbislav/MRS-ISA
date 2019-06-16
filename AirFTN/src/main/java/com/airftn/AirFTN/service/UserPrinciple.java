@@ -35,7 +35,7 @@ public class UserPrinciple implements UserDetails {
 
 	private String phoneNumber;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy.")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 
 	private Collection<? extends GrantedAuthority> authorities;

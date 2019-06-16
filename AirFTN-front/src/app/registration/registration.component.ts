@@ -3,11 +3,17 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { SignupInfo } from '../auth/signup-info';
+import { MAT_DATE_FORMATS, DateAdapter } from '@angular/material';
+import { APP_DATE_FORMATS, AppDateAdapter } from '../services/format-datepicker';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
+  providers: [
+    {provide: DateAdapter, useClass: AppDateAdapter},
+    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
+  ]
 })
 export class RegistrationComponent implements OnInit {
 
@@ -48,10 +54,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log(this.signupInfo);
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
-        window.alert('Please activate your account!');
+        window.alert('Registration successfull! \nPlease activate your account!');
         this.isSignUpFailed = false;
         this.isSignedUp = true;
         this.router.navigate(['login']);
