@@ -200,3 +200,27 @@ tr:hover {
 td {
   padding-right: 8px;
 }
+
+.business-report {
+  display: block;
+  margin-top: 50px;
+  height: 150px;
+  width: 100%;
+  border-top: 5px solid rgb(71, 71, 71);
+}
+
+.business-report button {
+  top: 35px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  height: 80px;
+  font-size: 20px;
+  background: gray;
+  font-weight: 400;
+  color: white;
+}
+
+.business-report button:hover {
+  opacity: 0.6;
+}

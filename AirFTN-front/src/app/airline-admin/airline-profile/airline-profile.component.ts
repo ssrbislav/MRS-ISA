@@ -24,6 +24,7 @@ import { PricelistService } from 'src/app/services/pricelist.service';
 import { ResponseMessage } from 'src/app/model/responseMessage';
 import { CreateFastReservationComponent } from './create-fast-reservation/create-fast-reservation.component';
 import { UpdateAirlineInfoComponent } from './update-airline-info/update-airline-info.component';
+import { BusinesssReportComponent } from './businesss-report/businesss-report.component';
 
 @Component({
   selector: 'app-airline-profile',
@@ -171,6 +172,23 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(UpdateAirlineInfoComponent, dialogConfig);
+  }
+
+
+  openBusinessReport(company: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      company
+    };
+
+    const dialogRef = this.dialog.open(BusinesssReportComponent, dialogConfig);
+
   }
 
   // FLIGHT STUFF
@@ -329,5 +347,6 @@ export class AirlineProfileComponent implements OnInit {
 
     const dialogRef = this.dialog.open(CreateFastReservationComponent, dialogConfig);
   }
+
 
 }
