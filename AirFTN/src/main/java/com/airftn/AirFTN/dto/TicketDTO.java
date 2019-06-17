@@ -10,6 +10,8 @@ public class TicketDTO {
 
 	private Long airlineId;
 
+	private boolean fastTicket;
+
 	public double getPrice() {
 		return price;
 	}
@@ -40,6 +42,14 @@ public class TicketDTO {
 
 	public void setAirlineId(Long airlineId) {
 		this.airlineId = airlineId;
+	}
+
+	public boolean isFastTicket() {
+		return fastTicket;
+	}
+
+	public void setFastTicket(boolean fastTicket) {
+		this.fastTicket = fastTicket;
 	}
 
 }

@@ -76,7 +76,7 @@
       <tbody>
         <tr *ngFor="let airplane of airplanes; let i = index">
           <td>{{airplane.model}}</td>
-          <td>{{airplane.numberOfSeats}}</td>
+          <td>{{airplane.numberOfSeats * 6}}</td>
           <td id="delete_airplane" (onclick)="deleteDestination(destination.id)"><button mat-raised-button>
               <mat-icon>delete</mat-icon>
             </button></td>

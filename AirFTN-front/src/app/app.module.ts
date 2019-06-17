@@ -54,6 +54,8 @@ import { CreateFastReservationComponent } from './airline-admin/airline-profile/
 import { UpdateAirlineInfoComponent } from './airline-admin/airline-profile/update-airline-info/update-airline-info.component';
 import { UpdatePassengerInfoComponent } from './passenger/update-passenger-info/update-passenger-info.component';
 import { BusinesssReportComponent } from './airline-admin/airline-profile/businesss-report/businesss-report.component';
+import { ChooseFlightComponent } from './airline-admin/airline-profile/choose-flight/choose-flight.component';
+import { ChooseSeatComponent } from './airline-admin/airline-profile/create-fast-reservation/choose-seat/choose-seat.component';
 
 
 
@@ -100,6 +102,8 @@ import { BusinesssReportComponent } from './airline-admin/airline-profile/busine
     UpdateAirlineInfoComponent,
     UpdatePassengerInfoComponent,
     BusinesssReportComponent,
+    ChooseFlightComponent,
+    ChooseSeatComponent,
 
 
   ],
@@ -144,8 +148,9 @@ import { BusinesssReportComponent } from './airline-admin/airline-profile/busine
     CreateFastReservationComponent,
     UpdateAirlineInfoComponent,
     UpdatePassengerInfoComponent,
-    BusinesssReportComponent
-
+    BusinesssReportComponent,
+    ChooseFlightComponent,
+    ChooseSeatComponent
   ],
   providers: [
     RoleGuardService,

@@ -35,13 +35,8 @@ h1 {
 button {
   outline: none;
   margin: 0 auto;
-  margin-left: 40px;
+  margin-left: 120px;
 
-}
-
-.button-unavailable {
-  background: #607D8B;
-  color: white;
 }
 
 .button-economy {
@@ -60,8 +55,6 @@ button {
 }
 
 .button-disble {
-  margin-left: 100px;
-  margin-top: 10px;
   background: #ccc;
   color: black;
 }
@@ -69,36 +62,6 @@ button {
 .button-enable {
   margin-top: 10px;
   background: rgb(71, 71, 71);
-  color: white;
-}
-
-.button-enable:hover {
-  opacity: 0.5;
-  color: white;
-}
-
-.button-disble:hover {
-  opacity: 0.5;
-  color: black;
-}
-
-.button-economy:hover {
-  opacity: 0.5;
-  color: white;
-}
-
-.button-bussines:hover {
-  opacity: 0.5;
-  color: white;
-}
-
-.button-first:hover {
-  opacity: 0.5;
-  color: white;
-}
-
-.button-unavailable:hover {
-  opacity: 0.5;
   color: white;
 }
 
@@ -144,30 +107,36 @@ label {
   margin: 3px;
 }
 
-/* input {
-  margin-left: 5px;
+.label {
+  padding: 10px;
+  margin-left: 15px;
 }
-
-input[type=checkbox]:checked+label {
-  background: white;
-  color: black;
-} */
 
 .exit-back {
   border: 5px solid rgb(71, 71, 71);
 }
 
-.seat-update {
+
+.button-choose {
   margin-left: 120px;
   margin-top: 20px;
+  padding: 10px;
+  width: 100px;
 }
 
 .button-close {
-  margin-left: 30px;
+  margin-left: 50px;
   margin-top: 20px;
+  padding: 10px;
+  width: 100px;
 }
 
-.seat-class:hover, .seat-update:hover, .button-close:hover {
+.button-choose:hover {
+  background: #a8dfb0;
+  color: white;
+}
+
+.button-close:hover {
   background: gray;
 }
 
@@ -176,9 +145,6 @@ input[type=checkbox]:checked+label {
 }
 
 .disabled {
-  pointer-events:none; 
+  pointer-events: none;
   cursor: none;
 }
-
-
-

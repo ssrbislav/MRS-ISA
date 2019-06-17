@@ -25,6 +25,7 @@ import { ResponseMessage } from 'src/app/model/responseMessage';
 import { CreateFastReservationComponent } from './create-fast-reservation/create-fast-reservation.component';
 import { UpdateAirlineInfoComponent } from './update-airline-info/update-airline-info.component';
 import { BusinesssReportComponent } from './businesss-report/businesss-report.component';
+import { ChooseFlightComponent } from './choose-flight/choose-flight.component';
 
 @Component({
   selector: 'app-airline-profile',
@@ -345,7 +346,7 @@ export class AirlineProfileComponent implements OnInit {
       airline,
     };
 
-    const dialogRef = this.dialog.open(CreateFastReservationComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ChooseFlightComponent, dialogConfig);
   }
 
 

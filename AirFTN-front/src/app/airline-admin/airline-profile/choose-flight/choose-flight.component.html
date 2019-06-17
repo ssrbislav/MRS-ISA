@@ -1,0 +1,21 @@
+<div class="login-form">
+  <br>
+  <h3>CHOOSE FLIGHT</h3>
+  <br>
+
+    <div class="form-group">
+      <mat-select name="flight" [(ngModel)]="flight" placeholder="FLIGHT">
+        <mat-option *ngFor="let flight of flights"  [value]='flight.id'>
+          {{flight.flightNumber}}: {{flight.destination.city}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      <button *ngIf="flight" class="submitbtn" (click)="openFormForCreating(flight)" mat-raised-button>CHOOSE</button>
+      <button class="cancelbtn" type="button" mat-dialog-close mat-raised-button>CANCEL</button>
+    </div>
+
+</div>

@@ -123,6 +123,7 @@ public class UserController {
 
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+
 		// Check if uesr is active
 		/*
 		if (!passenger.isActive()) {

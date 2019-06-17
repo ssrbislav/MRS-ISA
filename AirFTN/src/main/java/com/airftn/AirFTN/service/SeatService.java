@@ -166,6 +166,9 @@ public class SeatService implements ISeatService {
 			Seat s = seatRepository.getOne(seat.getId());
 			s.setSeatType(seat.getSeatType());
 			updateTicketPrice(s);
+			if(seat.isOccupied()) {
+				s.setOccupied(true);
+			}
 			seatRepository.save(s);
 		}
 		

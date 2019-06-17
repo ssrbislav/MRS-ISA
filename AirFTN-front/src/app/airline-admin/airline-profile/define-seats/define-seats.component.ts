@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewChecked } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { SeatService } from 'src/app/services/seat.service';
 import { Seat, SeatDTO } from 'src/app/model/seat.model';
@@ -11,7 +11,7 @@ import { SeatType } from 'src/app/model/seat-type.enum';
   templateUrl: './define-seats.component.html',
   styleUrls: ['./define-seats.component.css']
 })
-export class DefineSeatsComponent implements OnInit {
+export class DefineSeatsComponent implements OnInit, AfterViewChecked {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,
@@ -31,6 +31,11 @@ export class DefineSeatsComponent implements OnInit {
     this.dialogRef.updateSize('40%', '80%');
     this.getAirplane();
   }
+
+  ngAfterViewChecked() {
+    this.setSeatClass(this.seatMatrix);
+  }
+
 
   getAirplane() {
     this.airplaneService.getFlightAirplane(this.data.flight).toPromise().then(
@@ -54,7 +59,6 @@ export class DefineSeatsComponent implements OnInit {
   setSeatClass(seatMatrix: Seat[][]) {
     for (const seats of seatMatrix) {
       for (const seat of seats) {
-        console.log(seat);
         if (seat.seatType.toString() === 'ECONOMY_CLASS') {
           document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#009688';
         }
@@ -82,6 +86,7 @@ export class DefineSeatsComponent implements OnInit {
         }
       }
     }
+    console.log(this.seats);
   }
 
 

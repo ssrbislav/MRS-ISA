@@ -1,61 +1,22 @@
 <div class="login-form">
   <br>
-  <h3>REGISTER AIRLINE ADMIN</h3>      
+  <h3>CREATE FAST TICKET RESERVATION</h3>
   <br>
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-    
-    <div class="form-group">
-      <input type="text"  name="name" [(ngModel)]="airlineInfo.name" #name="ngModel" 
-        required placeholder="NAME"/>
-        <div *ngIf="f.submitted && name.invalid">
-          <div *ngIf="name.errors.required" style="color: red">Name is required</div>
-          
-        </div>
-    </div>
 
-    <div class="form-group">
-      <input type="text" name="city" [(ngModel)]="airlineInfo.city" #city="ngModel"
-        required  placeholder="CITY"/>
-      <div *ngIf="f.submitted && city.invalid">
-        <div *ngIf="city.errors.required" style="color: red">City is required</div>
-      </div>
-    </div>
+  <div class="form-group">
+    <button class="choose" mat-raised-button (click)="showFlightSeats(seatMatrix)">
+      CHOOSE SEAT
+    </button>
+    <p *ngIf="seat">
+      YOU CHOSE SEAT: <i>{{seat.row}}:{{seat.column}}</i>
+    </p>
+  </div>
 
-    <div class="form-group">
-      <input type="text" name="address" minlength="6" [(ngModel)]="airlineInfo.address" #address="ngModel" 
-      required placeholder="ADDRESS"/>
-      
-      <div *ngIf="f.submitted && address.invalid">
-        <div *ngIf="address.errors.required" style="color: red">Address is required</div>
-        
-      </div>
-    </div>
+  <div class="form-group">
 
-    <div class="form-group">
-      <input type="text" name="description" [(ngModel)]="airlineInfo.description" #description="ngModel" 
-      required placeholder="DESCRIPTION"/>
-      <div *ngIf="f.submitted && description.invalid">
-          <div *ngIf="description.errors.required" style="color: red">Description is required</div>
-      </div>
-    </div>
+    <button  *ngIf="seat" class="submitbtn" type="button" mat-raised-button>CREATE FAST RESERVATION</button>
+    <button class="cancelbtn" type="button" mat-raised-button mat-dialog-close>CANCEL</button>
+  </div>
+  <br>
 
-    <div class="form-group">
-      <mat-select name="adminId" [(ngModel)]="airlineInfo.adminId" placeholder="ADMIN" >
-        <mat-option *ngFor = "let admin of admins" [value]='admin.id'>
-            {{admin.username}}
-        </mat-option>
-      </mat-select>
-    </div>
-    
-    <br>
-
-    <div class="form-group">
-      <button class="button" mat-raised-button class="submitbtn">REGISTER</button>
-      <div *ngIf="f.submitted && isLoginFailed" style="color: red">
-        Registration failed: {{errorMessage}}
-      </div>
-      <button class="cancelbtn" type="button" mat-raised-button mat-dialog-close>CANCEL</button>
-    </div>
-    <br>
-  </form>
 </div>

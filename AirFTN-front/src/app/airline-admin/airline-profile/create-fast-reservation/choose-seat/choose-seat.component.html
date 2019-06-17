@@ -1,0 +1,35 @@
+<div class="plane">
+  <div class="cockpit">
+  </div>
+  <div class="exit exit-front front">
+    <h1>CHOOSE A SEAT</h1>
+  </div>
+
+  <ol class="cabin fuselage">
+    <li *ngFor="let seats of seatMatrix" class="row row--1">
+      <ol class="seats" type="A">
+        <li *ngFor="let seat of seats" class="seat" id="li{{seat.row}}{{seat.column}}" >
+            <!-- <input type="checkbox" value="{{seat.id}}" class="seatinput"  id="{{seat.row}}{{seat.column}}" (click)="changeSeatClass(seat)"/>
+            <label  [for]="seat" id="label{{seat.row}}{{seat.column}}" class="label">{{seat.row}}:{{seat.column}}</label>   -->
+            <label>{{seat.row}}:{{seat.column}}</label> 
+                <input type="checkbox" value="{{seat.id}}" class="seatinput"  id="{{seat.row}}{{seat.column}}" (change)="onCheckboxChange(seat,$event)">
+                         
+        </li>
+      </ol>
+    </li>
+  </ol>
+
+  <div class="exit exit-back fuselage">
+    <label class="button-economy label" for="">ECONOMY</label>
+    <label class="button-bussines label" for="">BUSSINES</label>
+    <label class="button-first label" for="">FIRST</label>
+    <label class="button-disble label" for="">DISABLE</label>
+    <br>
+  </div>
+
+  <div>
+      <button class="button-choose" [mat-dialog-close]="seat" mat-dialog-close mat-raised-button>CHOOSE</button>
+      <button class="button-close"  mat-raised-button mat-dialog-close>CLOSE</button>
+    </div>
+
+</div>
