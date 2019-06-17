@@ -100,16 +100,11 @@ public class SeatController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
-	@PostMapping("/update/{id}")
-	public ResponseEntity<ResponseMessage> update(@PathVariable Long id) {
+	@PostMapping("/update")
+	public ResponseEntity<ResponseMessage> update(@RequestBody Seat seat) {
 		
-		Seat s = seatService.getOne(id);
+		Seat s = seatService.update(seat);
 		
-		if (s == null) {	
-			message.setMessage("Not able to create seat!");
-
-			return new ResponseEntity<ResponseMessage>(HttpStatus.BAD_REQUEST);
-		}
 
 		Seat ss = seatService.update(s);
 		
@@ -118,6 +113,8 @@ public class SeatController {
 
 			return new ResponseEntity<ResponseMessage>(HttpStatus.BAD_REQUEST);
 		}
+		
+		message.setMessage("Seat updated successfully!");
 		
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
@@ -143,8 +140,13 @@ public class SeatController {
 	@PostMapping("/updateSeatClass")
 	public ResponseEntity<ResponseMessage> updateSeatsClasses(@RequestBody List<Seat> seats) {
 		
-		for(Seat seat : seats) {
-			seatService.update(seat);
+
+		boolean updated = seatService.updateSeatType(seats);
+		
+		if(!updated) {
+			message.setMessage("Error updating seats!");
+		
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 		
 		message.setMessage("Seats updated successfully!");

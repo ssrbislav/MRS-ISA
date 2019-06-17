@@ -15,5 +15,6 @@ export class Seat {
     column: number;
     seatType: SeatType;
     airplain: Airplane;
-    deleted: boolean;
+    deleted: false;
+    occupied: boolean;
 }

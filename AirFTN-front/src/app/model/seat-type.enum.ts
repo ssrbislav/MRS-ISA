@@ -1,8 +1,8 @@
 export enum SeatType {
 
-    BUSINESS_CLASS = 1,
-    FIRST_CLASS = 2,
-    ECONOMY_CLASS = 3
+    BUSINESS_CLASS = 0,
+    FIRST_CLASS = 1,
+    ECONOMY_CLASS = 2
 
 
 }

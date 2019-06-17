@@ -31,6 +31,7 @@ public class TicketService implements ITicketService {
 
 	@Autowired
 	IPricelistService pricelistService;
+	
 
 	@Override
 	public List<Ticket> findAll() {
@@ -85,6 +86,8 @@ public class TicketService implements ITicketService {
 	public double calculatePrice(Ticket ticket) {
 
 		double totalPrice = 0;
+		
+		double price = 0;
 
 		AirlineCompany company = ticket.getCompany();
 
@@ -94,13 +97,19 @@ public class TicketService implements ITicketService {
 
 		SeatType seatClass = seat.getSeatType();
 
-		if (seatClass == SeatType.ECONOMY_CLASS)
-			totalPrice = pricelist.getEconomyPricePrecentage() * ticket.getPrice();
-		else if (seatClass == SeatType.BUSINESS_CLASS)
-			totalPrice = pricelist.getBussinessPricePrecentage() * ticket.getPrice();
-		else if (seatClass == SeatType.FIRST_CLASS)
-			totalPrice = pricelist.getFirstPricePrecentage() * ticket.getPrice();
-
+		if (seatClass == SeatType.ECONOMY_CLASS) {
+			price = pricelist.getEconomyPricePrecentage();
+			totalPrice *= ((price/100) + 1);
+		}
+		else if (seatClass == SeatType.BUSINESS_CLASS) {
+			price = pricelist.getEconomyPricePrecentage();
+			totalPrice *= ((price/100) + 1);
+		}	
+		else if (seatClass == SeatType.FIRST_CLASS) {
+			price = pricelist.getEconomyPricePrecentage();
+			totalPrice *= ((price/100) + 1);
+		}
+	
 		return totalPrice;
 	}
 

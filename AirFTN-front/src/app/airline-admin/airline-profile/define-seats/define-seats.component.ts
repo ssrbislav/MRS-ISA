@@ -20,7 +20,7 @@ export class DefineSeatsComponent implements OnInit {
 
   seatMatrix: Seat[][];
   seats: Seat[] = new Array();
-  seat: SeatDTO;
+  seat: Seat;
   row: number;
   column: number;
   airplane: Airplane;
@@ -54,75 +54,97 @@ export class DefineSeatsComponent implements OnInit {
   setSeatClass(seatMatrix: Seat[][]) {
     for (const seats of seatMatrix) {
       for (const seat of seats) {
+        console.log(seat);
         if (seat.seatType.toString() === 'ECONOMY_CLASS') {
           document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#009688';
         }
-        if (seat.seatType.toString() === 'BUSSINES_CLASS') {
-          document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = 'FFC107';
+        if (seat.seatType.toString() === 'BUSINESS_CLASS') {
+          document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#FFC107';
         }
         if (seat.seatType.toString() === 'FIRST_CLASS') {
           document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#29B6F6';
+        }
+        if (seat.occupied === true) {
+          document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#ccc';
+          document.getElementById(seat.row + '' + seat.column).setAttribute('disabled', 'disabled');
         }
       }
     }
   }
 
-  // Based on clicked button the color of presed seat will change to show that class color
+  onCheckboxChange(option, event) {
+    if (event.target.checked) {
+      this.seats.push(option);
+    } else {
+      for (let i = 0; i < this.seatMatrix.length; i++) {
+        if (this.seats[i] === option) {
+          this.seats.splice(i, 1);
+        }
+      }
+    }
+  }
+
+
   changeSeatClass(seat: Seat) {
-    console.log(seat.seatType);
     if (this.type === 'ECONOMY_CLASS') {
-      const element = document.getElementById('li' + seat.row + '' + seat.column);
-      element.style.backgroundColor = '#009688';
+      document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#009688';
       seat.seatType = SeatType.ECONOMY_CLASS;
       seat.airplain = this.airplane;
-      this.seats.push(seat);
     }
     if (this.type === 'BUSSINES_CLASS') {
       document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#FFC107';
       seat.seatType = SeatType.BUSINESS_CLASS;
       seat.airplain = this.airplane;
-      this.seats.push(seat);
     }
     if (this.type === 'FIRST_CLASS') {
-      console.log(this.seats);
       document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#29B6F6';
       seat.seatType = SeatType.FIRST_CLASS;
       seat.airplain = this.airplane;
-      this.seats.push(seat);
+    }
+    if (this.type === 'DISABLED') {
+      seat.occupied = true;
+      document.getElementById(seat.row + '' + seat.column).setAttribute('disabled', 'disabled');
+      document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#ccc';
+      seat.airplain = this.airplane;
+    }
+    if (this.type === 'ENABLED') {
+      // document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#ccc';
+      document.getElementById(seat.row + '' + seat.column).removeAttribute('disabled');
+      seat.occupied = false;
+      seat.airplain = this.airplane;
     }
   }
 
   // Will update all seat classes when button is pressed
   updateSeatsClasses() {
-    console.log(this.seats);
     this.seatService.updateSeatsClasses(this.seats).subscribe(
       data => {
         this.message = data;
-        console.log(this.message);
+        alert(this.message.message);
       }
     );
+    this.dialogRef.close();
   }
 
   setEconomy() {
     this.type = 'ECONOMY_CLASS';
-    console.log(this.type);
   }
 
   setBussines() {
     this.type = 'BUSSINES_CLASS';
-    console.log(this.type);
   }
 
   setFirst() {
     this.type = 'FIRST_CLASS';
-    console.log(this.type);
   }
 
-  setUnavailable() {
-    this.type = 'UNAVAILABLE';
-    console.log(this.type)
+  setEnable() {
+    this.type = 'ENABLED';
   }
 
-  
+  setDisable() {
+    this.type = 'DISABLED';
+  }
+
 
 }

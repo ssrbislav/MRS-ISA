@@ -26,4 +26,6 @@ public interface ISeatService {
 
 	Seat create(SeatDTO seat);
 	
+	boolean updateSeatType(List<Seat> seats);
+	
 }

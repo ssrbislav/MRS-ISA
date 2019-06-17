@@ -8,19 +8,23 @@
   <ol class="cabin fuselage">
     <li *ngFor="let seats of seatMatrix" class="row row--1">
       <ol class="seats" type="A">
-        <li *ngFor="let seat of seats" (click)="changeSeatClass(seat)" class="seat" id="li{{seat.row}}{{seat.column}}">
-            <!-- <input type="checkbox" value="{{seat.id}}" class="seatinput" id="{{seat.row}}{{seat.column}}"/> -->
-            <label  [for]="seat" id="label{{seat.row}}{{seat.column}}" class="label">{{seat.row}}:{{seat.column}}</label>                
+        <li *ngFor="let seat of seats" class="seat" id="li{{seat.row}}{{seat.column}}" >
+            <!-- <input type="checkbox" value="{{seat.id}}" class="seatinput"  id="{{seat.row}}{{seat.column}}" (click)="changeSeatClass(seat)"/>
+            <label  [for]="seat" id="label{{seat.row}}{{seat.column}}" class="label">{{seat.row}}:{{seat.column}}</label>   -->
+            <label>{{seat.row}}:{{seat.column}}</label> 
+                <input type="checkbox" value="{{seat.id}}" class="seatinput"  id="{{seat.row}}{{seat.column}}" (click)="changeSeatClass(seat)" (change)="onCheckboxChange(seat,$event)">
+                         
         </li>
       </ol>
     </li>
   </ol>
 
   <div class="exit exit-back fuselage">
-    <button (click)="setUnavailable()" class="button-unavailable" mat-raised-button>UNAVAILABLE</button>
     <button (click)="setEconomy()" class="button-economy" mat-raised-button>ECONOMY</button>
     <button (click)="setBussines()" class="button-bussines" mat-raised-button>BUSSINES</button>
     <button (click)="setFirst()" class="button-first" mat-raised-button>FIRST</button>
+    <button (click)="setDisable()" class="button-disble" mat-raised-button>DISABLE</button>
+    <button (click)="setEnable()" class="button-enable" mat-raised-button>ENABLE</button>
     <br>
   </div>
 

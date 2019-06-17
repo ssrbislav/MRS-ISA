@@ -140,18 +140,6 @@ public class SeatService implements ISeatService {
 
 	}
 	
-	public boolean updateSeatType(List<Seat> seats) {
-		
-		for(Seat seat: seats) {
-			Seat s = seatRepository.getOne(seat.getId());
-			s.setSeatType(seat.getSeatType());
-			updateTicketPrice(s);
-			seatRepository.save(s);
-		}
-		
-		return true;
-		
-	}
 	
 	public void updateTicketPrice(Seat s) {
 		
@@ -169,6 +157,20 @@ public class SeatService implements ISeatService {
 		seatRepository.save(seat);
 		return seat.isDeleted();
 
+	}
+
+	@Override
+	public boolean updateSeatType(List<Seat> seats) {
+
+		for(Seat seat: seats) {
+			Seat s = seatRepository.getOne(seat.getId());
+			s.setSeatType(seat.getSeatType());
+			updateTicketPrice(s);
+			seatRepository.save(s);
+		}
+		
+		return true;
+		
 	}
 
 }
