@@ -96,6 +96,8 @@ public class ReservationService implements IReservationService {
 		Reservation res = reservationRepository.getOne(reservation.getId());
 		
 		res.setDeleted(true);
+		
+		//res.setPassenger(null);
 
 		if(!res.getTicket().isFastTicket()) {
 			res.getTicket().getSeat().setOccupied(false);

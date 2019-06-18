@@ -43,7 +43,7 @@ export class ListReservationsComponent implements OnInit {
     this.reservationService.cancelReservation(reservation).subscribe(
       data => {
         this.message = data;
-        alert(this.message.message);
+        window.alert(this.message.message);
       }
     );
     location.reload();

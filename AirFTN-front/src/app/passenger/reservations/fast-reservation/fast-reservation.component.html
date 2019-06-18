@@ -1,4 +1,8 @@
 
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
 <table class="flightTable" mat-table [dataSource]="dataSource" style="margin-bottom: 20px" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="from">

@@ -13,6 +13,7 @@ import { PassengerService } from 'src/app/services/passenger.service';
 import { Passenger } from 'src/app/model/passenger.model';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { ResponseMessage } from 'src/app/model/responseMessage';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-fast-reservation',
@@ -44,6 +45,10 @@ export class FastReservationComponent implements OnInit {
     this.getFastTickets();
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   getFastTickets() {
     this.ticketService.getAllFastTickets().subscribe(
       data => {
@@ -61,7 +66,7 @@ export class FastReservationComponent implements OnInit {
     this.reservationService.reserveFastTicket(this.reservation).subscribe(
       data => {
         this.message = data;
-        alert(this.message.message);
+        window.alert(this.message.message);
       }
     );
     location.reload();

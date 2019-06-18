@@ -23,7 +23,7 @@ public class Reservation {
 	private Long id;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "passenger_id", nullable = false)
+	@JoinColumn(name = "passenger_id")
 	Passenger passenger;
 
 	@OneToOne(mappedBy = "reservation")
