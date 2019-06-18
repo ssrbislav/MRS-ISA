@@ -93,30 +93,24 @@ export class DefineSeatsComponent implements OnInit, AfterViewChecked {
   changeSeatClass(seat: Seat) {
     if (this.type === 'ECONOMY_CLASS') {
       document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#009688';
-      seat.seatType = SeatType.ECONOMY_CLASS;
-      seat.airplain = this.airplane;
-    }
+      seat.seatType = SeatType.ECONOMY_CLASS;   }
     if (this.type === 'BUSSINES_CLASS') {
       document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#FFC107';
       seat.seatType = SeatType.BUSINESS_CLASS;
-      seat.airplain = this.airplane;
     }
     if (this.type === 'FIRST_CLASS') {
       document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#29B6F6';
       seat.seatType = SeatType.FIRST_CLASS;
-      seat.airplain = this.airplane;
     }
     if (this.type === 'DISABLED') {
       seat.occupied = true;
       document.getElementById(seat.row + '' + seat.column).setAttribute('disabled', 'disabled');
       document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#ccc';
-      seat.airplain = this.airplane;
     }
     if (this.type === 'ENABLED') {
       // document.getElementById('li' + seat.row + '' + seat.column).style.backgroundColor = '#ccc';
       document.getElementById(seat.row + '' + seat.column).removeAttribute('disabled');
       seat.occupied = false;
-      seat.airplain = this.airplane;
     }
   }
 

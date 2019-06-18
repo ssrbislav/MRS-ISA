@@ -1,5 +1,4 @@
 import { SeatType } from './seat-type.enum';
-import { Airplane } from './airplane.model';
 
 export class SeatDTO {
 
@@ -14,7 +13,7 @@ export class Seat {
     row: number;
     column: number;
     seatType: SeatType;
-    airplain: Airplane;
+    airplaneId: BigInteger;
     deleted: false;
     occupied: boolean;
 }

@@ -24,12 +24,11 @@ public class Ticket {
 	@Column(nullable = false, unique = false)
 	private double price;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "seat_id", nullable = false)
 	private Seat seat;
 
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "flight_id", nullable = false)
 	private Flight flight;
 
@@ -37,7 +36,6 @@ public class Ticket {
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
 
-	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "reservation_id")
 	private Reservation reservation;
@@ -105,6 +103,7 @@ public class Ticket {
 		this.deleted = deleted;
 	}
 
+	@JsonIgnore
 	public Flight getFlight() {
 		return flight;
 	}
@@ -113,6 +112,7 @@ public class Ticket {
 		this.flight = flight;
 	}
 
+	@JsonIgnore
 	public Reservation getReservation() {
 		return reservation;
 	}

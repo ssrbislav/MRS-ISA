@@ -37,7 +37,7 @@ public class Seat {
 	private Airplane airplane;
 
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "seat")
+	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, mappedBy = "seat")
 	private Ticket ticket;
 
 	@Column(nullable = false)

@@ -26,6 +26,8 @@ import { CreateFastReservationComponent } from './create-fast-reservation/create
 import { UpdateAirlineInfoComponent } from './update-airline-info/update-airline-info.component';
 import { BusinesssReportComponent } from './businesss-report/businesss-report.component';
 import { ChooseFlightComponent } from './choose-flight/choose-flight.component';
+import { TicketService } from 'src/app/services/ticket.service';
+import { Ticket } from 'src/app/model/ticket.model';
 
 @Component({
   selector: 'app-airline-profile',
@@ -48,7 +50,8 @@ export class AirlineProfileComponent implements OnInit {
               private flightService: FlightService,
               private airplaneService: AirplaneService,
               private dialog: MatDialog,
-              private pricelistService: PricelistService) { }
+              private pricelistService: PricelistService,
+              private ticketService: TicketService) { }
 
   username: string;
   adminId: BigInteger;
@@ -71,6 +74,8 @@ export class AirlineProfileComponent implements OnInit {
   responseMessage: ResponseMessage;
 
   disabled = true;
+
+  tickets: Ticket[];
 
   displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
     'arrival', 'destination', 'mileage',
@@ -105,6 +110,7 @@ export class AirlineProfileComponent implements OnInit {
         this.getCompanyFlights(this.airline.id);
         this.getCompanyAirplanes(this.airline.id);
         this.getPricelistByCompanyId(this.airline.id);
+        this.listFastTicketsReservations();
       }
     );
   }
@@ -321,7 +327,6 @@ export class AirlineProfileComponent implements OnInit {
       );
       location.reload();
     } else {
-      console.log(this.pricelist);
       this.pricelistService.updatePricelist(this.pricelist).subscribe(
         data => {
           this.responseMessage = data;
@@ -347,6 +352,15 @@ export class AirlineProfileComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(ChooseFlightComponent, dialogConfig);
+  }
+
+  listFastTicketsReservations() {
+    this.ticketService.getAllFastTickets().subscribe(
+      data => {
+        this.tickets = data;
+        console.log(this.tickets);
+      }
+    );
   }
 
 

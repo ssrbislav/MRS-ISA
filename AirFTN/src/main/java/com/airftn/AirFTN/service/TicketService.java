@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airftn.AirFTN.dto.SeatDTO;
 import com.airftn.AirFTN.dto.TicketDTO;
 import com.airftn.AirFTN.enumeration.SeatType;
 import com.airftn.AirFTN.model.AirlineCompany;
+import com.airftn.AirFTN.model.Airplane;
 import com.airftn.AirFTN.model.Flight;
 import com.airftn.AirFTN.model.Pricelist;
 import com.airftn.AirFTN.model.Seat;
 import com.airftn.AirFTN.model.Ticket;
+import com.airftn.AirFTN.repository.SeatRepository;
 import com.airftn.AirFTN.repository.TicketRepository;
 
 @Service
@@ -30,8 +33,13 @@ public class TicketService implements ITicketService {
 	ISeatService seatService;
 
 	@Autowired
+	SeatRepository seatRepository;
+
+	@Autowired
 	IPricelistService pricelistService;
 	
+	@Autowired
+	IAirplaneService airplaneService;
 
 	@Override
 	public List<Ticket> findAll() {
@@ -41,7 +49,7 @@ public class TicketService implements ITicketService {
 
 	@Override
 	public List<Ticket> findAllByCompanyId(Long id) {
-		
+
 		return ticketRepository.findAllByCompanyId(id);
 	}
 
@@ -83,10 +91,28 @@ public class TicketService implements ITicketService {
 	}
 
 	@Override
+	public Ticket createFastTicket(SeatDTO seat) {
+		
+		Ticket ticket = ticketRepository.findBySeatId(seat.getId());
+		
+		Seat s = seatService.getOne(seat.getId());
+		
+		Airplane airplane = airplaneService.getOne(seat.getAirplaneId());
+		
+		ticket.setFastTicket(true);
+		s.setOccupied(true);
+		s.setAirplane(airplane);
+		
+		seatRepository.save(s);
+
+		return update(ticket);
+	}
+
+	@Override
 	public double calculatePrice(Ticket ticket) {
 
 		double totalPrice = 0;
-		
+
 		double price = 0;
 
 		AirlineCompany company = ticket.getCompany();
@@ -99,17 +125,19 @@ public class TicketService implements ITicketService {
 
 		if (seatClass == SeatType.ECONOMY_CLASS) {
 			price = pricelist.getEconomyPricePrecentage();
-			totalPrice *= ((price/100) + 1);
-		}
-		else if (seatClass == SeatType.BUSINESS_CLASS) {
+			totalPrice *= ((price / 100) + 1);
+		} else if (seatClass == SeatType.BUSINESS_CLASS) {
 			price = pricelist.getEconomyPricePrecentage();
-			totalPrice *= ((price/100) + 1);
-		}	
-		else if (seatClass == SeatType.FIRST_CLASS) {
+			totalPrice *= ((price / 100) + 1);
+		} else if (seatClass == SeatType.FIRST_CLASS) {
 			price = pricelist.getEconomyPricePrecentage();
-			totalPrice *= ((price/100) + 1);
+			totalPrice *= ((price / 100) + 1);
 		}
-	
+		
+		if(ticket.isFastTicket()) {
+			totalPrice *= ((price / 100) - 1);
+		}
+
 		return totalPrice;
 	}
 
@@ -124,18 +152,24 @@ public class TicketService implements ITicketService {
 
 		return ticketRepository.save(t);
 	}
-	
-//	public Ticket updateTicketPrice(List<Ticket> tickets) {
-//		
-//		for(Ticket ticket : tickets) {
-//			Ticket t = ticketRepository.getOne(ticket.getId());
-//			t.setPrice(calculatePrice(ticket));
-//		}
-	
-//		hhhmmmm, ovo bi trebalo izmeniti
-//		
-//		
-//	}
-//	
+
+	@Override
+	public List<Ticket> findAllFastTickets() {
+
+		return ticketRepository.findAllByFastTicketIsTrue();
+	}
+
+	// public Ticket updateTicketPrice(List<Ticket> tickets) {
+	//
+	// for(Ticket ticket : tickets) {
+	// Ticket t = ticketRepository.getOne(ticket.getId());
+	// t.setPrice(calculatePrice(ticket));
+	// }
+
+	// hhhmmmm, ovo bi trebalo izmeniti
+	//
+	//
+	// }
+	//
 
 }

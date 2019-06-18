@@ -14,7 +14,7 @@
 
   <div class="form-group">
 
-    <button  *ngIf="seat" class="submitbtn" type="button" mat-raised-button>CREATE FAST RESERVATION</button>
+    <button  *ngIf="seat" class="submitbtn" type="button" (click)="createFastReservation()" mat-raised-button>CREATE FAST RESERVATION</button>
     <button class="cancelbtn" type="button" mat-raised-button mat-dialog-close>CANCEL</button>
   </div>
   <br>

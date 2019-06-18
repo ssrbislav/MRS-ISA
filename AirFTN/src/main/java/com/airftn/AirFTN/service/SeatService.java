@@ -24,10 +24,10 @@ public class SeatService implements ISeatService {
 
 	@Autowired
 	IAirplaneService airplaneService;
-	
+
 	@Autowired
 	ITicketService ticketService;
-	
+
 	@Autowired
 	TicketRepository ticketRepository;
 
@@ -135,17 +135,17 @@ public class SeatService implements ISeatService {
 		s.setAirplane(seat.getAirplane());
 		s.setSeatType(seat.getSeatType());
 		s.setDeleted(false);
+		s.setOccupied(seat.isOccupied());
 
 		return seatRepository.save(s);
 
 	}
-	
-	
+
 	public void updateTicketPrice(Seat s) {
-		
+
 		Ticket ticket = s.getTicket();
-		
-		ticket.setPrice(ticketService.calculatePrice(ticket));	
+
+		ticket.setPrice(ticketService.calculatePrice(ticket));
 		ticketRepository.save(ticket);
 	}
 
@@ -162,18 +162,18 @@ public class SeatService implements ISeatService {
 	@Override
 	public boolean updateSeatType(List<Seat> seats) {
 
-		for(Seat seat: seats) {
+		for (Seat seat : seats) {
 			Seat s = seatRepository.getOne(seat.getId());
 			s.setSeatType(seat.getSeatType());
 			updateTicketPrice(s);
-			if(seat.isOccupied()) {
+			if (seat.isOccupied()) {
 				s.setOccupied(true);
 			}
 			seatRepository.save(s);
 		}
-		
+
 		return true;
-		
+
 	}
 
 }

@@ -2,6 +2,7 @@ package com.airftn.AirFTN.service;
 
 import java.util.List;
 
+import com.airftn.AirFTN.dto.SeatDTO;
 import com.airftn.AirFTN.dto.TicketDTO;
 import com.airftn.AirFTN.model.Ticket;
 
@@ -23,6 +24,8 @@ public interface ITicketService {
 	
 	double calculatePrice(Ticket ticket);
 	
-//	boolean delete();
+	List<Ticket> findAllFastTickets();
+
+	Ticket createFastTicket(SeatDTO seat);
 	
 }

@@ -75,6 +75,7 @@ td {
   height: 500px;
   border-left: 3px solid rgb(71, 71, 71);
   float: left;
+  overflow: auto;
 }
 
 h3 {
@@ -88,6 +89,9 @@ h3 {
   position: sticky;
   top: 20;
   font-weight: 500;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 

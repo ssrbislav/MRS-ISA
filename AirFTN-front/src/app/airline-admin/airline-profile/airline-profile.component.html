@@ -222,6 +222,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
+          <th>#</th>
           <th class="head" scope="col">From</th>
           <th class="head" scope="col">To</th>
           <th class="head" scope="col">Seat</th>
@@ -232,17 +233,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let reservation of reservations; let i = index">
-          <td>{{reservation.city}}</td>
-          <td>{{reservation.country}}</td>
-          <td>{{reservation.description}}</td>
-          <td>{{reservation.description}}</td>
-          <td>{{reservation.description}}</td>
-          <td>{{reservation.description}}</td>
-          <td id="delete_reservation" (onclick)="deleteReservation(reservation.id)"><button mat-raised-button>
-              <mat-icon>delete</mat-icon>
-            </button></td>
-        </tr>
+          <tr *ngFor="let ticket of tickets; let i = index">
+              <td>{{i}}</td>
+              <td>{{airline.city}}</td>
+              <td>Negde se putuje</td>
+              <td>{{ticket.seat.row}}:{{ticket.seat.column}}</td>
+              <td>{{ticket.price}}</td>
+               <td>Neki datum</td>
+               <td>Neki broj</td>
+              <td id="delete_reservation" (onclick)="deleteReservation(reservation.id)"><button mat-raised-button>
+                  <mat-icon>delete</mat-icon>
+                </button></td>
+            </tr>
         <mat-divider></mat-divider>
     </table>
 

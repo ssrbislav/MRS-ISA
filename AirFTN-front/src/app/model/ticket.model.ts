@@ -1,3 +1,6 @@
+import { Flight } from './flight.model';
+import { Seat } from './seat.model';
+
 export class Ticket {
 
 }
@@ -5,7 +8,7 @@ export class Ticket {
 export class FastTicket {
 
     price: number;
-    seatId: BigInteger;
-    flightId: BigInteger;
+    seat: Seat;
+    flight: Flight;
     fastTicket: true;
 }

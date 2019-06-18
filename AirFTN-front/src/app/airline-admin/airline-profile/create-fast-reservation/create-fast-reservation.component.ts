@@ -1,11 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material';
-import { DefineSeatsComponent } from '../define-seats/define-seats.component';
-import { ChooseSeatComponent } from './choose-seat/choose-seat.component';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Airplane } from 'src/app/model/airplane.model';
+import { ResponseMessage } from 'src/app/model/responseMessage';
 import { Seat } from 'src/app/model/seat.model';
-import { SeatService } from 'src/app/services/seat.service';
 import { AirplaneService } from 'src/app/services/airplane.service';
+import { SeatService } from 'src/app/services/seat.service';
+import { TicketService } from 'src/app/services/ticket.service';
+import { ChooseSeatComponent } from './choose-seat/choose-seat.component';
 
 @Component({
   selector: 'app-create-fast-reservation',
@@ -19,12 +20,14 @@ export class CreateFastReservationComponent implements OnInit {
   seatMatrix: Seat[][];
   seats: Seat[] = new Array();
   seat: Seat;
+  message: ResponseMessage = new ResponseMessage();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,
               private dialog: MatDialog,
               private seatService: SeatService,
-              private airplaneService: AirplaneService) { }
+              private airplaneService: AirplaneService,
+              private ticketService: TicketService) { }
 
   ngOnInit() {
     this.flightId = this.data.flight;
@@ -39,7 +42,6 @@ export class CreateFastReservationComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       id: 1,
-      // added: false,
       seatMatrix,
     };
 
@@ -48,7 +50,6 @@ export class CreateFastReservationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         this.seat = data;
-        console.log(this.seat);
       }
     );
   }
@@ -67,6 +68,16 @@ export class CreateFastReservationComponent implements OnInit {
     this.seatService.getSeatsByAirplaneId(id).toPromise().then(
       data => {
         this.seatMatrix = data;
+      }
+    );
+  }
+
+  createFastReservation() {
+    this.seat.airplaneId = this.airplane.id;
+    this.ticketService.createFastTicket(this.seat).subscribe(
+      data => {
+        this.message = data;
+        alert(this.message.message);
       }
     );
   }

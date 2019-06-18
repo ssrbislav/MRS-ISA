@@ -7,6 +7,9 @@ import com.airftn.AirFTN.enumeration.SeatType;
 public class SeatDTO {
 
 	@NotNull
+	private long id;
+	
+	@NotNull
 	private int row;
 
 	@NotNull
@@ -14,6 +17,16 @@ public class SeatDTO {
 
 	@NotNull
 	private SeatType seatType;
+
+	private Long airplaneId;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public int getRow() {
 		return row;
@@ -37,6 +50,14 @@ public class SeatDTO {
 
 	public void setSeatType(SeatType seatType) {
 		this.seatType = seatType;
+	}
+
+	public Long getAirplaneId() {
+		return airplaneId;
+	}
+
+	public void setAirplaneId(Long airplaneId) {
+		this.airplaneId = airplaneId;
 	}
 
 }

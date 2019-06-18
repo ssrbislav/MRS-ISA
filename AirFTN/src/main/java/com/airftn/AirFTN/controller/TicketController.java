@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.airftn.AirFTN.dto.SeatDTO;
 import com.airftn.AirFTN.dto.TicketDTO;
 import com.airftn.AirFTN.model.ResponseMessage;
 import com.airftn.AirFTN.model.Ticket;
+import com.airftn.AirFTN.service.ISeatService;
 import com.airftn.AirFTN.service.ITicketService;
 
 @CrossOrigin
@@ -25,6 +27,9 @@ public class TicketController {
 
 	@Autowired
 	ITicketService ticketService;
+	
+	@Autowired
+	ISeatService seatService;
 	
 	ResponseMessage message;
 	
@@ -75,15 +80,31 @@ public class TicketController {
 		Ticket t = ticketService.create(ticket);
 
 		if (t == null) {
-			message.setMessage("Not able to create reservation!");
+			message.setMessage("Not able to create ticket!");
 
 			return new ResponseEntity<ResponseMessage>(HttpStatus.BAD_REQUEST);
 		}
 
-		message.setMessage("Reservation created successfullly");
+		message.setMessage("Ticket created successfullly");
 
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	} 
+	
+	@PostMapping("/createFastTicket")
+	public ResponseEntity<ResponseMessage> createTicket(@RequestBody SeatDTO seat) {	
+		
+		Ticket t = ticketService.createFastTicket(seat);
+
+		if (t == null) {
+			message.setMessage("Not able to create fast ticket reservation!");
+
+			return new ResponseEntity<ResponseMessage>(HttpStatus.BAD_REQUEST);
+		}
+
+		message.setMessage("Fast Ticket Reservation created successfullly");
+
+		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
 	
 	@PostMapping("/updateTicket")
 	public ResponseEntity<ResponseMessage> updateTicket(@RequestBody Ticket ticket) {
@@ -91,14 +112,26 @@ public class TicketController {
 		Ticket t = ticketService.update(ticket);
 
 		if (t == null) {
-			message.setMessage("Not able to update reservation!");
+			message.setMessage("Not able to update ticket!");
 
 			return new ResponseEntity<ResponseMessage>(HttpStatus.BAD_REQUEST);
 		}
 
-		message.setMessage("Reservation updated successfullly");
+		message.setMessage("Ticket updated successfullly");
 
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	} 
+	
+	@GetMapping("/findAllFastTickets")
+	public ResponseEntity<List<Ticket>> findFastTickets() {
+	
+		List<Ticket> tickets = ticketService.findAllFastTickets();
+		
+		if(tickets == null)
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<>(tickets, HttpStatus.OK);
+	}
+	
 	
 }

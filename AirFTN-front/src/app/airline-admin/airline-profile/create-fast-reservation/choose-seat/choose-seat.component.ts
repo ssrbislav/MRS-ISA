@@ -65,6 +65,7 @@ export class ChooseSeatComponent implements OnInit, AfterViewChecked  {
     const elem = document.getElementsByClassName('seatinput');
     if (event.target.checked) {
       this.seat = option;
+// tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < elem.length; i++) {
         elem[i].setAttribute('disabled', 'disabled');
       }
