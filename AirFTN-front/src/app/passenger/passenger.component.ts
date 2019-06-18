@@ -63,7 +63,11 @@ export class PassengerComponent implements OnInit {
   }
 
   navigateAirlineCompanies() {
-    this.router.navigate(['airlines']);
+    this.router.navigate(['passenger/airlines']);
+  }
+
+  navigateReservations() {
+    this.router.navigate(['passenger/reservations']);
   }
 
   update() {

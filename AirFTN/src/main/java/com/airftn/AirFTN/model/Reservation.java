@@ -1,7 +1,5 @@
 package com.airftn.AirFTN.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class Reservation {
 
@@ -25,9 +26,8 @@ public class Reservation {
 	@JoinColumn(name = "passenger_id", nullable = false)
 	Passenger passenger;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reservation")
-	@Column(nullable = false)
-	List<Ticket> tickets;
+	@OneToOne(mappedBy = "reservation")
+	Ticket ticket;
 
 	@Column(nullable = false)
 	private boolean fastReservation;
@@ -39,11 +39,11 @@ public class Reservation {
 		super();
 	}
 
-	public Reservation(Long id, Passenger passenger, List<Ticket> tickets, boolean fastReservation, boolean deleted) {
+	public Reservation(Long id, Passenger passenger, Ticket ticket, boolean fastReservation, boolean deleted) {
 		super();
 		this.id = id;
 		this.passenger = passenger;
-		this.tickets = tickets;
+		this.ticket = ticket;
 		this.fastReservation = fastReservation;
 		this.deleted = deleted;
 	}
@@ -64,12 +64,12 @@ public class Reservation {
 		this.passenger = passenger;
 	}
 
-	public List<Ticket> getTickets() {
-		return tickets;
+	public Ticket getTicket() {
+		return ticket;
 	}
 
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
 	}
 
 	public boolean isDeleted() {

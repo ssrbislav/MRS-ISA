@@ -8,6 +8,7 @@
   height: 500px;
   border-right: 3px solid rgb(71, 71, 71);
   float: left;
+  overflow: auto;
 }
 
 .flights {

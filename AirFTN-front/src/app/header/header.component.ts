@@ -15,11 +15,13 @@ export class HeaderComponent implements OnInit {
   showView = '';
   @Output() featureSelected = new EventEmitter<string>();
   private roles: string[];
+  username: string;
 
   constructor(private tokenStorage: TokenStorageService,
               private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getPassenger();
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
@@ -36,6 +38,11 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
+
+  getPassenger() {
+    this.username = this.tokenStorage.getUsername();
+  }
+
 
   Logout() {
     window.sessionStorage.clear();
@@ -78,6 +85,10 @@ export class HeaderComponent implements OnInit {
 
   clickShowAirplanes() {
     this.router.navigate(['sysAdmin/listAirplanes']);
+  }
+
+  showMyReservations() {
+    this.featureSelected.emit('my_reservations');
   }
 
 }

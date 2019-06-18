@@ -151,7 +151,7 @@ public class TicketService implements ITicketService {
 	@Override
 	public List<Ticket> findAllFastTickets() {
 
-		return ticketRepository.findAllByFastTicketIsTrue();
+		return ticketRepository.findAllByFastTicketIsTrueAndReservationIsNull();
 	}
 
 	// public Ticket updateTicketPrice(List<Ticket> tickets) {

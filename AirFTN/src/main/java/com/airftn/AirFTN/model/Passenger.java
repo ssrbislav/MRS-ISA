@@ -13,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class Passenger extends User implements Serializable {
 
@@ -26,15 +30,14 @@ public class Passenger extends User implements Serializable {
 	@Column(nullable = false)
 	private boolean active;
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "passenger")
 	List<Reservation> reservations;
 
 	private String registrationLink;
 
-	
-
-	public Passenger(String email, String username, String password, String firstName, String lastName,
-			String address, String phoneNumber, Date dateOfBirth) {
+	public Passenger(String email, String username, String password, String firstName, String lastName, String address,
+			String phoneNumber, Date dateOfBirth) {
 		super(email, username, password, firstName, lastName, address, phoneNumber, dateOfBirth);
 		this.active = false;
 		this.registrationLink = username + "_token";
@@ -68,6 +71,18 @@ public class Passenger extends User implements Serializable {
 
 	public void setRegistrationLink(String registrationLink) {
 		this.registrationLink = registrationLink;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

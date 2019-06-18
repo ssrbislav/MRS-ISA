@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FastTicket } from '../model/ticket.model';
+import { Ticket } from '../model/ticket.model';
 import { ResponseMessage } from '../model/responseMessage';
 import { Observable } from 'rxjs';
 import { Seat } from '../model/seat.model';
@@ -20,7 +20,7 @@ export class TicketService {
 
     getAllFastTickets() {
         const url = `${this.ticketUrl + '/findAllFastTickets'}`;
-        return this.http.get<FastTicket[]>(url);
+        return this.http.get<Ticket[]>(url);
     }
 
     createFastTicket(info: Seat): Observable<ResponseMessage> {

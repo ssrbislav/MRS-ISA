@@ -1,6 +1,6 @@
 #image {
-    background-image: url(../../assets/images/02.jpg);
-    height: 50vh;
+    background-image: url(../../../assets/images/02.jpg);
+    height: 30vh;
     position: relative;
     opacity: 0.65;
     width: 100%;

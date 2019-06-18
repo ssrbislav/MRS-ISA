@@ -15,7 +15,7 @@ import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { HeaderComponent } from './header/header.component';
-import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
+import { AirlineCompaniesComponent } from './passenger/airline-companies/airline-companies.component';
 import { AiradminProfileComponent } from './airline-admin/airadmin-profile/airadmin-profile.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule, MatButtonModule, MatSortModule } from '@angular/material';
 import {MatSelectModule, MatOptionModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
@@ -28,7 +28,6 @@ import { SysadminProfileComponent } from './sys-admin/sysadmin-profile/sysadmin-
 import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
 import { AirlineCompanyListComponent } from './sys-admin/airline-company-list/airline-company-list.component';
 import { RegisterAirlineCompanyComponent } from './sys-admin/airline-company-list/register-airline-company/register-airline-company.component';
-import { AirlineCompanyComponent } from './airline-company/airline-company.component';
 import { SysadminTableComponent } from './sys-admin/admin-list/sysadmin-table/sysadmin-table.component';
 import { AiradminTableComponent } from './sys-admin/admin-list/airadmin-table/airadmin-table.component';
 import { AirlineCompanyTableComponent } from './sys-admin/airline-company-list/airline-company-table/airline-company-table.component';
@@ -56,6 +55,9 @@ import { UpdatePassengerInfoComponent } from './passenger/update-passenger-info/
 import { BusinesssReportComponent } from './airline-admin/airline-profile/businesss-report/businesss-report.component';
 import { ChooseFlightComponent } from './airline-admin/airline-profile/choose-flight/choose-flight.component';
 import { ChooseSeatComponent } from './airline-admin/airline-profile/create-fast-reservation/choose-seat/choose-seat.component';
+import { ReservationsComponent } from './passenger/reservations/reservations.component';
+import { FastReservationComponent } from './passenger/reservations/fast-reservation/fast-reservation.component';
+import { CreateReservationComponent } from './passenger/reservations/create-reservation/create-reservation.component';
 
 
 
@@ -79,7 +81,6 @@ import { ChooseSeatComponent } from './airline-admin/airline-profile/create-fast
     AdminListComponent,
     AirlineCompanyListComponent,
     RegisterAirlineCompanyComponent,
-    AirlineCompanyComponent,
     SysadminTableComponent,
     AiradminTableComponent,
     AirlineCompanyTableComponent,
@@ -104,6 +105,9 @@ import { ChooseSeatComponent } from './airline-admin/airline-profile/create-fast
     BusinesssReportComponent,
     ChooseFlightComponent,
     ChooseSeatComponent,
+    ReservationsComponent,
+    FastReservationComponent,
+    CreateReservationComponent,
 
 
   ],

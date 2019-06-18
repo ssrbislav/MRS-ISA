@@ -36,8 +36,8 @@ public class Ticket {
 	@JoinColumn(nullable = false, name = "company_id")
 	private AirlineCompany company;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "reservation_id")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "reservation_id", referencedColumnName = "id")
 	private Reservation reservation;
 
 	@Column(nullable = false)

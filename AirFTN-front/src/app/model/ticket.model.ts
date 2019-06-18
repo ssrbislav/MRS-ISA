@@ -1,14 +1,15 @@
 import { Flight } from './flight.model';
 import { Seat } from './seat.model';
+import { AirlineCompany } from './company.model';
 
 export class Ticket {
 
-}
-
-export class FastTicket {
-
+    id: BigInteger;
     price: number;
     seat: Seat;
     flight: Flight;
-    fastTicket: true;
+    airline: AirlineCompany;
+    fastTicket: boolean;
 }
+
+

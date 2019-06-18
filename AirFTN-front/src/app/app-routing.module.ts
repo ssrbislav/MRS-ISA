@@ -8,12 +8,13 @@ import { RoleGuardService } from './auth/role-guard.service';
 import { SysAdminComponent } from './sys-admin/sys-admin.component';
 import { AirlineAdminComponent } from './airline-admin/airline-admin.component';
 import { HotelComponent } from './hotel/hotel.component';
-import { AirlineCompaniesComponent } from './airline-companies/airline-companies.component';
+import { AirlineCompaniesComponent } from './passenger/airline-companies/airline-companies.component';
 import { AdminListComponent } from './sys-admin/admin-list/admin-list.component';
-import { AirlineCompanyComponent } from './airline-company/airline-company.component';
 import { AirlineCompanyListComponent } from './sys-admin/airline-company-list/airline-company-list.component';
 import { DestinationsListComponent } from './sys-admin/destinations-list/destinations-list.component';
 import { AirplaneListComponent } from './sys-admin/airplane-list/airplane-list.component';
+import { Reservation } from './model/reservation.model';
+import { ReservationsComponent } from './passenger/reservations/reservations.component';
 
 const routes: Routes = [
 
@@ -38,8 +39,20 @@ const routes: Routes = [
         component: HotelComponent
     },
     {
-        path: 'airlines',
-        component: AirlineCompaniesComponent
+        path: 'passenger/airlines',
+        component: AirlineCompaniesComponent,
+        canActivate: [RoleGuardService],
+        data: {
+            expectedRole: 'ROLE_PASSENGER'
+        }
+    },
+    {
+        path: 'passenger/reservations',
+        component: ReservationsComponent,
+        canActivate: [RoleGuardService],
+        data: {
+            expectedRole: 'ROLE_PASSENGER'
+        }
     },
     {
         path: 'passenger',
@@ -83,10 +96,6 @@ const routes: Routes = [
             expectedRole: 'ROLE_AIRLINE_ADMIN'
         }
     },
-    {
-        path: 'airlineCompany',
-        component: AirlineCompanyComponent,
-    }
 ];
 
 @NgModule({
