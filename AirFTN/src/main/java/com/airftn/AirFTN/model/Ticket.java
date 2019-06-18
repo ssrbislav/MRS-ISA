@@ -103,7 +103,6 @@ public class Ticket {
 		this.deleted = deleted;
 	}
 
-	@JsonIgnore
 	public Flight getFlight() {
 		return flight;
 	}

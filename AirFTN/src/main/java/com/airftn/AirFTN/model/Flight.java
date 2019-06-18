@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -188,6 +189,7 @@ public class Flight {
 		this.deleted = deleted;
 	}
 
+	@JsonIgnore
 	public List<Ticket> getTickets() {
 		return tickets;
 	}

@@ -111,9 +111,7 @@ public class TicketService implements ITicketService {
 	@Override
 	public double calculatePrice(Ticket ticket) {
 
-		double totalPrice = 0;
-
-		double price = 0;
+		double price = ticket.getFlight().getPrice();
 
 		AirlineCompany company = ticket.getCompany();
 
@@ -124,21 +122,18 @@ public class TicketService implements ITicketService {
 		SeatType seatClass = seat.getSeatType();
 
 		if (seatClass == SeatType.ECONOMY_CLASS) {
-			price = pricelist.getEconomyPricePrecentage();
-			totalPrice *= ((price / 100) + 1);
+			price = price + (price * (pricelist.getEconomyPricePrecentage() / 100));
 		} else if (seatClass == SeatType.BUSINESS_CLASS) {
-			price = pricelist.getEconomyPricePrecentage();
-			totalPrice *= ((price / 100) + 1);
+			price = price + (price * (pricelist.getBussinessPricePrecentage() / 100));
 		} else if (seatClass == SeatType.FIRST_CLASS) {
-			price = pricelist.getEconomyPricePrecentage();
-			totalPrice *= ((price / 100) + 1);
+			price = price + (price * (pricelist.getFirstPricePrecentage() / 100));
 		}
 		
-		if(ticket.isFastTicket()) {
-			totalPrice *= ((price / 100) - 1);
+		if (ticket.isFastTicket()) {
+			price *= (1 - (pricelist.getDiscountedPrecentage() / 100));
 		}
 
-		return totalPrice;
+		return price;
 	}
 
 	@Override

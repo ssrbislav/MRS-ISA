@@ -228,19 +228,17 @@
           <th class="head" scope="col">Seat</th>
           <th class="head" scope="col">Price</th>
           <th class="head" scope="col">Departure date</th>
-          <th class="head" scope="col"><mat-icon>flight_takeof</mat-icon></th>
           <th class="head" scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let ticket of tickets; let i = index">
+          <tr *ngFor="let ticket of tickets; let i = index">               
               <td>{{i}}</td>
               <td>{{airline.city}}</td>
-              <td>Negde se putuje</td>
+              <td>{{ticket.flight.destination.city}}</td>
               <td>{{ticket.seat.row}}:{{ticket.seat.column}}</td>
               <td>{{ticket.price}}</td>
-               <td>Neki datum</td>
-               <td>Neki broj</td>
+               <td>{{ticket.flight.departureDate}}</td>
               <td id="delete_reservation" (onclick)="deleteReservation(reservation.id)"><button mat-raised-button>
                   <mat-icon>delete</mat-icon>
                 </button></td>

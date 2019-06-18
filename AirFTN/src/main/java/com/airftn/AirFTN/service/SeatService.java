@@ -141,14 +141,6 @@ public class SeatService implements ISeatService {
 
 	}
 
-	public void updateTicketPrice(Seat s) {
-
-		Ticket ticket = s.getTicket();
-
-		ticket.setPrice(ticketService.calculatePrice(ticket));
-		ticketRepository.save(ticket);
-	}
-
 	@Override
 	public boolean delete(Long id) throws ObjectNotFoundException {
 
@@ -164,8 +156,11 @@ public class SeatService implements ISeatService {
 
 		for (Seat seat : seats) {
 			Seat s = seatRepository.getOne(seat.getId());
+			
+			Ticket ticket = s.getTicket();
+			ticketService.update(ticket);
+			
 			s.setSeatType(seat.getSeatType());
-			updateTicketPrice(s);
 			if (seat.isOccupied()) {
 				s.setOccupied(true);
 			}
