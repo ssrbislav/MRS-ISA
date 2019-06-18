@@ -36,7 +36,7 @@ public class ReservationService implements IReservationService {
 	@Override
 	public List<Reservation> findAllByPassengerId(Long id) {
 
-		return reservationRepository.findAllByPassengerId(id);
+		return reservationRepository.findAllByPassengerIdAndDeletedIsFalse(id);
 	}
 
 	@Override
@@ -90,5 +90,20 @@ public class ReservationService implements IReservationService {
 		return null;
 	}
 
+	@Override
+	public boolean cancelReservation(Reservation reservation) {
+		
+		Reservation res = reservationRepository.getOne(reservation.getId());
+		
+		res.setDeleted(true);
+
+		if(!res.getTicket().isFastTicket()) {
+			res.getTicket().getSeat().setOccupied(false);
+		}
+		
+		reservationRepository.save(res);
+		
+		return true;
+	}
 
 }

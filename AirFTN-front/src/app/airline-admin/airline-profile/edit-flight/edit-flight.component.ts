@@ -48,7 +48,6 @@ export class EditFlightComponent implements OnInit {
     this.airplaneService.getNotTakenAirplanes(this.company.id).subscribe(
       data => {
         this.freeAirplanes = data;
-        console.log(data);
       }
     );
   }

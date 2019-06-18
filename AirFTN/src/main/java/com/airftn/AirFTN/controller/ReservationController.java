@@ -93,6 +93,21 @@ public class ReservationController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	} 
 	
-	
+	@PostMapping("/cancelReservation")
+	public ResponseEntity<ResponseMessage> cancelReservation(@RequestBody Reservation reservation) {
+		
+		boolean canceled = reservationService.cancelReservation(reservation);
+		
+		if (!canceled) {
+			message.setMessage("Not able to cancel reservation!");
+
+			return new ResponseEntity<ResponseMessage>(HttpStatus.BAD_REQUEST);
+		}
+		
+		message.setMessage("Reservation canceled!");
+
+		return new ResponseEntity<>(message, HttpStatus.OK);
+		
+	}
 
 }

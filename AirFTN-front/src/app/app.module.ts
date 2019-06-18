@@ -58,6 +58,7 @@ import { ChooseSeatComponent } from './airline-admin/airline-profile/create-fast
 import { ReservationsComponent } from './passenger/reservations/reservations.component';
 import { FastReservationComponent } from './passenger/reservations/fast-reservation/fast-reservation.component';
 import { CreateReservationComponent } from './passenger/reservations/create-reservation/create-reservation.component';
+import { ListReservationsComponent } from './passenger/list-reservations/list-reservations.component';
 
 
 
@@ -108,6 +109,7 @@ import { CreateReservationComponent } from './passenger/reservations/create-rese
     ReservationsComponent,
     FastReservationComponent,
     CreateReservationComponent,
+    ListReservationsComponent,
 
 
   ],
@@ -154,7 +156,8 @@ import { CreateReservationComponent } from './passenger/reservations/create-rese
     UpdatePassengerInfoComponent,
     BusinesssReportComponent,
     ChooseFlightComponent,
-    ChooseSeatComponent
+    ChooseSeatComponent,
+    ListReservationsComponent
   ],
   providers: [
     RoleGuardService,

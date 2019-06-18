@@ -33,7 +33,6 @@ public class Seat {
 
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(nullable = false, name = "airplane_id")
-	@JsonIgnore
 	private Airplane airplane;
 
 	@JsonIgnore
@@ -94,6 +93,7 @@ public class Seat {
 		this.column = column;
 	}
 
+	@JsonIgnore
 	public Airplane getAirplane() {
 		return airplane;
 	}

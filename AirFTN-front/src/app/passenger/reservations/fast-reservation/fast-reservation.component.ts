@@ -58,13 +58,13 @@ export class FastReservationComponent implements OnInit {
     this.reservation.fastReservation = true;
     this.reservation.ticket = ticket;
     this.reservation.username = this.tokenStorage.getUsername();
-    console.log(this.reservation);
     this.reservationService.reserveFastTicket(this.reservation).subscribe(
       data => {
         this.message = data;
         alert(this.message.message);
       }
     );
+    location.reload();
   }
 
 }

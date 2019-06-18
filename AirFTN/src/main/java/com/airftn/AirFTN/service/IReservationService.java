@@ -18,4 +18,6 @@ public interface IReservationService {
 	Reservation update(Reservation reservation);
 	
 	Reservation setTicketsToOccupied(Reservation reservation);
+	
+	boolean cancelReservation(Reservation reservation);
 }
