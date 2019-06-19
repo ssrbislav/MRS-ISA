@@ -1,11 +1,16 @@
 package com.airftn.AirFTN.service;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airftn.AirFTN.dto.ReservationDTO;
+import com.airftn.AirFTN.model.AirlineCompany;
+import com.airftn.AirFTN.model.Flight;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Reservation;
 import com.airftn.AirFTN.model.Ticket;
@@ -49,24 +54,24 @@ public class ReservationService implements IReservationService {
 	public Reservation create(ReservationDTO reservation) {
 
 		Passenger passenger = passengerService.getOneByUsername(reservation.getUsername());
-		
+
 		Ticket ticket = ticketRepository.getOne(reservation.getTicket().getId());
-		
+
 		Reservation res = new Reservation();
 
-		if(reservation.isFastReservation())
+		if (reservation.isFastReservation())
 			res.setFastReservation(true);
 
 		res.setDeleted(false);
 		res.setPassenger(passenger);
 		res.setTicket(reservation.getTicket());
-		
+
 		ticket.getSeat().setOccupied(true);
-		
+
 		Reservation r = reservationRepository.save(res);
-		
+
 		ticket.setReservation(r);
-		
+
 		ticketRepository.save(ticket);
 
 		return res;
@@ -92,20 +97,48 @@ public class ReservationService implements IReservationService {
 
 	@Override
 	public boolean cancelReservation(Reservation reservation) {
-		
-		Reservation res = reservationRepository.getOne(reservation.getId());
-		
-		res.setDeleted(true);
-		
-		//res.setPassenger(null);
 
-		if(!res.getTicket().isFastTicket()) {
+		Reservation res = reservationRepository.getOne(reservation.getId());
+
+		res.setDeleted(true);
+
+		// res.setPassenger(null);
+
+		if (!res.getTicket().isFastTicket()) {
 			res.getTicket().getSeat().setOccupied(false);
 		}
-		
+
 		reservationRepository.save(res);
-		
+
 		return true;
+	}
+
+	@Override
+	public List<Ticket> createBusinessReport(AirlineCompany airline, Date from, Date to) {
+
+		// Calendar timeFrom = Calendar.getInstance();
+		// timeFrom.setTime(from);
+		//
+		// Calendar timeTo = Calendar.getInstance();
+		// timeTo.setTime(to);
+
+		List<Ticket> brTickets = new ArrayList<>();
+
+		for (Flight flight : airline.getFlights()) {
+
+			List<Ticket> tickets = ticketRepository.findAllByReservationIsNull();
+
+			if (flight.getDepartureDate().after(from) && flight.getDepartureDate().before(to)) {
+				List<Ticket> flightTickets = flight.getTickets();
+
+				for (Ticket t : flightTickets) {
+					if (tickets.contains(t))
+						brTickets.add(t);
+				}
+			}
+		}
+
+		return brTickets;
 	}
 
 }
