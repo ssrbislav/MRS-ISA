@@ -1,0 +1,89 @@
+<div class="flights grid-item ">
+    <h3>CHOOSE FLIGHT</h3>
+
+    <mat-form-field class="search">
+      <input matInput (keyup)="filterFlights($event.target.value)" placeholder="FILTER">
+    </mat-form-field>
+
+    <table class="flightTable" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="flightNumber">
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> FLIGHT NUMBER </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.flightNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="airline">
+          <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> AIRLINE </th>
+          <td mat-cell *matCellDef="let flight"> {{airline.name}} </td>
+        </ng-container>
+
+
+      <ng-container matColumnDef="airplane">
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> AIRPLANE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.plane.model}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="departure">
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> DEPARTURE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.departureDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="arrival">
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> ARRIVAL </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.arrivalDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="destination">
+        <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> DESTINATION </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.destination.city}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mileage">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> MILEAGE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.mileage}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> FLIGHT DURATION </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.durationOfFlight}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="transfer">
+        <th mat-header-cell *matHeaderCellDef> TRANSFERS </th>
+        <td mat-cell *matCellDef="let flight">
+          <button mat-raised-button (click)="showFlightTransfers(flight.id)">
+            <mat-icon>flight_takeof</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="seats">
+        <th mat-header-cell *matHeaderCellDef> SEATS </th>
+        <td mat-cell *matCellDef="let flight">
+          <button mat-raised-button (click)="showFlightSeats(flight.id)">
+            <mat-icon>event_seat</mat-icon>
+          </button>
+        </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> PRICE </th>
+        <td mat-cell *matCellDef="let flight"> {{flight.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="reserve">
+        <th mat-header-cell *matHeaderCellDef style="padding-top: 15px"> RESERVE A TICKET </th>
+        <td mat-cell *matCellDef="let flight" style="padding-top: 15px">
+          <button mat-raised-button (click)="openForReservation(flight)">
+            <mat-icon>send</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+
+<button mat-raised-button mat-dialog-close>CLOSE</button>

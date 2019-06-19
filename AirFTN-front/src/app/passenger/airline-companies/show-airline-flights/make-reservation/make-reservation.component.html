@@ -1,0 +1,78 @@
+<div class="plane">
+
+  <h1>CHOOSE A SEAT</h1>
+
+  <ol class="cabin fuselage">
+    <li *ngFor="let seats of seatMatrix" class="row row--1">
+      <ol class="seats" type="A">
+        <li *ngFor="let seat of seats" class="seat" id="li{{seat.row}}{{seat.column}}">
+          <!-- <input type="checkbox" value="{{seat.id}}" class="seatinput"  id="{{seat.row}}{{seat.column}}" (click)="changeSeatClass(seat)"/>
+              <label  [for]="seat" id="label{{seat.row}}{{seat.column}}" class="label">{{seat.row}}:{{seat.column}}</label>   -->
+          <label>{{seat.row}}:{{seat.column}}</label>
+          <input type="checkbox" value="{{seat.id}}" class="seatinput" id="{{seat.row}}{{seat.column}}"
+            (change)="onCheckboxChange(seat,$event)">
+        </li>
+      </ol>
+    </li>
+    <br>
+    <label class="button-economy label" for="">ECONOMY</label>
+    <label class="button-bussines label" for="">BUSSINES</label>
+    <label class="button-first label" for="">FIRST</label>
+    <label class="button-disble label" for="">DISABLED</label>
+  </ol>
+
+  <div *ngIf="seat" class="choice">
+    <button class="choice-button" mat-raised-button (click)="choiceMe()">For myself</button>
+    <button class="choice-button" mat-raised-button (click)="choiceOther()">For someone else</button>
+  </div>
+
+
+  <div *ngIf="person" class="person">
+    <form class="example-form">
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="person.email" >
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="person.firstName">
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          First Name is requires
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" [formControl]="surnameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="person.lastName">
+        <mat-error *ngIf="surnameFormControl.hasError('required')">
+          Last Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Passport number" [formControl]="passportFormControl" [errorStateMatcher]="matcher" [(ngModel)]="person.passportNumber">
+        <mat-error *ngIf="passportFormControl.hasError('required')">
+          Passport number is required
+        </mat-error>
+      </mat-form-field>
+
+      <button class="button-choose" type="submit" (click)="makeReservation()" mat-raised-button>RESERVE</button>
+
+    </form>
+  </div>
+
+
+
+  <div> 
+    <button class="button-close" mat-raised-button mat-dialog-close>CLOSE</button>
+  </div>
+
+</div>

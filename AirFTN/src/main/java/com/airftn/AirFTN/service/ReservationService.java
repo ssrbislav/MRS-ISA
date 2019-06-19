@@ -63,9 +63,9 @@ public class ReservationService implements IReservationService {
 		
 		ticket.getSeat().setOccupied(true);
 		
-		reservationRepository.save(res);
+		Reservation r = reservationRepository.save(res);
 		
-		ticket.setReservation(res);
+		ticket.setReservation(r);
 		
 		ticketRepository.save(ticket);
 

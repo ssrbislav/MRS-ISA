@@ -4,6 +4,8 @@ import { AirlineService } from 'src/app/services/airline.service';
 import { Flight } from 'src/app/model/flight.model';
 import { FlightService } from 'src/app/services/flight.service';
 import {Location} from '@angular/common';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { ShowAirlineFlightsComponent } from './show-airline-flights/show-airline-flights.component';
 
 @Component({
   selector: 'app-airline-companies',
@@ -16,8 +18,9 @@ export class AirlineCompaniesComponent implements OnInit {
   flights: Flight[];
 
   constructor(private airlineService: AirlineService,
-    private flightService: FlightService,
-    private location: Location) { }
+              private flightService: FlightService,
+              private location: Location,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAirlines();
@@ -36,8 +39,18 @@ export class AirlineCompaniesComponent implements OnInit {
   }
 
   showCompnayFlights(airline: any) {
-    console.log(airline);
 
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      airline
+    };
+
+    const dialogRef = this.dialog.open(ShowAirlineFlightsComponent, dialogConfig);
   }
 
 }

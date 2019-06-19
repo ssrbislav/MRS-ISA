@@ -28,4 +28,9 @@ export class TicketService {
         return this.http.post<ResponseMessage>(url, info, httpOptions);
     }
 
+    findBySeatId(id: BigInteger) {
+        const url = `${this.ticketUrl + '/findBySeatId/' + id}`;
+        return this.http.get<Ticket>(url);
+    }
+
 }

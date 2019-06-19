@@ -32,5 +32,10 @@ export class ReservationService {
         return this.http.post<ResponseMessage>(url, info, httpOptions);
     }
 
+    createReservation(info: ReservationDTO): Observable<ResponseMessage> {
+        const url = `${this.reservationUrl + '/createReservation'}`;
+        return this.http.post<ResponseMessage>(url, info, httpOptions);
+    }
+
 
 }

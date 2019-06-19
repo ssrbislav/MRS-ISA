@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+}
+
+th {
+    background: gray;
+    color: white;
+    font-size: 16px;
+}
+
+tr:hover {
+    background: rgb(231, 231, 231);
+}
+
+button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    color: white;
+    background: gray;
+}
+
+h3 {
+    font-size: 25px;
+    text-align: center;
+    font-family: lato;
+}

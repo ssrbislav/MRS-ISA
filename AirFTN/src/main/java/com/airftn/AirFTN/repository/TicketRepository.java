@@ -22,5 +22,5 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	List<Ticket> findAllByFastTicketIsTrueAndReservationIsNotNull();
 
 	List<Ticket> findAllByFastTicketIsTrueAndReservationIsNull();
-
+	
 }
