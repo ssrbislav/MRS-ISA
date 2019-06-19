@@ -1,8 +1,7 @@
 package com.airftn.AirFTN.service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,9 @@ public class ReservationService implements IReservationService {
 
 	@Autowired
 	TicketRepository ticketRepository;
+	
+	@Autowired
+	IAirlinecompanyService airlineService;
 
 	@Override
 	public List<Reservation> findAll() {
@@ -114,13 +116,15 @@ public class ReservationService implements IReservationService {
 	}
 
 	@Override
-	public List<Ticket> createBusinessReport(AirlineCompany airline, Date from, Date to) {
+	public List<Ticket> createBusinessReport(Long airlineId, Date from, Date to) {
 
 		// Calendar timeFrom = Calendar.getInstance();
 		// timeFrom.setTime(from);
 		//
 		// Calendar timeTo = Calendar.getInstance();
 		// timeTo.setTime(to);
+		
+		AirlineCompany airline = airlineService.getOne(airlineId);
 
 		List<Ticket> brTickets = new ArrayList<>();
 

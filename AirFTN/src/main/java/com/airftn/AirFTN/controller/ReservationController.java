@@ -1,5 +1,6 @@
 package com.airftn.AirFTN.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,11 @@ import com.airftn.AirFTN.dto.ReservationDTO;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Reservation;
 import com.airftn.AirFTN.model.ResponseMessage;
+import com.airftn.AirFTN.model.Ticket;
 import com.airftn.AirFTN.service.EmailService;
 import com.airftn.AirFTN.service.IPassengerService;
 import com.airftn.AirFTN.service.IReservationService;
-import com.airftn.AirFTN.service.PassengerService;
+import com.airftn.AirFTN.service.ITicketService;
 
 @CrossOrigin
 @RestController
@@ -33,6 +35,9 @@ public class ReservationController {
 	
 	@Autowired
 	IPassengerService passengerService;
+	
+	@Autowired
+	ITicketService ticketService;
 	
 	@Autowired
 	private ThreadPoolTaskExecutor taskExecutor;
@@ -125,6 +130,16 @@ public class ReservationController {
 		message.setMessage("Reservation canceled!");
 
 		return new ResponseEntity<>(message, HttpStatus.OK);
+		
+	}
+	
+	@PostMapping("/createBusinessReport/{id}")
+	public ResponseEntity<List<Ticket>> createBusinessReport(@PathVariable Long airlineId, @RequestBody Date from, @RequestBody Date to) {
+		
+		List<Ticket> tickets = reservationService.createBusinessReport(airlineId, from, to);
+	
+
+		return new ResponseEntity<>(tickets, HttpStatus.OK);
 		
 	}
 	
