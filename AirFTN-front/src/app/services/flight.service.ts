@@ -24,7 +24,7 @@ export class FlightService {
 
   getAllAirlineFlights(id: BigInteger) {
     const url = `${this.flightUrl + '/getByAirlineId/' + id}`;
-    return this.http.get<FlightDTO[]>(url);
+    return this.http.get<Flight[]>(url);
   }
 
   getFlight(id: BigInteger) {

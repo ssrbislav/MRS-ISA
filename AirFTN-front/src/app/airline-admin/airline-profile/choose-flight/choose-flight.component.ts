@@ -12,7 +12,7 @@ import { CreateFastReservationComponent } from '../create-fast-reservation/creat
 })
 export class ChooseFlightComponent implements OnInit {
 
-  flights: FlightDTO[];
+  flights: Flight[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,

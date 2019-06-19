@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
-import {MatIconRegistry} from '@angular/material/icon';
 
 @Component({
   selector: 'app-reservations',

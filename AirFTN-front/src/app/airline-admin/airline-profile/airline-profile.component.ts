@@ -61,9 +61,9 @@ export class AirlineProfileComponent implements OnInit {
   companies: AirlineCompanyDTO[];
 
   destinations: DestinationDTO[];
-  dataSource: MatTableDataSource<FlightDTO>;
+  dataSource: MatTableDataSource<Flight>;
 
-  flights: FlightDTO[];
+  flights: Flight[];
 
   airplanes: Airplane[];
 

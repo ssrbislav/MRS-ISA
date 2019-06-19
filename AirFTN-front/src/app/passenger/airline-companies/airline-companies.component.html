@@ -1,5 +1,31 @@
 <div>
-    <div id="image">
-      <div id="airlines">AIRLINE COMPANIES</div>
+  <div id="image">
+    <div id="airlines">AIRLINE COMPANIES
+        <span id="button" (click)="back_navigate()">
+            GO BACK
+        </span>
     </div>
+  </div>
+
+  <div>
+    <table *ngFor="let airline of airlines" class="table">
+      <thead>
+        <tr>
+          <th style="background: gray; color: white; font-size: 20px" class="head" scope="col">{{airline.name}}</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="red"><p>{{airline.city}}</p></tr>
+          <mat-divider></mat-divider>
+        <tr class="red"><p>{{airline.description}}</p></tr>
+        <mat-divider></mat-divider>
+        <tr class="red">
+          <button mat-raised-button (click)="showCompnayFlights(airline)">SHOW FLIGHTS</button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
 </div>
