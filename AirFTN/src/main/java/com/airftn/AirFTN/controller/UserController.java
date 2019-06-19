@@ -92,7 +92,7 @@ public class UserController {
 		User user = new Passenger(registerRequest.getEmail(), registerRequest.getUsername(),
 				encoder.encode(registerRequest.getPassword()), registerRequest.getFirstName(),
 				registerRequest.getLastName(), registerRequest.getAddress(), registerRequest.getPhoneNumber(),
-				registerRequest.getDateOfBirth());
+				registerRequest.getDateOfBirth(), registerRequest.getPassportNumber());
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_PASSENGER);

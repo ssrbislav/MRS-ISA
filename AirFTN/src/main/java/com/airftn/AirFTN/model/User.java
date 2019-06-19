@@ -47,6 +47,9 @@ public abstract class User {
 	@Column(unique = false, nullable = false)
 	private String lastName;
 
+	@Column(nullable = false)
+	private String passportNumber;
+
 	@Column(unique = false, nullable = true)
 	private String address;
 
@@ -64,14 +67,16 @@ public abstract class User {
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	public User( @Email String email, String username, String password, String firstName, String lastName,
-			String address, String phoneNumber, Date dateOfBirth, boolean blocked, Set<Role> roles) {
+	public User(@Email String email, String username, String password, String firstName, String lastName,
+			String passportNumber, String address, String phoneNumber, Date dateOfBirth, boolean blocked,
+			Set<Role> roles) {
 		super();
 		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.passportNumber = passportNumber;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.dateOfBirth = dateOfBirth;
@@ -83,13 +88,14 @@ public abstract class User {
 	}
 
 	public User(@Email String email, String username, String password, String firstName, String lastName,
-			String address, String phoneNumber, Date dateOfBirth) {
+			String passportNumber, String address, String phoneNumber, Date dateOfBirth) {
 		super();
 		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.passportNumber = passportNumber;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.dateOfBirth = dateOfBirth;
@@ -187,6 +193,14 @@ public abstract class User {
 	public User orElseThrow(Object object) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String getPassportNumber() {
+		return passportNumber;
+	}
+
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
 	}
 
 }

@@ -6,6 +6,7 @@ export class Passenger {
     password: string;
     firstName: string;
     lastName: string;
+    passportNumber: string;
     address: string;
     phoneNumber: string;
     dateOfBirth: Date;

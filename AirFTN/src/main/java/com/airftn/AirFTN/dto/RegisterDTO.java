@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class RegisterDTO {
-	
+
 	@NotBlank
 	private String email;
 
@@ -25,6 +25,9 @@ public class RegisterDTO {
 	private String lastName;
 
 	@NotBlank
+	private String passportNumber;
+
+	@NotBlank
 	private String address;
 
 	@NotBlank
@@ -32,7 +35,7 @@ public class RegisterDTO {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
-	
+
 	private Set<String> role;
 
 	public String getEmail() {
@@ -107,6 +110,12 @@ public class RegisterDTO {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	
-	
+	public String getPassportNumber() {
+		return passportNumber;
+	}
+
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
+	}
+
 }

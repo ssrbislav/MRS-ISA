@@ -137,6 +137,7 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
     this.person.firstName = this.passenger.firstName;
     this.person.lastName = this.passenger.lastName;
     this.person.email = this.passenger.email;
+    this.person.passportNumber = this.passenger.passportNumber;
   }
 
   getTicket() {
