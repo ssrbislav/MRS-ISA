@@ -15,6 +15,8 @@ public interface IDestinationService {
 	Destination update(Destination destination);
 
 	Destination findById(Long id);
+	
+	Destination getOne(Long id);
 
 	List<AirlineCompany> findAllCompanies(Long id);
 	

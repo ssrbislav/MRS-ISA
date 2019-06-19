@@ -13,6 +13,8 @@ public interface IFlightService {
 	List<Flight> findAllNotDeleted();
 
 	List<Flight> findByCompanyId(Long id);
+	
+	List<Flight> findByCompanyAndDestination(Long id, Long city);
 
 	Flight getOne(Long id);
 

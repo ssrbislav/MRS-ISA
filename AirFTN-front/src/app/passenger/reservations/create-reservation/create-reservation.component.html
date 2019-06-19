@@ -1,3 +1,62 @@
-<p>
-  create-reservation works!
-</p>
+<div>
+
+  <div>
+
+    <div class="form-group from" *ngIf="airlines">
+      <mat-select name="from" [(ngModel)]="airline" placeholder="FROM">
+        <mat-option *ngFor="let airline of airlines" [value]='airline.id' (click)="getAirlineFlights(airline.id)">
+          {{airline.city}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="form-group to" *ngIf="flights">
+      <mat-select name="to" [(ngModel)]="flight" placeholder="TO">
+        <mat-option *ngFor="let flight of flights" [value]='flight.destination.id'
+          (click)="getFlightsByDestination(flight.company.id, flight.destination.id)">
+          {{flight.destination.city}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+
+    <mat-form-field *ngIf="flight">
+      <input matInput [matDatepicker]="dp2" placeholder="FROM" disabled>
+      <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+      <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+
+    <table class="table table-hover" *ngIf="flight">
+      <thead>
+        <tr>
+          <th class="head" scope="col">From</th>
+          <th class="head" scope="col">To</th>
+          <th class="head" scope="col">Departure date</th>
+          <th class="head" scope="col">Arrival date</th>
+          <th class="head" scope="col">Duration Of flight</th>
+          <th class="head" scope="col">Mileage</th>
+          <th class="head" scope="col">Price</th>
+          <th class="head" scope="col">Choose a seat</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let flight of flights; let i = index">               
+              <td>{{flight.company.city}}</td>
+              <td>{{flight.destination.city}}</td>
+              <td>{{flight.departureDate}}</td>
+              <td>{{flight.arrivalDate}}</td>
+              <td>{{flight.durationOfFlight}}</td>
+              <td>{{flight.mileage}}</td>
+               <td>{{flight.price}}</td>
+              <td id="choose_ticket" (onclick)="chooseTicket(flight.id)"><button mat-raised-button>
+                  <mat-icon>play_for_work</mat-icon>
+                </button></td>
+            </tr>
+        <mat-divider></mat-divider>
+    </table>
+
+  </div>
+
+
+</div>

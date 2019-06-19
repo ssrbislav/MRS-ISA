@@ -232,4 +232,21 @@ public class FlightService implements IFlightService {
 		return transferPoints;
 	}
 
+	@Override
+	public List<Flight> findByCompanyAndDestination(Long airlineId, Long destinationId) {
+		
+		List<Flight> airlineFlights = flightRepository.findAllByCompanyId(airlineId);
+		
+		Destination destination = destinationService.getOne(destinationId);
+		
+		List<Flight> flights = new ArrayList<>();
+		
+		for(Flight flight: airlineFlights) {
+			if(flight.getDestination().getCity().equals(destination.getCity()))
+				flights.add(flight);
+		}
+		
+		return flights;
+	}
+
 }

@@ -113,5 +113,18 @@ public class FlightController {
 		return new ResponseEntity<List<TransferPoint>>(tp, HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/findByCompanyAndDestination/{airlineId}/{destinationId}")
+	public ResponseEntity<List<Flight>> findByCompanyAndDestination(@PathVariable Long airlineId, @PathVariable Long destinationId) {
 
+		List<Flight> flights = flightService.findByCompanyAndDestination(airlineId, destinationId);
+
+//		if (flights == null) {
+//			return new ResponseEntity<List<Flight>>(HttpStatus.NOT_FOUND);
+//		}
+
+		return new ResponseEntity<List<Flight>>(flights, HttpStatus.OK);
+
+	}
+	
 }

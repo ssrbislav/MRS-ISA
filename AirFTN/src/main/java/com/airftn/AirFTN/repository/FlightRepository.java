@@ -19,4 +19,7 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 
 	Flight save(Optional<Flight> f);
 	
+	List<Flight> findAllByCompanyIdAndDestinationCity(Long airlineId, String city);
+	
+	
 }

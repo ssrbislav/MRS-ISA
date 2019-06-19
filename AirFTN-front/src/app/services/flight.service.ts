@@ -52,4 +52,9 @@ export class FlightService {
     return this.http.get<TransferPoint[]>(url);
   }
 
+  getAllByDestinationCity(airlineId: BigInteger, destId: BigInteger) {
+    const url = `${this.flightUrl + '/findByCompanyAndDestination/' + airlineId + '/' + destId}`;
+    return this.http.get<Flight[]>(url);
+  }
+
 }

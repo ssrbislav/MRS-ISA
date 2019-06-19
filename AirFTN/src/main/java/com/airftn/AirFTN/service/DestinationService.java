@@ -88,4 +88,10 @@ public class DestinationService implements IDestinationService {
 		return destinations;
 	}
 
+	@Override
+	public Destination getOne(Long id) {
+
+		return destinationRepository.getOne(id);
+	}
+
 }
