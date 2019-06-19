@@ -4,6 +4,7 @@ import { FlightDTO, Flight } from '../model/flight.model';
 import { ResponseMessage } from '../model/responseMessage';
 import { Observable } from 'rxjs';
 import { TransferPoint } from '../model/transfer.model';
+import { FilterDateDTO } from '../model/filter-date.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json'})
@@ -55,6 +56,11 @@ export class FlightService {
   getAllByDestinationCity(airlineId: BigInteger, destId: BigInteger) {
     const url = `${this.flightUrl + '/findByCompanyAndDestination/' + airlineId + '/' + destId}`;
     return this.http.get<Flight[]>(url);
+  }
+
+  filterByDate(info: FilterDateDTO): Observable<Flight[]> {
+    const url = `${this.flightUrl + '/filterByDate'}`;
+    return this.http.post<Flight[]> (url, info, httpOptions);
   }
 
 }

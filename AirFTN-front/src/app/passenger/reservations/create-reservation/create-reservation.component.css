@@ -1,8 +1,26 @@
-.from {
-    border: 2px solid black;
+.body {
+    height: 400px;
 }
 
+.left {
+    margin: 10px;
+    height: 100%;
+    float: left;
+    width: 18%;
+}
 
-.to {
-    border: 2px solid black;
+.right {
+    width: 80%;
+    float: right;
+    border-left: 1px solid gray;
+}
+
+thead {
+    background: gray;
+    color: white;
+}
+
+button:hover {
+    color: white;
+    background: gray;
 }

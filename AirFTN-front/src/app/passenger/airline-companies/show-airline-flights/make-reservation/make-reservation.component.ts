@@ -64,6 +64,7 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.dialogRef.updateSize('50%', '90%');
     this.flight = this.data.flight;
+    console.log(this.flight.id);
     this.getAirplane(this.flight.id);
     this.getPassenger();
   }
