@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AirlineCompany } from 'src/app/model/company.model';
+import { Ticket } from 'src/app/model/ticket.model';
 
 @Component({
   selector: 'app-create-reservation',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateReservationComponent implements OnInit {
 
+  airline: AirlineCompany;
+  tickets: Ticket[];
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  getCompanyTickets(id: BigInteger) {
+    
+  }
+
+  
 
 }

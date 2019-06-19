@@ -1,4 +1,46 @@
-<p>
-  businesss-report works!
-</p>
-<button mat-mini-fab mat-rasied-button mat-dialog-close style="outline: none"><mat-icon>close</mat-icon></button>
+<div class="container">
+  <!-- <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="FROM" [min]="minDate" [max]="maxDate" 
+        id="from" name="from" [(ngModel)]="bussinesReport.from" [value]="bussinesReport.to">
+        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="TO" [min]="minDate" [max]="maxDate" 
+          id="to" name="to" [(ngModel)]="bussinesReport.from" [value]="bussinesReport.to">
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+  <h2>BUSSINESS REPORT</h2>
+
+  <div class="left">
+
+    <h4>Choose date:</h4>
+
+    <p>
+      <mat-form-field>
+        <input matInput [matDatepicker]="dp2" placeholder="FROM" disabled [value]="bussinesReport.from" [(ngModel)]="bussinesReport.from">
+        <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+        <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <input matInput [matDatepicker]="dp3" placeholder="TO" disabled [value]="bussinesReport.to" [(ngModel)]="bussinesReport.to">
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </p>
+    <button class="generate" mat-raised-button style="outline: none" (click)="generateBusinessReport()">GENERATE
+      REPORT</button>
+  </div>
+
+  <div class="right">
+
+  </div>
+
+
+</div>
+<button class="close" mat-raised-button mat-dialog-close style="outline: none">CLOSE</button>

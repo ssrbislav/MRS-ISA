@@ -33,19 +33,19 @@ public class AirlineAdmin extends User {
 		super();
 	}
 
-	public AirlineAdmin(@Email String email, String username, String password, String firstName, String lastName,
+	public AirlineAdmin(@Email String email, String username, String password, String firstName, String lastName, String passportNumber,
 			String address, String phoneNumber, Date dateOfBirth, boolean active, AirlineCompany airlineCompany,
 			boolean hasCompany, boolean deleted) {
-		super(email, username, password, firstName, lastName, phoneNumber, address, phoneNumber, dateOfBirth);
+		super(email, username, password, firstName, lastName, passportNumber, address, phoneNumber, dateOfBirth);
 		this.active = true;
 		this.airlineCompany = airlineCompany;
 		this.hasCompany = false;
 		this.deleted = false;
 	}
 
-	public AirlineAdmin(@Email String email, String username, String password, String firstName, String lastName,
+	public AirlineAdmin(@Email String email, String username, String password, String firstName, String lastName, String passportNumber,
 			String address, String phoneNumber, Date dateOfBirth) {
-		super(email, username, password, firstName, lastName, phoneNumber, address, phoneNumber, dateOfBirth);
+		super(email, username, password, firstName, lastName, passportNumber, address, phoneNumber, dateOfBirth);
 		this.active = true;
 		this.deleted = false;
 	}

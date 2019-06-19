@@ -69,16 +69,16 @@ public class UserController {
 
 	@Autowired
 	private EmailService emailThread;
-	
+
 	ResponseMessage message = new ResponseMessage();
-	
+
 	/*
-	** METHODS IMPLEMENTATIONS SHOULD BE MOVED TO APPROPRIATE SERVICE CLASSES
-	*/
-	
+	 ** METHODS IMPLEMENTATIONS SHOULD BE MOVED TO APPROPRIATE SERVICE CLASSES
+	 */
+
 	@PostMapping("/register")
 	public ResponseEntity<ResponseMessage> registerUser(@Valid @RequestBody RegisterDTO registerRequest) {
-		
+
 		if (userRepository.existsByUsername(registerRequest.getUsername())) {
 			message.setMessage("Username is already taken");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
@@ -91,8 +91,8 @@ public class UserController {
 
 		User user = new Passenger(registerRequest.getEmail(), registerRequest.getUsername(),
 				encoder.encode(registerRequest.getPassword()), registerRequest.getFirstName(),
-				registerRequest.getLastName(), registerRequest.getAddress(), registerRequest.getPhoneNumber(),
-				registerRequest.getDateOfBirth(), registerRequest.getPassportNumber());
+				registerRequest.getLastName(), registerRequest.getPassportNumber(), registerRequest.getAddress(),
+				registerRequest.getPhoneNumber(), registerRequest.getDateOfBirth());
 
 		Role role = new Role();
 		role.setName(RoleType.ROLE_PASSENGER);
@@ -106,7 +106,7 @@ public class UserController {
 
 		mailSend(user.getEmail(), passengerService.getRegistrationLink(user.getId()));
 		message.setMessage("User successfully registered!");
-		
+
 		return new ResponseEntity<>(message, HttpStatus.OK);
 
 	}
@@ -123,16 +123,14 @@ public class UserController {
 
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-
 		// Check if uesr is active
 		/*
-		if (!passenger.isActive()) {
-			message.setMessage("Please activate your account!");
+		 * if (!passenger.isActive()) {
+		 * message.setMessage("Please activate your account!");
+		 * 
+		 * return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST); }
+		 */
 
-			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
-	    }
-		*/
-		
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 
 	}

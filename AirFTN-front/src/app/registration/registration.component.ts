@@ -17,8 +17,8 @@ import { APP_DATE_FORMATS, AppDateAdapter } from '../services/format-datepicker'
 })
 export class RegistrationComponent implements OnInit {
 
-  minDate = new Date(1919, 0, 1);
-  maxDate = new Date(2001, 0, 1);
+  minDate = new Date(1919, 6, 28);
+  maxDate = new Date(2001, 6, 28);
   form: any = {};
   signupInfo: SignupInfo = new SignupInfo();
   isSignedUp = false;
@@ -63,9 +63,9 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['login']);
       },
       error => {
-        console.log(error);
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
+        location.reload();
       }
     );
   }

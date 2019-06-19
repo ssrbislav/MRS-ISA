@@ -21,16 +21,16 @@ public class SysAdmin extends User {
 		super();
 	}
 
-	public SysAdmin(String email, String username, String password, String firstName, String lastName,
+	public SysAdmin(String email, String username, String password, String firstName, String lastName, String passportNumber,
 			String address, String phoneNumber, Date dateOfBirth) {
-		super(email, username, password, firstName, lastName, phoneNumber, address, phoneNumber, dateOfBirth);
+		super(email, username, password, firstName, lastName, passportNumber, address, phoneNumber, dateOfBirth);
 		this.active = true;
 		this.deleted = false;
 	}
 
-	public SysAdmin(String email, String username, String password, String firstName, String lastName,
+	public SysAdmin(String email, String username, String password, String firstName, String lastName, String passportNumber,
 			String address, String phoneNumber, Date dateOfBirth, boolean active, boolean deleted) {
-		super(email, username, password, firstName, lastName, phoneNumber, address, phoneNumber, dateOfBirth);
+		super(email, username, password, firstName, lastName, passportNumber, address, phoneNumber, dateOfBirth);
 		this.active = true;
 		this.deleted = false;
 	}

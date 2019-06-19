@@ -1,6 +1,5 @@
 package com.airftn.AirFTN.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.airftn.AirFTN.dto.BusinessReportDTO;
 import com.airftn.AirFTN.dto.ReservationDTO;
 import com.airftn.AirFTN.model.Passenger;
 import com.airftn.AirFTN.model.Reservation;
@@ -133,10 +133,10 @@ public class ReservationController {
 		
 	}
 	
-	@PostMapping("/createBusinessReport/{id}")
-	public ResponseEntity<List<Ticket>> createBusinessReport(@PathVariable Long airlineId, @RequestBody Date from, @RequestBody Date to) {
+	@PostMapping("/createBusinessReport")
+	public ResponseEntity<List<Ticket>> createBusinessReport( @RequestBody BusinessReportDTO bussinesReport) {
 		
-		List<Ticket> tickets = reservationService.createBusinessReport(airlineId, from, to);
+		List<Ticket> tickets = reservationService.createBusinessReport(bussinesReport);
 	
 
 		return new ResponseEntity<>(tickets, HttpStatus.OK);

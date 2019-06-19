@@ -37,8 +37,8 @@ public class Passenger extends User implements Serializable {
 
 	private String registrationLink;
 
-	public Passenger(String email, String username, String password, String firstName, String lastName, String address,
-			String phoneNumber, Date dateOfBirth, String passportNumber) {
+	public Passenger(String email, String username, String password, String firstName, String lastName, String passportNumber, String address,
+			String phoneNumber, Date dateOfBirth) {
 		super(email, username, password, firstName, lastName, passportNumber, address, phoneNumber, dateOfBirth);
 		this.active = false;
 		this.registrationLink = username + "_token";

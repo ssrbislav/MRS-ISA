@@ -1,8 +1,8 @@
 package com.airftn.AirFTN.service;
 
-import java.util.Date;
 import java.util.List;
 
+import com.airftn.AirFTN.dto.BusinessReportDTO;
 import com.airftn.AirFTN.dto.ReservationDTO;
 import com.airftn.AirFTN.model.Reservation;
 import com.airftn.AirFTN.model.Ticket;
@@ -23,6 +23,6 @@ public interface IReservationService {
 	
 	boolean cancelReservation(Reservation reservation);
 	
-	List<Ticket> createBusinessReport(Long airlineId, Date from, Date to);
+	List<Ticket> createBusinessReport(BusinessReportDTO bussinesReport);
 	
 }

@@ -2,11 +2,13 @@ package com.airftn.AirFTN.service;
 
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airftn.AirFTN.dto.BusinessReportDTO;
 import com.airftn.AirFTN.dto.ReservationDTO;
 import com.airftn.AirFTN.model.AirlineCompany;
 import com.airftn.AirFTN.model.Flight;
@@ -116,21 +118,32 @@ public class ReservationService implements IReservationService {
 	}
 
 	@Override
-	public List<Ticket> createBusinessReport(Long airlineId, Date from, Date to) {
+	public List<Ticket> createBusinessReport(BusinessReportDTO bussinesReport) {
 
-		// Calendar timeFrom = Calendar.getInstance();
-		// timeFrom.setTime(from);
-		//
-		// Calendar timeTo = Calendar.getInstance();
-		// timeTo.setTime(to);
+		 Calendar timeFrom = Calendar.getInstance();
+		 timeFrom.setTime(bussinesReport.getFrom());
 		
-		AirlineCompany airline = airlineService.getOne(airlineId);
+		 Calendar timeTo = Calendar.getInstance();
+		 timeTo.setTime(bussinesReport.getTo());
+		 
+		 
+//		 Calendar departure = Calendar.getInstance();
+		
+		Date from = bussinesReport.getFrom();
+		Date to = bussinesReport.getTo();
+		
+		AirlineCompany airline = airlineService.getOne(bussinesReport.getAirline());
 
 		List<Ticket> brTickets = new ArrayList<>();
 
 		for (Flight flight : airline.getFlights()) {
+			
+//			departure.setTime(flight.getDepartureDate());
+//			
+//			if(departure.getTime().after(timeFrom.getTime()))
+//				s = true;
 
-			List<Ticket> tickets = ticketRepository.findAllByReservationIsNull();
+			List<Ticket> tickets = ticketRepository.findAllByReservationIsNotNull();
 
 			if (flight.getDepartureDate().after(from) && flight.getDepartureDate().before(to)) {
 				List<Ticket> flightTickets = flight.getTickets();

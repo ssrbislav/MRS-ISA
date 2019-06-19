@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ReservationDTO, Reservation } from '../model/reservation.model';
 import { ResponseMessage } from '../model/responseMessage';
+import { BusinessReport } from '../model/businessReport.model';
+import { Ticket } from '../model/ticket.model';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type' : 'application/json'})
@@ -35,6 +37,11 @@ export class ReservationService {
     createReservation(info: ReservationDTO): Observable<ResponseMessage> {
         const url = `${this.reservationUrl + '/createReservation'}`;
         return this.http.post<ResponseMessage>(url, info, httpOptions);
+    }
+
+    createBusinessReport(info: BusinessReport): Observable<Ticket[]> {
+        const url = `${this.reservationUrl + '/createBusinessReport'}`;
+        return this.http.post<Ticket[]>(url, info, httpOptions);
     }
 
 

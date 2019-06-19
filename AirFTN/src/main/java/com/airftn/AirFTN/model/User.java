@@ -47,7 +47,7 @@ public abstract class User {
 	@Column(unique = false, nullable = false)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(nullable = true, unique = false)
 	private String passportNumber;
 
 	@Column(unique = false, nullable = true)
@@ -67,7 +67,7 @@ public abstract class User {
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	public User(@Email String email, String username, String password, String firstName, String lastName,
+	public User(String email, String username, String password, String firstName, String lastName,
 			String passportNumber, String address, String phoneNumber, Date dateOfBirth, boolean blocked,
 			Set<Role> roles) {
 		super();
@@ -87,7 +87,7 @@ public abstract class User {
 	public User() {
 	}
 
-	public User(@Email String email, String username, String password, String firstName, String lastName,
+	public User(String email, String username, String password, String firstName, String lastName,
 			String passportNumber, String address, String phoneNumber, Date dateOfBirth) {
 		super();
 		this.email = email;
