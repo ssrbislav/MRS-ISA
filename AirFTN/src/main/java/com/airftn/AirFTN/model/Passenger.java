@@ -1,6 +1,7 @@
 package com.airftn.AirFTN.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,9 +29,13 @@ public class Passenger extends User implements Serializable {
 	@Column(unique = true, nullable = false)
 	private Long id;
 
-
 	@Column(nullable = false)
 	private boolean active;
+
+	@JsonIgnore
+	@Column(nullable = true)
+	@ManyToMany(cascade =CascadeType.ALL, fetch =FetchType.EAGER)
+	private List<Passenger> friends;
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "passenger")
@@ -37,17 +43,19 @@ public class Passenger extends User implements Serializable {
 
 	private String registrationLink;
 
-	public Passenger(String email, String username, String password, String firstName, String lastName, String passportNumber, String address,
-			String phoneNumber, Date dateOfBirth) {
+	public Passenger(String email, String username, String password, String firstName, String lastName,
+			String passportNumber, String address, String phoneNumber, Date dateOfBirth) {
 		super(email, username, password, firstName, lastName, passportNumber, address, phoneNumber, dateOfBirth);
 		this.active = false;
 		this.registrationLink = username + "_token";
+		this.friends = new ArrayList<>();
 	}
 
 	public Passenger() {
 		super();
 		this.active = false;
 		this.registrationLink = this.username + "_token";
+		this.friends = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -84,6 +92,14 @@ public class Passenger extends User implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<Passenger> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<Passenger> friends) {
+		this.friends = friends;
 	}
 
 }
