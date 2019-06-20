@@ -1,0 +1,111 @@
+
+  table {
+      width: 100%;
+      font-family: lato;
+    }
+    
+    tr.example-detail-row {
+      height: 0;
+    }
+    
+    tr:hover {
+      background: rgb(190, 190, 190);
+    }
+    
+    tr.example-element-row:not(.example-expanded-row):active {
+      background: #efefef;
+    }
+    
+    .example-element-row td {
+      border-bottom-width: 0;
+    }
+    
+    .example-element-detail {
+      overflow: hidden;
+      display: flex;
+    }
+    
+    .example-element-diagram {
+      min-width: 80px;
+      border: 2px solid black;
+      padding: 8px;
+      font-weight: lighter;
+      
+      height: 104px;
+    }
+    
+    .example-element-symbol {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: normal;
+    }
+    
+    .example-element-description {
+      padding: 16px;
+    }
+    
+    .example-element-description-attribution {
+      opacity: 0.5;
+    }
+    
+    .head-border {
+      background: gray;
+      color: white;
+      text-transform: uppercase;
+      font-size: 15px
+    }
+    
+    table {
+      overflow: auto;
+    }
+    
+    button {
+      margin: 10px;
+    }
+    
+    button:hover {
+      background: #777;
+      color: white;
+    }
+  
+    h3 {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      position: -webkit-sticky; 
+     font-family: lato;
+    }
+  
+    .cancelbtn {
+      float: right;
+    }
+    
+    .cancelbtn:hover {
+      color: white;
+    }
+
+.send_request {
+    width: 400px;
+        margin: 20px;
+        -webkit-box-shadow: 3px 9px 33px -6px rgba(0,0,0,0.55);
+-moz-box-shadow: 3px 9px 33px -6px rgba(0,0,0,0.55);
+box-shadow: 3px 9px 33px -6px rgba(0,0,0,0.55);
+}
+
+.input {
+    margin: 20px;
+}
+
+thead {
+    background: gray;
+    color: white;
+}
+
+h2 {
+  font-family: lato;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

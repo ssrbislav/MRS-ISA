@@ -91,4 +91,8 @@ export class HeaderComponent implements OnInit {
     this.featureSelected.emit('my_reservations');
   }
 
+  showFriends() {
+    this.featureSelected.emit('my_friends');
+  }
+
 }

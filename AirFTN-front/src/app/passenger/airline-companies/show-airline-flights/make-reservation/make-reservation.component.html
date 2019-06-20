@@ -26,6 +26,15 @@
     <button class="choice-button" mat-raised-button (click)="choiceOther()">For someone else</button>
   </div>
 
+  <div  *ngIf="seat" class="form-group" id="friend">
+      <mat-select name="friend" [(ngModel)]="friend" placeholder="CHOOSE FRIEND" (selectionChange)="choiceFriend($event.value)">
+        <mat-option *ngFor="let friend of friends"  [value]='friend'>
+          {{friend.firstName}} , {{friend.lastName}}
+        </mat-option>
+      </mat-select>
+    </div>
+
+
 
   <div *ngIf="person" class="person">
     <form class="example-form">

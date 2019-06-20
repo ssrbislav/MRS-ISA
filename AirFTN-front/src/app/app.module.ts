@@ -61,6 +61,7 @@ import { CreateReservationComponent } from './passenger/reservations/create-rese
 import { ListReservationsComponent } from './passenger/list-reservations/list-reservations.component';
 import { ShowAirlineFlightsComponent } from './passenger/airline-companies/show-airline-flights/show-airline-flights.component';
 import { MakeReservationComponent } from './passenger/airline-companies/show-airline-flights/make-reservation/make-reservation.component';
+import { MyFriendComponent } from './passenger/my-friend/my-friend.component';
 
 
 
@@ -114,6 +115,7 @@ import { MakeReservationComponent } from './passenger/airline-companies/show-air
     ListReservationsComponent,
     ShowAirlineFlightsComponent,
     MakeReservationComponent,
+    MyFriendComponent,
 
 
   ],
@@ -163,7 +165,8 @@ import { MakeReservationComponent } from './passenger/airline-companies/show-air
     ChooseSeatComponent,
     ListReservationsComponent,
     ShowAirlineFlightsComponent,
-    MakeReservationComponent
+    MakeReservationComponent,
+    MyFriendComponent
   ],
   providers: [
     RoleGuardService,

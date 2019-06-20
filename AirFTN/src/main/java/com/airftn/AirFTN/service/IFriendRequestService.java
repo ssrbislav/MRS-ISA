@@ -15,12 +15,12 @@ public interface IFriendRequestService {
 	
 	boolean deleteFriend(Long receiverId, Long senderId);
 	
-	FriendRequest findByReceiverId(Long id);
+	List<FriendRequest> findByReceiverId(Long id);
 	
-	FriendRequest findBySenderId(Long id);
+	List<FriendRequest> findBySenderId(Long id);
 
 	boolean confirmFriendRequest(FriendRequest request);
-
+	
 	List<FriendRequest> findAll();
 	
 }

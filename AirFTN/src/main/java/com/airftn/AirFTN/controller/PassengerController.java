@@ -1,5 +1,6 @@
 package com.airftn.AirFTN.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,22 @@ public class PassengerController {
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(false, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/getFriends/{id}")
+	public ResponseEntity<List<Passenger>> getFriends(@PathVariable Long id) {
+		
+		Passenger passenger = passengerRepository.getOne(id);
+		
+		List<Passenger> friends = new ArrayList<>();
+		
+		for(Passenger p: passenger.getFriends()) {
+			friends.add(p);
+		}
+		
+		
+		return new ResponseEntity<>(friends, HttpStatus.OK);
 		
 	}
 

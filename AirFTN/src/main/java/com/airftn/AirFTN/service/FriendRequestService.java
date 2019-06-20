@@ -30,6 +30,13 @@ public class FriendRequestService implements IFriendRequestService {
 	@Override
 	public FriendRequest create(FriendRequestDTO friendRequest) {
 		
+		Passenger receiver = passengerRepository.getOne(friendRequest.getSenderId());
+		
+		for(Passenger p: receiver.getFriends()) {
+			if(friendRequest.getReceiverId() == p.getId());
+				return null;
+		}
+		
 		FriendRequest request = new FriendRequest();
 		request.setReceiverId(friendRequest.getReceiverId());
 		request.setSenderId(friendRequest.getSenderId());
@@ -45,6 +52,8 @@ public class FriendRequestService implements IFriendRequestService {
 		
 		Passenger sender = passengerRepository.getOne(request.getSenderId());
 		
+		FriendRequest fr = frRepository.getOne(request.getId());
+		
 		List<Passenger> senderList = new ArrayList<>();
 		senderList.add(receiver);
 		
@@ -57,6 +66,8 @@ public class FriendRequestService implements IFriendRequestService {
 		
 		passengerRepository.save(sender);
 		passengerRepository.save(receiver);
+		
+		frRepository.delete(fr);
 		
 		return true;
 		
@@ -79,15 +90,15 @@ public class FriendRequestService implements IFriendRequestService {
 	}
 
 	@Override
-	public FriendRequest findByReceiverId(Long id) {
+	public List<FriendRequest> findByReceiverId(Long id) {
 
-		return frRepository.findByReceiverId(id);		
+		return frRepository.findAllByReceiverId(id);		
 	}
 
 	@Override
-	public FriendRequest findBySenderId(Long id) {
+	public List<FriendRequest> findBySenderId(Long id) {
 
-		return frRepository.findBySenderId(id);
+		return frRepository.findAllBySenderId(id);
 	}
 
 	@Override

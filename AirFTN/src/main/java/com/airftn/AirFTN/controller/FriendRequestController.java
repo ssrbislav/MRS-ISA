@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airftn.AirFTN.dto.FriendRequestDTO;
 import com.airftn.AirFTN.model.FriendRequest;
 import com.airftn.AirFTN.model.ResponseMessage;
-import com.airftn.AirFTN.repository.FriendRequestRepository;
 import com.airftn.AirFTN.service.IFriendRequestService;
 
 @CrossOrigin
@@ -26,8 +25,6 @@ public class FriendRequestController {
 
 	@Autowired
 	IFriendRequestService frService;
-
-	FriendRequestRepository frRepository;
 
 	ResponseMessage message = new ResponseMessage();
 
@@ -47,7 +44,7 @@ public class FriendRequestController {
 
 		if (friendRequest == null) {
 
-			message.setMessage("There has been a mistake processing the request!");
+			message.setMessage("You are already friends!");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		}
 		message.setMessage("Request successfully created!");
@@ -87,17 +84,12 @@ public class FriendRequestController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
-	@GetMapping("findByReceiverId/id")
-	public ResponseEntity<FriendRequest> findByReceiverId(@PathVariable Long id) {
+	@GetMapping("findByReceiverId/{id}")
+	public ResponseEntity<List<FriendRequest>> findByReceiverId(@PathVariable Long id) {
 
-		FriendRequest friendRequest = frService.findByReceiverId(id);
+		List<FriendRequest> friendRequests = frService.findByReceiverId(id);
 
-		if (friendRequest == null) {
-
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(friendRequests, HttpStatus.OK);
 
 	}
 

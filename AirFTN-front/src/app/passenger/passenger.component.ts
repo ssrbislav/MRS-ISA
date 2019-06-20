@@ -8,6 +8,8 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { ResponseMessage } from '../model/responseMessage';
 import { Passenger } from '../model/passenger.model';
 import { ListReservationsComponent } from './list-reservations/list-reservations.component';
+import { mergeAnalyzedFiles } from '@angular/compiler';
+import { MyFriendComponent } from './my-friend/my-friend.component';
 
 
 @Component({
@@ -36,6 +38,8 @@ export class PassengerComponent implements OnInit {
       this.updatePassengerInfo();
     } else if (feature === 'my_reservations') {
       this.listPassengersReservations(this.passenger);
+    } else if (feature === 'my_friends') {
+      this.listFriendsAndRequests(this.passenger);
     }
   }
 
@@ -75,6 +79,22 @@ export class PassengerComponent implements OnInit {
     const dialogRef = this.dialog.open(ListReservationsComponent, dialogConfig);
 
   }
+
+  listFriendsAndRequests(passenger: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      added: false,
+      passenger
+    };
+
+    const dialogRef = this.dialog.open(MyFriendComponent, dialogConfig);
+  }
+
 
   navigateHotels() {
     this.router.navigate(['hotel']);

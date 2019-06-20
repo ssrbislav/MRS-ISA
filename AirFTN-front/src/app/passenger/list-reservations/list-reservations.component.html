@@ -9,7 +9,7 @@
 
     <ng-container matColumnDef="to">
         <th class="head-border" mat-header-cell *matHeaderCellDef mat-sort-header> TO </th>
-        <td mat-cell *matCellDef="let reservation"> {{reservation.ticket.company.city}} </td>
+        <td mat-cell *matCellDef="let reservation"> {{reservation.ticket.flight.destination.city}} </td>
     </ng-container>
 
 

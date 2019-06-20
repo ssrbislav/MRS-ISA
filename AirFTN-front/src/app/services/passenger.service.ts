@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common
 import { Passenger } from '../model/passenger.model';
 import { Observable } from 'rxjs';
 import { ResponseMessage } from '../model/responseMessage';
+import { FriendRequest } from '../model/friendRequest.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,6 +17,7 @@ export class PassengerService {
   constructor(private http: HttpClient) { }
 
   passengerUrl = 'http://localhost:8080/api/passenger';
+  friendRequestUrl = 'http://localhost:8080/api/friendRequest';
 
   public getPassengers() {
     return this.http.get<Passenger[]>(this.passengerUrl);
@@ -35,6 +37,26 @@ export class PassengerService {
 
   public updatePassenger(info: Passenger): Observable<ResponseMessage> {
     return this.http.post<ResponseMessage>(`${this.passengerUrl + '/updatePassenger'}`, info, httpOptions);
+  }
+
+  public sendFrinedRequest(info: FriendRequest): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>(`${this.friendRequestUrl + '/create'}`, info, httpOptions);
+  }
+
+  public getFriendRequests(id: BigInteger) {
+    return this.http.get<FriendRequest[]>(`${this.friendRequestUrl + '/findByReceiverId'}/${id}`);
+  }
+
+  public getFriends(id: BigInteger) {
+    return this.http.get<Passenger[]>(`${this.passengerUrl + '/getFriends'}/${id}`);
+  }
+
+  confirmFriendRequest(info: FriendRequest): Observable<ResponseMessage>  {
+    return this.http.post<ResponseMessage>(`${this.friendRequestUrl + '/confirmFriendRequest'}`, info, httpOptions);
+  }
+
+  rejectFriendRequest(info: FriendRequest): Observable<ResponseMessage>  {
+    return this.http.post<ResponseMessage>(`${this.friendRequestUrl + '/delete'}`, info, httpOptions);
   }
 
 }

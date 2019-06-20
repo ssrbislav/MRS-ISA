@@ -158,3 +158,11 @@ input {
     outline: none;
     border: none;
 }
+
+.form-group {
+  border: 3px solid gray;
+  height: 30px;
+  margin: 10px;
+  text-align: center;
+}
+

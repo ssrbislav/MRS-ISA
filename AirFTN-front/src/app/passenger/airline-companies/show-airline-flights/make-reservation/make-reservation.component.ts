@@ -41,6 +41,8 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
   reservation: ReservationDTO = new ReservationDTO();
   ticket: Ticket;
 
+  friends: Passenger[];
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -115,6 +117,7 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
     this.passengerService.getPassenger(this.tokenStorage.getUsername()).subscribe(
       data => {
         this.passenger = data;
+        this.getFriends(this.passenger.id);
       });
   }
 
@@ -139,6 +142,8 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
     this.person.lastName = this.passenger.lastName;
     this.person.email = this.passenger.email;
     this.person.passportNumber = this.passenger.passportNumber;
+    this.reservation.username = this.tokenStorage.getUsername();
+    this.reservation.fastReservation = false;
   }
 
   getTicket() {
@@ -152,8 +157,6 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
 
   makeReservation() {
     this.getTicket();
-    this.reservation.username = this.tokenStorage.getUsername();
-    this.reservation.fastReservation = false;
     console.log(this.reservation);
     this.reservationService.createReservation(this.reservation).subscribe(
       result => {
@@ -162,6 +165,25 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
         window.alert(this.message.message);
       }
     );
+  }
+
+  getFriends(id: BigInteger) {
+    this.passengerService.getFriends(id).subscribe(
+      data => {
+        this.friends = data;
+        console.log(this.friends);
+      }
+    );
+  }
+
+  choiceFriend(friend: any) {
+    this.person = new Person();
+    this.person.firstName = friend.firstName;
+    this.person.lastName = friend.lastName;
+    this.person.email = friend.email;
+    this.person.passportNumber = friend.passportNumber;
+    this.reservation.username = friend.username;
+    this.reservation.fastReservation = false;
   }
 
 }
