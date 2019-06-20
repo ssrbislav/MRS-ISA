@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDatepickerInputEvent, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDatepickerInputEvent, DateAdapter, MAT_DATE_FORMATS, MatTableDataSource } from '@angular/material';
 import { AirlineService } from 'src/app/services/airline.service';
 import { BusinessReport } from 'src/app/model/businessReport.model';
 import { ReservationService } from 'src/app/services/reservation.service';
@@ -19,7 +19,13 @@ export class BusinesssReportComponent implements OnInit {
 
   bussinesReport: BusinessReport = new BusinessReport();
 
+  dataSource: MatTableDataSource<Ticket>;
+  ticket: Ticket;
+
   tickets: Ticket[];
+
+  price = 0;
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<any>,
@@ -27,7 +33,7 @@ export class BusinesssReportComponent implements OnInit {
               private reservationService: ReservationService) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('40%', '60%');
+    this.dialogRef.updateSize('60%', '60%');
   }
 
   generateBusinessReport() {
@@ -36,7 +42,9 @@ export class BusinesssReportComponent implements OnInit {
     this.reservationService.createBusinessReport(this.bussinesReport).subscribe(
       result => {
         this.tickets = result;
-        console.log(this.tickets);
+        this.tickets.forEach(element => {
+          this.price += element.price;
+        });
       });
   }
 }

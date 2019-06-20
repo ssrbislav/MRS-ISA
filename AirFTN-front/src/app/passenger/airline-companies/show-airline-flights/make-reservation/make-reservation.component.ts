@@ -158,6 +158,7 @@ export class MakeReservationComponent implements OnInit, AfterViewChecked {
     this.reservationService.createReservation(this.reservation).subscribe(
       result => {
         this.message = result;
+        this.dialogRef.close();
         window.alert(this.message.message);
       }
     );

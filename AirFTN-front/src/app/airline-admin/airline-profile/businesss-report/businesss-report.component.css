@@ -45,3 +45,37 @@ button {
     height: 80%;
     
 }
+
+table {
+    margin-left: 20px;
+    font-family: lato;
+}
+
+thead {
+    background: gray;
+    color: white;
+}
+
+.totalPrice {
+    -webkit-box-shadow: 4px 21px 44px -15px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 21px 44px -15px rgba(0,0,0,0.75);
+box-shadow: 4px 21px 44px -15px rgba(0,0,0,0.75);
+    width: 200px;
+    height: 100px;
+    margin-top: 80px;
+}
+
+.total {
+    font-family: lato;
+    test-aling: center;
+    margin-left: 25px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.price {
+    margin-left: 70px;
+    font-family: lato;
+    font-weight: 600;
+    font-size: 20px;
+}

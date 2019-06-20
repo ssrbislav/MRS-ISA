@@ -9,7 +9,6 @@ import com.airftn.AirFTN.dto.SeatDTO;
 import com.airftn.AirFTN.dto.TicketDTO;
 import com.airftn.AirFTN.enumeration.SeatType;
 import com.airftn.AirFTN.model.AirlineCompany;
-import com.airftn.AirFTN.model.Airplane;
 import com.airftn.AirFTN.model.Flight;
 import com.airftn.AirFTN.model.Pricelist;
 import com.airftn.AirFTN.model.Seat;
@@ -97,7 +96,7 @@ public class TicketService implements ITicketService {
 		
 		Seat s = seatService.getOne(seat.getId());
 		
-		Airplane airplane = airplaneService.getOne(seat.getAirplaneId());
+//		Airplane airplane = airplaneService.getOne(seat.getAirplaneId());
 		
 		ticket.setFastTicket(true);
 		s.setOccupied(true);

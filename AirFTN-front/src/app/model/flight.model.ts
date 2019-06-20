@@ -28,6 +28,6 @@ export class Flight {
     destination: Destination;
     mileage: number;
     durationOfFlight: number;
-    transfers: TransferPointDTO[];
+    transferPoints: TransferPointDTO[];
     price: number;
 }

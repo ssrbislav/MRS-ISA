@@ -12,9 +12,11 @@ import { MakeReservationComponent } from './make-reservation/make-reservation.co
 })
 export class ShowAirlineFlightsComponent implements OnInit {
 
-  flights: Flight[];
+  flights: Flight[] = [];
   airline: AirlineCompany;
   dataSource: MatTableDataSource<Flight>;
+  date: Date = new Date();
+  flightDate: Date;
 
   displayedColumns: string[] = ['flightNumber', 'airline', 'airplane', 'departure',
     'arrival', 'destination', 'mileage',
@@ -40,10 +42,25 @@ export class ShowAirlineFlightsComponent implements OnInit {
   getFlights() {
     this.flightService.getAllAirlineFlights(this.airline.id).subscribe(
       data => {
-        this.flights = data;
+        data.forEach(element => {
+          this.flightDate = new Date(element.departureDate); 
+          if (this.flightDate.getTime() > this.date.getTime()) {
+            this.flights.push(element);
+          }
+        });
         this.dataSource = new MatTableDataSource(this.flights);
         this.dataSource.sort = this.sort;
       });
+  }
+
+  showFlightTransfers(id: BigInteger) {
+    this.flights.forEach(element => {
+      if (element.id === id) {
+        if (element.transferPoints.length) {
+          window.alert('This flight has ' + element.transferPoints.length + ' transfer points! -> ');
+        }
+      }
+    });
   }
 
   openForReservation(flight: any) {
