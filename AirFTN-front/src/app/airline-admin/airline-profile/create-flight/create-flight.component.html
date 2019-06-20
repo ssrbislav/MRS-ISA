@@ -5,11 +5,11 @@
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
   
       <div class="form-group">
-        <input type="text" id="flightNumber" name="flightNumber" [(ngModel)]="flight.flightNumber" required
+        <input type="text" id="flightNumber" name="flightNumber" [value]="flight.flightNumber" [(ngModel)]="flight.flightNumber" required
           placeholder="FLIGHT NUMBER" />
-        <div *ngIf="f.submitted && flightNumber.invalid">
+        <!-- <div *ngIf="f.submitted && flightNumber.invalid">
           <div *ngIf="flightNumber.errors.required" style="color: red">Flight Number is required</div>
-        </div>
+        </div> -->
       </div>
   
       <div class="form-group">
@@ -21,19 +21,19 @@
       </div>
   
       <div class="form-group">
-        <input type="text" id="departure" name="departure" [(ngModel)]="flight.departure" #departure="ngModel"
+        <input type="text" id="departure" name="departure" [(ngModel)]="flight.departure" [value]="flight.departure" #departure="ngModel"
           required placeholder="DEPARTURE DATE" #inputElement2 />
-        <div *ngIf="f.submitted && departure.invalid">
+        <!-- <div *ngIf="f.submitted && departure.invalid">
           <div *ngIf="departure.errors.required" style="color: red">Departure date is required</div>
-        </div>
+        </div> -->
       </div>
   
       <div class="form-group">
-        <input type="text" id="arrival" name="arrival" [(ngModel)]="flight.arrival" #arrival="ngModel"
+        <input type="text" id="arrival" name="arrival" [(ngModel)]="flight.arrival" [value]="flight.arrival" #arrival="ngModel"
           required placeholder="ARRIVAL DATE" #inputElement3 />
-        <div *ngIf="f.submitted && arrival.invalid">
+        <!-- <div *ngIf="f.submitted && arrival.invalid">
           <div *ngIf="arrival.errors.required" style="color: red">Arrival is required</div>
-        </div>
+        </div> -->
       </div>
   
       <div class="form-group">
@@ -45,19 +45,19 @@
         </div>
   
       <div class="form-group">
-        <input type="text" id="mileage" name="mileage" [(ngModel)]="flight.mileage" #mileage="ngModel"
+        <input type="text" id="mileage" name="mileage" [(ngModel)]="flight.mileage" [value]="flight.mileage" #mileage="ngModel"
           required placeholder="MILEAGE" #inputElement3 />
-        <div *ngIf="f.submitted && mileage.invalid">
+        <!-- <div *ngIf="f.submitted && mileage.invalid">
           <div *ngIf="mileage.errors.required" style="color: red">Mileage is required</div>
-        </div>
+        </div> -->
       </div>
   
       <div class="form-group">
-        <input type="text" id="price" name="price" [(ngModel)]="flight.price"
+        <input type="text" id="price" name="price" [(ngModel)]="flight.price" [value]="flight.price"
           #price="ngModel" required placeholder="PRICE" #inputElement3 />
-        <div *ngIf="f.submitted && price.invalid">
+        <!-- <div *ngIf="f.submitted && price.invalid">
           <div *ngIf="price.errors.required" style="color: red">Price of flight is required</div>
-        </div>
+        </div> -->
       </div>
   
       <br>

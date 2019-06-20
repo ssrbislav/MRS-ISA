@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-      <input type="password" id="pass" name="password" minlength="8" [(ngModel)]="adminInfo.password" #password="ngModel" 
+      <input type="password" id="pass" class="adminInfo" name="password" minlength="8" [(ngModel)]="adminInfo.password" #password="ngModel" 
       required placeholder="PASSWORD" disabled #inputElement3/>
       <div *ngIf="f.submitted && password.invalid">
         <div *ngIf="password.errors.required" style="color: red">Password is required</div>
@@ -50,8 +50,6 @@
 
     <div class="form-group">
       <button class="button" id="updatebtn" class="submitbtn" (click)="updateAdminInfo(adminInfo)" mat-raised-button>ENABLE CHANGES</button>
-      <button class="passwordbtn" (click)="changePassword()"  mat-raised-button>CHANGE PASSWORD</button>
-      <br>
       
       <button class="cancelbtn" mat-dialog-close mat-raised-button>CANCEL</button>
     </div>

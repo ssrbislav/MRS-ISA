@@ -59,6 +59,7 @@ export class CreateFlightComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.data.company);
     this.flight.companyId = this.data.company;
     console.log(this.flight);
     this.flightService.createFlight(this.flight).subscribe(
@@ -68,7 +69,7 @@ export class CreateFlightComponent implements OnInit {
         location.reload();
       },
       error => {
-        window.alert(error.errorMessage);
+        console.log(error.errorMessage);
         this.errorMessage = error.error.message;
       }
     );

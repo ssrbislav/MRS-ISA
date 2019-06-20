@@ -74,8 +74,8 @@ public class FlightService implements IFlightService {
 
 		Airplane airplane = airplaneService.getOne(flight.getAirplaneId());
 		
-		airplane.setTaken(true);
-		airplaneRepository.save(airplane);
+		
+		// airplaneRepository.save(airplane);
 		
 		Pricelist pricelist = pricelistService.getByAirlineId(company.getId());
 
@@ -102,10 +102,10 @@ public class FlightService implements IFlightService {
 				return null;
 		}
 
-		Calendar today = Calendar.getInstance();
+//		Calendar today = Calendar.getInstance();
 
-		if (departureTime.getTime().before(today.getTime()))
-			return null;
+//		if (departureTime.getTime().before(today.getTime()))
+//			return null;
 
 		if (arrivalTime.before(departureTime))
 			return null;
@@ -158,6 +158,9 @@ public class FlightService implements IFlightService {
 			ticketRepository.save(ticket);
 				
 		}
+		
+		airplane.setTaken(true);
+		//airplaneRepository.save(airplane);
 		
 		return flightRepository.save(f);
 

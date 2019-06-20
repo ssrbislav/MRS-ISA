@@ -77,9 +77,11 @@ export class CreateFastReservationComponent implements OnInit {
     this.ticketService.createFastTicket(this.seat).subscribe(
       data => {
         this.message = data;
-        alert(this.message.message);
+        // alert(this.message.message);
       }
     );
+    this.dialogRef.close();
+    location.reload();
   }
 
 }

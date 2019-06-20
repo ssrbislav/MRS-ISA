@@ -36,11 +36,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    this.passengerService.getPassenger(this.form.username).subscribe(
-      data => {
-        this.active = data.active;
-      }
-    );
+    // this.passengerService.getPassenger(this.form.username).subscribe(
+    //   data => {
+    //     this.active = data.active;
+    //   }
+    // );
 
     this.loginInfo = new LoginInfo(
       this.form.username,

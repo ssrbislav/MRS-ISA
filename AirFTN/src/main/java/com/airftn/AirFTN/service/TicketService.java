@@ -101,7 +101,7 @@ public class TicketService implements ITicketService {
 		
 		ticket.setFastTicket(true);
 		s.setOccupied(true);
-		s.setAirplane(airplane);
+//		s.setAirplane(airplane);
 		
 		seatRepository.save(s);
 
