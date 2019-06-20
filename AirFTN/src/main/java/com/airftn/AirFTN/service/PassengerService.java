@@ -85,6 +85,7 @@ public class PassengerService implements IPassengerService {
 		p.setPassword(encoder.encode(passenger.getPassword()));
 		p.setFirstName(passenger.getFirstName());
 		p.setLastName(passenger.getLastName());
+		p.setPassportNumber(passenger.getPassportNumber());
 		p.setAddress(passenger.getAddress());
 		p.setDateOfBirth(passenger.getDateOfBirth());
 		p.setPhoneNumber(passenger.getPhoneNumber());

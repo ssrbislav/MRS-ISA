@@ -33,6 +33,8 @@ public class UserPrinciple implements UserDetails {
 
 	private String address;
 
+	private String passportNumber;
+
 	private String phoneNumber;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -40,7 +42,7 @@ public class UserPrinciple implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserPrinciple(Long id, String username, String password, String email, String firstName, String lastName,
+	public UserPrinciple(Long id, String username, String password, String email, String firstName, String lastName, String passportNumber,
 			String address, String phoneNumber, Date dateOfBirth, Collection<? extends GrantedAuthority> authorities) {
 		super();
 		this.id = id;
@@ -50,6 +52,7 @@ public class UserPrinciple implements UserDetails {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
+		this.passportNumber = passportNumber;
 		this.phoneNumber = phoneNumber;
 		this.dateOfBirth = dateOfBirth;
 		this.authorities = authorities;
@@ -60,8 +63,8 @@ public class UserPrinciple implements UserDetails {
 				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
 		return new UserPrinciple(user.getId(), user.getUsername(), user.getPassword(), user.getEmail(),
-				user.getFirstName(), user.getLastName(), user.getAddress(), user.getPhoneNumber(),
-				user.getDateOfBirth(), authorities);
+				user.getFirstName(), user.getLastName(), user.getPassportNumber(), user.getAddress(),
+				user.getPhoneNumber(), user.getDateOfBirth(), authorities);
 	}
 
 	public Long getId() {
@@ -78,6 +81,10 @@ public class UserPrinciple implements UserDetails {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public String getPassportNumber() {
+		return passportNumber;
 	}
 
 	public String getAddress() {
